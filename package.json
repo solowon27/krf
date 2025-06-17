@@ -1,0 +1,16 @@
+{
+  "name": "nova-guardian-root",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "concurrently \"cd nova-backend && node index.js\" \"cd nova-frontend && npm run dev\"",
+    "install-all": "cd nova-backend && npm install && cd ../nova-frontend && npm install",
+    "build": "cd nova-frontend && npm run build"
+  },
+  "devDependencies": {
+    "concurrently": "^9.1.2"
+  },
+  "dependencies": {
+    "axios": "^1.9.0"
+  }
+}
