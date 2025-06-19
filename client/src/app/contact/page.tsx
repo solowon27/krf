@@ -165,7 +165,7 @@ export default function ContactUs() {
                 <span className="text-teal-600 text-2xl">📧</span>
                 <div>
                   <h3 className="font-bold text-gray-800">Email Us</h3>
-                  <a href="mailto:info@konerenaissance.org" className="text-gray-700 hover:text-teal-600 transition-colors duration-300">info@konerenaissance.org</a>
+                  <a href="mailto:konerenfoundation@gmail.com" className="text-gray-700 hover:text-teal-600 transition-colors duration-300">konerenfoundation@gmail.com</a>
                 </div>
               </div>
               <div className="flex items-center space-x-4">
@@ -173,15 +173,14 @@ export default function ContactUs() {
                 <div>
                   <h3 className="font-bold text-gray-800">Our Office</h3>
                   <p>Kone Renaissance Foundation</p>
-                  <p>123 Philanthropy Lane, Suite 400</p>
-                  <p>Addis Ababa, Ethiopia</p> {/* Example address */}
+                  <p>Kone, Ethiopia</p> {/* Example address */}
                 </div>
               </div>
               <div className="flex items-center space-x-4">
                 <span className="text-teal-600 text-2xl">📞</span>
                 <div>
                   <h3 className="font-bold text-gray-800">Call Us</h3>
-                  <a href="tel:+251-11-234-5678" className="text-gray-700 hover:text-teal-600 transition-colors duration-300">+251 11 234 5678</a> {/* Example number */}
+                  <a href="tel:+251-11-234-5678" className="text-gray-700 hover:text-teal-600 transition-colors duration-300">+251 00 00 00 00</a> {/* Example number */}
                 </div>
               </div>
             </div>

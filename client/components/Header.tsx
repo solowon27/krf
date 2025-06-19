@@ -39,7 +39,7 @@ export default function Header() {
 
           {/* Desktop Navigation Links */}
           <div className="hidden md:flex items-center space-x-6">
-            <Link href="/AboutUs" className="text-gray-700 hover:text-teal-700 transition-colors duration-300 font-medium">
+            <Link href="/about" className="text-gray-700 hover:text-teal-700 transition-colors duration-300 font-medium">
               About Us
             </Link>
             <Link href="/impact" className="text-gray-700 hover:text-teal-700 transition-colors duration-300 font-medium">
@@ -48,7 +48,10 @@ export default function Header() {
             <Link href="/gallery" className="text-gray-700 hover:text-teal-700 transition-colors duration-300 font-medium">
               Gallery
             </Link>
-            <Link href="/ContactUs" className="text-gray-700 hover:text-teal-700 transition-colors duration-300 font-medium">
+            <Link href="/library" className="text-gray-700 hover:text-teal-700 transition-colors duration-300 font-medium">
+              Library
+            </Link>
+            <Link href="/contact" className="text-gray-700 hover:text-teal-700 transition-colors duration-300 font-medium">
               Connect
             </Link>
             {/* Donate Button for Desktop */}
@@ -127,6 +130,11 @@ export default function Header() {
           <motion.div variants={mobileLinkVariants}>
             <Link href="/gallery" onClick={() => setIsMenuOpen(false)} className="block text-3xl font-bold hover:text-amber-400 transition-colors duration-300 py-2">
               Gallery
+            </Link>
+          </motion.div>
+          <motion.div variants={mobileLinkVariants}>
+            <Link href="/library" onClick={() => setIsMenuOpen(false)} className="block text-3xl font-bold hover:text-amber-400 transition-colors duration-300 py-2">
+              Library
             </Link>
           </motion.div>
           <motion.div variants={mobileLinkVariants}>
