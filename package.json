@@ -3,9 +3,9 @@
   "version": "1.0.0",
   "private": true,
   "scripts": {
-    "dev": "concurrently \"cd nova-backend && node index.js\" \"cd nova-frontend && npm run dev\"",
-    "install-all": "cd nova-backend && npm install && cd ../nova-frontend && npm install",
-    "build": "cd nova-frontend && npm run build"
+    "dev": "concurrently \"cd server && node index.js\" \"cd client && npm run dev\"",
+    "install-all": "cd server && npm install && cd ../client && npm install",
+    "build": "cd client && npm run build"
   },
   "devDependencies": {
     "concurrently": "^9.1.2"
