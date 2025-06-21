@@ -49,7 +49,7 @@ export default function LoginPage() {
 
       {/* Main content area, uses flex-grow to take up available space and push footer down */}
       <main className="flex-grow flex items-center justify-center px-4 sm:px-6 lg:px-8 py-12">
-        <div className="max-w-md w-full space-y-8 p-10 bg-white rounded-xl shadow-lg"> {/* Enhanced shadow and rounded */}
+        <div className="max-w-md w-full space-y-8 p-10 bg-white rounded-xl mb-20 shadow-lg"> {/* Enhanced shadow and rounded */}
           <div>
             <h2 className="mt-6 text-center text-3xl font-extrabold text-teal-800"> {/* Teal heading */}
               Admin Login
