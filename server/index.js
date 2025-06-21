@@ -1,12 +1,16 @@
 const express = require('express');
-// const { ApolloServer } = require('apollo-server-express'); // Commented out
-const mongoose = require('mongoose'); // Commented out
+const { ApolloServer } = require('apollo-server-express');
+const mongoose = require('mongoose');
 const cors = require('cors');
 require('dotenv').config();
-const nodemailer = require('nodemailer'); // Import nodemailer
+const nodemailer = require('nodemailer');
 
-// const typeDefs = require('./graphql/typeDefs'); // Commented out
-// const resolvers = require('./graphql/resolvers'); // Commented out
+// 🔧 Import GraphQL
+const typeDefs = require('./graphql/typeDefs');
+const resolvers = require('./graphql/resolvers');
+
+// 🔧 Import your existing JWT middleware
+const { authMiddleware } = require('./utils/auth');
 
 const startServer = async () => {
   const app = express();
@@ -19,6 +23,9 @@ const startServer = async () => {
   credentials: true
 }));
   app.use(express.json());
+
+  // 🔧 Use your JWT authentication middleware
+  app.use(authMiddleware);
 
   // --- NEW: Contact Form Submission Endpoint ---
   app.post('/api/contact', async (req, res) => {
@@ -75,27 +82,31 @@ const startServer = async () => {
   });
   // --- END NEW: Contact Form Submission Endpoint ---
 
+//sexurity measure  
+const secret = process.env.JWT_SECRET || 'fallbacksecret'; // Use a fallback for local dev if dotenv not loaded
+const expiration = process.env.JWT_EXPIRATION || '2h';
 
-  // Apollo Server Setup - Commented out
-  // const server = new ApolloServer({
-  //   typeDefs,
-  //   resolvers,
-  // });
+   // Apollo Server setup with context
+  const server = new ApolloServer({
+    typeDefs,
+    resolvers,
+    context: ({ req }) => ({
+      user: req.user // 🔧 Inject authenticated user
+    }),
+  });
 
-  // await server.start();
-  // server.applyMiddleware({ app, path: '/graphql' });
+  await server.start();
+  server.applyMiddleware({ app, path: '/graphql' });
 
-
-  // MongoDB Connection - Commented out
-  // mongoose
-  //   .connect(process.env.MONGODB_URI, {
-  //   })
-  //   .then(() => console.log('✅ MongoDB connected successfully!'))
-  //   .catch((err) => console.error('❌ MongoDB connection error:', err));
+  // MongoDB connection
+  mongoose
+    .connect(process.env.MONGODB_URI, {})
+    .then(() => console.log('✅ MongoDB connected successfully!'))
+    .catch((err) => console.error('❌ MongoDB connection error:', err));
 
   const PORT = process.env.PORT || 4000;
   app.listen(PORT, () =>
-    console.log(`🚀 Server ready at http://localhost:${PORT}`) // Removed GraphQL path reference
+    console.log(`🚀 Server ready at http://localhost:${PORT}`)
   );
 };
 

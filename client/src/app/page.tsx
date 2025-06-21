@@ -1,12 +1,32 @@
 'use client';
 
-import Link from 'next/link'; // Still needed for internal page links
-import Header from '@/components/Header'; // Import your new Header component
-import Footer from '@/components/Footer'; // Import your new Footer component
-import { motion, Variants, Transition } from 'framer-motion'; // <--- IMPORT Variants and Transition here
+import Link from 'next/link';
+import Header from '@/components/Header';
+import Footer from '@/components/Footer';
+import { motion, Variants, Transition } from 'framer-motion';
+
+import { useQuery, gql } from '@apollo/client';
+
+const GET_DONATIONS = gql`
+  query GetDonations {
+    getDonations {
+      id
+      donorName
+      item
+      message
+      date
+    }
+  }
+`;
 
 export default function Home() {
-  const containerVariants: Variants = { // <--- Add ': Variants' here for better typing
+  const { data, loading, error } = useQuery(GET_DONATIONS);
+  const donations = data?.getDonations || [];
+
+  // Limit to showing the latest 5 donations, as requested
+  const latestDonations = donations.slice(0, 5);
+
+  const containerVariants: Variants = {
     hidden: { opacity: 0 },
     visible: {
       opacity: 1,
@@ -16,7 +36,7 @@ export default function Home() {
     },
   };
 
-  const itemVariants: Variants = { // <--- Add ': Variants' here
+  const itemVariants: Variants = {
     hidden: { y: 20, opacity: 0 },
     visible: {
       y: 0,
@@ -25,19 +45,16 @@ export default function Home() {
         type: 'spring',
         stiffness: 100,
         damping: 10,
-      } as Transition, // <--- Add 'as Transition' here
+      } as Transition,
     },
   };
 
   return (
     <main className="min-h-screen bg-gray-50 text-gray-800 font-sans antialiased">
-      {/* Plug in your Header component */}
       <Header />
 
       {/* Hero Section - Bold, inspiring, with a unique background */}
-      {/* Note: Added pt-24 to main content to account for fixed header height */}
       <section className="bg-gradient-to-br from-teal-800 to-teal-600 text-white py-40 px-6 text-center relative overflow-hidden pt-24">
-        {/* Subtle background graphic for modern feel */}
         <div
           className="absolute inset-0 opacity-10"
           style={{
@@ -69,8 +86,74 @@ export default function Home() {
         </motion.div>
       </section>
 
+      {/* Recent Donations Section - Beautiful and Space-Saved List */}
+      <section className="py-8 px-2 bg-white"> {/* Using bg-white for a clean, bright feel here */}
+        <motion.div
+          className="max-w-4xl mx-auto text-center" 
+          variants={containerVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.3 }}
+        >
+          <motion.h2 variants={itemVariants} className="text-3xl md:text-4xl font-extrabold mb-10 text-teal-800">
+            Recent Contributions ✨
+          </motion.h2>
+
+          {loading ? (
+            <p className="text-center text-gray-600 text-lg">
+              <span className="animate-spin inline-block mr-2">🔄</span> Fetching recent acts of kindness...
+            </p>
+          ) : error ? (
+            <p className="text-center text-red-700 text-lg">
+              <span className="mr-2">⚠️</span> Failed to load contributions.
+            </p>
+          ) : latestDonations.length === 0 ? (
+            <p className="text-center text-gray-600 text-lg">
+              Be the first to make a difference! No donations recorded yet.
+            </p>
+          ) : (
+            <div className="space-y-4"> {/* Use space-y for vertical spacing between list items */}
+              {latestDonations.map((donation: any) => (
+                <motion.div
+                  key={donation.id}
+                  variants={itemVariants}
+                  className="bg-gray-50 flex items-center justify-between rounded-lg px-6 py-4 shadow-sm border border-gray-100 hover:shadow-md transition-all duration-200"
+                >
+                  <div className="text-left flex-grow">
+                    <p className="text-lg font-semibold text-teal-700 leading-tight">
+                      {donation.donorName} <span className="font-normal text-gray-600">donated</span>{' '}
+                      <span className="text-amber-600 font-bold">{donation.item}</span>
+                    </p>
+                    {donation.message && (
+                      <p className="text-sm text-gray-500 italic mt-1 leading-snug">
+                        "{donation.message}"
+                      </p>
+                    )}
+                  </div>
+                  <div className="text-right ml-4 flex-shrink-0">
+                    <p className="text-xs text-gray-400">
+                      {new Date(donation.date).toLocaleDateString()}
+                    </p>
+                  </div>
+                </motion.div>
+              ))}
+            </div>
+          )}
+          {donations.length > 5 && ( // Only show "View All" if there are more than 5 donations
+            <motion.div variants={itemVariants} className="text-center mt-12">
+              <Link
+                href="/donations" // Link to your full donations page
+                className="inline-block text-teal-700 border-2 border-teal-700 font-semibold px-8 py-4 rounded-full hover:bg-teal-700 hover:text-white transition-all duration-300 transform hover:-translate-y-1"
+              >
+                View All Contributions &rarr;
+              </Link>
+            </motion.div>
+          )}
+        </motion.div>
+      </section>
+
       {/* Introduction/Mission Section - Clean and impactful */}
-      <section className="py-20 px-6 bg-white shadow-inner">
+      <section className="py-20 px-6 bg-gray-50 shadow-inner"> {/* Changed to gray-50 for subtle alternation */}
         <motion.div
           className="max-w-5xl mx-auto text-center"
           variants={containerVariants}
@@ -96,7 +179,7 @@ export default function Home() {
       </section>
 
       {/* Impact Areas Section - Visual and engaging */}
-      <section className="py-20 px-6 bg-gray-100">
+      <section className="py-20 px-6 bg-white"> {/* Changed to bg-white for alternation */}
         <motion.div
           className="max-w-6xl mx-auto"
           variants={containerVariants}
@@ -165,7 +248,6 @@ export default function Home() {
         </motion.div>
       </section>
 
-      {/* Plug in your Footer component */}
       <Footer />
     </main>
   );

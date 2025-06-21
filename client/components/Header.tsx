@@ -1,32 +1,63 @@
-// components/Header.tsx
-'use client'; // This component will have client-side interactivity (like the hamburger menu)
+'use client';
 
 import Link from 'next/link';
-import { motion, Variants, Transition } from 'framer-motion'; 
-import { useState } from 'react';
+import { motion, Variants, Transition } from 'framer-motion';
+import { useState, useEffect } from 'react'; // Import useEffect
+import { useRouter } from 'next/navigation'; // Import useRouter for navigation
+import { jwtDecode } from 'jwt-decode'; // Import jwtDecode
 
 export default function Header() {
+  const router = useRouter(); // Initialize useRouter
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [currentUser, setCurrentUser] = useState<{ email: string; role: string } | null>(null); // State to store logged-in user info
 
-  const mobileLinkVariants: Variants = { // Add ': Variants' here
-  open: {
-    y: 0,
-    opacity: 1,
-    transition: {
-      type: "spring",
-      stiffness: 400,
-      damping: 40
-    } as Transition, // <--- Add 'as Transition' here
-  },
-  closed: {
-    y: 50,
-    opacity: 0,
-    // Optional: Add a transition for the closed state for smoother animation
-    transition: {
-      duration: 0.3 // A simple tween transition for closing
+  // Effect to check for token and set user on component mount
+  useEffect(() => {
+    const token = localStorage.getItem('token');
+    if (token) {
+      try {
+        const decodedToken = jwtDecode<{ data: { email: string; role: string; _id: string } }>(token);
+        // Ensure token is not expired (jwtDecode automatically handles this with default options, but good to be explicit)
+        const currentTime = Date.now() / 1000; // in seconds
+        if (decodedToken.exp && decodedToken.exp < currentTime) {
+            console.log('Token expired. Logging out.');
+            handleLogout(); // Log out if token is expired
+        } else {
+            setCurrentUser(decodedToken.data);
+        }
+      } catch (error) {
+        console.error('Failed to decode token:', error);
+        localStorage.removeItem('token'); // Clear invalid token
+      }
     }
-  }
-};
+  }, []); // Empty dependency array means this runs once on mount
+
+  const handleLogout = () => {
+    localStorage.removeItem('token'); // Remove token from local storage
+    setCurrentUser(null); // Clear current user state
+    router.push('/'); // Redirect to homepage after logout
+    setIsMenuOpen(false); // Close mobile menu if open
+    alert('You have been logged out.'); // Optional: provide feedback
+  };
+
+  const mobileLinkVariants: Variants = {
+    open: {
+      y: 0,
+      opacity: 1,
+      transition: {
+        type: "spring",
+        stiffness: 400,
+        damping: 40
+      } as Transition,
+    },
+    closed: {
+      y: 50,
+      opacity: 0,
+      transition: {
+        duration: 0.3
+      }
+    }
+  };
 
   return (
     <motion.nav
@@ -38,7 +69,7 @@ export default function Header() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16">
           <Link href="/" className="text-2xl font-extrabold text-teal-800 hover:text-teal-600 transition-colors duration-300 tracking-wide">
-            Kone Renaissance Foundation 
+            Kone Renaissance Foundation
             <h2 className="text-xl text-amber-500">የኮን ህዳሴ ፋውንዴሽን</h2>
           </Link>
 
@@ -56,6 +87,31 @@ export default function Header() {
             <Link href="/contact" className="text-gray-700 hover:text-teal-700 transition-colors duration-300 font-medium">
               Connect
             </Link>
+
+            {/* Conditional Links for Desktop */}
+            {currentUser ? (
+              <>
+                <Link href="/donaters" className="text-red-400 hover:text-teal-700 transition-colors duration-300">
+               Add donaters
+            </Link>
+                <button
+                  onClick={handleLogout}
+                  className="text-gray-700 hover:text-teal-700 transition-colors duration-300 font-medium focus:outline-none"
+                >
+                  Logout
+                </button>
+              </>
+            ) : (
+              <>
+                <Link href="/login" className="text-gray-700 hover:text-teal-700 transition-colors duration-300 font-medium">
+                  Login
+                </Link>
+                <Link href="/signup" className="text-gray-700 hover:text-teal-700 transition-colors duration-300 font-medium">
+                  Sign Up
+                </Link>
+              </>
+            )}
+
             {/* Donate Button for Desktop */}
             <Link
               href="/donate"
@@ -114,6 +170,7 @@ export default function Header() {
             closed: { transition: { staggerChildren: 0.05, staggerDirection: -1 } }
           }}
         >
+          {/* Mobile Links (adjust based on login status) */}
           <motion.div variants={mobileLinkVariants}>
             <Link href="/" onClick={() => setIsMenuOpen(false)} className="block text-3xl font-bold hover:text-amber-400 transition-colors duration-300 py-2">
               Home
@@ -139,6 +196,39 @@ export default function Header() {
               Connect
             </Link>
           </motion.div>
+
+          {/* Conditional Links for Mobile */}
+          {currentUser ? (
+            <>
+              <motion.div variants={mobileLinkVariants}>
+            <Link href="/donaters" onClick={() => setIsMenuOpen(false)} className="block font-bold text-red-400 hover:text-amber-400 transition-colors duration-300 py-2">
+              Add donaters
+            </Link>
+          </motion.div>
+              <motion.div variants={mobileLinkVariants}>
+                <button
+                  onClick={handleLogout}
+                  className="block text-3xl font-bold hover:text-amber-400 transition-colors duration-300 py-2"
+                >
+                  Logout
+                </button>
+              </motion.div>
+            </>
+          ) : (
+            <>
+              <motion.div variants={mobileLinkVariants}>
+                <Link href="/login" onClick={() => setIsMenuOpen(false)} className="block text-3xl font-bold hover:text-amber-400 transition-colors duration-300 py-2">
+                  Login
+                </Link>
+              </motion.div>
+              <motion.div variants={mobileLinkVariants}>
+                <Link href="/signup" onClick={() => setIsMenuOpen(false)} className="block text-3xl font-bold hover:text-amber-400 transition-colors duration-300 py-2">
+                  Sign Up
+                </Link>
+              </motion.div>
+            </>
+          )}
+
           <motion.div variants={mobileLinkVariants} className="mt-10">
             <Link
               href="/donate"

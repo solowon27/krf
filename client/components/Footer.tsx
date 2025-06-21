@@ -11,7 +11,7 @@ export default function Footer() {
         <div>
           <h4 className="text-xl font-bold text-white">Kone Renaissance</h4>
           <h2 className="text-amber-500 text-xl mb-2 underline">ህዳሴ ኮን</h2>
-          <p className="text-sm">Dedicated to transforming education and empowering futures in rural Ethiopia.</p>
+          <p className="text-sm">Dedicated to transforming education and empowering futures in Kone.</p>
         </div>
         <div>
           <h4 className="text-xl font-bold text-white mb-4">Quick Links</h4>
