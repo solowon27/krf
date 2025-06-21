@@ -1,18 +1,23 @@
 const express = require('express');
-const { ApolloServer } = require('apollo-server-express');
-const mongoose = require('mongoose');
+// const { ApolloServer } = require('apollo-server-express'); // Commented out
+const mongoose = require('mongoose'); // Commented out
 const cors = require('cors');
 require('dotenv').config();
 const nodemailer = require('nodemailer'); // Import nodemailer
 
-const typeDefs = require('./graphql/typeDefs');
-const resolvers = require('./graphql/resolvers');
+// const typeDefs = require('./graphql/typeDefs'); // Commented out
+// const resolvers = require('./graphql/resolvers'); // Commented out
 
 const startServer = async () => {
   const app = express();
 
   // Middleware
-  app.use(cors());
+   app.use(cors({
+  origin: 'https://krf-three.vercel.app', // REMOVED the trailing slash
+  methods: ['GET', 'POST', 'OPTIONS'],
+  allowedHeaders: ['Content-Type', 'Authorization'],
+  credentials: true
+}));
   app.use(express.json());
 
   // --- NEW: Contact Form Submission Endpoint ---
@@ -58,7 +63,7 @@ const startServer = async () => {
           </div>
         `,
       };
- // Send the email
+      // Send the email
       await transporter.sendMail(mailOptions);
 
       console.log('Contact form email sent successfully!');
@@ -71,29 +76,26 @@ const startServer = async () => {
   // --- END NEW: Contact Form Submission Endpoint ---
 
 
-  // Apollo Server Setup
-  const server = new ApolloServer({
-    typeDefs,
-    resolvers,
-    // Ensure you handle context if your resolvers need it
-    // context: ({ req }) => ({ req }),
-  });
+  // Apollo Server Setup - Commented out
+  // const server = new ApolloServer({
+  //   typeDefs,
+  //   resolvers,
+  // });
 
-  await server.start();
-  server.applyMiddleware({ app, path: '/graphql' });
+  // await server.start();
+  // server.applyMiddleware({ app, path: '/graphql' });
 
-  // MongoDB Connection
-  mongoose
-    .connect(process.env.MONGODB_URI, {
-      // useNewUrlParser: true, // Deprecated in Mongoose 6+
-      // useUnifiedTopology: true, // Deprecated in Mongoose 6+
-    })
-    .then(() => console.log('✅ MongoDB connected successfully!'))
-    .catch((err) => console.error('❌ MongoDB connection error:', err));
+
+  // MongoDB Connection - Commented out
+  // mongoose
+  //   .connect(process.env.MONGODB_URI, {
+  //   })
+  //   .then(() => console.log('✅ MongoDB connected successfully!'))
+  //   .catch((err) => console.error('❌ MongoDB connection error:', err));
 
   const PORT = process.env.PORT || 4000;
   app.listen(PORT, () =>
-    console.log(`🚀 Server ready at http://localhost:<span class="math-inline">\{PORT\}</span>{server.graphqlPath}`)
+    console.log(`🚀 Server ready at http://localhost:${PORT}`) // Removed GraphQL path reference
   );
 };
 
