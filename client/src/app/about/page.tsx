@@ -4,34 +4,34 @@
 import Link from 'next/link';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
-import { motion } from 'framer-motion';
+import { motion, Variants, Transition } from 'framer-motion';
 import Image from 'next/image';
 
 import samplelogo from '@/images/sample-logo.png'; // Make sure this path is correct relative to your project root/src
 
 export default function AboutUs() {
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.1,
-      },
+  const containerVariants: Variants = { // Add ': Variants' here
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.1,
     },
-  };
+  },
+};
 
-  const itemVariants = {
-    hidden: { y: 20, opacity: 0 },
-    visible: {
-      y: 0,
-      opacity: 1,
-      transition: {
-        type: 'spring',
-        stiffness: 100,
-        damping: 10,
-      },
-    },
-  };
+const itemVariants: Variants = { // Add ': Variants' here
+  hidden: { y: 20, opacity: 0 },
+  visible: {
+    y: 0,
+    opacity: 1,
+    transition: {
+      type: 'spring',
+      stiffness: 100,
+      damping: 10,
+    } as Transition, // Add 'as Transition' here
+  },
+};
 
   return (
     <main className="min-h-screen bg-gray-50 text-gray-800 font-sans antialiased">

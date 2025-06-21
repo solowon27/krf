@@ -3,10 +3,10 @@
 import Link from 'next/link'; // Still needed for internal page links
 import Header from '@/components/Header'; // Import your new Header component
 import Footer from '@/components/Footer'; // Import your new Footer component
-import { motion } from 'framer-motion';
+import { motion, Variants, Transition } from 'framer-motion'; // <--- IMPORT Variants and Transition here
 
 export default function Home() {
-  const containerVariants = {
+  const containerVariants: Variants = { // <--- Add ': Variants' here for better typing
     hidden: { opacity: 0 },
     visible: {
       opacity: 1,
@@ -16,7 +16,7 @@ export default function Home() {
     },
   };
 
-  const itemVariants = {
+  const itemVariants: Variants = { // <--- Add ': Variants' here
     hidden: { y: 20, opacity: 0 },
     visible: {
       y: 0,
@@ -25,7 +25,7 @@ export default function Home() {
         type: 'spring',
         stiffness: 100,
         damping: 10,
-      },
+      } as Transition, // <--- Add 'as Transition' here
     },
   };
 

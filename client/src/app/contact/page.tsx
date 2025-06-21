@@ -1,14 +1,23 @@
 // app/contact/page.tsx
 'use client';
 
-import Link from 'next/link';
+// Removed 'Link' as it's not used in the component's JSX
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
-import { motion } from 'framer-motion';
-import { useState } from 'react';
+import { motion, Variants, Transition } from 'framer-motion';
+import React, { useState } from 'react'; // Added React import for types, though often implicit
+
+// Define an interface for the form data structure for better type safety
+interface FormData {
+  name: string;
+  email: string;
+  subject: string;
+  message: string;
+}
 
 export default function ContactUs() {
-  const [formData, setFormData] = useState({
+  // Explicitly type the formData state using the FormData interface
+  const [formData, setFormData] = useState<FormData>({
     name: '',
     email: '',
     subject: '',
@@ -17,12 +26,14 @@ export default function ContactUs() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitStatus, setSubmitStatus] = useState(''); // 'success', 'error', ''
 
-  const handleChange = (e) => {
+  // Add type annotation for the event parameter 'e'
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
     setFormData((prevData) => ({ ...prevData, [name]: value }));
   };
 
-  const handleSubmit = async (e) => {
+  // Add type annotation for the event parameter 'e' for form submission
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setIsSubmitting(true);
     setSubmitStatus('');
@@ -42,24 +53,22 @@ export default function ContactUs() {
 
       if (response.ok) {
         setSubmitStatus('success');
-        // alert('Thank you for your message! We will get back to you soon.'); // Replaced by status message
         setFormData({ name: '', email: '', subject: '', message: '' }); // Clear form
       } else {
         const errorData = await response.json();
         setSubmitStatus('error');
         console.error('Server error:', errorData.message);
-        // alert(`Failed to send message: ${errorData.message || 'Unknown error'}`); // Replaced by status message
       }
-    } catch (error) {
+    } catch (error: unknown) { // Type 'error' in catch block as 'unknown'
       console.error('Submission error:', error);
       setSubmitStatus('error');
-      // alert('An error occurred while submitting the form. Please try again later.'); // Replaced by status message
     } finally {
       setIsSubmitting(false);
     }
   };
 
-  const containerVariants = {
+  // Framer Motion variants, already correctly typed with Variants and Transition
+  const containerVariants: Variants = {
     hidden: { opacity: 0 },
     visible: {
       opacity: 1,
@@ -69,7 +78,7 @@ export default function ContactUs() {
     },
   };
 
-  const itemVariants = {
+  const itemVariants: Variants = {
     hidden: { y: 20, opacity: 0 },
     visible: {
       y: 0,
@@ -78,7 +87,7 @@ export default function ContactUs() {
         type: 'spring',
         stiffness: 100,
         damping: 10,
-      },
+      } as Transition,
     },
   };
 
@@ -174,7 +183,7 @@ export default function ContactUs() {
                   name="message"
                   value={formData.message}
                   onChange={handleChange}
-                  rows="6"
+                  rows={6}
                   required
                   className="shadow appearance-none border rounded w-full py-3 px-4 text-gray-700 leading-tight focus:outline-none focus:ring-2 focus:ring-teal-500 focus:border-transparent transition-all duration-200 resize-y"
                 ></textarea>
@@ -214,6 +223,7 @@ export default function ContactUs() {
                 <span className="text-teal-600 text-2xl">📞</span>
                 <div>
                   <h3 className="font-bold text-gray-800">Call Us</h3>
+                  {/* Note: This is a placeholder number. Replace with a real one. */}
                   <a href="tel:+251-11-234-5678" className="text-gray-700 hover:text-teal-600 transition-colors duration-300">+251 00 00 00 00</a>
                 </div>
               </div>
@@ -221,6 +231,7 @@ export default function ContactUs() {
             <div className="mt-8">
               <h3 className="text-2xl font-bold mb-4 text-teal-800">Connect with us on Social Media:</h3>
               <div className="flex space-x-4 justify-center md:justify-start">
+                {/* Note: These are placeholder links. Replace with your actual social media URLs. */}
                 <a href="#" className="text-gray-600 hover:text-teal-600 transition-colors duration-300" aria-label="Facebook">
                   <svg fill="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" className="w-8 h-8" viewBox="0 0 24 24">
                     <path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"></path>

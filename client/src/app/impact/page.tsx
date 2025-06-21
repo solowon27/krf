@@ -4,7 +4,7 @@ import Link from 'next/link';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import ImageSlider from '@/components/ImageSlider'; // Import the new slider
-import { motion } from 'framer-motion';
+import { motion, Variants, Transition } from 'framer-motion';
 
 // Sample image data for the slider
 // IMPORTANT: Replace these with paths to your actual images in the `public` folder
@@ -17,28 +17,28 @@ const impactImages = [
 ];
 
 export default function OurImpact() {
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.1,
-      },
+  const containerVariants: Variants = { // Add ': Variants' here
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.1,
     },
-  };
+  },
+};
 
-  const itemVariants = {
-    hidden: { y: 20, opacity: 0 },
-    visible: {
-      y: 0,
-      opacity: 1,
-      transition: {
-        type: 'spring',
-        stiffness: 100,
-        damping: 10,
-      },
-    },
-  };
+const itemVariants: Variants = { // Add ': Variants' here
+  hidden: { y: 20, opacity: 0 },
+  visible: {
+    y: 0,
+    opacity: 1,
+    transition: {
+      type: 'spring',
+      stiffness: 100,
+      damping: 10,
+    } as Transition, // Add 'as Transition' here
+  },
+};
 
   return (
     <main className="min-h-screen bg-gray-50 text-gray-800 font-sans antialiased">

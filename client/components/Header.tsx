@@ -2,27 +2,31 @@
 'use client'; // This component will have client-side interactivity (like the hamburger menu)
 
 import Link from 'next/link';
-import { motion } from 'framer-motion';
+import { motion, Variants, Transition } from 'framer-motion'; 
 import { useState } from 'react';
 
 export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
-  const mobileLinkVariants = {
-    open: {
-      y: 0,
-      opacity: 1,
-      transition: {
-        type: "spring",
-        stiffness: 400,
-        damping: 40
-      }
-    },
-    closed: {
-      y: 50,
-      opacity: 0
+  const mobileLinkVariants: Variants = { // Add ': Variants' here
+  open: {
+    y: 0,
+    opacity: 1,
+    transition: {
+      type: "spring",
+      stiffness: 400,
+      damping: 40
+    } as Transition, // <--- Add 'as Transition' here
+  },
+  closed: {
+    y: 50,
+    opacity: 0,
+    // Optional: Add a transition for the closed state for smoother animation
+    transition: {
+      duration: 0.3 // A simple tween transition for closing
     }
-  };
+  }
+};
 
   return (
     <motion.nav
