@@ -5,7 +5,7 @@ import Link from 'next/link';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import { motion } from 'framer-motion';
-import { useState } from 'react'; // For form handling
+import { useState } from 'react';
 
 export default function ContactUs() {
   const [formData, setFormData] = useState({
@@ -14,18 +14,49 @@ export default function ContactUs() {
     subject: '',
     message: '',
   });
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitStatus, setSubmitStatus] = useState(''); // 'success', 'error', ''
 
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData((prevData) => ({ ...prevData, [name]: value }));
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    // Here you would typically send the form data to your backend or an email service
-    console.log('Form submitted:', formData);
-    alert('Thank you for your message! We will get back to you soon.');
-    setFormData({ name: '', email: '', subject: '', message: '' }); // Clear form
+    setIsSubmitting(true);
+    setSubmitStatus('');
+
+    try {
+      // --- IMPORTANT: Update this URL to your backend's URL ---
+      // If running locally, it's typically http://localhost:4000
+      // If deployed, use your deployed backend URL (e.g., https://api.yourdomain.com)
+      const backendUrl = process.env.NEXT_PUBLIC_BACKEND_URL || 'http://localhost:4000'; // Define this env var
+      const response = await fetch(`${backendUrl}/api/contact`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
+      });
+
+      if (response.ok) {
+        setSubmitStatus('success');
+        // alert('Thank you for your message! We will get back to you soon.'); // Replaced by status message
+        setFormData({ name: '', email: '', subject: '', message: '' }); // Clear form
+      } else {
+        const errorData = await response.json();
+        setSubmitStatus('error');
+        console.error('Server error:', errorData.message);
+        // alert(`Failed to send message: ${errorData.message || 'Unknown error'}`); // Replaced by status message
+      }
+    } catch (error) {
+      console.error('Submission error:', error);
+      setSubmitStatus('error');
+      // alert('An error occurred while submitting the form. Please try again later.'); // Replaced by status message
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   const containerVariants = {
@@ -151,9 +182,12 @@ export default function ContactUs() {
               <button
                 type="submit"
                 className="bg-amber-500 text-teal-900 font-bold px-8 py-4 rounded-full shadow-lg hover:bg-amber-400 transition-all duration-300 ease-in-out transform hover:scale-105 w-full text-lg"
+                disabled={isSubmitting} // Disable button while submitting
               >
-                Send Message
+                {isSubmitting ? 'Sending...' : 'Send Message'}
               </button>
+              {submitStatus === 'success' && <p className="text-green-600 mt-2">Thank you for your message! We will get back to you soon.</p>}
+              {submitStatus === 'error' && <p className="text-red-600 mt-2">Failed to send message. Please try again.</p>}
             </form>
           </motion.div>
 
@@ -173,14 +207,14 @@ export default function ContactUs() {
                 <div>
                   <h3 className="font-bold text-gray-800">Our Office</h3>
                   <p>Kone Renaissance Foundation</p>
-                  <p>Kone, Ethiopia</p> {/* Example address */}
+                  <p>Kone, Ethiopia</p>
                 </div>
               </div>
               <div className="flex items-center space-x-4">
                 <span className="text-teal-600 text-2xl">📞</span>
                 <div>
                   <h3 className="font-bold text-gray-800">Call Us</h3>
-                  <a href="tel:+251-11-234-5678" className="text-gray-700 hover:text-teal-600 transition-colors duration-300">+251 00 00 00 00</a> {/* Example number */}
+                  <a href="tel:+251-11-234-5678" className="text-gray-700 hover:text-teal-600 transition-colors duration-300">+251 00 00 00 00</a>
                 </div>
               </div>
             </div>

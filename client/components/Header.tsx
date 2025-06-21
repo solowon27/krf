@@ -34,7 +34,7 @@ export default function Header() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16">
           <Link href="/" className="text-2xl font-extrabold text-teal-800 hover:text-teal-600 transition-colors duration-300 tracking-wide">
-            Kone Renaissance
+            Kone Renaissance Foundation
           </Link>
 
           {/* Desktop Navigation Links */}
@@ -44,9 +44,6 @@ export default function Header() {
             </Link>
             <Link href="/impact" className="text-gray-700 hover:text-teal-700 transition-colors duration-300 font-medium">
               Our Impact
-            </Link>
-            <Link href="/gallery" className="text-gray-700 hover:text-teal-700 transition-colors duration-300 font-medium">
-              Gallery
             </Link>
             <Link href="/library" className="text-gray-700 hover:text-teal-700 transition-colors duration-300 font-medium">
               Library
@@ -125,11 +122,6 @@ export default function Header() {
           <motion.div variants={mobileLinkVariants}>
             <Link href="/impact" onClick={() => setIsMenuOpen(false)} className="block text-3xl font-bold hover:text-amber-400 transition-colors duration-300 py-2">
               Our Impact
-            </Link>
-          </motion.div>
-          <motion.div variants={mobileLinkVariants}>
-            <Link href="/gallery" onClick={() => setIsMenuOpen(false)} className="block text-3xl font-bold hover:text-amber-400 transition-colors duration-300 py-2">
-              Gallery
             </Link>
           </motion.div>
           <motion.div variants={mobileLinkVariants}>

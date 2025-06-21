@@ -5,6 +5,9 @@ import Link from 'next/link';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import { motion } from 'framer-motion';
+import Image from 'next/image';
+
+import samplelogo from '@/images/sample-logo.png'; // Make sure this path is correct relative to your project root/src
 
 export default function AboutUs() {
   const containerVariants = {
@@ -78,12 +81,16 @@ export default function AboutUs() {
             </p>
           </motion.div>
           <motion.div variants={itemVariants}>
-            {/* Placeholder for an image or visual element */}
-            <img
-              src="https://via.placeholder.com/600x400?text=Kone+Students+Learning" // Replace with an actual image of Kone students
-              alt="Kone High School students learning"
-              className="rounded-lg shadow-xl object-cover w-full h-auto"
-            />
+            {/* CORRECTED Image component usage for responsive sizing */}
+            <div className="relative w-full h-64 md:h-80 lg:h-96 rounded-lg shadow-xl overflow-hidden">
+              <Image
+                src={samplelogo}
+                alt="Kone High School students learning"
+                fill // Tells the image to fill the parent container
+                className="object-cover" // Ensures the image covers the div without distortion
+                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw" // Helps Next.js optimize image sizes
+              />
+            </div>
           </motion.div>
         </motion.div>
       </section>
