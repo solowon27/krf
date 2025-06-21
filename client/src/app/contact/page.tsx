@@ -6,6 +6,7 @@ import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import { motion, Variants, Transition } from 'framer-motion';
 import React, { useState } from 'react'; // Added React import for types, though often implicit
+import { FaEnvelope, FaMapMarkerAlt, FaPhoneAlt, FaFacebook, FaTwitter, FaInstagram } from 'react-icons/fa';
 
 // Define an interface for the form data structure for better type safety
 interface FormData {
@@ -131,11 +132,11 @@ export default function ContactUs() {
         >
           {/* Contact Form */}
           <motion.div variants={itemVariants} className="bg-gray-50 p-8 rounded-lg shadow-xl">
-            <h2 className="text-3xl font-extrabold mb-6 text-teal-800">Send Us a Message</h2>
+            <h2 className="text-3xl font-extrabold mb-6 text-teal-800">Send Us a Message / መልእክት ይላኩልን</h2>
             <form onSubmit={handleSubmit} className="space-y-6">
               <div>
                 <label htmlFor="name" className="block text-gray-700 text-sm font-bold mb-2">
-                  Name
+                  Name / ስም
                 </label>
                 <input
                   type="text"
@@ -149,7 +150,7 @@ export default function ContactUs() {
               </div>
               <div>
                 <label htmlFor="email" className="block text-gray-700 text-sm font-bold mb-2">
-                  Email
+                  Email / ኢሜይል
                 </label>
                 <input
                   type="email"
@@ -163,7 +164,7 @@ export default function ContactUs() {
               </div>
               <div>
                 <label htmlFor="subject" className="block text-gray-700 text-sm font-bold mb-2">
-                  Subject
+                  Subject / ርእስ
                 </label>
                 <input
                   type="text"
@@ -176,7 +177,7 @@ export default function ContactUs() {
               </div>
               <div>
                 <label htmlFor="message" className="block text-gray-700 text-sm font-bold mb-2">
-                  Message
+                  Message / ሙሉ መልእክት
                 </label>
                 <textarea
                   id="message"
@@ -202,56 +203,52 @@ export default function ContactUs() {
 
           {/* Contact Information */}
           <motion.div variants={itemVariants} className="bg-white p-8 rounded-lg shadow-xl flex flex-col justify-center">
-            <h2 className="text-3xl font-extrabold mb-6 text-teal-800">Our Details</h2>
-            <div className="space-y-6 text-lg text-gray-700">
-              <div className="flex items-center space-x-4">
-                <span className="text-teal-600 text-2xl">📧</span>
-                <div>
-                  <h3 className="font-bold text-gray-800">Email Us</h3>
-                  <a href="mailto:konerenfoundation@gmail.com" className="text-gray-700 hover:text-teal-600 transition-colors duration-300">konerenfoundation@gmail.com</a>
-                </div>
-              </div>
-              <div className="flex items-center space-x-4">
-                <span className="text-teal-600 text-2xl">📍</span>
-                <div>
-                  <h3 className="font-bold text-gray-800">Our Office</h3>
-                  <p>Kone Renaissance Foundation</p>
-                  <p>Kone, Ethiopia</p>
-                </div>
-              </div>
-              <div className="flex items-center space-x-4">
-                <span className="text-teal-600 text-2xl">📞</span>
-                <div>
-                  <h3 className="font-bold text-gray-800">Call Us</h3>
-                  {/* Note: This is a placeholder number. Replace with a real one. */}
-                  <a href="tel:+251-11-234-5678" className="text-gray-700 hover:text-teal-600 transition-colors duration-300">+251 00 00 00 00</a>
-                </div>
-              </div>
-            </div>
-            <div className="mt-8">
-              <h3 className="text-2xl font-bold mb-4 text-teal-800">Connect with us on Social Media:</h3>
-              <div className="flex space-x-4 justify-center md:justify-start">
-                {/* Note: These are placeholder links. Replace with your actual social media URLs. */}
-                <a href="#" className="text-gray-600 hover:text-teal-600 transition-colors duration-300" aria-label="Facebook">
-                  <svg fill="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" className="w-8 h-8" viewBox="0 0 24 24">
-                    <path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"></path>
-                  </svg>
-                </a>
-                <a href="#" className="text-gray-600 hover:text-teal-600 transition-colors duration-300" aria-label="Twitter">
-                  <svg fill="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" className="w-8 h-8" viewBox="0 0 24 24">
-                    <path d="M23 3a10.9 10.9 0 01-3.14 1.53 4.48 4.48 0 00-7.86 3v1A10.66 10.66 0 013 4s-4 9 5 13a11.64 11.64 0 01-7 2c9 5 20 0 20-11.5a4.5 4.5 0 00-.08-.83A7.72 7.72 0 0023 3z"></path>
-                  </svg>
-                </a>
-                <a href="#" className="text-gray-600 hover:text-teal-600 transition-colors duration-300" aria-label="Instagram">
-                  <svg fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" className="w-8 h-8" viewBox="0 0 24 24">
-                    <rect width="20" height="20" x="2" y="2" rx="5" ry="5"></rect>
-                    <path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z"></path>
-                    <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
-                  </svg>
-                </a>
-              </div>
-            </div>
-          </motion.div>
+  <h2 className="text-3xl font-extrabold mb-6 text-teal-800">Address / አድራሻ</h2>
+  <div className="space-y-6 text-lg text-gray-700">
+    <div className="flex items-center space-x-4">
+      {/* Email Icon */}
+      <FaEnvelope className="text-teal-600 text-2xl" /> {/* Replaced 📧 */}
+      <div>
+        <h3 className="font-bold text-gray-800">Email Us</h3>
+        <a href="mailto:konerenfoundation@gmail.com" className="text-gray-700 hover:text-teal-600 transition-colors duration-300">konerenfoundation@gmail.com</a>
+      </div>
+    </div>
+    <div className="flex items-center space-x-4">
+      {/* Location Icon */}
+      <FaMapMarkerAlt className="text-teal-600 text-2xl" /> {/* Replaced 📍 */}
+      <div>
+        <h3 className="font-bold text-gray-800">Our Office</h3>
+        <p>Kone Renaissance Foundation</p>
+        <p>የኮን ህዳሴ ፋውንዴሽን</p>
+        <p>Kone, North Wollo Ethiopia</p>
+      </div>
+    </div>
+    <div className="flex items-center space-x-4">
+      {/* Phone Icon */}
+      <FaPhoneAlt className="text-teal-600 text-2xl" /> {/* Replaced 📞 */}
+      <div>
+        <h3 className="font-bold text-gray-800">Call Us</h3>
+        {/* Note: This is a placeholder number. Replace with a real one. */}
+        <a href="tel:+251-11-234-5678" className="text-gray-700 hover:text-teal-600 transition-colors duration-300">+251 00 00 00 00</a>
+      </div>
+    </div>
+  </div>
+  <div className="mt-8 border rounded-lg p-4 ">
+    <h3 className="text-2xl font-bold text-center mb-4 text-teal-800">Connect with us on Social Media:</h3>
+    <div className="flex space-x-4 justify-center md:justify-start">
+      {/* Social Media Icons - Replace your SVG paths directly with React Icons components */}
+      <a href="#" className="text-gray-600 hover:text-teal-600 transition-colors duration-300" aria-label="Facebook">
+        <FaFacebook className="w-8 h-8" /> {/* Replaced Facebook SVG */}
+      </a>
+      <a href="#" className="text-gray-600 hover:text-teal-600 transition-colors duration-300" aria-label="Twitter">
+        <FaTwitter className="w-8 h-8" /> {/* Replaced Twitter SVG */}
+      </a>
+      <a href="#" className="text-gray-600 hover:text-teal-600 transition-colors duration-300" aria-label="Instagram">
+        <FaInstagram className="w-8 h-8" /> {/* Replaced Instagram SVG */}
+      </a>
+    </div>
+  </div>
+</motion.div>
         </motion.div>
       </section>
 
