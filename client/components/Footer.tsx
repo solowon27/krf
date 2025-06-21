@@ -22,6 +22,9 @@ export default function Footer() {
           <h4 className="text-xl font-bold text-white mb-4">Contact Us</h4>
           <p className="text-sm">info@konerenaissance.org</p>
           <p className="text-sm mt-2">&copy; {new Date().getFullYear()} Kone Renaissance Foundation. All rights reserved.</p>
+          <p className="text-xs text-blue-300 mt-auto">
+               Designed with ❤️ by Commander Wondwossen & <a href ="https://github.com/solowon27" className="text-blue-200 hover:underline" target="_blank" rel="noopener noreferrer">Quadsite</a>
+          </p>
         </div>
       </div>
     </footer>
