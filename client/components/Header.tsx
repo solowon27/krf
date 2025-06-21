@@ -1,44 +1,73 @@
+// src/components/Header.tsx
 'use client';
 
 import Link from 'next/link';
 import { motion, Variants, Transition } from 'framer-motion';
-import { useState, useEffect } from 'react'; // Import useEffect
-import { useRouter } from 'next/navigation'; // Import useRouter for navigation
-import { jwtDecode } from 'jwt-decode'; // Import jwtDecode
+import { useState, useEffect, useCallback } from 'react'; // Import useCallback
+import { useRouter } from 'next/navigation';
+import { jwtDecode } from 'jwt-decode';
+
+// --- IMPORTANT: Corrected DecodedTokenPayload type ---
+// This type should reflect the actual structure of your JWT payload.
+// Standard JWTs have 'exp' (expiration) directly at the root.
+// Your backend seems to nest user data under a 'data' property.
+type DecodedTokenPayload = {
+  exp: number; // Expiration time (unix timestamp), this is always at the root of a standard JWT payload
+  iat?: number; // Issued at time (unix timestamp) - optional but common
+
+  // This 'data' property holds your user-specific information
+  data: {
+    email: string;
+    role: string;
+    _id: string;
+  };
+  // Add any other root-level properties your JWT might have (e.g., 'sub' for subject)
+};
 
 export default function Header() {
-  const router = useRouter(); // Initialize useRouter
+  const router = useRouter();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [currentUser, setCurrentUser] = useState<{ email: string; role: string } | null>(null); // State to store logged-in user info
+  // Renamed `currentUser` for clarity based on what it stores
+  const [loggedInUser, setLoggedInUser] = useState<{ email: string; role: string } | null>(null);
+
+  // Memoize handleLogout to prevent unnecessary re-creations.
+  // This helps React's dependency checks in useEffect.
+  const handleLogout = useCallback(() => {
+    localStorage.removeItem('token'); // Remove token from local storage
+    setLoggedInUser(null); // Clear current user state
+    router.push('/'); // Redirect to homepage after logout
+    setIsMenuOpen(false); // Close mobile menu if open
+    // alert('You have been logged out.'); // Optional: provide feedback - removed alert for smoother UX
+  }, [router]); // `router` is a dependency for useCallback
 
   // Effect to check for token and set user on component mount
   useEffect(() => {
-    const token = localStorage.getItem('token');
+    const token = typeof window !== 'undefined' ? localStorage.getItem('token') : null;
+
     if (token) {
       try {
-        const decodedToken = jwtDecode<{ data: { email: string; role: string; _id: string } }>(token);
-        // Ensure token is not expired (jwtDecode automatically handles this with default options, but good to be explicit)
+        // --- IMPORTANT: Apply the corrected DecodedTokenPayload type here ---
+        const decodedToken: DecodedTokenPayload = jwtDecode(token);
+
+        // Check for token expiration
         const currentTime = Date.now() / 1000; // in seconds
-        if (decodedToken.exp && decodedToken.exp < currentTime) {
+        // Now `decodedToken.exp` will be correctly typed
+        if (decodedToken.exp < currentTime) {
             console.log('Token expired. Logging out.');
             handleLogout(); // Log out if token is expired
         } else {
-            setCurrentUser(decodedToken.data);
+            // Set user data from the 'data' property of the decoded token
+            setLoggedInUser(decodedToken.data);
         }
       } catch (error) {
-        console.error('Failed to decode token:', error);
-        localStorage.removeItem('token'); // Clear invalid token
+        console.error('Failed to decode token or token is invalid:', error);
+        handleLogout(); // Clear token and log out if decoding fails or token is malformed
       }
+    } else {
+      // Ensure user state is null if no token is found
+      setLoggedInUser(null);
     }
-  }, []); // Empty dependency array means this runs once on mount
-
-  const handleLogout = () => {
-    localStorage.removeItem('token'); // Remove token from local storage
-    setCurrentUser(null); // Clear current user state
-    router.push('/'); // Redirect to homepage after logout
-    setIsMenuOpen(false); // Close mobile menu if open
-    alert('You have been logged out.'); // Optional: provide feedback
-  };
+  }, [handleLogout]); // Add handleLogout to the dependency array
 
   const mobileLinkVariants: Variants = {
     open: {
@@ -89,16 +118,16 @@ export default function Header() {
             </Link>
 
             {/* Conditional Links for Desktop */}
-            {currentUser ? (
+            {loggedInUser ? (
               <>
                 <Link href="/donaters" className="text-red-400 hover:text-teal-700 transition-colors duration-300">
-               Add donaters
-            </Link>
+                Add donaters
+                </Link>
                 <button
                   onClick={handleLogout}
                   className="text-gray-700 hover:text-teal-700 transition-colors duration-300 font-medium focus:outline-none"
                 >
-                  Logout
+                  Logout ({loggedInUser.email})
                 </button>
               </>
             ) : (
@@ -198,19 +227,19 @@ export default function Header() {
           </motion.div>
 
           {/* Conditional Links for Mobile */}
-          {currentUser ? (
+          {loggedInUser ? (
             <>
               <motion.div variants={mobileLinkVariants}>
-            <Link href="/donaters" onClick={() => setIsMenuOpen(false)} className="block font-bold text-red-400 hover:text-amber-400 transition-colors duration-300 py-2">
-              Add donaters
-            </Link>
-          </motion.div>
+              <Link href="/donaters" onClick={() => setIsMenuOpen(false)} className="block font-bold text-red-400 hover:text-amber-400 transition-colors duration-300 py-2">
+                Add donaters
+              </Link>
+            </motion.div>
               <motion.div variants={mobileLinkVariants}>
                 <button
                   onClick={handleLogout}
                   className="block text-3xl font-bold hover:text-amber-400 transition-colors duration-300 py-2"
                 >
-                  Logout
+                  Logout ({loggedInUser.email})
                 </button>
               </motion.div>
             </>
