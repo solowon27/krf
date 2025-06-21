@@ -32,7 +32,7 @@ export default function LoginPage() {
     }
   });
 
-  const handleSubmit = (e) => {
+   const handleSubmit = (e: React.FormEvent) => { // <-- Change this line
     e.preventDefault();
     if (loading) return; // Prevent multiple submissions while loading
     login({ variables: form });

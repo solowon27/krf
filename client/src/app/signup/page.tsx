@@ -32,11 +32,11 @@ export default function AdminSignup() { // Renamed component for clarity if used
     }
   });
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    if (loading) return; // Prevent multiple submissions
-    register({ variables: form });
-  };
+const handleSubmit = (e: React.FormEvent) => { // <-- Add ': React.FormEvent' here
+  e.preventDefault();
+  if (loading) return; // Prevent multiple submissions
+  register({ variables: form });
+};
 
   return (
     // Outer container for centering and background (similar to a page wrapper)
