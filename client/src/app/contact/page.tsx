@@ -106,7 +106,7 @@ export default function ContactUs() {
             Get in Touch
           </motion.h1>
           <motion.p variants={itemVariants} className="text-lg md:text-xl opacity-95">
-            We'd love to hear from you. Reach out with any questions, ideas, or to learn how you can help.
+            We would love to hear from you. Reach out with any questions, ideas, or to learn how you can help.
           </motion.p>
         </motion.div>
       </section>

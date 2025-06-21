@@ -138,7 +138,7 @@ export default function DonatePage() {
             </motion.div>
 
             <p className="text-md text-gray-600 mt-8">
-              *All donations are tax-deductible to the fullest extent allowed by law. We ensure 100% transparency in the utilization of your funds for Kone High School's benefit.*
+              All donations are tax-deductible to the fullest extent allowed by law. We ensure 100% transparency in the utilization of your funds for Kone High School's benefit.*
             </p>
           </motion.div>
 
@@ -149,20 +149,20 @@ export default function DonatePage() {
             </p>
             <ul className="list-disc list-inside text-left text-lg text-gray-700 space-y-3 pl-4">
               <li>
-                **Bank Transfer:** For larger donations directly to Kone High School's initiatives, please{' '}
+                Bank Transfer: For larger donations directly to Kone High School&apos;s initiatives, please{' '}
                 <Link href="/contact" className="text-teal-600 hover:text-teal-800 font-semibold underline">
                   contact us
                 </Link>{' '}
                 for our bank details.
               </li>
               <li>
-                **Mail a Check:** Send your check payable to &quot;Kone Renaissance Foundation&quot; (with a memo for "Kone High School") to:<br />
+                Mail a Check: Send your check payable to &quot;Kone Renaissance Foundation&quot; (with a memo for Kone High School) to:<br />
                 <address className="lg bg-red-600 mt-2 text-gray-600">
                   coming soon<br />
                 </address>
               </li>
               <li>
-                **In-Kind Donations:** Interested in donating educational materials, technology, or services directly to Kone High School?{' '}
+                In-Kind Donations: Interested in donating educational materials, technology, or services directly to Kone High School?{' '}
                 <Link href="/contact" className="text-teal-600 hover:text-teal-800 font-semibold underline">
                   Reach out
                 </Link>{' '}

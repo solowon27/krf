@@ -77,7 +77,7 @@ export default function AboutUs() {
               The **Kone Renaissance Foundation** was born from a deep-rooted desire to uplift and empower the community of Kone, a small village in rural Ethiopia. Witnessing the immense potential within its youth, coupled with the challenges faced by Kone High School, ignited a spark in our founders. We believe that education is the most powerful tool for change, capable of breaking cycles of poverty and building a brighter future.
             </p>
             <p className="text-lg leading-relaxed text-gray-700">
-              From humble beginnings, our initiative grew into a dedicated foundation, uniting individuals and partners who share our vision. We're not just rebuilding a school; we're rebuilding hope, dignity, and opportunity for generations to come.
+              From humble beginnings, our initiative grew into a dedicated foundation, uniting individuals and partners who share our vision. We are not just rebuilding a school; we are rebuilding hope, dignity, and opportunity for generations to come.
             </p>
           </motion.div>
           <motion.div variants={itemVariants}>

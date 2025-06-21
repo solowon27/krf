@@ -98,7 +98,7 @@ export default function OurImpact() {
             <motion.div variants={itemVariants} className="bg-gray-100 p-6 rounded-lg shadow-md">
               <h4 className="text-2xl font-semibold text-teal-800 mb-3">Education Initiatives</h4>
               <p className="text-gray-700 mb-4">
-                We've established and supported over 15 schools in remote areas, providing access to quality education for more than 5,000 children. Our programs include teacher training, provision of learning materials, and scholarship opportunities for deserving students.
+                We have established and supported over 15 schools in remote areas, providing access to quality education for more than 5,000 children. Our programs include teacher training, provision of learning materials, and scholarship opportunities for deserving students.
               </p>
               <ul className="list-disc list-inside text-gray-700">
                 <li>Built 5 new primary schools.</li>
