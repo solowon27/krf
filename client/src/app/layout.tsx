@@ -16,6 +16,7 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   title: "Kone RF",
   description: "Designed with integrity",
+   viewport: "width=device-width, initial-scale=1.0",
 };
 
 export default function RootLayout({
