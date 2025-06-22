@@ -12,6 +12,10 @@ export default function Footer() {
           <h4 className="text-xl font-bold text-white">Kone Renaissance</h4>
           <h2 className="text-amber-500 text-xl mb-2 underline">ህዳሴ ኮን</h2>
           <p className="text-sm">Dedicated to transforming education and empowering futures in Kone.</p>
+          <div className="mt-4 flex flex-justify items-center space-x-4">
+          <Link href="/terms" className="hover:text-amber-500 transition-colors duration-300">Terms & Condition</Link>
+          <Link href="/privacy" className="hover:text-amber-500 transition-colors duration-300">Privacy policy</Link>
+          </div>
         </div>
         <div>
           <h4 className="text-xl font-bold text-white mb-4">Quick Links</h4>
@@ -37,7 +41,7 @@ export default function Footer() {
           </p>
 
           <p className="text-xs text-blue-300 mt-auto">
-            Designed with ❤️ by Commander Wondwossen & <a href ="https://github.com/solowon27" className="text-blue-200 hover:underline" target="_blank" rel="noopener noreferrer">Quadsite</a>
+            Designed with ❤️ by <a href ="https://github.com/commanderwondwossen" className="text-amber-500 hover:underline" target="_blank" rel="noopener noreferrer">Commander Wondwossen </a>  &  <a href ="https://github.com/solowon27" className="text-amber-500 hover:underline" target="_blank" rel="noopener noreferrer">Quadsite</a>
           </p>
         </div>
       </div>

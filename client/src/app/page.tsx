@@ -137,12 +137,12 @@ export default function Home() {
                 >
                   <div className="flex items-center mb-4">
                     <span className="text-4xl text-amber-600 mr-4">🌟</span> {/* Star icon for donation */}
-                    <p className="text-xl font-bold text-teal-800 leading-tight">
+                    <p className="text-2xl font-bold text-teal-800 leading-tight">
                       {donation.donorName}
                     </p>
                   </div>
 
-                  <p className="text-3xl font-extrabold text-amber-700 mb-4 leading-tight">
+                  <p className="text-xl font-extrabold text-amber-700 mb-4 leading-tight">
                     Donated: {donation.item}
                   </p>
 
@@ -158,7 +158,7 @@ export default function Home() {
                   <div className="text-right mt-auto flex flex-col sm:flex-row sm:justify-between sm:items-center text-sm">
                     {donation.submittedBy && ( // Check if submittedBy exists
                       <p className="text-gray-600 font-medium italic mb-2 sm:mb-0"> {/* Added margin for stacking on small screens */}
-                        Added by:{' '}
+                        submitted by:{' '}
                         <span className="text-teal-700 font-semibold">
                           {donation.submittedBy.role === 'admin'
                             ? `Admin (${donation.submittedBy.firstName})`

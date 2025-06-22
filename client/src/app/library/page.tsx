@@ -75,7 +75,7 @@ const externalLinks = [
 ];
 
 // Define how many books to show per page
-const BOOKS_PER_PAGE = 15;
+const BOOKS_PER_PAGE = 16;
 
 export default function LibraryPage() {
   const [allBooks, setAllBooks] = useState<Book[]>([]);
@@ -260,14 +260,14 @@ export default function LibraryPage() {
                         className="bg-white rounded-md p-5 border border-gray-200 flex flex-col items-center text-center"
                       >
                         <h2 className="text-xl md:text-xl font-serif font-semibold text-teal-800 mb-2 leading-tight flex-grow">{book.title}</h2>
-                        <span className="inline-block bg-teal-100 text-teal-700 text-xs font-medium px-3 py-1 rounded-full mb-4">
+                        <span className="inline-block bg-amber-100 text-teal-700 text-xs font-medium px-3 py-1 rounded-full mb-4">
                           {book.category}
                         </span>
                         <a
                           href={book.googleDriveLink}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="block w-full text-center bg-amber-500 text-white font-medium px-4 py-2 rounded-md hover:bg-amber-600 mt-auto"
+                          className="block w-full text-center bg-teal-500 text-white font-medium px-4 py-2 rounded-md hover:bg-amber-600 mt-auto"
                         >
                           View Book
                         </a>
