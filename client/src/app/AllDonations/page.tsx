@@ -16,10 +16,9 @@ const GET_ALL_DONATIONS = gql`
       item
       message
       date
-      submittedBy { # <--- Request the submittedBy object
-        firstName   # <--- Request firstName
-        role        # <--- Request role to differentiate Admin
-        // email // You could also request email if you needed it here
+      submittedBy { 
+        firstName   
+        role 
       }
     }
   }

@@ -24,7 +24,7 @@ const REGISTER = gql`
 
 export default function AdminSignup() {
   const router = useRouter(); // Initialize useRouter
-  const [form, setForm] = useState({ email: '', password: '', role: 'admin' });
+  const [form, setForm] = useState({ firstName: '', email: '', password: '', role: 'admin' });
   const [register, { loading, error }] = useMutation(REGISTER, {
     onCompleted: ({ register }) => {
       localStorage.setItem('token', register.token);
