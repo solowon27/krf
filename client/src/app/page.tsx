@@ -1,3 +1,4 @@
+// src/app/page.tsx
 'use client';
 
 import Link from 'next/link';
@@ -15,6 +16,10 @@ const GET_DONATIONS = gql`
       item
       message
       date
+      submittedBy {
+        firstName
+        role
+      }
     }
   }
 `;
@@ -23,8 +28,8 @@ export default function Home() {
   const { data, loading, error } = useQuery(GET_DONATIONS);
   const donations = data?.getDonations || [];
 
-  // Limit to showing the latest 5 donations, as requested
-  const latestDonations = donations.slice(0, 5);
+  // Limit to showing the latest 6 donations, as requested
+  const latestDonations = donations.slice(0, 6);
 
   const containerVariants: Variants = {
     hidden: { opacity: 0 },
@@ -86,52 +91,80 @@ export default function Home() {
         </motion.div>
       </section>
 
-      {/* Recent Donations Section - Beautiful and Space-Saved List */}
-      <section className="py-8 px-2 bg-white"> {/* Using bg-white for a clean, bright feel here */}
+      {/* Recent Donations Section - Clean, Widely Accepted List Style */}
+      <section className="py-16 px-4 bg-gradient-to-r from-teal-50 via-white to-amber-50 relative overflow-hidden">
+        {/* Subtle background pattern/texture overlay */}
+        <div className="absolute inset-0 z-0 opacity-20" style={{ backgroundImage: 'url("data:image/svg+xml,%3Csvg width=\'20\' height=\'20\' viewBox=\'0 0 20 20\' xmlns=\'http://www.w3.org/2000/svg\'%3E%3Cg fill=\'%23a0aec0\' fill-opacity=\'0.2\' fill-rule=\'evenodd\'%3E%3Ccircle cx=\'3\' cy=\'3\' r=\'3\'/%3E%3Ccircle cx=\'13\' cy=\'13\' r=\'3\'/%3E%3C/g%3E%3C/svg%3E")' }}></div>
+
         <motion.div
-          className="max-w-4xl mx-auto text-center" 
+          className="max-w-6xl mx-auto relative z-10" // Wider container, ensure it's above pattern
           variants={containerVariants}
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, amount: 0.3 }}
         >
-          <motion.h2 variants={itemVariants} className="text-3xl md:text-4xl font-extrabold mb-10 text-teal-800">
-            Recent Contributions ✨
+          <motion.h2 variants={itemVariants} className="text-5xl md:text-6xl font-extrabold mb-4 text-center text-teal-900 drop-shadow-md">
+            Our Heartfelt Gratitude
           </motion.h2>
+          <motion.p variants={itemVariants} className="text-xl md:text-2xl text-center text-amber-700 font-semibold mb-4">
+            በቅርብ ጊዜ በቅን ልቦች የተደረገ ድጋፍ ዝርዝር
+          </motion.p>
 
           {loading ? (
-            <p className="text-center text-gray-600 text-lg">
-              <span className="animate-spin inline-block mr-2">🔄</span> Fetching recent acts of kindness...
+            <p className="text-center text-gray-700 text-2xl font-medium py-16 bg-white rounded-lg shadow-xl">
+              <span className="animate-spin inline-block mr-4 text-teal-600 text-3xl">🔄</span> Fetching the latest kindness...
             </p>
           ) : error ? (
-            <p className="text-center text-red-700 text-lg">
-              <span className="mr-2">⚠️</span> Failed to load contributions.
+            <p className="text-center text-red-700 text-2xl font-medium py-16 bg-red-50 rounded-lg shadow-xl border border-red-200">
+              <span className="mr-4 text-red-600 text-3xl">⚠️</span> Failed to load contributions. Please try again.
             </p>
           ) : latestDonations.length === 0 ? (
-            <p className="text-center text-gray-600 text-lg">
-              Be the first to make a difference! No donations recorded yet.
+            <p className="text-center text-gray-700 text-2xl font-medium py-16 px-6 bg-white rounded-lg shadow-xl">
+              Be the first to make a monumental difference! No donations recorded yet.
             </p>
           ) : (
-            <div className="space-y-4"> {/* Use space-y for vertical spacing between list items */}
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"> {/* Responsive grid with 3 columns on large screens */}
               {latestDonations.map((donation: any) => (
                 <motion.div
                   key={donation.id}
                   variants={itemVariants}
-                  className="bg-gray-50 flex items-center justify-between rounded-lg px-6 py-4 shadow-sm border border-gray-100 hover:shadow-md transition-all duration-200"
+                  className="group bg-gradient-to-br from-white to-teal-50 rounded-2xl p-7 shadow-xl border border-teal-100
+                             hover:from-white hover:to-amber-50 hover:shadow-2xl transition-all duration-500
+                             transform hover:-translate-y-2 hover:rotate-1 focus:rotate-1" // More dynamic hover
                 >
-                  <div className="text-left flex-grow">
-                    <p className="text-lg font-semibold text-teal-700 leading-tight">
-                      {donation.donorName} <span className="font-normal text-gray-600">donated</span>{' '}
-                      <span className="text-amber-600 font-bold">{donation.item}</span>
+                  <div className="flex items-center mb-4">
+                    <span className="text-4xl text-amber-600 mr-4">🌟</span> {/* Star icon for donation */}
+                    <p className="text-xl font-bold text-teal-800 leading-tight">
+                      {donation.donorName}
                     </p>
-                    {donation.message && (
-                      <p className="text-sm text-gray-500 italic mt-1 leading-snug">
+                  </div>
+
+                  <p className="text-3xl font-extrabold text-amber-700 mb-4 leading-tight">
+                    Donated: {donation.item}
+                  </p>
+
+                  {donation.message && (
+                    <div className="bg-teal-50 rounded-lg p-4 mb-4 border border-teal-100 shadow-inner">
+                      <p className="text-base text-gray-700 italic leading-relaxed">
                         "{donation.message}"
                       </p>
+                    </div>
+                  )}
+
+                  {/* COMBINED FLEX CONTAINER FOR SUBMITTED BY AND DATE */}
+                  <div className="text-right mt-auto flex flex-col sm:flex-row sm:justify-between sm:items-center text-sm">
+                    {donation.submittedBy && ( // Check if submittedBy exists
+                      <p className="text-gray-600 font-medium italic mb-2 sm:mb-0"> {/* Added margin for stacking on small screens */}
+                        Added by:{' '}
+                        <span className="text-teal-700 font-semibold">
+                          {donation.submittedBy.role === 'admin'
+                            ? `Admin (${donation.submittedBy.firstName})`
+                            : donation.submittedBy.firstName}
+                        </span>
+                      </p>
                     )}
-                  </div>
-                  <div className="text-right ml-4 flex-shrink-0">
-                    <p className="text-xs text-gray-400">
+
+                    <p className="inline-block bg-teal-200 text-teal-800 text-sm font-semibold px-4 py-2 rounded-full tracking-wide">
                       {new Date(donation.date).toLocaleDateString()}
                     </p>
                   </div>
@@ -139,13 +172,21 @@ export default function Home() {
               ))}
             </div>
           )}
-          {donations.length > 5 && ( // Only show "View All" if there are more than 5 donations
-            <motion.div variants={itemVariants} className="text-center mt-12">
+
+          {donations.length > 6 && (
+            <motion.div variants={itemVariants} className="text-center mt-20">
               <Link
-                href="/donations" // Link to your full donations page
-                className="inline-block text-teal-700 border-2 border-teal-700 font-semibold px-8 py-4 rounded-full hover:bg-teal-700 hover:text-white transition-all duration-300 transform hover:-translate-y-1"
+                href="/AllDonations" // Changed to /donations, as per the previous suggestion for the dedicated page
+                className="inline-flex items-center bg-teal-800 text-white font-bold px-12 py-5 rounded-full shadow-2xl hover:bg-teal-700
+                           transition-all duration-500 ease-in-out transform hover:scale-105 hover:translate-y-[-3px]
+                           text-xl relative overflow-hidden group" // More premium button
               >
-                View All Contributions &rarr;
+                <span className="relative z-10">Explore All Contributions</span>
+                <svg className="ml-4 w-6 h-6 transform translate-x-0 group-hover:translate-x-1 transition-transform duration-300 relative z-10" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
+                </svg>
+                {/* Subtle hover effect */}
+                <span className="absolute inset-0 bg-amber-500 opacity-0 group-hover:opacity-20 transition-opacity duration-300 rounded-full"></span>
               </Link>
             </motion.div>
           )}
@@ -153,7 +194,7 @@ export default function Home() {
       </section>
 
       {/* Introduction/Mission Section - Clean and impactful */}
-      <section className="py-20 px-6 bg-gray-50 shadow-inner"> {/* Changed to gray-50 for subtle alternation */}
+      <section className="py-20 px-6 bg-gray-50 shadow-inner">
         <motion.div
           className="max-w-5xl mx-auto text-center"
           variants={containerVariants}
@@ -179,7 +220,7 @@ export default function Home() {
       </section>
 
       {/* Impact Areas Section - Visual and engaging */}
-      <section className="py-20 px-6 bg-white"> {/* Changed to bg-white for alternation */}
+      <section className="py-20 px-6 bg-white">
         <motion.div
           className="max-w-6xl mx-auto"
           variants={containerVariants}

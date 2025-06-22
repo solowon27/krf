@@ -10,10 +10,11 @@ import Footer from '@/components/Footer';
 import React from 'react'; // Ensure React is imported for JSX and types
 
 const REGISTER = gql`
-  mutation Register($email: String!, $password: String!, $role: String) {
-    register(email: $email, password: $password, role: $role) {
+  mutation Register($firstName: String!, $email: String!, $password: String!, $role: String) {
+    register(firstName: $firstName, email: $email, password: $password, role: $role) {
       token
       user {
+      firstName
         email
         role
       }
@@ -44,7 +45,7 @@ export default function AdminSignup() {
 
   return (
     // Outer container for the entire page layout: header, main content, footer
-    <div className="min-h-screen flex flex-col bg-gray-100">
+    <div className="min-h-screen py-16 flex flex-col bg-gray-100">
       <Header /> {/* Add Header here */}
 
       {/* Main content area, uses flex-grow to take up available space and push footer down */}
@@ -60,6 +61,20 @@ export default function AdminSignup() {
           </div>
           <form className="mt-8 space-y-6" onSubmit={handleSubmit}>
             <div className="rounded-md shadow-sm -space-y-px">
+              <div>
+                <label htmlFor="first-name" className="sr-only">First Name</label>
+                <input
+                  id="first-name"
+                  name="firstName"
+                  type="text"
+                  autoComplete="given-name"
+                  required
+                  className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:ring-amber-500 focus:border-amber-500 focus:z-10 sm:text-sm"
+                  placeholder="First Name"
+                  value={form.firstName}
+                  onChange={(e) => setForm({ ...form, firstName: e.target.value })}
+                />
+              </div>
               <div>
                 <label htmlFor="email-address" className="sr-only">Email address</label>
                 <input

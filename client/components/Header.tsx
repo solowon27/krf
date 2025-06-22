@@ -17,6 +17,7 @@ type DecodedTokenPayload = {
 
   // This 'data' property holds your user-specific information
   data: {
+    firstName: string;
     email: string;
     role: string;
     _id: string;
@@ -28,7 +29,7 @@ export default function Header() {
   const router = useRouter();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   // Renamed `currentUser` for clarity based on what it stores
-  const [loggedInUser, setLoggedInUser] = useState<{ email: string; role: string } | null>(null);
+  const [loggedInUser, setLoggedInUser] = useState<{ firstName: string; email: string; role: string } | null>(null);
 
   // Memoize handleLogout to prevent unnecessary re-creations.
   // This helps React's dependency checks in useEffect.
@@ -103,7 +104,7 @@ export default function Header() {
           </Link>
 
           {/* Desktop Navigation Links */}
-          <div className="hidden md:flex items-center space-x-6">
+          <div className="hidden md:flex items-center space-x-2 lg:space-x-6"> 
             <Link href="/about" className="text-gray-700 hover:text-teal-700 transition-colors duration-300 font-medium">
               About Us
             </Link>
@@ -127,7 +128,7 @@ export default function Header() {
                   onClick={handleLogout}
                   className="text-gray-700 hover:text-teal-700 transition-colors duration-300 font-medium focus:outline-none"
                 >
-                  Logout ({loggedInUser.email})
+                  Logout ({loggedInUser.firstName})
                 </button>
               </>
             ) : (
@@ -239,7 +240,7 @@ export default function Header() {
                   onClick={handleLogout}
                   className="block text-3xl font-bold hover:text-amber-400 transition-colors duration-300 py-2"
                 >
-                  Logout ({loggedInUser.email})
+                  Logout ({loggedInUser.firstName})
                 </button>
               </motion.div>
             </>

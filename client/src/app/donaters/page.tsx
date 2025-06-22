@@ -25,6 +25,7 @@ const ADD_DONATION = gql`
 // Make sure this matches what your backend puts in the token's 'data' payload
 type DecodedTokenData = {
   _id: string;
+  firstName: string;
   email: string;
   role: string;
   exp?: number; // Expiration time (unix timestamp)
@@ -130,7 +131,7 @@ export default function DonatersPage() {
           <h2 className="mt-6 text-center text-3xl font-extrabold text-teal-800">
             📜 Add New Donation
           </h2>
-          {user && <p className="text-center text-sm text-gray-600 mb-6">Logged in as: {user.email} (Role: {user.role})</p>}
+          {user && <p className="text-center text-sm text-gray-600 mb-6">Logged in as: {user.firstName} {user.email} (Role: {user.role})</p>}
           <form className="mt-8 space-y-6" onSubmit={handleSubmit}>
             <div className="rounded-md shadow-sm -space-y-px">
               <div>

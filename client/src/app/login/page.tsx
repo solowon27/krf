@@ -44,7 +44,7 @@ export default function LoginPage() {
 
   return (
     // Outer container for the entire page layout: header, main content, footer
-    <div className="min-h-screen flex flex-col bg-gray-100">
+    <div className="min-h-screen py-16 flex flex-col bg-gray-100">
       <Header /> {/* Add Header here */}
 
       {/* Main content area, uses flex-grow to take up available space and push footer down */}

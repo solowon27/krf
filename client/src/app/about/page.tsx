@@ -7,31 +7,33 @@ import Footer from '@/components/Footer';
 import { motion, Variants, Transition } from 'framer-motion';
 import Image from 'next/image';
 
-import samplelogo from '@/images/sample-logo.png'; // Make sure this path is correct relative to your project root/src
+import samplelogo from '@/images/sample-logo.png'; 
+// import solo from '@/solo.JPG';
+
 
 export default function AboutUs() {
-  const containerVariants: Variants = { // Add ': Variants' here
-  hidden: { opacity: 0 },
-  visible: {
-    opacity: 1,
-    transition: {
-      staggerChildren: 0.1,
+  const containerVariants: Variants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.1,
+      },
     },
-  },
-};
+  };
 
-const itemVariants: Variants = { // Add ': Variants' here
-  hidden: { y: 20, opacity: 0 },
-  visible: {
-    y: 0,
-    opacity: 1,
-    transition: {
-      type: 'spring',
-      stiffness: 100,
-      damping: 10,
-    } as Transition, // Add 'as Transition' here
-  },
-};
+  const itemVariants: Variants = {
+    hidden: { y: 20, opacity: 0 },
+    visible: {
+      y: 0,
+      opacity: 1,
+      transition: {
+        type: 'spring',
+        stiffness: 100,
+        damping: 10,
+      } as Transition,
+    },
+  };
 
   return (
     <main className="min-h-screen bg-gray-50 text-gray-800 font-sans antialiased">
@@ -48,7 +50,7 @@ const itemVariants: Variants = { // Add ': Variants' here
           }}
         ></div>
         <motion.div
-          className="max-w-4xl mx-auto relative z-10"
+          className="w-full mx-auto relative z-10"
           variants={containerVariants}
           initial="hidden"
           animate="visible"
@@ -61,11 +63,71 @@ const itemVariants: Variants = { // Add ': Variants' here
           </motion.p>
         </motion.div>
       </section>
+       {/* Founders Section */}
+      <section className="py-20 w-full bg-white">
+        <motion.div
+          className="w-full mx-auto text-center"
+          variants={containerVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.3 }}
+        >
+          <motion.h2 variants={itemVariants} className="text-3xl font-extrabold mb-10 text-teal-800">
+            Meet the Founders
+          </motion.h2>
+          <div className="flex flex-col md:flex-row justify-center items-center gap-12">
+            {/* Founder 1 */}
+            <motion.div variants={itemVariants} className="w-full max-w-sm">
+              <div className="relative h-64 w-64 rounded-full overflow-hidden mx-auto mb-4">
+                <Image
+                  src={samplelogo} // Using samplelogo as requested
+                  alt="Founder 1"
+                  fill
+                  className="object-cover"
+                />
+              </div>
+              <h3 className="text-xl font-bold text-teal-700 mb-2">Abel Bisetegn</h3>
+              <p className="text-yellow-600 italic mb-2">Job Description</p>
+              <p className="text-gray-700">"Short inspirational message or quote."</p>
+            </motion.div>
+
+            {/* Founder 2 */}
+            <motion.div variants={itemVariants} className="w-full max-w-sm">
+              <div className="relative h-64 w-64 rounded-full overflow-hidden mx-auto mb-4">
+                <Image
+                  src={samplelogo} // Using samplelogo as requested
+                  alt="Founder 2"
+                  fill
+                  className="object-cover"
+                />
+              </div>
+              <h3 className="text-xl font-bold text-teal-700 mb-2">Commander Wondowosen</h3>
+              <p className="text-yellow-600 italic mb-2">Job Description</p>
+              <p className="text-gray-700">"Short inspirational message or quote."</p>
+            </motion.div>
+
+            {/* Founder 3 */}
+            <motion.div variants={itemVariants} className="w-full max-w-sm">
+              <div className="relative h-64 w-64 rounded-full overflow-hidden mx-auto mb-4">
+                <Image
+                  src="/solo.JPG" // Using samplelogo as requested
+                  alt="Founder 3"
+                  fill
+                  className="object-cover"
+                />
+              </div>
+              <h3 className="text-xl font-bold text-teal-700 mb-2">Solomon Yimer</h3>
+              <p className="text-yellow-600 italic mb-2">Founder and Foreign Relations</p>
+              <p className="text-gray-700">"let's do something great together!"</p>
+            </motion.div>
+          </div>
+        </motion.div>
+      </section>
 
       {/* About Content Section */}
-      <section className="py-20 px-6 bg-white shadow-inner">
+      <section className="py-20 px-16 bg-white shadow-inner">
         <motion.div
-          className="max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-12 items-center"
+          className="w-full mx-auto grid grid-cols-1 md:grid-cols-2 gap-12 items-center"
           variants={containerVariants}
           initial="hidden"
           whileInView="visible"
@@ -73,10 +135,10 @@ const itemVariants: Variants = { // Add ': Variants' here
         >
           <motion.div variants={itemVariants}>
             <h2 className="text-3xl font-extrabold mb-6 text-teal-800">Our Story</h2>
-            <p className="text-lg leading-relaxed text-gray-700 mb-4">
+            <p className="text-lg text-justify leading-relaxed text-gray-700 mb-4">
               The **Kone Renaissance Foundation** was born from a deep-rooted desire to uplift and empower the community of Kone, a small village in rural Ethiopia. Witnessing the immense potential within its youth, coupled with the challenges faced by Kone High School, ignited a spark in our founders. We believe that education is the most powerful tool for change, capable of breaking cycles of poverty and building a brighter future.
             </p>
-            <p className="text-lg leading-relaxed text-gray-700">
+            <p className="text-lg text-justify leading-relaxed text-gray-700">
               From humble beginnings, our initiative grew into a dedicated foundation, uniting individuals and partners who share our vision. We are not just rebuilding a school; we are rebuilding hope, dignity, and opportunity for generations to come.
             </p>
           </motion.div>
@@ -126,6 +188,7 @@ const itemVariants: Variants = { // Add ': Variants' here
           </div>
         </motion.div>
       </section>
+
 
       {/* Call to Action for Impact/Support */}
       <section className="py-20 px-6 bg-gradient-to-r from-teal-700 to-teal-900 text-white text-center">
