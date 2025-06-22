@@ -108,12 +108,12 @@ export default function AboutUs() {
 
             {/* Founder 3 */}
             <motion.div variants={itemVariants} className="w-full max-w-sm">
-              <div className="relative h-64 w-64 rounded-full overflow-hidden mx-auto mb-4">
+              <div className="relative h-64 w-64 rounded-full overflow-hidden mx-auto mb-4 border-2 border-teal-700">
                 <Image
-                  src="/solo.JPG" // Using samplelogo as requested
+                  src="/solo.JPG" // Ensure solo.JPG is in the public folder
                   alt="Founder 3"
                   fill
-                  className="object-cover"
+                  className="object-cover" // Changed border-lg to border-4
                 />
               </div>
               <h3 className="text-xl font-bold text-teal-700 mb-2">Solomon Yimer</h3>
@@ -135,10 +135,10 @@ export default function AboutUs() {
         >
           <motion.div variants={itemVariants}>
             <h2 className="text-3xl font-extrabold mb-6 text-teal-800">Our Story</h2>
-            <p className="text-lg text-justify leading-relaxed text-gray-700 mb-4">
+            <p className="text-lg font-semibold text-gray-800 text-justify leading-relaxed text-gray-700 mb-4">
               The **Kone Renaissance Foundation** was born from a deep-rooted desire to uplift and empower the community of Kone, a small village in rural Ethiopia. Witnessing the immense potential within its youth, coupled with the challenges faced by Kone High School, ignited a spark in our founders. We believe that education is the most powerful tool for change, capable of breaking cycles of poverty and building a brighter future.
             </p>
-            <p className="text-lg text-justify leading-relaxed text-gray-700">
+            <p className="text-lg font-semibold text-gray-800 text-justify leading-relaxed text-gray-700">
               From humble beginnings, our initiative grew into a dedicated foundation, uniting individuals and partners who share our vision. We are not just rebuilding a school; we are rebuilding hope, dignity, and opportunity for generations to come.
             </p>
           </motion.div>
@@ -189,6 +189,66 @@ export default function AboutUs() {
         </motion.div>
       </section>
 
+     {/* Our Goals & Achievements Section - Enhanced Styling */}
+      <section className="py-20 px-6 bg-gray-100"> {/* Changed background to gray-100 for better contrast with white cards */}
+        <motion.div
+          className="w-full mx-auto grid grid-cols-1 md:grid-cols-2 gap-12 items-start" // Added max-w-7xl and mx-auto for better centering of the grid
+          variants={containerVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.3 }}
+        >
+          {/* Left Side: Our Goals - Styled as a card */}
+          <motion.div
+            variants={itemVariants}
+            className="bg-white p-8 rounded-xl shadow-2xl border border-teal-200 hover:shadow-3xl transition-all duration-300 ease-in-out transform hover:-translate-y-1" // Added padding, border, shadow, hover effects
+          >
+            <h2 className="text-3xl font-extrabold mb-6 text-teal-800 border-b-2 border-teal-300 pb-3">Our Goals for 2025/2026 GC (2017 E.C.)</h2> {/* Added border-bottom */}
+            <p className="text-lg leading-relaxed text-gray-700 mb-6">
+              For the upcoming academic year, the Kone Renaissance Foundation is committed to achieving the following key objectives to further empower the Kone community:
+            </p>
+            <ul className="list-disc pl-6 space-y-4 text-lg text-gray-700"> {/* Increased pl and space-y for better readability */}
+              <motion.li variants={itemVariants} className="font-semibold text-gray-800">
+                **Complete Phase 1 School Infrastructure:** Finalize the construction and furnishing of the new classrooms and library at Kone High School, ensuring a conducive learning environment.
+              </motion.li>
+              <motion.li variants={itemVariants} className="font-semibold text-gray-800">
+                **Establish a Sustainable Water Supply:** Implement a reliable and clean water source for the school and surrounding community, improving hygiene and health.
+              </motion.li>
+              <motion.li variants={itemVariants} className="font-semibold text-gray-800">
+                **Launch Digital Learning Hub:** Equip the new library with computers and internet access, providing students with essential digital literacy skills.
+              </motion.li>
+              <motion.li variants={itemVariants} className="font-semibold text-gray-800">
+                **Teacher Training Program:** Initiate a professional development program for Kone High School teachers, focusing on modern pedagogical methods and subject matter expertise.
+              </motion.li>
+            </ul>
+          </motion.div>
+
+          {/* Right Side: Previous Year's Achievements - Styled as a card */}
+          <motion.div
+            variants={itemVariants}
+            className="bg-white p-8 rounded-xl shadow-2xl border border-amber-200 hover:shadow-3xl transition-all duration-300 ease-in-out transform hover:-translate-y-1" // Added padding, border, shadow, hover effects (using amber for a slight contrast)
+          >
+            <h2 className="text-3xl font-extrabold mb-6 text-teal-800 border-b-2 border-amber-300 pb-3">Our Achievements (Previous Year)</h2> {/* Added border-bottom */}
+            <p className="text-lg leading-relaxed text-gray-700 mb-6">
+              Building on the momentum of the past year, we are proud to highlight some of our key accomplishments from 2024/2025 GC (2016 E.C.):
+            </p>
+            <ul className="list-disc pl-6 space-y-4 text-lg text-gray-700"> {/* Increased pl and space-y for better readability */}
+              <motion.li variants={itemVariants} className="font-semibold text-gray-800">
+                **Initiated School Building Renovation:** Successfully secured funding and commenced initial renovations for Kone High School classrooms, improving learning conditions.
+              </motion.li>
+              <motion.li variants={itemVariants} className="font-semibold text-gray-800">
+                **Provided Educational Supplies:** Distributed essential textbooks, notebooks, and writing materials to over 500 students, ensuring they had the necessary tools for learning.
+              </motion.li>
+              <motion.li variants={itemVariants} className="font-semibold text-gray-800">
+                **Launched Mentorship Program:** Connected 20 high school students with local professionals for guidance and career inspiration.
+              </motion.li>
+              <motion.li variants={itemVariants} className="font-semibold text-gray-800">
+                **Secured Partnership Agreements:** Forged new alliances with two international NGOs, expanding our reach and resource mobilization capacity.
+              </motion.li>
+            </ul>
+          </motion.div>
+        </motion.div>
+      </section>
 
       {/* Call to Action for Impact/Support */}
       <section className="py-20 px-6 bg-gradient-to-r from-teal-700 to-teal-900 text-white text-center">

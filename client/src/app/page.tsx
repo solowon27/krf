@@ -5,6 +5,7 @@ import Link from 'next/link';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import { motion, Variants, Transition } from 'framer-motion';
+import { FaSpinner } from 'react-icons/fa'; // Import the spinner icon
 
 import { useQuery, gql } from '@apollo/client';
 
@@ -112,7 +113,9 @@ export default function Home() {
 
           {loading ? (
             <p className="text-center text-gray-700 text-2xl font-medium py-16 bg-white rounded-lg shadow-xl">
-              <span className="animate-spin inline-block mr-4 text-teal-600 text-3xl">🔄</span> Fetching the latest kindness...
+              <span className="animate-spin inline-block mr-4 text-teal-600 text-3xl">
+                <FaSpinner className="inline-block" /> {/* Use FaSpinner here */}
+              </span> Fetching the latest kindness...
             </p>
           ) : error ? (
             <p className="text-center text-red-700 text-2xl font-medium py-16 bg-red-50 rounded-lg shadow-xl border border-red-200">
