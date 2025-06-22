@@ -3,6 +3,7 @@ const { gql } = require('apollo-server-express');
 module.exports = gql`
   type User {
     id: ID!
+    firstName: String!
     email: String!
     role: String!
     createdAt: String!
@@ -15,6 +16,7 @@ module.exports = gql`
     item: String!
     message: String
     date: String!
+    submittedBy: User
   }
 
   type AuthPayload {
@@ -28,7 +30,7 @@ module.exports = gql`
   }
 
   type Mutation {
-    register(email: String!, password: String!, role: String): AuthPayload!
+    register(firstName: String!, email: String!, password: String!, role: String): AuthPayload!
     login(email: String!, password: String!): AuthPayload!
     addDonation(donorName: String!, item: String!, message: String): Donation!
   }

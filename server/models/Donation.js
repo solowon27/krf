@@ -18,6 +18,11 @@ const donationSchema = new mongoose.Schema({
   date: {
     type: Date,
     default: Date.now,
+  },
+   submittedBy: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'User',
+    required: true,
   }
 });
 

@@ -24,8 +24,8 @@ module.exports = {
   next();
 },
   // Function to sign a token
-  signToken: function ({ _id, email, role }) { // Include role in payload
-    const payload = { _id, email, role }; // Make sure role is passed here
+  signToken: function ({ _id, firstName, email, role }) { // Include role in payload
+    const payload = { _id, firstName, email, role }; // Make sure role is passed here
     return jwt.sign({ data: payload }, secret, { expiresIn: expiration });
   },
 };

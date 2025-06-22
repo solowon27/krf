@@ -2,6 +2,12 @@ const mongoose = require('mongoose');
 const bcrypt = require('bcryptjs'); // You'll need to install this: npm install bcryptjs
 
 const userSchema = new mongoose.Schema({
+   firstName: {
+    type: String,
+    required: true,
+    trim: true,
+    minlength: 2 // Enforce a minimum length for first names
+  },
   email: {
     type: String,
     required: true,
