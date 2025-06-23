@@ -18,11 +18,32 @@
         "name": "next"
       }
     ],
+    // *** THESE ARE THE KEY SETTINGS FOR YOUR SPECIFIC STRUCTURE ***
+    // 'baseUrl' is relative to tsconfig.json. This tells TypeScript to resolve
+    // non-relative and aliased imports from within 'your-project-root/client/'
+    "baseUrl": ".",
     "paths": {
-      "@/*": ["./*"] // This tells TypeScript to map @/ directly to the root
-    },
-    "baseUrl": "." // Keep this, as it defines the base for your paths
+      // '@/...' imports will now resolve to 'client/src/...'
+      // e.g., '@/components/Header' -> './client/src/components/Header'
+      "@/*": ["./src/*"],
+      "@lib/*": ["./lib/*"],
+      "@components/*": ["./components/*"],
+      "@images/*": ["./images/*"],
+    }
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],
+  // Ensure 'include' covers all relevant directories and file types within 'client/'
+  "include": [
+    "next-env.d.ts",
+    "**/*.ts",
+    "**/*.tsx",
+    "**/*.js",
+    "**/*.jsx",
+    ".next/types/**/*.ts",
+    // Explicitly include the 'client' folder where your Next.js app resides
+    "client/**/*.ts",
+    "client/**/*.tsx",
+    "client/**/*.js",
+    "client/**/*.jsx"
+  ],
   "exclude": ["node_modules", "dist"]
 }

@@ -2,14 +2,12 @@
 'use client';
 
 import Link from 'next/link';
-import Header from '@/components/Header';
-import Footer from '@/components/Footer';
+import Header from '@components/Header';
+import Footer from '@components/Footer';
 import { motion, Variants, Transition } from 'framer-motion';
 import Image from 'next/image';
 
-import samplelogo from '@/images/sample-logo.png'; 
-// import solo from '@/solo.JPG';
-
+// No direct image imports needed if images are in the public folder
 
 export default function AboutUs() {
   const containerVariants: Variants = {
@@ -63,7 +61,7 @@ export default function AboutUs() {
           </motion.p>
         </motion.div>
       </section>
-       {/* Founders Section */}
+        {/* Founders Section */}
       <section className="py-20 w-full bg-white">
         <motion.div
           className="w-full mx-auto text-center"
@@ -80,7 +78,7 @@ export default function AboutUs() {
             <motion.div variants={itemVariants} className="w-full max-w-sm">
               <div className="relative h-64 w-64 rounded-full overflow-hidden mx-auto mb-4">
                 <Image
-                  src={samplelogo} // Using samplelogo as requested
+                  src="/sample-logo.png" // Use public path for image
                   alt="Founder 1"
                   fill
                   className="object-cover"
@@ -95,7 +93,7 @@ export default function AboutUs() {
             <motion.div variants={itemVariants} className="w-full max-w-sm">
               <div className="relative h-64 w-64 rounded-full overflow-hidden mx-auto mb-4">
                 <Image
-                  src={samplelogo} // Using samplelogo as requested
+                  src="/sample-logo.png" // Use public path for image
                   alt="Founder 2"
                   fill
                   className="object-cover"
@@ -113,7 +111,8 @@ export default function AboutUs() {
                   src="/solo.JPG" // Ensure solo.JPG is in the public folder
                   alt="Founder 3"
                   fill
-                  className="object-cover" // Changed border-lg to border-4
+                  className="object-cover"
+                  priority // Tells Next.js to load this image eagerly
                 />
               </div>
               <h3 className="text-xl font-bold text-teal-700 mb-2">Solomon Yimer</h3>
@@ -146,7 +145,7 @@ export default function AboutUs() {
             {/* CORRECTED Image component usage for responsive sizing */}
             <div className="relative w-full h-64 md:h-80 lg:h-96 rounded-lg shadow-xl overflow-hidden">
               <Image
-                src={samplelogo}
+                src="/sample-logo.png" // Use public path for image. You might want to use a relevant school image here.
                 alt="Kone High School students learning"
                 fill // Tells the image to fill the parent container
                 className="object-cover" // Ensures the image covers the div without distortion
@@ -189,7 +188,7 @@ export default function AboutUs() {
         </motion.div>
       </section>
 
-     {/* Our Goals & Achievements Section - Enhanced Styling */}
+      {/* Our Goals & Achievements Section - Enhanced Styling */}
       <section className="py-20 px-6 bg-gray-100"> {/* Changed background to gray-100 for better contrast with white cards */}
         <motion.div
           className="w-full mx-auto grid grid-cols-1 md:grid-cols-2 gap-12 items-start" // Added max-w-7xl and mx-auto for better centering of the grid

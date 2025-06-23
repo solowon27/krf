@@ -5,8 +5,8 @@ import { useState } from 'react';
 import { useRouter } from 'next/navigation'; // Import useRouter for client-side navigation
 
 // Import your Header and Footer components
-import Header from '@/components/Header';
-import Footer from '@/components/Footer';
+import Header from '@components/Header';
+import Footer from '@components/Footer';
 
 const LOGIN = gql`
   mutation Login($email: String!, $password: String!) {

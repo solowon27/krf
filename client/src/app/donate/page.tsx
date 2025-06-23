@@ -1,8 +1,8 @@
 'use client';
 
 import Link from 'next/link';
-import Header from '@/components/Header';
-import Footer from '@/components/Footer';
+import Header from '@components/Header';
+import Footer from '@components/Footer';
 import { motion, Variants, Transition } from 'framer-motion';
 
 export default function DonatePage() {

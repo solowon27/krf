@@ -1,6 +1,6 @@
 // src/app/privacy/page.tsx
-import Header from '@/components/Header'; // Adjust path as needed
-import Footer from '@/components/Footer'; // Adjust path as needed
+import Header from '@components/Header'; // Adjust path as needed
+import Footer from '@components/Footer'; // Adjust path as needed
 import React from 'react';
 import Markdown from 'react-markdown'; // You might need to install react-markdown: npm install react-markdown
 

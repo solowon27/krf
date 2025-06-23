@@ -5,8 +5,8 @@ import { useState } from 'react';
 import { useRouter } from 'next/navigation'; // Import useRouter
 
 // Import your Header and Footer components
-import Header from '@/components/Header';
-import Footer from '@/components/Footer';
+import Header from '@components/Header';
+import Footer from '@components/Footer';
 import React from 'react'; // Ensure React is imported for JSX and types
 
 const REGISTER = gql`

@@ -1,19 +1,19 @@
 'use client';
 
 import Link from 'next/link';
-import Header from '@/components/Header';
-import Footer from '@/components/Footer';
-import ImageSlider from '@/components/ImageSlider'; // Import the new slider
+import Header from '@components/Header';
+import Footer from '@components/Footer';
+import ImageSlider from '@components/ImageSlider'; // Import the new slider
 import { motion, Variants, Transition } from 'framer-motion';
 
 // Sample image data for the slider
 // IMPORTANT: Replace these with paths to your actual images in the `public` folder
-// For example, if you have `public/images/impact1.jpg`, the src would be `/images/impact1.jpg`
+// For example, if you have `public1.jpg`, the src would be `/images/impact1.jpg`
 const impactImages = [
-  { src: '/images/impact/impact1.jpg', alt: 'Community project in action', caption: 'Volunteers building a new community center.' },
-  { src: '/images/impact/impact2.jpg', alt: 'Children learning in a new school', caption: 'Providing quality education to rural communities.' },
-  { src: '/images/impact/impact3.jpg', alt: 'Healthcare outreach program', caption: 'Mobile clinics reaching underserved areas.' },
-  { src: '/images/impact/impact4.jpg', alt: 'Sustainable agriculture initiative', caption: 'Empowering farmers with modern techniques.' },
+  { src: '/impact1.jpg', alt: 'Community project in action', caption: 'Volunteers building a new community center.' },
+  { src: '/impact2.jpg', alt: 'Children learning in a new school', caption: 'Providing quality education to rural communities.' },
+  { src: '/impact3.jpg', alt: 'Healthcare outreach program', caption: 'Mobile clinics reaching underserved areas.' },
+  { src: '/impact4.jpg', alt: 'Sustainable agriculture initiative', caption: 'Empowering farmers with modern techniques.' },
 ];
 
 export default function OurImpact() {

@@ -1,3 +1,4 @@
+// client/lib/ApolloWrapper.tsx
 'use client';
 
 import { ApolloProvider } from '@apollo/client';

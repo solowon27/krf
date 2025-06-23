@@ -2,8 +2,8 @@
 'use client';
 
 import Link from 'next/link';
-import Header from '@/components/Header';
-import Footer from '@/components/Footer';
+import Header from '@components/Header';
+import Footer from '@components/Footer';
 import { useQuery, gql } from '@apollo/client';
 import { motion, Variants } from 'framer-motion';
 

@@ -2,8 +2,8 @@
 'use client';
 
 // Removed 'Link' as it's not used in the component's JSX
-import Header from '@/components/Header';
-import Footer from '@/components/Footer';
+import Header from '@components/Header';
+import Footer from '@components/Footer';
 import { motion, Variants, Transition } from 'framer-motion';
 import React, { useState } from 'react'; // Added React import for types, though often implicit
 import { FaEnvelope, FaMapMarkerAlt, FaPhoneAlt, FaFacebook, FaTwitter, FaInstagram } from 'react-icons/fa';
@@ -122,16 +122,17 @@ export default function ContactUs() {
       </section>
 
       {/* Contact Form and Information Section */}
+      {/* REMOVED initial and whileInView from this parent motion.div */}
       <section className="py-20 px-6 bg-white shadow-inner">
-        <motion.div
+        <div
           className="max-w-5xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12"
-          variants={containerVariants}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, amount: 0.3 }}
+          // variants={containerVariants}  <-- REMOVED
+          // initial="hidden"             <-- REMOVED
+          // whileInView="visible"        <-- REMOVED
+          // viewport={{ once: true, amount: 0.3 }} <-- REMOVED
         >
           {/* Contact Form */}
-          <motion.div variants={itemVariants} className="bg-gray-50 p-8 rounded-lg shadow-xl">
+          <motion.div variants={itemVariants} initial="hidden" animate="visible" className="bg-gray-50 p-8 rounded-lg shadow-xl">
             <h2 className="text-3xl font-extrabold mb-6 text-teal-800">Send Us a Message / መልእክት ይላኩልን</h2>
             <form onSubmit={handleSubmit} className="space-y-6">
               <div>
@@ -202,54 +203,54 @@ export default function ContactUs() {
           </motion.div>
 
           {/* Contact Information */}
-          <motion.div variants={itemVariants} className="bg-white p-8 rounded-lg shadow-xl flex flex-col justify-center">
-  <h2 className="text-3xl font-extrabold mb-6 text-teal-800">Address / አድራሻ</h2>
-  <div className="space-y-6 text-lg text-gray-700">
-    <div className="flex items-center space-x-4">
-      {/* Email Icon */}
-      <FaEnvelope className="text-teal-600 text-2xl" /> {/* Replaced 📧 */}
-      <div>
-        <h3 className="font-bold text-gray-800">Email Us</h3>
-        <a href="mailto:konerenfoundation@gmail.com" className="text-gray-700 hover:text-teal-600 transition-colors duration-300">konerenfoundation@gmail.com</a>
-      </div>
-    </div>
-    <div className="flex items-center space-x-4">
-      {/* Location Icon */}
-      <FaMapMarkerAlt className="text-teal-600 text-2xl" /> {/* Replaced 📍 */}
-      <div>
-        <h3 className="font-bold text-gray-800">Our Office</h3>
-        <p>Kone Renaissance Foundation</p>
-        <p>የኮን ህዳሴ ፋውንዴሽን</p>
-        <p>Kone, North Wollo Ethiopia</p>
-      </div>
-    </div>
-    <div className="flex items-center space-x-4">
-      {/* Phone Icon */}
-      <FaPhoneAlt className="text-teal-600 text-2xl" /> {/* Replaced 📞 */}
-      <div>
-        <h3 className="font-bold text-gray-800">Call Us</h3>
-        {/* Note: This is a placeholder number. Replace with a real one. */}
-        <a href="tel:+251-11-234-5678" className="text-gray-700 hover:text-teal-600 transition-colors duration-300">+251 00 00 00 00</a>
-      </div>
-    </div>
-  </div>
-  <div className="mt-8 border rounded-lg p-4 ">
-    <h3 className="text-2xl font-bold text-center mb-4 text-teal-800">Connect with us on Social Media:</h3>
-    <div className="flex space-x-4 justify-center md:justify-start">
-      {/* Social Media Icons - Replace your SVG paths directly with React Icons components */}
-      <a href="#" className="text-gray-600 hover:text-teal-600 transition-colors duration-300" aria-label="Facebook">
-        <FaFacebook className="w-8 h-8" /> {/* Replaced Facebook SVG */}
-      </a>
-      <a href="#" className="text-gray-600 hover:text-teal-600 transition-colors duration-300" aria-label="Twitter">
-        <FaTwitter className="w-8 h-8" /> {/* Replaced Twitter SVG */}
-      </a>
-      <a href="#" className="text-gray-600 hover:text-teal-600 transition-colors duration-300" aria-label="Instagram">
-        <FaInstagram className="w-8 h-8" /> {/* Replaced Instagram SVG */}
-      </a>
-    </div>
-  </div>
-</motion.div>
-        </motion.div>
+          <motion.div variants={itemVariants} initial="hidden" animate="visible" className="bg-white p-8 rounded-lg shadow-xl flex flex-col justify-center">
+            <h2 className="text-3xl font-extrabold mb-6 text-teal-800">Address / አድራሻ</h2>
+            <div className="space-y-6 text-lg text-gray-700">
+              <div className="flex items-center space-x-4">
+                {/* Email Icon */}
+                <FaEnvelope className="text-teal-600 text-2xl" /> {/* Replaced 📧 */}
+                <div>
+                  <h3 className="font-bold text-gray-800">Email Us</h3>
+                  <a href="mailto:konerenfoundation@gmail.com" className="text-gray-700 hover:text-teal-600 transition-colors duration-300">konerenfoundation@gmail.com</a>
+                </div>
+              </div>
+              <div className="flex items-center space-x-4">
+                {/* Location Icon */}
+                <FaMapMarkerAlt className="text-teal-600 text-2xl" /> {/* Replaced 📍 */}
+                <div>
+                  <h3 className="font-bold text-gray-800">Our Office</h3>
+                  <p>Kone Renaissance Foundation</p>
+                  <p>የኮን ህዳሴ ፋውንዴሽን</p>
+                  <p>Kone, North Wollo Ethiopia</p>
+                </div>
+              </div>
+              <div className="flex items-center space-x-4">
+                {/* Phone Icon */}
+                <FaPhoneAlt className="text-teal-600 text-2xl" /> {/* Replaced 📞 */}
+                <div>
+                  <h3 className="font-bold text-gray-800">Call Us</h3>
+                  {/* Note: This is a placeholder number. Replace with a real one. */}
+                  <a href="tel:+251-11-234-5678" className="text-gray-700 hover:text-teal-600 transition-colors duration-300">+251 00 00 00 00</a>
+                </div>
+              </div>
+            </div>
+            <div className="mt-8 border rounded-lg p-4 ">
+              <h3 className="text-2xl font-bold text-center mb-4 text-teal-800">Connect with us on Social Media:</h3>
+              <div className="flex space-x-4 justify-center md:justify-start">
+                {/* Social Media Icons - Replace your SVG paths directly with React Icons components */}
+                <a href="#" className="text-gray-600 hover:text-teal-600 transition-colors duration-300" aria-label="Facebook">
+                  <FaFacebook className="w-8 h-8" /> {/* Replaced Facebook SVG */}
+                </a>
+                <a href="#" className="text-gray-600 hover:text-teal-600 transition-colors duration-300" aria-label="Twitter">
+                  <FaTwitter className="w-8 h-8" /> {/* Replaced Twitter SVG */}
+                </a>
+                <a href="#" className="text-gray-600 hover:text-teal-600 transition-colors duration-300" aria-label="Instagram">
+                  <FaInstagram className="w-8 h-8" /> {/* Replaced Instagram SVG */}
+                </a>
+              </div>
+            </div>
+          </motion.div>
+        </div>
       </section>
 
       <Footer />

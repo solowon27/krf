@@ -6,8 +6,8 @@ import { useRouter } from 'next/navigation';
 import { jwtDecode } from 'jwt-decode'; // ✅ Reverted to using jwtDecode
 
 // Import your Header and Footer components
-import Header from '@/components/Header';
-import Footer from '@/components/Footer';
+import Header from '@components/Header';
+import Footer from '@components/Footer';
 
 const ADD_DONATION = gql`
   mutation AddDonation($donorName: String!, $item: String!, $message: String) {
