@@ -78,7 +78,7 @@ export default function AboutUs() {
             <motion.div variants={itemVariants} className="w-full max-w-sm">
               <div className="relative h-64 w-64 rounded-full overflow-hidden mx-auto mb-4">
                 <Image
-                  src="/abel.JPEG" // Use public path for image
+                  src="/abel.jpeg" // Use public path for image
                   alt="Founder 1"
                   fill
                   className="object-cover"
