@@ -193,7 +193,7 @@ export default function EducationResourcesPage() {
             Fully Funded, Legitimate, & Free-Application Scholarships
           </h2>
           <p className="text-xl md:text-2xl text-gray-600 font-normal max-w-3xl mx-auto">
-            የከፍተኛ ትምህርት ጉዞዎን በአገር ውስጥ እና በዓለም አቀፍ ደረጃ የገንዘብ ድጋፍ ለማድረግ እድሎችን ያግኙ።
+            የከፍተኛ ትምህርት ጉዞዎን በአገር ውስጥ እና በዓለም አቀፍ ደረጃ የገንዘብ ድጋፍ በሚደረግላቸው የስኮላርሽፕ እድሎች ይጠቀሙ።
             <span className="text-red-700 p-2">ማሳሰቢያ፥ ስኮላርሽፕ በሚሞሉበት ጊዜ በመረጡት ሊንክ page ውስጥ ያሉትን መረጃዎች በደንብ ያንብቡ! </span>
           </p>
         </div>
