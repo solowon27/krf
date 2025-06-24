@@ -88,11 +88,11 @@ export default function Home() {
   );
 
   return (
-    <main className="w-full min-h-screen bg-gray-100 text-gray-800 font-sans antialiased overflow-x-hidden">
+     <main className="w-full min-h-screen bg-gray-100 text-gray-800 font-sans antialiased overflow-x-hidden">
       <Header />
 
-      {/* Hero Section - Already full-width and "outstanding" */}
-      <section className="bg-gradient-to-br from-teal-950 to-teal-700 text-white py-40 px-6 text-center relative overflow-hidden pt-24 md:py-48 lg:py-56">
+      {/* Hero Section - Updated for better responsiveness */}
+      <section className="bg-gradient-to-br from-teal-950 to-teal-700 text-white py-20 px-4 text-center relative overflow-hidden sm:py-28 md:py-36 lg:py-48">
         <div
           className="absolute inset-0 opacity-10"
           style={{
@@ -102,37 +102,49 @@ export default function Home() {
           }}
         ></div>
         <motion.div
-          className="w-full px-4 mt-10 relative z-10 max-w-6xl mx-auto"
+          className="w-full relative z-10 max-w-6xl mx-auto px-2 sm:px-4 md:px-6" // Adjusted padding for very small screens
           variants={containerVariants}
           initial="hidden"
           animate="visible"
         >
-          <motion.h1 variants={itemVariants} className="text-5xl md:text-7xl lg:text-8xl font-extrabold mb-6 leading-tight drop-shadow-lg font-serif">
+          <motion.h1
+            variants={itemVariants}
+            className="text-5xl sm:text-6xl md:text-8xl lg:text-9xl xl:text-10xl font-extrabold m-4 leading-tight drop-shadow-lg font-serif px-2" // Smaller base font, px for safety
+          >
             Empowering Minds, Building Futures
           </motion.h1>
-          <motion.p variants={itemVariants} className="text-lg md:text-xl lg:text-2xl mb-12 opacity-95 max-w-4xl mx-auto font-light">
-            ህይወትን በትምህርት በመለወጥ፣ ማህበረሰባችን ብሎም በተለያዩ ሃገራት ነዋሪ የሆኑ ተወላጆችን ባሉበት በማነቃቃት ለዋድላ ወረዳ በተለይም ለኮን አጠቃላይ ሁለተኛ ደረጃ ትምህርት ቤት ትልቅ ስራ እንስራ፤
+          <motion.p
+            variants={itemVariants}
+            className="text-sm sm:text-base md:text-lg lg:text-xl mb-8 opacity-95 max-w-4xl mx-auto font-light px-2" // Smaller base font, px for safety
+          >
+            ትውልድን በእውቀት ለመለወጥ፣ አካባቢው ላይ ያለውን ማህበረሰባችን ብሎም በተለያዩ ሃገራት ነዋሪ የሆኑ ተወላጆችን ባሉበት በማነቃቃት ለዋድላ ወረዳ በተለይም ለኮን አጠቃላይ ሁለተኛ ደረጃ ትምህርት ቤት ትልቅ ስራ እንስራ፤
           </motion.p>
-          <motion.div variants={itemVariants} className="flex flex-col sm:flex-row flex-wrap justify-center items-center gap-6">
-            <Link
+          <motion.div
+            variants={itemVariants}
+            className="flex flex-col items-center gap-4 sm:flex-row sm:flex-wrap sm:justify-center sm:gap-6 px-2" // Added horizontal padding to gap for small screens
+          >
+            <a // Changed Link to <a>
               href="/donate"
-              className="inline-flex items-center bg-amber-500 text-teal-900 font-bold px-10 py-5 rounded-full shadow-2xl hover:bg-amber-400 transition-all duration-300 ease-in-out transform hover:scale-105 hover:shadow-lg text-lg whitespace-nowrap"
+              className="w-full sm:w-auto inline-flex items-center justify-center bg-amber-500 text-teal-900 font-bold px-6 py-3 rounded-full shadow-2xl hover:bg-amber-400 transition-all duration-300 ease-in-out transform hover:scale-105 hover:shadow-lg text-base sm:text-lg text-center" // Removed whitespace-nowrap, added w-full, justify-center, adjusted padding and text size
             >
               ድጋፍ አድርግ/ጊ
-              <FaHandsHelping className="ml-3 text-2xl" />
-            </Link>
-            <Link
+              {/* Replaced FaHandsHelping with inline SVG */}
+              <svg className="ml-2 w-5 h-5 text-xl sm:text-2xl" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                <path fillRule="evenodd" d="M18 10c0 3.866-3.582 7-8 7s-8-3.134-8-7 3.582-7 8-7 8 3.134 8 7zm-8 4a4 4 0 100-8 4 4 0 000 8zM9.293 8.293a1 1 0 011.414 0l2 2a1 1 0 01-1.414 1.414L10 10.414l-.293.293a1 1 0 01-1.414-1.414l.293-.293z" clipRule="evenodd" />
+              </svg>
+            </a>
+            <a // Changed Link to <a>
               href="/library"
-              className="inline-block border-2 border-white text-white font-semibold px-10 py-5 rounded-full hover:bg-white hover:text-teal-800 transition-all duration-300 transform hover:-translate-y-1 text-lg whitespace-nowrap"
+              className="w-full sm:w-auto inline-block border-2 border-white text-white font-semibold px-6 py-3 rounded-full hover:bg-white hover:text-teal-800 transition-all duration-300 transform hover:-translate-y-1 text-base sm:text-lg text-center" // Removed whitespace-nowrap, added w-full, adjusted padding and text size
             >
               Digital Library / ዲጂታል ቤተ መጻሕፍት
-            </Link>
-            <Link
+            </a>
+            <a // Changed Link to <a>
               href="/education-resources"
-              className="inline-block border-2 border-white text-white font-semibold px-10 py-5 rounded-full hover:bg-white hover:text-teal-800 transition-all duration-300 transform hover:-translate-y-1 text-lg whitespace-nowrap"
+              className="w-full sm:w-auto inline-block border-2 border-white text-white font-semibold px-6 py-3 rounded-full hover:bg-white hover:text-teal-800 transition-all duration-300 transform hover:-translate-y-1 text-base sm:text-lg text-center" // Removed whitespace-nowrap, added w-full, adjusted padding and text size
             >
               Free Education Resources / ነጻ የትምህርት እድሎች
-            </Link>
+            </a>
           </motion.div>
         </motion.div>
       </section>

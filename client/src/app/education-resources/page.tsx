@@ -43,61 +43,61 @@ const onlineLearningPlatforms = [
   }
 ];
 
-// Define scholarship resources for Ethiopian students (data remains unchanged as requested)
+// Define *only fully funded, legitimate, and free-application* scholarship resources for Ethiopian students
 const scholarshipResources = [
   {
-    name: "WeMakeScholars - Ethiopia",
-    url: "https://www.wemakescholars.com/scholarships-for-ethiopian-students",
-    description: "A comprehensive platform to find international scholarships tailored for Ethiopian students, including filters for degree level, country, and field of study.",
-    icon: "🌍"
+    name: "Mastercard Foundation Scholars Program",
+    url: "https://mastercardfdn.org/our-work/scholars-program/where-to-apply/",
+    description: "A highly prestigious program offering **fully funded** scholarships (tuition, accommodation, living stipends, travel, etc.) for bright, young Africans to access quality secondary and higher education at partner institutions globally. **No application fee for the scholarship itself.** Apply directly through partner universities listed on their site.",
+    icon: "🌟"
   },
   {
-    name: "Scholarships.com - Ethiopian Scholarships",
-    url: "https://www.scholarships.com/financial-aid/college-scholarships/scholarship-directory/ethnicity/ethiopian",
-    description: "Lists various scholarships available to Ethiopian students, often including undergraduate and postgraduate opportunities.",
-    icon: "🎓"
+    name: "Joint Japan/World Bank Graduate Scholarship Program (JJ/WBGSP)",
+    url: "https://www.worldbank.org/en/programs/scholarships",
+    description: "Provides **fully funded** scholarships for graduate studies in development-related fields at participating universities worldwide for mid-career professionals from developing countries (including Ethiopia). Covers tuition, living expenses, health insurance, and travel. **No application fee.**",
+    icon: "🏦"
   },
   {
-    name: "Ethio College Prep - Scholarship School",
-    url: "https://www.ethiocollegeprep.com/summer",
-    description: "Offers programs and resources specifically designed to help Ethiopian students prepare for and apply to international colleges and scholarships.",
-    icon: "📚"
-  },
-  {
-    name: "International Community School (ICS) Addis Ababa",
-    url: "https://www.icsaddis.org/learn/scholarship",
-    description: "Offers merit-based scholarships for high-achieving Ethiopian Grade 9 students to attend ICS throughout high school. Note: This is for high school, not higher education directly.",
-    icon: "🏫"
-  },
-  {
-    name: "Educate Africa - Ethiopia Secondary School Scholarships",
-    url: "https://serveafrica.info/top-5-ethiopia-secondary-school-scholarships/",
-    description: "Lists several organizations (like Mercy Corps, Child Fund International, Ethiopian Education Foundation) that provide secondary school scholarships in Ethiopia.",
-    icon: "🤝"
-  },
-  {
-    name: "ScholarshipTab - Fully Funded for Ethiopia",
-    url: "https://www.scholarshiptab.com/scholarships-for/ethiopia/fully-funded",
-    description: "A resource for finding fully funded scholarships for Ethiopian students, often updated with various international opportunities.",
-    icon: "💸"
-  },
-  {
-    name: "IEFA.org (International Education Financial Aid)",
-    url: "https://www.iefa.org/",
-    description: "A global database for international scholarships, grants, and loan programs. Can be filtered by nationality to find opportunities for Ethiopian students.",
-    icon: "🌐"
-  },
-  {
-    name: "Fulbright Scholar Program - Ethiopia",
-    url: "https://fulbrightscholars.org/country/ethiopia",
-    description: "While primarily for graduate and faculty exchange, it's a prestigious program and worth noting for long-term academic aspirations.",
+    name: "Fulbright Foreign Student Program (Ethiopia)",
+    url: "https://et.usembassy.gov/educational-cultural-exchanges/", // Leads to U.S. Embassy in Ethiopia, where Fulbright details for Ethiopians are usually announced
+    description: "A **fully funded** U.S. government program for graduate-level study and academic research in the United States. Covers tuition, living costs, travel, and health insurance. **No application fee.** Highly competitive.",
     icon: "🇺🇸"
   },
   {
-    name: "Ethiopian Embassy in Brussels - Opportunities",
-    url: "https://ethiopianembassy.be/?page_id=151",
-    description: "Occasionally lists scholarship opportunities from European universities and programs for Ethiopian students.",
+    name: "Japanese Government (MEXT) Scholarships",
+    url: "https://www.studyjapan.go.jp/en/smap_stopj-e/index.html", // Official general MEXT link
+    description: "Offers various **fully funded** scholarships (undergraduate, master's, PhD, research) for international students, including Ethiopians, to study in Japan. Covers tuition, monthly stipend, and travel. Applications are generally free and processed through Japanese embassies in the applicant's home country.",
+    icon: "🇯🇵"
+  },
+  {
+    name: "Turkish Government Scholarships (Türkiye Bursları)",
+    url: "https://turkiyeburslari.gov.tr/en/for-applicants/application-criteria",
+    description: "A comprehensive **fully funded** scholarship program by the Turkish government for undergraduate, master's, and PhD studies in Turkey. Covers tuition, monthly stipend, accommodation, health insurance, Turkish language course, and flight tickets. **Application is entirely free.**",
+    icon: "🇹🇷"
+  },
+  {
+    name: "Erasmus Mundus Joint Master Degrees (EMJMDs)",
+    url: "https://ec.europa.eu/programmes/erasmus-plus/opportunities/overview_en", // Link to Erasmus+ overview, EMJMDs are under "Study abroad" for students.
+    description: "Part of the Erasmus+ program, these offer **fully funded** scholarships for integrated Master's programs delivered by international consortia of universities. Covers tuition fees, travel costs, installation costs, and a monthly living allowance. **No application fees for the scholarship itself.**",
     icon: "🇪🇺"
+  },
+  {
+    name: "Czech Government Scholarships",
+    url: "https://www.mzv.gov.cz/addisababa/en/development_cooperation_and_humanitarian/scholarships/index.html", // Czech Embassy in Addis Ababa scholarship page
+    description: "Provides **fully funded** development scholarships for students from eligible developing countries (including Ethiopia) for Master's and Doctoral programs in the Czech Republic. Covers tuition, health insurance, and a monthly living allowance. **No application fees.**",
+    icon: "🇨🇿"
+  },
+  {
+    name: "International Community School (ICS) Addis Ababa Scholarships",
+    url: "https://www.icsaddis.org/learn/scholarship",
+    description: "Offers **fully funded**, merit-based, and need-blind scholarships for high-achieving Ethiopian Grade 9 students to attend ICS throughout high school in Addis Ababa. This is for secondary education, but is a significant, legitimate, and **free** opportunity for local students.",
+    icon: "🏫"
+  },
+  {
+    name: "Ethiopian Education Fund (EEF)",
+    url: "https://www.ethiopianeducationfund.org/",
+    description: "A legitimate non-profit providing **fully funded** scholarships (covering school fees, supplies, uniforms, and sometimes living stipends) to disadvantaged, academically talented youth in rural Ethiopia for primary, secondary, and post-secondary education. Focuses on keeping students in school. **No application fees.**",
+    icon: "📚"
   }
 ];
 
@@ -190,7 +190,7 @@ export default function EducationResourcesPage() {
       <section className="py-20 px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-purple-50 to-pink-50 relative z-10">
         <div className="max-w-7xl mx-auto text-center mb-16">
           <h2 className="text-4xl md:text-5xl font-extrabold mb-4 text-purple-800 drop-shadow-sm leading-tight">
-            Scholarships 
+            Fully Funded, Legitimate, & Free-Application Scholarships
           </h2>
           <p className="text-xl md:text-2xl text-gray-600 font-normal max-w-3xl mx-auto">
             የከፍተኛ ትምህርት ጉዞዎን በአገር ውስጥ እና በዓለም አቀፍ ደረጃ የገንዘብ ድጋፍ ለማድረግ እድሎችን ያግኙ።
@@ -239,8 +239,8 @@ export default function EducationResourcesPage() {
           </p>
           <ul className="list-disc list-inside text-gray-700 space-y-3 mb-6 pl-4 text-base">
             <li><strong className="text-red-600">Never Pay for a Scholarship:</strong> Legitimate scholarships are *free* to apply for. If you're asked for an "application fee," "processing fee," or any money to "guarantee" a scholarship, it's a scam.</li>
-            <li><strong className="text-red-600">No Guarantees:</strong> No legitimate provider can guarantee you'll win a scholarship. The process is always competitive and merit-based.</li>
-            <li><strong className="text-red-600">Verify Official Sources:</strong> Always try to apply directly through the scholarship provider's official website (e.g., university, foundation, government agency). Use search engines like these to *find* opportunities, then go to the original source.</li>
+            <li><strong className="text-red-600">No Guarantees of Acceptance:</strong> No legitimate provider can guarantee you'll win a scholarship. The process is always competitive and merit-based. "Guaranteed" refers to the *legitimacy and comprehensive funding* if selected, not guaranteed acceptance.</li>
+            <li><strong className="text-red-600">Verify Official Sources:</strong> Always apply directly through the scholarship provider's official website (e.g., university, foundation, government agency).</li>
             <li><strong className="text-red-600">Protect Personal Information:</strong> Be cautious about providing sensitive personal or financial details unless you are absolutely sure of the legitimacy of the provider.</li>
             <li><strong className="text-red-600">Watch for Red Flags:</strong> Poor grammar, unsolicited offers, promises of "easy money," or high-pressure tactics are common signs of scams.</li>
           </ul>
