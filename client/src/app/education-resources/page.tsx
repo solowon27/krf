@@ -149,7 +149,7 @@ export default function EducationResourcesPage() {
             Elevate Your Skills Online
           </h2>
           <p className="text-xl md:text-2xl text-gray-600 font-normal max-w-3xl mx-auto">
-            Access a world of knowledge with free, high-quality courses from leading platforms.
+            ነፃ እና ከፍተኛ ጥራት ያላቸውን ኮርሶች በሚሰጡ አለም ላይ ስመ-ጥር የሆኑ የትምህርት ዌብሳይቶችን በመጠቀም አሁን ላለው አለም ብቁና ተወዳዳሪ ሆነው ይገኙ።
           </p>
         </div>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 max-w-7xl mx-auto">
@@ -193,7 +193,8 @@ export default function EducationResourcesPage() {
             Scholarships 
           </h2>
           <p className="text-xl md:text-2xl text-gray-600 font-normal max-w-3xl mx-auto">
-            Discover opportunities to fund your higher education journey, locally and internationally.
+            የከፍተኛ ትምህርት ጉዞዎን በአገር ውስጥ እና በዓለም አቀፍ ደረጃ የገንዘብ ድጋፍ ለማድረግ እድሎችን ያግኙ።
+            <span className="text-red-700 p-2">ማሳሰቢያ፥ ስኮላርሽፕ በሚሞሉበት ጊዜ በመረጡት ሊንክ page ውስጥ ያሉትን መረጃዎች በደንብ ያንብቡ! </span>
           </p>
         </div>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 max-w-7xl mx-auto">

@@ -111,27 +111,27 @@ export default function Home() {
             Empowering Minds, Building Futures
           </motion.h1>
           <motion.p variants={itemVariants} className="text-lg md:text-xl lg:text-2xl mb-12 opacity-95 max-w-4xl mx-auto font-light">
-            Join the **Kone Renaissance Foundation** in transforming lives through education, revitalizing communities, and igniting dreams in rural Ethiopia.
+            ህይወትን በትምህርት በመለወጥ፣ ማህበረሰባችን ብሎም በተለያዩ ሃገራት ነዋሪ የሆኑ ተወላጆችን ባሉበት በማነቃቃት ለዋድላ ወረዳ በተለይም ለኮን አጠቃላይ ሁለተኛ ደረጃ ትምህርት ቤት ትልቅ ስራ እንስራ፤
           </motion.p>
           <motion.div variants={itemVariants} className="flex flex-col sm:flex-row flex-wrap justify-center items-center gap-6">
             <Link
               href="/donate"
               className="inline-flex items-center bg-amber-500 text-teal-900 font-bold px-10 py-5 rounded-full shadow-2xl hover:bg-amber-400 transition-all duration-300 ease-in-out transform hover:scale-105 hover:shadow-lg text-lg whitespace-nowrap"
             >
-              Support the Renaissance
+              ድጋፍ አድርግ/ጊ
               <FaHandsHelping className="ml-3 text-2xl" />
             </Link>
             <Link
               href="/library"
               className="inline-block border-2 border-white text-white font-semibold px-10 py-5 rounded-full hover:bg-white hover:text-teal-800 transition-all duration-300 transform hover:-translate-y-1 text-lg whitespace-nowrap"
             >
-              Digital Library
+              Digital Library / ዲጂታል ቤተ መጻሕፍት
             </Link>
             <Link
               href="/education-resources"
               className="inline-block border-2 border-white text-white font-semibold px-10 py-5 rounded-full hover:bg-white hover:text-teal-800 transition-all duration-300 transform hover:-translate-y-1 text-lg whitespace-nowrap"
             >
-              Education Resources
+              Free Education Resources / ነጻ የትምህርት እድሎች
             </Link>
           </motion.div>
         </motion.div>
@@ -150,14 +150,14 @@ export default function Home() {
             Who We Are: Architects of Change
           </motion.h2>
           <motion.p variants={itemVariants} className="text-lg leading-relaxed text-gray-700 max-w-3xl mx-auto md:text-xl text-center">
-            The **Kone Renaissance Foundation** is more than an organization; we are a movement driven by the belief that education is the bedrock of a prosperous future. Our mission is to ignite transformation in rural Ethiopia by investing in educational infrastructure, comprehensive resources, and empowering both students and educators at Kone High School.
+            ፋውንዴሽናችን ከድርጅት በላይ ነው፤ ትምህርት ለወደፊት ትውልድ ጠንካራ መሰረት ነው ብለን በማመን የተጀመረ የ ዋድላ ልጆች የጋራ ሃብት ነው። የኛ ተልእኮ በኮን አጠቃላይ ሁለተኛ ደረጃ ትምህርት ቤት በትምህርት መሠረተ ልማት፣ ሁሉን አቀፍ ግብአቶች ላይ ኢንቨስት በማድረግ እና ተማሪዎችንና አስተማሪዎችን በማብቃት ትራንስፎርሜሽን ማስፈን ነው።
           </motion.p>
           <motion.div variants={itemVariants} className="mt-12 text-center">
             <Link
               href="/about"
               className="inline-block text-teal-700 border-2 border-teal-700 font-semibold px-8 py-4 rounded-full hover:bg-teal-700 hover:text-white transition-all duration-300 transform hover:-translate-y-1"
             >
-              Discover Our Story
+              Discover Our Story / እንተዋወቅ
             </Link>
           </motion.div>
         </motion.div>
@@ -174,7 +174,7 @@ export default function Home() {
           viewport={{ once: true, amount: 0.3 }}
         >
           <motion.h2 variants={itemVariants} className="text-5xl md:text-6xl font-extrabold mb-4 text-center text-teal-900 drop-shadow-md font-serif">
-            Our Heartfelt Gratitude
+            ልባዊ ምስጋና
           </motion.h2>
           <motion.p variants={itemVariants} className="text-xl md:text-2xl text-center text-amber-700 font-semibold mb-12">
             በቅርብ ጊዜ በቅን ልቦች የተደረገ ድጋፍ ዝርዝር
@@ -184,7 +184,7 @@ export default function Home() {
             <p className="text-center text-gray-700 text-2xl font-medium py-16 bg-blue-50 rounded-lg shadow-inner">
               <span className="animate-spin inline-block mr-4 text-teal-600 text-3xl">
                 <FaSpinner />
-              </span> Fetching the latest kindness...
+              </span> loading...
             </p>
           ) : error ? (
             <p className="text-center text-red-700 text-2xl font-medium py-16 px-6 bg-red-50 rounded-lg shadow-inner border border-red-200">
@@ -279,7 +279,7 @@ export default function Home() {
           viewport={{ once: true, amount: 0.5 }}
         >
           <motion.h2 variants={itemVariants} initial="hidden" whileInView="visible" viewport={{ once: true, amount: 0.5 }} className="text-4xl md:text-5xl font-extrabold mb-12 text-teal-900 font-serif text-center">
-            Our Progress, Your Impact
+            የእኛ እድገት፣ የእርስዎ ተጽእኖ
           </motion.h2>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
             <motion.div
@@ -291,7 +291,7 @@ export default function Home() {
             >
               <FaGraduationCap className="text-6xl text-teal-600 mb-4" />
               <AnimatedNumber value={impactMetrics.studentsImpacted} />
-              <p className="text-gray-600 text-lg font-medium mt-2">Students Empowered</p>
+              <p className="text-gray-600 text-lg font-medium mt-2">ያክል ተማሪዎች የድጋፋችሁ ተጠቃሚ ሆነዋል</p>
             </motion.div>
             <motion.div
               className="bg-amber-50 p-8 rounded-lg shadow-xl border-b-4 border-amber-500 flex flex-col items-center text-center"
@@ -302,7 +302,7 @@ export default function Home() {
             >
               <FaLightbulb className="text-6xl text-amber-600 mb-4" />
               <AnimatedNumber value={impactMetrics.librariesEstablished} />
-              <p className="text-gray-600 text-lg font-medium mt-2">Libraries Established</p>
+              <p className="text-gray-600 text-lg font-medium mt-2">ቤተ መጻሕፍት ፥ የመጽሐፍት እና ትምህርታዊ ቁሳቁሶች አግኝተዋል </p>
             </motion.div>
             <motion.div
               className="bg-teal-50 p-8 rounded-lg shadow-xl border-b-4 border-teal-500 flex flex-col items-center text-center"
@@ -313,7 +313,7 @@ export default function Home() {
             >
               <FaHandsHelping className="text-6xl text-teal-600 mb-4" />
               <AnimatedNumber value={impactMetrics.educationalPrograms} />
-              <p className="text-gray-600 text-lg font-medium mt-2">Programs Launched</p>
+              <p className="text-gray-600 text-lg font-medium mt-2">ሰዎች እስካሁን በኛ በኩል እርዳታቸውን አስገብተዋል</p>
             </motion.div>
             <motion.div
               className="bg-amber-50 p-8 rounded-lg shadow-xl border-b-4 border-amber-500 flex flex-col items-center text-center"
@@ -324,7 +324,7 @@ export default function Home() {
             >
               <FaUsers className="text-6xl text-amber-600 mb-4" />
               <AnimatedNumber value={impactMetrics.communitiesReached} />
-              <p className="text-gray-600 text-lg font-medium mt-2">Communities Reached</p>
+              <p className="text-gray-600 text-lg font-medium mt-2">ልዩ እርዳታ የሚሹ ልጆች ተጠቃሚ ሆነዋል</p>
             </motion.div>
           </div>
         </motion.div>
@@ -340,7 +340,7 @@ export default function Home() {
           viewport={{ once: true, amount: 0.3 }}
         >
           <motion.h2 variants={itemVariants} className="text-4xl md:text-5xl font-extrabold text-center mb-12 text-teal-800 font-serif">
-            Where Your Support Makes a Difference
+            የእርስዎ ድጋፍ ለውጥ የሚያመጣበት ቦታ
           </motion.h2>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-10">
             <motion.div variants={itemVariants} className="bg-teal-50 p-8 rounded-lg shadow-xl hover:shadow-2xl transition-shadow duration-300 flex flex-col items-center text-center group border border-teal-100">
@@ -348,21 +348,21 @@ export default function Home() {
                 📚
               </div>
               <h3 className="text-xl font-bold mb-3 text-teal-700 group-hover:text-amber-600 transition-colors duration-300">Learning Resources</h3>
-              <p className="text-gray-600">Providing textbooks, digital tools, and a well-stocked library for every student.</p>
+              <p className="text-gray-600">ለእያንዳንዱ ተማሪ የመማሪያ መገልገያዎችን፣ ዲጂታል መሳሪያዎችን እና በደንብ የተሞላ ቤተ-መጽሐፍትን መስጠት።</p>
             </motion.div>
             <motion.div variants={itemVariants} className="bg-amber-50 p-8 rounded-lg shadow-xl hover:shadow-2xl transition-shadow duration-300 flex flex-col items-center text-center group border border-amber-100">
               <div className="bg-teal-100 text-teal-700 p-5 rounded-full mb-6 text-5xl group-hover:bg-amber-100 group-hover:text-amber-600 transition-colors duration-300">
                 🏫
               </div>
               <h3 className="text-xl font-bold mb-3 text-teal-700 group-hover:text-amber-600 transition-colors duration-300">Modern Facilities</h3>
-              <p className="text-gray-600">Upgrading classrooms, laboratories, and sanitation for a conducive learning environment.</p>
+              <p className="text-gray-600">የመማሪያ ክፍሎችን፣ የላቦራቶሪዎችን እና የንፅህና አጠባበቅን በማሻሻል የተመቻቸ የትምህርት አካባቢ መፍጠር።</p>
             </motion.div>
             <motion.div variants={itemVariants} className="bg-teal-50 p-8 rounded-lg shadow-xl hover:shadow-2xl transition-shadow duration-300 flex flex-col items-center text-center group border border-teal-100">
               <div className="bg-teal-100 text-teal-700 p-5 rounded-full mb-6 text-5xl group-hover:bg-amber-100 group-hover:text-amber-600 transition-colors duration-300">
                 👩‍🏫
               </div>
               <h3 className="text-xl font-bold mb-3 text-teal-700 group-hover:text-amber-600 transition-colors duration-300">Teacher Empowerment</h3>
-              <p className="text-gray-600">Supporting educators with training and resources to deliver high-quality instruction.</p>
+              <p className="text-gray-600">ከፍተኛ ጥራት ያለው ትምህርት ለማድረስ አስተማሪዎች በስልጠና እና ግብዓቶች መደገፍ።</p>
             </motion.div>
           </div>
         </motion.div>
