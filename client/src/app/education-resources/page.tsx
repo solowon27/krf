@@ -130,14 +130,17 @@ export default function EducationResourcesPage() {
   };
 
   return (
-    <main className="min-h-screen bg-gray-50 text-gray-900 font-sans antialiased overflow-x-hidden">
-      <Header />
+    // Ensured main can scroll, removed potential horizontal overflow issues
+    <main className="min-h-screen bg-gray-50 text-gray-900 font-sans antialiased overflow-y-auto"> 
+      {/* Explicitly add z-index to Header if it's a fixed/sticky element */}
+      <Header className="relative z-20" /> 
 
       {/* Hero Section - Bold, Clean, Dark Background */}
-      <section className="bg-gray-900 text-white py-28 md:py-36 lg:py-48 px-6 text-center pt-48 relative overflow-hidden">
+      {/* Reduced overall height for hero on small screens to allow more content above fold */}
+      <section className="bg-gray-900 text-white py-28 md:py-36 lg:py-48 px-6 text-center pt-32 sm:pt-40 relative overflow-hidden"> 
         {/* Subtle background pattern */}
         <div
-          className="absolute inset-0 opacity-[0.03]" // Very low opacity
+          className="absolute inset-0 opacity-[0.03]"
           style={{
             backgroundImage: 'url("data:image/svg+xml,%3Csvg width=\'60\' height=\'60\' viewBox=\'0 0 60 60\' xmlns=\'http://www.w3.org/2000/svg\'%3E%3Cg fill=\'%23ffffff\' fill-opacity=\'0.1\' fill-rule=\'evenodd\'%3E%3Cpath d=\'M0 60L60 0H30L0 30M60 60V30L30 60\'/%3E%3C/g%3E%3C/svg%3E")',
             backgroundSize: '120px 120px',
@@ -156,11 +159,11 @@ export default function EducationResourcesPage() {
           <motion.p variants={itemVariants} className="text-lg md:text-xl lg:text-2xl font-light opacity-80 mb-10 max-w-3xl mx-auto">
             Empower your future with curated free online courses and comprehensive scholarship opportunities.
           </motion.p>
-          <motion.div variants={itemVariants} className="mt-8 flex justify-center space-x-5">
-            <Link href="/" className="inline-block bg-blue-600 text-white font-semibold px-10 py-5 rounded-full shadow-lg hover:bg-blue-700 transition-colors duration-300 transform hover:scale-[1.01]">
+          <motion.div variants={itemVariants} className="mt-8 flex flex-wrap justify-center gap-4"> {/* Use flex-wrap and gap for better mobile button layout */}
+            <Link href="/" className="inline-block bg-blue-600 text-white font-semibold px-8 py-4 rounded-full shadow-lg hover:bg-blue-700 transition-colors duration-300 transform hover:scale-[1.01]"> {/* Slightly smaller padding for mobile */}
               Home
             </Link>
-            <Link href="/library" className="inline-block bg-blue-600 text-white font-semibold px-10 py-5 rounded-full shadow-lg hover:bg-blue-700 transition-colors duration-300 transform hover:scale-[1.01]">
+            <Link href="/library" className="inline-block bg-blue-600 text-white font-semibold px-8 py-4 rounded-full shadow-lg hover:bg-blue-700 transition-colors duration-300 transform hover:scale-[1.01]"> {/* Slightly smaller padding for mobile */}
               Digital Library
             </Link>
           </motion.div>
@@ -168,7 +171,7 @@ export default function EducationResourcesPage() {
       </section>
 
       {/* Online Learning Platforms Section - Clean & Inviting */}
-      <section className="py-20 px-4 sm:px-6 lg:px-8 bg-white">
+      <section className="py-16 md:py-20 px-4 sm:px-6 lg:px-8 bg-white"> {/* Reduced padding a bit for mobile */}
         <motion.div
           className="max-w-7xl mx-auto text-center"
           variants={containerVariants}
@@ -176,13 +179,13 @@ export default function EducationResourcesPage() {
           whileInView="visible"
           viewport={{ once: true, amount: 0.2 }}
         >
-          <motion.h2 variants={itemVariants} className="text-4xl md:text-5xl font-bold mb-4 text-gray-900 leading-tight">
+          <motion.h2 variants={itemVariants} className="text-3xl md:text-5xl font-bold mb-4 text-gray-900 leading-tight"> {/* Slightly smaller font for h2 on mobile */}
             Elevate Your Skills Online
           </motion.h2>
-          <motion.p variants={itemVariants} className="text-lg md:text-xl font-light text-gray-700 max-w-3xl mx-auto mb-16">
+          <motion.p variants={itemVariants} className="text-base md:text-xl font-light text-gray-700 max-w-3xl mx-auto mb-12 md:mb-16"> {/* Reduced padding for p, smaller text */}
             ነፃ እና ከፍተኛ ጥራት ያላቸውን ኮርሶች በሚሰጡ አለም ላይ ስመ-ጥር የሆኑ የትምህርት ዌብሳይቶችን በመጠቀም አሁን ላለው አለም ብቁና ተወዳዳሪ ሆነው ይገኙ።
           </motion.p>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-10"> {/* Slightly smaller gap for mobile */}
             {onlineLearningPlatforms.map((platform, index) => (
               <motion.a
                 key={index}
@@ -190,24 +193,24 @@ export default function EducationResourcesPage() {
                 href={platform.url}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="group flex flex-col items-center p-8 bg-white rounded-xl shadow-lg border border-gray-100
-                           hover:shadow-xl transition-all duration-300 ease-in-out relative overflow-hidden cursor-pointer"
+                className="group flex flex-col items-center p-6 md:p-8 bg-white rounded-xl shadow-lg border border-gray-100 
+                               hover:shadow-xl transition-all duration-300 ease-in-out relative overflow-hidden cursor-pointer" // Smaller padding for card on mobile
               >
                 {/* Subtle gradient overlay on hover (blue tint) */}
                 <span className="absolute inset-0 bg-blue-50 opacity-0 group-hover:opacity-40 transition-opacity duration-300 rounded-xl"></span>
 
-                <div className="text-6xl mb-4 relative z-10 text-gray-600 group-hover:text-blue-600 transition-colors duration-300">
+                <div className="text-5xl md:text-6xl mb-4 relative z-10 text-gray-600 group-hover:text-blue-600 transition-colors duration-300"> {/* Smaller icon size for mobile */}
                   {platform.icon}
                 </div>
-                <h3 className="text-2xl font-semibold text-gray-900 mb-3 relative z-10 group-hover:text-blue-600 transition-colors duration-300">
+                <h3 className="text-xl md:text-2xl font-semibold text-gray-900 mb-3 relative z-10 group-hover:text-blue-600 transition-colors duration-300"> {/* Smaller font for h3 on mobile */}
                   {platform.name}
                 </h3>
-                <p className="text-gray-700 text-base mb-5 relative z-10 flex-grow text-center leading-relaxed">
+                <p className="text-sm md:text-base mb-5 relative z-10 flex-grow text-center leading-relaxed"> {/* Smaller font for p on mobile */}
                   {platform.description}
                 </p>
-                <span className="text-blue-600 font-semibold flex items-center relative z-10 group-hover:text-blue-700 transition-colors duration-300">
+                <span className="text-blue-600 font-semibold flex items-center relative z-10 group-hover:text-blue-700 transition-colors duration-300 text-sm md:text-base"> {/* Smaller text for button link */}
                   Start Learning
-                  <svg className="ml-2 w-5 h-5 transform translate-x-0 group-hover:translate-x-1 transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                  <svg className="ml-2 w-4 h-4 md:w-5 md:h-5 transform translate-x-0 group-hover:translate-x-1 transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
                   </svg>
                 </span>
@@ -216,9 +219,10 @@ export default function EducationResourcesPage() {
           </div>
         </motion.div>
       </section>
+      
 
       {/* Scholarship Opportunities Section - Distinct but unified background */}
-      <section className="py-20 px-4 sm:px-6 lg:px-8 bg-gray-50"> {/* Changed to light gray for consistency */}
+      <section className="py-16 md:py-20 px-4 sm:px-6 lg:px-8 bg-gray-50"> {/* Reduced padding a bit for mobile */}
         <motion.div
           className="max-w-7xl mx-auto text-center"
           variants={containerVariants}
@@ -226,14 +230,14 @@ export default function EducationResourcesPage() {
           whileInView="visible"
           viewport={{ once: true, amount: 0.2 }}
         >
-          <motion.h2 variants={itemVariants} className="text-4xl md:text-5xl font-bold mb-4 text-gray-900 leading-tight">
+          <motion.h2 variants={itemVariants} className="text-3xl md:text-5xl font-bold border rounded-lg p-2 mb-4 text-gray-900 leading-tight"> {/* Slightly smaller font for h2 on mobile */}
             Fully Funded, Legitimate, & Free-Application Scholarships
           </motion.h2>
-          <motion.p variants={itemVariants} className="text-lg md:text-xl font-light text-gray-700 max-w-3xl mx-auto mb-16">
+          <motion.p variants={itemVariants} className="text-base md:text-xl font-light text-gray-700 max-w-3xl mx-auto mb-12 md:mb-16"> {/* Reduced padding for p, smaller text */}
             የከፍተኛ ትምህርት ጉዞዎን በአገር ውስጥ እና በዓለም አቀፍ ደረጃ የገንዘብ ድጋፍ በሚደረግላቸው የስኮላርሽፕ እድሎች ይጠቀሙ።
-            <span className="text-red-600 font-medium ml-2 block sm:inline-block">ማሳሰቢያ፥ ስኮላርሽፕ በሚሞሉበት ጊዜ በመረጡት ሊንክ page ውስጥ ያሉትን መረጃዎች በደንብ ያንብቡ! </span>
+            <span className="text-red-600 font-medium ml-2 block sm:inline-block text-sm md:text-base">ማሳሰቢያ፥ ስኮላርሽፕ በሚሞሉበት ጊዜ በመረጡት ሊንክ page ውስጥ ያሉትን መረጃዎች በደንብ ያንብቡ! </span> {/* Smaller text for warning */}
           </motion.p>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-10"> {/* Slightly smaller gap for mobile */}
             {scholarshipResources.map((resource, index) => (
               <motion.a
                 key={index}
@@ -241,24 +245,24 @@ export default function EducationResourcesPage() {
                 href={resource.url}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="group flex flex-col items-center p-8 bg-white rounded-xl shadow-lg border border-gray-100
-                           hover:shadow-xl transition-all duration-300 ease-in-out relative overflow-hidden cursor-pointer"
+                className="group flex flex-col items-center p-6 md:p-8 bg-white rounded-xl shadow-lg border border-gray-100 
+                               hover:shadow-xl transition-all duration-300 ease-in-out relative overflow-hidden cursor-pointer" // Smaller padding for card on mobile
               >
                 {/* Subtle gradient overlay on hover (blue tint for consistency) */}
                 <span className="absolute inset-0 bg-blue-50 opacity-0 group-hover:opacity-40 transition-opacity duration-300 rounded-xl"></span>
 
-                <div className="text-6xl mb-4 relative z-10 text-gray-600 group-hover:text-blue-600 transition-colors duration-300">
+                <div className="text-5xl md:text-6xl mb-4 relative z-10 text-gray-600 group-hover:text-blue-600 transition-colors duration-300"> {/* Smaller icon size for mobile */}
                   {resource.icon}
                 </div>
-                <h3 className="text-2xl font-semibold text-gray-900 mb-3 relative z-10 group-hover:text-blue-600 transition-colors duration-300">
+                <h3 className="text-xl md:text-2xl font-semibold text-gray-900 mb-3 relative z-10 group-hover:text-blue-600 transition-colors duration-300"> {/* Smaller font for h3 on mobile */}
                   {resource.name}
                 </h3>
-                <p className="text-gray-700 text-base mb-5 relative z-10 flex-grow text-center leading-relaxed">
+                <p className="text-sm md:text-base mb-5 relative z-10 flex-grow text-center leading-relaxed"> {/* Smaller font for p on mobile */}
                   {resource.description}
                 </p>
-                <span className="text-blue-600 font-semibold flex items-center relative z-10 group-hover:text-blue-700 transition-colors duration-300">
+                <span className="text-blue-600 font-semibold flex items-center relative z-10 group-hover:text-blue-700 transition-colors duration-300 text-sm md:text-base"> {/* Smaller text for button link */}
                   Explore Now
-                  <svg className="ml-2 w-5 h-5 transform translate-x-0 group-hover:translate-x-1 transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                  <svg className="ml-2 w-4 h-4 md:w-5 md:h-5 transform translate-x-0 group-hover:translate-x-1 transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
                   </svg>
                 </span>
@@ -268,22 +272,22 @@ export default function EducationResourcesPage() {
           {/* Important: Scholarship Scam Warning - Clear and prominent */}
           <motion.div
             variants={itemVariants}
-            className="mt-20 bg-white border border-gray-100 rounded-xl p-8 shadow-xl text-left max-w-4xl mx-auto transform transition-transform duration-300 hover:scale-[1.005] hover:shadow-2xl"
+            className="mt-16 md:mt-20 bg-white border border-gray-100 rounded-xl p-6 md:p-8 shadow-xl text-left max-w-4xl mx-auto transform transition-transform duration-300 hover:scale-[1.005] hover:shadow-2xl" // Smaller padding and margin top for mobile
           >
-            <h3 className="text-2xl md:text-3xl font-bold text-red-700 mb-5 flex items-center">
-              <span className="text-4xl mr-3 animate-bounce-slow">⚠️</span> Important: Avoid Scholarship Scams!
+            <h3 className="text-xl md:text-3xl font-bold text-red-700 mb-4 md:mb-5 flex items-center"> {/* Smaller font and margin for h3 */}
+              <span className="text-3xl md:text-4xl mr-2 animate-bounce-slow">⚠️</span> Important: Avoid Scholarship Scams!
             </h3>
-            <p className="text-gray-700 mb-5 leading-relaxed text-lg">
+            <p className="text-sm md:text-lg text-gray-700 mb-4 md:mb-5 leading-relaxed"> {/* Smaller text and margin for p */}
               While we strive to provide reliable resources, it's crucial to be vigilant when searching for scholarships. Unfortunately, scams exist. Always remember these key points:
             </p>
-            <ul className="list-disc list-inside text-gray-700 space-y-3 mb-6 pl-4 text-base">
+            <ul className="list-disc list-inside text-gray-700 space-y-2 md:space-y-3 mb-5 md:mb-6 pl-4 text-sm md:text-base"> {/* Smaller text and spacing for list */}
               <li><strong className="text-gray-900">Never Pay for a Scholarship:</strong> Legitimate scholarships are *free* to apply for. If you're asked for an "application fee," "processing fee," or any money to "guarantee" a scholarship, it's a scam.</li>
               <li><strong className="text-gray-900">No Guarantees of Acceptance:</strong> No legitimate provider can guarantee you'll win a scholarship. The process is always competitive and merit-based.</li>
               <li><strong className="text-gray-900">Verify Official Sources:</strong> Always apply directly through the scholarship provider's official website (e.g., university, foundation, government agency).</li>
               <li><strong className="text-gray-900">Protect Personal Information:</strong> Be cautious about providing sensitive personal or financial details unless you are absolutely sure of the legitimacy of the provider.</li>
               <li><strong className="text-gray-900">Watch for Red Flags:</strong> Poor grammar, unsolicited offers, promises of "easy money," or high-pressure tactics are common signs of scams.</li>
             </ul>
-            <p className="text-gray-800 font-semibold leading-relaxed text-lg italic mt-6">
+            <p className="text-sm md:text-lg text-gray-800 font-semibold leading-relaxed italic mt-5 md:mt-6"> {/* Smaller text and margin for p */}
               Your education is invaluable. Be smart, be safe, and good luck with your scholarship search!
             </p>
           </motion.div>
