@@ -1,7 +1,10 @@
 // app/education-resources/page.tsx
+'use client';
+
 import Header from '@components/Header';
 import Footer from '@components/Footer';
 import Link from 'next/link';
+import { motion, Variants } from 'framer-motion';
 
 // Define online learning platforms (data remains unchanged as requested)
 const onlineLearningPlatforms = [
@@ -102,152 +105,189 @@ const scholarshipResources = [
 ];
 
 export default function EducationResourcesPage() {
+  // Framer Motion variants for subtle entry animations
+  const containerVariants: Variants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.08, // Subtle stagger for fluid entry
+      },
+    },
+  };
+
+  const itemVariants: Variants = {
+    hidden: { y: 30, opacity: 0 }, // Slightly larger Y displacement for more impact
+    visible: {
+      y: 0,
+      opacity: 1,
+      transition: {
+        type: 'tween', // Consistent tween transition
+        ease: 'easeOut',
+        duration: 0.5, // Slightly longer duration for smoothness
+      },
+    },
+  };
+
   return (
-    <main className="min-h-screen bg-gradient-to-br from-indigo-50 to-blue-50 text-gray-800 font-sans antialiased overflow-hidden">
+    <main className="min-h-screen bg-gray-50 text-gray-900 font-sans antialiased overflow-x-hidden">
       <Header />
 
-      {/* Hero Section - Elevated and Immersive */}
-      <section className="relative overflow-hidden bg-gradient-to-br from-blue-800 via-indigo-900 to-purple-900 text-white py-28 md:py-36 lg:py-48 px-6 text-center shadow-xl">
-        {/* Subtle, abstract background pattern for depth */}
+      {/* Hero Section - Bold, Clean, Dark Background */}
+      <section className="bg-gray-900 text-white py-28 md:py-36 lg:py-48 px-6 text-center pt-48 relative overflow-hidden">
+        {/* Subtle background pattern */}
         <div
-          className="absolute inset-0 opacity-15"
+          className="absolute inset-0 opacity-[0.03]" // Very low opacity
           style={{
-            backgroundImage: 'url("data:image/svg+xml,%3Csvg width=\'60\' height=\'60\' viewBox=\'0 0 60 60\' xmlns=\'http://www.w3.org/2000/svg\'%3E%3Cg fill=\'%23ffffff\' fill-opacity=\'0.2\' fill-rule=\'evenodd\'%3E%3Cpath d=\'M0 40L40 0H20L0 20M40 40V20L20 40\'/%3E%3C/g%3E%3C/svg%3E")',
-            backgroundSize: '100px 100px',
+            backgroundImage: 'url("data:image/svg+xml,%3Csvg width=\'60\' height=\'60\' viewBox=\'0 0 60 60\' xmlns=\'http://www.w3.org/2000/svg\'%3E%3Cg fill=\'%23ffffff\' fill-opacity=\'0.1\' fill-rule=\'evenodd\'%3E%3Cpath d=\'M0 60L60 0H30L0 30M60 60V30L30 60\'/%3E%3C/g%3E%3C/svg%3E")',
+            backgroundSize: '120px 120px',
             backgroundRepeat: 'repeat',
-            transform: 'rotate(15deg) scale(1.2)', // Slight rotation and scale for dynamic feel
           }}
         ></div>
-        <div className="max-w-6xl mx-auto relative z-10">
-          <h1 className="text-5xl md:text-7xl font-extrabold mb-5 leading-tight tracking-tight drop-shadow-lg">
+        <motion.div
+          className="max-w-6xl mx-auto relative z-10"
+          variants={containerVariants}
+          initial="hidden"
+          animate="visible"
+        >
+          <motion.h1 variants={itemVariants} className="text-4xl md:text-6xl lg:text-7xl font-bold mb-4 leading-tight tracking-tight">
             Your Gateway to Knowledge
-          </h1>
-          <p className="text-xl md:text-2xl opacity-90 font-light mb-10 max-w-3xl mx-auto text-blue-100">
+          </motion.h1>
+          <motion.p variants={itemVariants} className="text-lg md:text-xl lg:text-2xl font-light opacity-80 mb-10 max-w-3xl mx-auto">
             Empower your future with curated free online courses and comprehensive scholarship opportunities.
-          </p>
-          <div className="mt-8 flex justify-center space-x-5">
-            <Link href="/" className="group inline-flex items-center bg-white text-indigo-700 px-8 py-4 rounded-full font-semibold text-lg
-                                     hover:bg-indigo-50 hover:text-indigo-800 transition-all duration-300 ease-in-out shadow-lg hover:shadow-xl
-                                     transform hover:-translate-y-1">
-                Home
-                <svg className="ml-2 w-5 h-5 opacity-0 group-hover:opacity-100 transform -translate-x-2 group-hover:translate-x-0 transition-all duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path></svg>
+          </motion.p>
+          <motion.div variants={itemVariants} className="mt-8 flex justify-center space-x-5">
+            <Link href="/" className="inline-block bg-blue-600 text-white font-semibold px-10 py-5 rounded-full shadow-lg hover:bg-blue-700 transition-colors duration-300 transform hover:scale-[1.01]">
+              Home
             </Link>
-            <Link href="/library" className="group inline-flex items-center bg-indigo-600 text-white px-8 py-4 rounded-full font-semibold text-lg
-                                            hover:bg-indigo-700 transition-all duration-300 ease-in-out shadow-lg hover:shadow-xl
-                                            transform hover:-translate-y-1 border border-indigo-500 hover:border-indigo-700">
-                Digital Library
-                <svg className="ml-2 w-5 h-5 opacity-0 group-hover:opacity-100 transform -translate-x-2 group-hover:translate-x-0 transition-all duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path></svg>
+            <Link href="/library" className="inline-block bg-blue-600 text-white font-semibold px-10 py-5 rounded-full shadow-lg hover:bg-blue-700 transition-colors duration-300 transform hover:scale-[1.01]">
+              Digital Library
             </Link>
-          </div>
-        </div>
+          </motion.div>
+        </motion.div>
       </section>
 
       {/* Online Learning Platforms Section - Clean & Inviting */}
-      <section className="py-20 px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-white to-blue-50 relative z-10">
-        <div className="max-w-7xl mx-auto text-center mb-16">
-          <h2 className="text-4xl md:text-5xl font-extrabold mb-4 text-indigo-800 drop-shadow-sm leading-tight">
+      <section className="py-20 px-4 sm:px-6 lg:px-8 bg-white">
+        <motion.div
+          className="max-w-7xl mx-auto text-center"
+          variants={containerVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.2 }}
+        >
+          <motion.h2 variants={itemVariants} className="text-4xl md:text-5xl font-bold mb-4 text-gray-900 leading-tight">
             Elevate Your Skills Online
-          </h2>
-          <p className="text-xl md:text-2xl text-gray-600 font-normal max-w-3xl mx-auto">
+          </motion.h2>
+          <motion.p variants={itemVariants} className="text-lg md:text-xl font-light text-gray-700 max-w-3xl mx-auto mb-16">
             ነፃ እና ከፍተኛ ጥራት ያላቸውን ኮርሶች በሚሰጡ አለም ላይ ስመ-ጥር የሆኑ የትምህርት ዌብሳይቶችን በመጠቀም አሁን ላለው አለም ብቁና ተወዳዳሪ ሆነው ይገኙ።
-          </p>
-        </div>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 max-w-7xl mx-auto">
-          {onlineLearningPlatforms.map((platform, index) => (
-            <a
-              key={index}
-              href={platform.url}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="group flex flex-col items-center p-8 bg-white rounded-2xl shadow-xl border border-blue-100
-                         hover:shadow-2xl hover:border-blue-200 transition-all duration-300 ease-in-out transform hover:-translate-y-1
-                         relative overflow-hidden cursor-pointer"
-            >
-              {/* Subtle gradient overlay on hover */}
-              <span className="absolute inset-0 bg-gradient-to-br from-blue-50 via-indigo-50 to-white opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-2xl"></span>
+          </motion.p>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
+            {onlineLearningPlatforms.map((platform, index) => (
+              <motion.a
+                key={index}
+                variants={itemVariants}
+                href={platform.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="group flex flex-col items-center p-8 bg-white rounded-xl shadow-lg border border-gray-100
+                           hover:shadow-xl transition-all duration-300 ease-in-out relative overflow-hidden cursor-pointer"
+              >
+                {/* Subtle gradient overlay on hover (blue tint) */}
+                <span className="absolute inset-0 bg-blue-50 opacity-0 group-hover:opacity-40 transition-opacity duration-300 rounded-xl"></span>
 
-              <div className="text-6xl mb-4 relative z-10 text-blue-500 group-hover:text-indigo-700 transition-colors duration-300">
-                {platform.icon}
-              </div>
-              <h3 className="text-2xl font-bold text-indigo-700 mb-3 relative z-10 group-hover:text-indigo-900 transition-colors duration-300">
-                {platform.name}
-              </h3>
-              <p className="text-gray-600 text-sm mb-5 relative z-10 flex-grow text-center leading-relaxed">
-                {platform.description}
-              </p>
-              <span className="text-blue-600 font-semibold flex items-center relative z-10 group-hover:text-indigo-800 transition-colors duration-300">
-                Start Learning
-                <svg className="ml-2 w-5 h-5 transform translate-x-0 group-hover:translate-x-1 transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
-                </svg>
-              </span>
-            </a>
-          ))}
-        </div>
+                <div className="text-6xl mb-4 relative z-10 text-gray-600 group-hover:text-blue-600 transition-colors duration-300">
+                  {platform.icon}
+                </div>
+                <h3 className="text-2xl font-semibold text-gray-900 mb-3 relative z-10 group-hover:text-blue-600 transition-colors duration-300">
+                  {platform.name}
+                </h3>
+                <p className="text-gray-700 text-base mb-5 relative z-10 flex-grow text-center leading-relaxed">
+                  {platform.description}
+                </p>
+                <span className="text-blue-600 font-semibold flex items-center relative z-10 group-hover:text-blue-700 transition-colors duration-300">
+                  Start Learning
+                  <svg className="ml-2 w-5 h-5 transform translate-x-0 group-hover:translate-x-1 transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
+                  </svg>
+                </span>
+              </motion.a>
+            ))}
+          </div>
+        </motion.div>
       </section>
 
-      {/* Scholarship Opportunities Section - Distinct & Warm */}
-      <section className="py-20 px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-purple-50 to-pink-50 relative z-10">
-        <div className="max-w-7xl mx-auto text-center mb-16">
-          <h2 className="text-4xl md:text-5xl font-extrabold mb-4 text-purple-800 drop-shadow-sm leading-tight">
+      {/* Scholarship Opportunities Section - Distinct but unified background */}
+      <section className="py-20 px-4 sm:px-6 lg:px-8 bg-gray-50"> {/* Changed to light gray for consistency */}
+        <motion.div
+          className="max-w-7xl mx-auto text-center"
+          variants={containerVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.2 }}
+        >
+          <motion.h2 variants={itemVariants} className="text-4xl md:text-5xl font-bold mb-4 text-gray-900 leading-tight">
             Fully Funded, Legitimate, & Free-Application Scholarships
-          </h2>
-          <p className="text-xl md:text-2xl text-gray-600 font-normal max-w-3xl mx-auto">
+          </motion.h2>
+          <motion.p variants={itemVariants} className="text-lg md:text-xl font-light text-gray-700 max-w-3xl mx-auto mb-16">
             የከፍተኛ ትምህርት ጉዞዎን በአገር ውስጥ እና በዓለም አቀፍ ደረጃ የገንዘብ ድጋፍ በሚደረግላቸው የስኮላርሽፕ እድሎች ይጠቀሙ።
-            <span className="text-red-700 p-2">ማሳሰቢያ፥ ስኮላርሽፕ በሚሞሉበት ጊዜ በመረጡት ሊንክ page ውስጥ ያሉትን መረጃዎች በደንብ ያንብቡ! </span>
-          </p>
-        </div>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 max-w-7xl mx-auto">
-          {scholarshipResources.map((resource, index) => (
-            <a
-              key={index}
-              href={resource.url}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="group flex flex-col items-center p-8 bg-white rounded-2xl shadow-xl border border-purple-100
-                         hover:shadow-2xl hover:border-purple-200 transition-all duration-300 ease-in-out transform hover:-translate-y-1
-                         relative overflow-hidden cursor-pointer"
-            >
-              {/* Subtle gradient overlay on hover */}
-              <span className="absolute inset-0 bg-gradient-to-br from-pink-50 via-purple-50 to-white opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-2xl"></span>
+            <span className="text-red-600 font-medium ml-2 block sm:inline-block">ማሳሰቢያ፥ ስኮላርሽፕ በሚሞሉበት ጊዜ በመረጡት ሊንክ page ውስጥ ያሉትን መረጃዎች በደንብ ያንብቡ! </span>
+          </motion.p>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
+            {scholarshipResources.map((resource, index) => (
+              <motion.a
+                key={index}
+                variants={itemVariants}
+                href={resource.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="group flex flex-col items-center p-8 bg-white rounded-xl shadow-lg border border-gray-100
+                           hover:shadow-xl transition-all duration-300 ease-in-out relative overflow-hidden cursor-pointer"
+              >
+                {/* Subtle gradient overlay on hover (blue tint for consistency) */}
+                <span className="absolute inset-0 bg-blue-50 opacity-0 group-hover:opacity-40 transition-opacity duration-300 rounded-xl"></span>
 
-              <div className="text-6xl mb-4 relative z-10 text-purple-500 group-hover:text-pink-700 transition-colors duration-300">
-                {resource.icon}
-              </div>
-              <h3 className="text-2xl font-bold text-purple-700 mb-3 relative z-10 group-hover:text-purple-900 transition-colors duration-300">
-                {resource.name}
-              </h3>
-              <p className="text-gray-600 text-sm mb-5 relative z-10 flex-grow text-center leading-relaxed">
-                {resource.description}
-              </p>
-              <span className="text-purple-600 font-semibold flex items-center relative z-10 group-hover:text-pink-800 transition-colors duration-300">
-                Explore Now
-                <svg className="ml-2 w-5 h-5 transform translate-x-0 group-hover:translate-x-1 transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
-                </svg>
-              </span>
-            </a>
-          ))}
-        </div>
-        {/* Important: Scholarship Scam Warning - Clear and prominent */}
-        <div className="mt-20 bg-red-50 border border-red-200 rounded-xl p-8 shadow-lg text-left max-w-4xl mx-auto transform transition-transform duration-300 hover:scale-[1.01] hover:shadow-xl">
-          <h3 className="text-2xl md:text-3xl font-extrabold text-red-700 mb-5 flex items-center">
-            <span className="text-5xl mr-4 animate-bounce-slow">⚠️</span> Important: Avoid Scholarship Scams!
-          </h3>
-          <p className="text-gray-700 mb-5 leading-relaxed text-lg">
-            While we strive to provide reliable resources, it's crucial to be vigilant when searching for scholarships. Unfortunately, scams exist. Always remember these key points:
-          </p>
-          <ul className="list-disc list-inside text-gray-700 space-y-3 mb-6 pl-4 text-base">
-            <li><strong className="text-red-600">Never Pay for a Scholarship:</strong> Legitimate scholarships are *free* to apply for. If you're asked for an "application fee," "processing fee," or any money to "guarantee" a scholarship, it's a scam.</li>
-            <li><strong className="text-red-600">No Guarantees of Acceptance:</strong> No legitimate provider can guarantee you'll win a scholarship. The process is always competitive and merit-based. "Guaranteed" refers to the *legitimacy and comprehensive funding* if selected, not guaranteed acceptance.</li>
-            <li><strong className="text-red-600">Verify Official Sources:</strong> Always apply directly through the scholarship provider's official website (e.g., university, foundation, government agency).</li>
-            <li><strong className="text-red-600">Protect Personal Information:</strong> Be cautious about providing sensitive personal or financial details unless you are absolutely sure of the legitimacy of the provider.</li>
-            <li><strong className="text-red-600">Watch for Red Flags:</strong> Poor grammar, unsolicited offers, promises of "easy money," or high-pressure tactics are common signs of scams.</li>
-          </ul>
-          <p className="text-gray-800 font-semibold leading-relaxed text-lg italic mt-6">
-            Your education is invaluable. Be smart, be safe, and good luck with your scholarship search!
-          </p>
-        </div>
+                <div className="text-6xl mb-4 relative z-10 text-gray-600 group-hover:text-blue-600 transition-colors duration-300">
+                  {resource.icon}
+                </div>
+                <h3 className="text-2xl font-semibold text-gray-900 mb-3 relative z-10 group-hover:text-blue-600 transition-colors duration-300">
+                  {resource.name}
+                </h3>
+                <p className="text-gray-700 text-base mb-5 relative z-10 flex-grow text-center leading-relaxed">
+                  {resource.description}
+                </p>
+                <span className="text-blue-600 font-semibold flex items-center relative z-10 group-hover:text-blue-700 transition-colors duration-300">
+                  Explore Now
+                  <svg className="ml-2 w-5 h-5 transform translate-x-0 group-hover:translate-x-1 transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
+                  </svg>
+                </span>
+              </motion.a>
+            ))}
+          </div>
+          {/* Important: Scholarship Scam Warning - Clear and prominent */}
+          <motion.div
+            variants={itemVariants}
+            className="mt-20 bg-white border border-gray-100 rounded-xl p-8 shadow-xl text-left max-w-4xl mx-auto transform transition-transform duration-300 hover:scale-[1.005] hover:shadow-2xl"
+          >
+            <h3 className="text-2xl md:text-3xl font-bold text-red-700 mb-5 flex items-center">
+              <span className="text-4xl mr-3 animate-bounce-slow">⚠️</span> Important: Avoid Scholarship Scams!
+            </h3>
+            <p className="text-gray-700 mb-5 leading-relaxed text-lg">
+              While we strive to provide reliable resources, it's crucial to be vigilant when searching for scholarships. Unfortunately, scams exist. Always remember these key points:
+            </p>
+            <ul className="list-disc list-inside text-gray-700 space-y-3 mb-6 pl-4 text-base">
+              <li><strong className="text-gray-900">Never Pay for a Scholarship:</strong> Legitimate scholarships are *free* to apply for. If you're asked for an "application fee," "processing fee," or any money to "guarantee" a scholarship, it's a scam.</li>
+              <li><strong className="text-gray-900">No Guarantees of Acceptance:</strong> No legitimate provider can guarantee you'll win a scholarship. The process is always competitive and merit-based.</li>
+              <li><strong className="text-gray-900">Verify Official Sources:</strong> Always apply directly through the scholarship provider's official website (e.g., university, foundation, government agency).</li>
+              <li><strong className="text-gray-900">Protect Personal Information:</strong> Be cautious about providing sensitive personal or financial details unless you are absolutely sure of the legitimacy of the provider.</li>
+              <li><strong className="text-gray-900">Watch for Red Flags:</strong> Poor grammar, unsolicited offers, promises of "easy money," or high-pressure tactics are common signs of scams.</li>
+            </ul>
+            <p className="text-gray-800 font-semibold leading-relaxed text-lg italic mt-6">
+              Your education is invaluable. Be smart, be safe, and good luck with your scholarship search!
+            </p>
+          </motion.div>
+        </motion.div>
       </section>
 
       <Footer />

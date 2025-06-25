@@ -34,7 +34,7 @@ export default function Header() {
     localStorage.removeItem('token');
     setLoggedInUser(null);
     router.push('/');
-    setIsMenuOpen(false);
+    setIsMenuOpen(false); // Close menu on logout
   }, [router]);
 
   useEffect(() => {
@@ -46,10 +46,10 @@ export default function Header() {
 
         const currentTime = Date.now() / 1000;
         if (decodedToken.exp < currentTime) {
-            console.log('Token expired. Logging out.');
-            handleLogout();
+          console.log('Token expired. Logging out.');
+          handleLogout();
         } else {
-            setLoggedInUser(decodedToken.data);
+          setLoggedInUser(decodedToken.data);
         }
       } catch (error) {
         console.error('Failed to decode token or token is invalid:', error);
@@ -60,83 +60,91 @@ export default function Header() {
     }
   }, [handleLogout]);
 
+  // Framer Motion Variants for mobile menu items - more direct, less springy
   const mobileLinkVariants: Variants = {
     open: {
       y: 0,
       opacity: 1,
       transition: {
-        type: "spring",
-        stiffness: 400,
-        damping: 40
+        type: "tween", // Changed to tween for a smoother, less bouncy feel
+        ease: "easeOut",
+        duration: 0.3,
       } as Transition,
     },
     closed: {
-      y: 50,
+      y: 20, // Reduced y displacement
       opacity: 0,
       transition: {
-        duration: 0.3
+        duration: 0.2
       }
     }
   };
 
   return (
     <motion.nav
-      className="bg-white shadow-lg fixed w-full top-0 z-50 py-3"
+      // Apple-style headers are often clean white/light gray with no prominent shadow
+      className="bg-white border-b border-gray-100 fixed w-full top-0 z-50 py-4 font-sans" // Increased padding for height, subtle border
       initial={{ y: -100, opacity: 0 }}
       animate={{ y: 0, opacity: 1 }}
-      transition={{ type: 'spring', stiffness: 80, damping: 15 }}
+      transition={{ type: 'tween', duration: 0.5, ease: "easeOut" }} // Smooth, non-spring intro
     >
-      {/* This div now spans full width but applies horizontal padding for content */}
-      <div className="w-full px-4 sm:px-6 lg:px-8">
+      <div className="w-full px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto"> {/* Added max-width to align with page content */}
         <div className="flex items-center justify-between h-16">
-          <Link href="/" className="text-2xl font-extrabold text-teal-800 hover:text-teal-600 transition-colors duration-300 tracking-wide">
-            Kone Renaissance Foundation
-            <h2 className="text-xl text-amber-500">የኮን ህዳሴ ፋውንዴሽን</h2>
+          {/* Logo/Site Title - Clean, strong font, neutral colors */}
+          <Link href="/" className="flex flex-col items-start leading-none group">
+            <span className="text-2xl lg:text-3xl font-bold text-gray-900 group-hover:text-gray-700 transition-colors duration-300 tracking-tight">
+              Kone Renaissance
+            </span>
+            <span className="text-xl lg:text-2xl font-light text-gray-600 group-hover:text-gray-500 transition-colors duration-300">
+              የኮን ህዳሴ ፋውንዴሽን
+            </span>
           </Link>
 
           {/* Desktop Navigation Links */}
-          <div className="hidden md:flex items-center space-x-2 lg:space-x-6">
-            <Link href="/about" className="text-gray-700 hover:text-teal-700 transition-colors duration-300 font-medium">
+          <div className="hidden md:flex items-center space-x-6 lg:space-x-8"> {/* Increased spacing */}
+            <Link href="/about" className="text-gray-700 hover:text-gray-900 transition-colors duration-300 font-medium text-lg">
               About Us
             </Link>
-            <Link href="/impact" className="text-gray-700 hover:text-teal-700 transition-colors duration-300 font-medium">
+            <Link href="/impact" className="text-gray-700 hover:text-gray-900 transition-colors duration-300 font-medium text-lg">
               Our Impact
             </Link>
-            <Link href="/library" className="text-gray-700 hover:text-teal-700 transition-colors duration-300 font-medium">
+            <Link href="/library" className="text-gray-700 hover:text-gray-900 transition-colors duration-300 font-medium text-lg">
               Library
             </Link>
-            <Link href="/contact" className="text-gray-700 hover:text-teal-700 transition-colors duration-300 font-medium">
+            <Link href="/contact" className="text-gray-700 hover:text-gray-900 transition-colors duration-300 font-medium text-lg">
               Connect
             </Link>
 
-            {/* Conditional Links for Desktop */}
+            {/* Conditional Links for Desktop - Clean text links */}
             {loggedInUser ? (
               <>
-                <Link href="/donaters" className="text-red-400 hover:text-teal-700 transition-colors duration-300">
-                  Add donaters
-                </Link>
+                {loggedInUser.role === 'admin' && ( // Only show "Add donaters" if admin
+                  <Link href="/donaters" className="text-gray-700 hover:text-gray-900 transition-colors duration-300 font-medium text-lg">
+                    Add Donators
+                  </Link>
+                )}
                 <button
                   onClick={handleLogout}
-                  className="text-gray-700 hover:text-teal-700 transition-colors duration-300 font-medium focus:outline-none"
+                  className="text-gray-700 hover:text-gray-900 transition-colors duration-300 font-medium focus:outline-none text-lg"
                 >
                   Logout ({loggedInUser.firstName})
                 </button>
               </>
             ) : (
               <>
-                <Link href="/login" className="text-gray-700 hover:text-teal-700 transition-colors duration-300 font-medium">
+                <Link href="/login" className="text-gray-700 hover:text-gray-900 transition-colors duration-300 font-medium text-lg">
                   Login
                 </Link>
-                <Link href="/signup" className="text-gray-700 hover:text-teal-700 transition-colors duration-300 font-medium">
+                <Link href="/signup" className="text-gray-700 hover:text-gray-900 transition-colors duration-300 font-medium text-lg">
                   Sign Up
                 </Link>
               </>
             )}
 
-            {/* Donate Button for Desktop */}
+            {/* Donate Button for Desktop - Clean, solid, with subtle hover */}
             <Link
               href="/donate"
-              className="bg-amber-500 text-white font-bold px-6 py-2 rounded-full shadow-md hover:bg-amber-600 transition-all duration-300 ease-in-out transform hover:scale-105 hover:shadow-lg"
+              className="bg-gray-900 text-white font-semibold px-6 py-3 rounded-full transition-colors duration-300 hover:bg-gray-700 text-lg"
             >
               Donate Now
             </Link>
@@ -146,17 +154,17 @@ export default function Header() {
           <div className="md:hidden flex items-center">
             <button
               onClick={() => setIsMenuOpen(!isMenuOpen)}
-              className="text-gray-700 hover:text-teal-700 focus:outline-none focus:ring-2 focus:ring-teal-500 rounded-md p-2 transition-colors duration-300"
+              className="text-gray-700 hover:text-gray-900 focus:outline-none focus:ring-2 focus:ring-gray-300 rounded-md p-2 transition-colors duration-300"
               aria-label="Toggle menu"
             >
               {isMenuOpen ? (
-                // Close Icon (X)
-                <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                // Close Icon (X) - more subtle color on hover
+                <svg className="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12"></path>
                 </svg>
               ) : (
-                // Hamburger Icon
-                <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                // Hamburger Icon - more subtle color on hover
+                <svg className="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h16M4 18h16"></path>
                 </svg>
               )}
@@ -165,21 +173,21 @@ export default function Header() {
         </div>
       </div>
 
-      {/* Mobile Menu Overlay */}
+      {/* Mobile Menu Overlay - Clean, full-screen, subtle transition */}
       <motion.div
         initial={false}
         animate={isMenuOpen ? "open" : "closed"}
         variants={{
           open: { opacity: 1, x: 0 },
-          closed: { opacity: 0, x: "100%", transition: { delay: 0.3 } }
+          closed: { opacity: 0, x: "100%", transition: { delay: 0.3, type: "tween" } } // Smooth exit
         }}
-        transition={{ type: "spring", stiffness: 300, damping: 30 }}
-        className="fixed top-0 right-0 h-full w-full bg-teal-800 bg-opacity-95 text-white md:hidden z-40 flex flex-col items-center justify-center p-8"
+        transition={{ type: "tween", duration: 0.4, ease: "easeOut" }} // Smooth entry
+        className="fixed top-0 right-0 h-full w-full bg-gray-900 bg-opacity-95 text-white md:hidden z-40 flex flex-col items-center justify-center p-8"
         style={{ pointerEvents: isMenuOpen ? "auto" : "none" }}
       >
         <button
           onClick={() => setIsMenuOpen(false)}
-          className="absolute top-6 right-6 text-white hover:text-amber-300 focus:outline-none focus:ring-2 focus:ring-white rounded-md p-2 text-2xl"
+          className="absolute top-6 right-6 text-white hover:text-gray-300 focus:outline-none focus:ring-2 focus:ring-gray-500 rounded-md p-2 text-3xl"
           aria-label="Close menu"
         >
           &times;
@@ -187,33 +195,33 @@ export default function Header() {
         <motion.nav
           className="flex flex-col space-y-8 text-center"
           variants={{
-            open: { transition: { staggerChildren: 0.07, delayChildren: 0.2 } },
+            open: { transition: { staggerChildren: 0.1, delayChildren: 0.1 } }, // Slightly faster stagger
             closed: { transition: { staggerChildren: 0.05, staggerDirection: -1 } }
           }}
         >
-          {/* Mobile Links (adjust based on login status) */}
+          {/* Mobile Links */}
           <motion.div variants={mobileLinkVariants}>
-            <Link href="/" onClick={() => setIsMenuOpen(false)} className="block text-3xl font-bold hover:text-amber-400 transition-colors duration-300 py-2">
+            <Link href="/" onClick={() => setIsMenuOpen(false)} className="block text-4xl font-bold text-white hover:text-gray-300 transition-colors duration-300 py-2">
               Home
             </Link>
           </motion.div>
           <motion.div variants={mobileLinkVariants}>
-            <Link href="/about" onClick={() => setIsMenuOpen(false)} className="block text-3xl font-bold hover:text-amber-400 transition-colors duration-300 py-2">
+            <Link href="/about" onClick={() => setIsMenuOpen(false)} className="block text-4xl font-bold text-white hover:text-gray-300 transition-colors duration-300 py-2">
               About Us
             </Link>
           </motion.div>
           <motion.div variants={mobileLinkVariants}>
-            <Link href="/impact" onClick={() => setIsMenuOpen(false)} className="block text-3xl font-bold hover:text-amber-400 transition-colors duration-300 py-2">
+            <Link href="/impact" onClick={() => setIsMenuOpen(false)} className="block text-4xl font-bold text-white hover:text-gray-300 transition-colors duration-300 py-2">
               Our Impact
             </Link>
           </motion.div>
           <motion.div variants={mobileLinkVariants}>
-            <Link href="/library" onClick={() => setIsMenuOpen(false)} className="block text-3xl font-bold hover:text-amber-400 transition-colors duration-300 py-2">
+            <Link href="/library" onClick={() => setIsMenuOpen(false)} className="block text-4xl font-bold text-white hover:text-gray-300 transition-colors duration-300 py-2">
               Library
             </Link>
           </motion.div>
           <motion.div variants={mobileLinkVariants}>
-            <Link href="/contact" onClick={() => setIsMenuOpen(false)} className="block text-3xl font-bold hover:text-amber-400 transition-colors duration-300 py-2">
+            <Link href="/contact" onClick={() => setIsMenuOpen(false)} className="block text-4xl font-bold text-white hover:text-gray-300 transition-colors duration-300 py-2">
               Connect
             </Link>
           </motion.div>
@@ -221,15 +229,17 @@ export default function Header() {
           {/* Conditional Links for Mobile */}
           {loggedInUser ? (
             <>
-              <motion.div variants={mobileLinkVariants}>
-              <Link href="/donaters" onClick={() => setIsMenuOpen(false)} className="block font-bold text-red-400 hover:text-amber-400 transition-colors duration-300 py-2">
-                Add donaters
-              </Link>
-            </motion.div>
+              {loggedInUser.role === 'admin' && (
+                <motion.div variants={mobileLinkVariants}>
+                  <Link href="/donaters" onClick={() => setIsMenuOpen(false)} className="block text-4xl font-bold text-white hover:text-gray-300 transition-colors duration-300 py-2">
+                    Add Donators
+                  </Link>
+                </motion.div>
+              )}
               <motion.div variants={mobileLinkVariants}>
                 <button
                   onClick={handleLogout}
-                  className="block text-3xl font-bold hover:text-amber-400 transition-colors duration-300 py-2"
+                  className="block text-4xl font-bold text-white hover:text-gray-300 transition-colors duration-300 py-2"
                 >
                   Logout ({loggedInUser.firstName})
                 </button>
@@ -238,12 +248,12 @@ export default function Header() {
           ) : (
             <>
               <motion.div variants={mobileLinkVariants}>
-                <Link href="/login" onClick={() => setIsMenuOpen(false)} className="block text-3xl font-bold hover:text-amber-400 transition-colors duration-300 py-2">
+                <Link href="/login" onClick={() => setIsMenuOpen(false)} className="block text-4xl font-bold text-white hover:text-gray-300 transition-colors duration-300 py-2">
                   Login
                 </Link>
               </motion.div>
               <motion.div variants={mobileLinkVariants}>
-                <Link href="/signup" onClick={() => setIsMenuOpen(false)} className="block text-3xl font-bold hover:text-amber-400 transition-colors duration-300 py-2">
+                <Link href="/signup" onClick={() => setIsMenuOpen(false)} className="block text-4xl font-bold text-white hover:text-gray-300 transition-colors duration-300 py-2">
                   Sign Up
                 </Link>
               </motion.div>
@@ -254,7 +264,7 @@ export default function Header() {
             <Link
               href="/donate"
               onClick={() => setIsMenuOpen(false)}
-              className="inline-block bg-amber-500 text-teal-900 font-bold px-8 py-4 rounded-full shadow-lg hover:bg-amber-400 transition-all duration-300 ease-in-out transform hover:scale-105 text-2xl"
+              className="inline-block bg-white text-gray-900 font-bold px-10 py-5 rounded-full transition-colors duration-300 hover:bg-gray-200 text-3xl"
             >
               Donate Today
             </Link>
