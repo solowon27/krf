@@ -16,12 +16,7 @@ const startServer = async () => {
   const app = express();
 
   // Middleware
-   app.use(cors({
-  origin: 'https://krf-three.vercel.app', // REMOVED the trailing slash
-  methods: ['GET', 'POST', 'OPTIONS'],
-  allowedHeaders: ['Content-Type', 'Authorization'],
-  credentials: true
-}));
+   app.use(cors({}));
   app.use(express.json());
 
   // 🔧 Use your JWT authentication middleware
