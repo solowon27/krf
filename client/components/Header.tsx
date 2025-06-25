@@ -25,7 +25,12 @@ type DecodedTokenPayload = {
   // Add any other root-level properties your JWT might have (e.g., 'sub' for subject)
 };
 
-export default function Header() {
+interface HeaderProps {
+  className?: string; // Optional className prop for additional styling
+}
+
+export default function Header({ className }: HeaderProps) {
+
   const router = useRouter();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [loggedInUser, setLoggedInUser] = useState<{ firstName: string; email: string; role: string } | null>(null);
