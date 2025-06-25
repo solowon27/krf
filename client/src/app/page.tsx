@@ -142,7 +142,7 @@ export default function Home() {
               href="/education-resources"
               className="w-full sm:w-auto inline-block border-2 border-white text-white font-semibold px-8 py-4 rounded-full transition-colors duration-300 hover:bg-white hover:text-gray-900 text-lg sm:text-xl"
             >
-              Free online courses
+              Free Educational Resources / ነፃ የትምህርት እድሎች
             </Link>
           </motion.div>
         </motion.div>

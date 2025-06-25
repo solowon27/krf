@@ -12,6 +12,7 @@ import Footer from '@components/Footer';
 
 // Framer Motion imports for subtle animations
 import { motion, AnimatePresence } from 'framer-motion';
+import type { Variants } from 'framer-motion'; // Explicitly import Variants type
 
 // GraphQL mutation to add a donation
 const ADD_DONATION = gql`
@@ -37,14 +38,16 @@ type DecodedTokenData = {
 };
 
 // Variants for subtle entry animations, consistent with Apple style
-const formContainerVariants = {
+// Removed 'type: "tween"' as it often causes type conflicts when
+// Framer Motion can infer the animation type from other properties like 'duration' and 'ease'.
+const formContainerVariants: Variants = { // Explicitly type as Variants
   hidden: { opacity: 0, scale: 0.95 },
-  visible: { opacity: 1, scale: 1, transition: { type: 'tween', ease: 'easeOut', duration: 0.5 } },
+  visible: { opacity: 1, scale: 1, transition: { ease: 'easeOut', duration: 0.5 } },
 };
 
-const formItemVariants = {
+const formItemVariants: Variants = { // Explicitly type as Variants
   hidden: { y: 15, opacity: 0 },
-  visible: { y: 0, opacity: 1, transition: { type: 'tween', ease: 'easeOut', duration: 0.3 } },
+  visible: { y: 0, opacity: 1, transition: { ease: 'easeOut', duration: 0.3 } },
 };
 
 export default function DonatersPage() {
@@ -146,7 +149,7 @@ export default function DonatersPage() {
     );
   }
 
-  // Once user is confirmed (and is an admin), render the form
+  // Once user is confirmed (and is an `admin`), render the form
   return (
     <div className="min-h-screen flex flex-col bg-gray-50 font-sans antialiased overflow-x-hidden">
       <Header />

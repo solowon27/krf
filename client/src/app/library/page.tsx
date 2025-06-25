@@ -5,7 +5,7 @@ import Header from '@components/Header';
 import Footer from '@components/Footer';
 import { useEffect, useState, useMemo } from 'react';
 import Link from 'next/link';
-import { motion, AnimatePresence } from 'framer-motion'; // Added AnimatePresence for exit animations
+import { motion, AnimatePresence, Variants } from 'framer-motion'; // Added AnimatePresence for exit animations
 
 type Book = {
   id: string;
@@ -181,26 +181,27 @@ export default function LibraryPage() {
   };
 
   const itemVariants = {
-    hidden: { y: 20, opacity: 0 },
-    visible: {
-      y: 0,
-      opacity: 1,
-      transition: {
-        type: 'tween',
-        ease: 'easeOut',
-        duration: 0.4,
-      },
+  hidden: { y: 20, opacity: 0 },
+  visible: {
+    y: 0,
+    opacity: 1,
+    transition: {
+      type: 'tween',
+      ease: 'easeOut',
+      duration: 0.4,
     },
-    exit: { // Added exit animation for cards
-      opacity: 0,
-      scale: 0.95,
-      transition: {
-        type: 'tween',
-        ease: 'easeOut',
-        duration: 0.3,
-      },
+  },
+  exit: {
+    opacity: 0,
+    scale: 0.95,
+    transition: {
+      type: 'tween',
+      ease: 'easeOut',
+      duration: 0.3,
     },
-  };
+  },
+} satisfies Variants;
+
 
   const containerVariants = {
     visible: {
