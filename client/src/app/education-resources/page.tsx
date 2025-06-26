@@ -237,7 +237,7 @@ export default function EducationResourcesPage() {
           variants={containerVariants}
           initial="hidden" // Ensure initial is hidden for animation to play
           whileInView="visible"
-          viewport={{ once: true, amount: 0.2 }}
+          viewport={{ once: true, amount: 0.05}}
         >
           {/* Slightly smaller font for h2 on mobile, adjusted margin-bottom */}
           <motion.h2 variants={itemVariants} className="text-3xl md:text-5xl font-bold border rounded-lg p-2 mb-8 text-gray-900 leading-tight"> 
