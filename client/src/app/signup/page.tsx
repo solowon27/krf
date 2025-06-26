@@ -1,3 +1,4 @@
+// app/admin-signup/page.tsx
 'use client';
 
 import { useMutation, gql } from '@apollo/client';
@@ -45,22 +46,31 @@ export default function AdminSignup() {
 
   return (
     // Outer container for the entire page layout: header, main content, footer
-    <div className="min-h-screen py-16 flex flex-col bg-gray-100">
-      <Header /> {/* Add Header here */}
+    // Uses flex-col to stack header, main, footer vertically.
+    // min-h-screen ensures it takes full viewport height.
+    // bg-gray-50 for a very subtle off-white background, typical of Apple's clean aesthetic.
+    <div className="min-h-screen flex flex-col bg-gray-50 text-gray-900 font-sans antialiased">
+      <Header className="relative z-20" /> {/* Ensure Header can accept className */}
 
       {/* Main content area, uses flex-grow to take up available space and push footer down */}
-      <main className="flex-grow flex items-center justify-center px-4 sm:px-6 lg:px-8 py-12">
-        <div className="max-w-md w-full space-y-8 mb-20 p-10 bg-white rounded-xl shadow-lg"> {/* Enhanced shadow and rounded */}
+      {/* Centered flex container for the signup card */}
+      <main className="flex-grow flex items-center justify-center px-4 sm:px-6 lg:px-8 py-12 md:py-20">
+        {/* Signup Card Container */}
+        {/* max-w-sm for max width, p- for padding, bg-white for card background, shadow-xl for subtle shadow,
+            border for clean edge, space-y for vertical spacing between elements inside the card. */}
+        <div className="max-w-sm w-full p-8 md:p-10 bg-white rounded-xl shadow-xl border border-gray-100 space-y-6 md:space-y-8"> 
           <div>
-            <h2 className="mt-6 text-center text-3xl font-extrabold text-teal-800"> {/* Teal heading */}
-              Admin Account Setup
+            {/* Main Heading - Clean, dark text, similar to Apple's headings */}
+            <h2 className="mt-2 text-center text-3xl md:text-4xl font-bold text-gray-900 tracking-tight">
+              Create Admin Account
             </h2>
-            <p className="mt-2 text-center text-sm text-gray-600">
-              Create your primary administrator account.
+            {/* Sub-text - Lighter gray for secondary information */}
+            <p className="mt-2 text-center text-sm text-gray-500">
+              Set up your primary administrator credentials.
             </p>
           </div>
           <form className="mt-8 space-y-6" onSubmit={handleSubmit}>
-            <div className="rounded-md shadow-sm -space-y-px">
+            <div className="space-y-4"> {/* Increased space between input fields */}
               <div>
                 <label htmlFor="first-name" className="sr-only">First Name</label>
                 <input
@@ -69,7 +79,8 @@ export default function AdminSignup() {
                   type="text"
                   autoComplete="given-name"
                   required
-                  className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:ring-amber-500 focus:border-amber-500 focus:z-10 sm:text-sm"
+                  // Apple-like input styling: full rounded, subtle border, clean focus state
+                  className="appearance-none block w-full px-4 py-3 border border-gray-300 placeholder-gray-400 text-gray-900 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all duration-200 sm:text-base"
                   placeholder="First Name"
                   value={form.firstName}
                   onChange={(e) => setForm({ ...form, firstName: e.target.value })}
@@ -83,8 +94,9 @@ export default function AdminSignup() {
                   type="email"
                   autoComplete="email"
                   required
-                  className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:ring-amber-500 focus:border-amber-500 focus:z-10 sm:text-sm"
-                  placeholder="Email address"
+                  // Consistent input styling
+                  className="appearance-none block w-full px-4 py-3 border border-gray-300 placeholder-gray-400 text-gray-900 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all duration-200 sm:text-base"
+                  placeholder="Email Address"
                   value={form.email}
                   onChange={(e) => setForm({ ...form, email: e.target.value })}
                 />
@@ -97,25 +109,42 @@ export default function AdminSignup() {
                   type="password"
                   autoComplete="new-password"
                   required
-                  className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-b-md focus:outline-none focus:ring-amber-500 focus:border-amber-500 focus:z-10 sm:text-sm"
+                  // Consistent input styling
+                  className="appearance-none block w-full px-4 py-3 border border-gray-300 placeholder-gray-400 text-gray-900 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all duration-200 sm:text-base"
                   placeholder="Password"
                   value={form.password}
                   onChange={(e) => setForm({ ...form, password: e.target.value })}
                 />
               </div>
               {/* Hidden field for role if it's always 'admin' for this form */}
+              {/* This input type is not visibly rendered, so styling is not applied here */}
               <input type="hidden" name="role" value="admin" />
             </div>
 
             <div>
               <button
                 type="submit"
-                className={`group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white ${
-                  loading ? 'bg-teal-400 cursor-not-allowed' : 'bg-teal-600 hover:bg-teal-700'
-                } focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-teal-500 transition-colors duration-300`}
-                disabled={loading}
+                // Apple-like button styling: primary blue, rounded, subtle shadow, smooth hover
+                className={`w-full flex justify-center py-3 px-4 border border-transparent text-base font-semibold rounded-lg shadow-sm
+                  ${loading 
+                    ? 'bg-blue-400 cursor-not-allowed' // Lighter blue for loading state
+                    : 'bg-blue-600 hover:bg-blue-700 active:bg-blue-800' // Added active state for click feedback
+                  } 
+                  text-white focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 transition-all duration-200 transform hover:scale-[1.005]`}
+                disabled={loading} // Disable button while loading
               >
-                {loading ? 'Registering...' : 'Create Admin Account'}
+                {loading ? (
+                  <span className="flex items-center">
+                    {/* Inline SVG for loading spinner for consistency and no external dependencies */}
+                    <svg className="animate-spin -ml-1 mr-3 h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                      <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+                      <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                    </svg>
+                    Registering...
+                  </span>
+                ) : (
+                  'Create Account' // Changed button text to "Create Account"
+                )}
               </button>
             </div>
 
@@ -128,7 +157,7 @@ export default function AdminSignup() {
         </div>
       </main>
 
-      <Footer /> {/* Add Footer here */}
+      <Footer /> {/* Footer remains as is, assumed to be part of the full page layout */}
     </div>
   );
 }

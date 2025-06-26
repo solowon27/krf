@@ -140,9 +140,9 @@ export default function Header({ className }: HeaderProps) {
                 <Link href="/login" className="text-gray-700 hover:text-gray-900 transition-colors duration-300 font-medium text-lg">
                   Login
                 </Link>
-                <Link href="/signup" className="text-gray-700 hover:text-gray-900 transition-colors duration-300 font-medium text-lg">
+                {/* <Link href="/signup" className="text-gray-700 hover:text-gray-900 transition-colors duration-300 font-medium text-lg">
                   Sign Up
-                </Link>
+                </Link> */}
               </>
             )}
 
@@ -257,11 +257,11 @@ export default function Header({ className }: HeaderProps) {
                   Login
                 </Link>
               </motion.div>
-              <motion.div variants={mobileLinkVariants}>
+              {/* <motion.div variants={mobileLinkVariants}>
                 <Link href="/signup" onClick={() => setIsMenuOpen(false)} className="block text-4xl font-bold text-white hover:text-gray-300 transition-colors duration-300 py-2">
                   Sign Up
                 </Link>
-              </motion.div>
+              </motion.div> */}
             </>
           )}
 

@@ -26,7 +26,6 @@ export default function Footer() {
             <ul className="space-y-3 text-sm">
               <li><Link href="/about" className="hover:text-white transition-colors duration-200">About Us</Link></li>
               <li><Link href="/impact" className="hover:text-white transition-colors duration-200">Our Impact</Link></li>
-              <li><Link href="/news" className="hover:text-white transition-colors duration-200">News & Updates</Link></li>
             </ul>
           </div>
 
@@ -45,7 +44,6 @@ export default function Footer() {
             <h3 className="text-white font-semibold text-lg mb-5">Get Involved</h3>
             <ul className="space-y-3 text-sm">
               <li><Link href="/donate" className="hover:text-white transition-colors duration-200">Donate</Link></li>
-              <li><Link href="/volunteer" className="hover:text-white transition-colors duration-200">Volunteer</Link></li>
               <li><Link href="/contact" className="hover:text-white transition-colors duration-200">Contact Us</Link></li>
             </ul>
           </div>
@@ -57,7 +55,7 @@ export default function Footer() {
               {/* Note: Dynamic login state is generally handled in Header for Apple-like sites.
                    These are simplified placeholder links. */}
               <li><Link href="/login" className="hover:text-white transition-colors duration-200">Login</Link></li>
-              <li><Link href="/signup" className="hover:text-white transition-colors duration-200">Sign Up</Link></li>
+              {/* <li><Link href="/signup" className="hover:text-white transition-colors duration-200">Sign Up</Link></li> */}
               {/* For admin-specific links, it's typically better to put them in a dashboard or accessible via auth */}
               {/* <li><Link href="/donaters" className="hover:text-white transition-colors duration-200">Admin: Add Donators</Link></li> */}
               <li><Link href="/terms" className="hover:text-white transition-colors duration-200">Terms & Conditions</Link></li>
@@ -73,14 +71,11 @@ export default function Footer() {
               <li className="flex items-center space-x-2">
                 <FaEnvelope className="text-gray-500" /> {/* Neutral icon color */}
                 <a href="mailto:konerenfoundation@gmail.com" className="hover:text-white transition-colors duration-200">konerenfoundation@gmail.com</a>
-              </li>
-              
+              </li>              
               <li className="flex items-center space-x-2">
                 <FaFacebookF className="text-gray-500" />
                 <a href="#" className="hover:text-white transition-colors duration-200" target="_blank" rel="noopener noreferrer">Facebook</a>
               </li>
-              
-              <li><Link href="/contact" className="hover:text-white transition-colors duration-200">Get Support</Link></li> {/* New: Specific support link */}
             </ul>
           </div>
         </div>
