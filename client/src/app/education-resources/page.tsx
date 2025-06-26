@@ -133,7 +133,7 @@ export default function EducationResourcesPage() {
     // Ensured main can scroll, removed potential horizontal overflow issues
     <main className="min-h-screen bg-gray-50 text-gray-900 font-sans antialiased overflow-y-auto"> 
       {/* Explicitly add z-index to Header if it's a fixed/sticky element */}
-      <Header className="relative z-20" /> 
+      <Header /> 
 
       {/* Hero Section - Bold, Clean, Dark Background */}
       {/* Reduced overall height for hero on small screens to allow more content above fold */}
