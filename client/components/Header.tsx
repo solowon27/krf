@@ -97,11 +97,11 @@ export default function Header({ className }: HeaderProps) {
         <div className="flex items-center justify-between h-16">
           {/* Logo/Site Title - Clean, strong font, neutral colors */}
           <Link href="/" className="flex flex-col items-start leading-none group">
-            <span className="text-2xl lg:text-3xl font-bold text-gray-900 group-hover:text-gray-700 transition-colors duration-300 tracking-tight">
-              Kone Renaissance
+            <span className="text-1xl lg:text-2xl font-bold text-gray-900 group-hover:text-gray-700 transition-colors duration-300 tracking-tight">
+              Kone HIgh School Renaissance Foundation
             </span>
-            <span className="text-xl lg:text-2xl font-light text-gray-600 group-hover:text-gray-500 transition-colors duration-300">
-              የኮን ህዳሴ ፋውንዴሽን
+            <span className="text-xl lg:text-1xl font-light text-gray-600 group-hover:text-gray-500 transition-colors duration-300">
+              የኮን ሃይስኩል ህዳሴ ፋውንዴሽን
             </span>
           </Link>
 
