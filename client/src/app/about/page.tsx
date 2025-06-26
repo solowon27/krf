@@ -67,7 +67,7 @@ export default function AboutUs() {
           variants={containerVariants}
           initial="hidden"
           whileInView="visible"
-          viewport={{ once: true, amount: 0.4 }}
+          viewport={{ once: true, amount: 0.2 }}
         >
           <motion.div variants={itemVariants}>
             <h2 className="text-3xl sm:text-4xl font-bold mb-4 sm:mb-6 text-gray-900 leading-tight">Our Story: From Vision to Impact</h2>
@@ -80,7 +80,7 @@ export default function AboutUs() {
           </motion.div>
           <motion.div variants={itemVariants} className="relative w-full h-64 sm:h-80 md:h-96 rounded-xl overflow-hidden shadow-2xl">
             <Image
-              src="/sample-logo.png"
+              src="/logo.png"
               alt="Kone High School students learning or school building"
               fill
               className="object-cover object-center"
@@ -98,14 +98,14 @@ export default function AboutUs() {
           variants={containerVariants}
           initial="hidden"
           whileInView="visible"
-          viewport={{ once: true, amount: 0.3 }}
+          viewport={{ once: true, amount: 0.1 }}
         >
-          <motion.h2 variants={itemVariants} className="text-3xl sm:text-4xl font-bold mb-10 sm:mb-12 text-gray-900">
+          <motion.h2 variants={itemVariants} className="text-3xl sm:text-4xl border rounded-lg p-2 bg-gradient-to-r from-gray-300 to-gray-200 font-bold mb-10 sm:mb-12 text-gray-900">
             Meet Our Visionary Founders
           </motion.h2>
           <div className="flex flex-col md:flex-row justify-center items-center md:items-start gap-8 lg:gap-16"> {/* Changed items-stretch to items-start for md and up, kept items-center for flex-col */}
             {/* Founder 1 */}
-            <motion.div variants={itemVariants} className="w-full max-w-xs flex flex-col items-center p-5 sm:p-6 bg-gray-50 rounded-xl shadow-md hover:shadow-lg transition-shadow duration-300">
+            <motion.div variants={itemVariants} className="w-full max-w-xs flex flex-col items-center p-5 sm:p-6 bg-gray-50 border border-yellow-600 rounded-xl shadow-md hover:shadow-lg transition-shadow duration-300">
               <div className="relative h-40 w-40 sm:h-48 sm:w-48 rounded-full overflow-hidden mb-5 sm:mb-6 border-2 border-gray-200 flex items-center justify-center">
                 <Image
                   src="/abel.jpeg"
@@ -120,7 +120,7 @@ export default function AboutUs() {
             </motion.div>
 
             {/* Founder 2 */}
-            <motion.div variants={itemVariants} className="w-full max-w-xs flex flex-col items-center p-5 sm:p-6 bg-gray-50 rounded-xl shadow-md hover:shadow-lg transition-shadow duration-300">
+            <motion.div variants={itemVariants} className="w-full max-w-xs flex flex-col items-center p-5 sm:p-6 bg-gray-50 border border-yellow-600 rounded-xl shadow-md hover:shadow-lg transition-shadow duration-300">
               <div className="relative h-40 w-40 sm:h-48 sm:w-48 rounded-full overflow-hidden mb-5 sm:mb-6 border-2 border-gray-200 flex items-center justify-center">
                 <Image
                   src="/come.JPEG"
@@ -135,7 +135,7 @@ export default function AboutUs() {
             </motion.div>
 
             {/* Founder 3 */}
-            <motion.div variants={itemVariants} className="w-full max-w-xs flex flex-col items-center p-5 sm:p-6 bg-gray-50 rounded-xl shadow-md hover:shadow-lg transition-shadow duration-300">
+            <motion.div variants={itemVariants} className="w-full max-w-xs flex flex-col items-center p-5 sm:p-6 bg-gray-50 border border-yellow-600 rounded-xl shadow-md hover:shadow-lg transition-shadow duration-300">
               <div className="relative h-40 w-40 sm:h-48 sm:w-48 rounded-full overflow-hidden mb-5 sm:mb-6 border-2 border-gray-200 flex items-center justify-center">
                 <Image
                   src="/solo.JPG"
@@ -160,7 +160,7 @@ export default function AboutUs() {
           variants={containerVariants}
           initial="hidden"
           whileInView="visible"
-          viewport={{ once: true, amount: 0.3 }}
+          viewport={{ once: true, amount: 0.1 }}
         >
           <motion.h2 variants={itemVariants} className="text-3xl sm:text-4xl font-bold mb-10 sm:mb-12 text-gray-900">
             Our Guiding Principles
@@ -192,7 +192,7 @@ export default function AboutUs() {
           variants={containerVariants}
           initial="hidden"
           whileInView="visible"
-          viewport={{ once: true, amount: 0.3 }}
+          viewport={{ once: true, amount: 0.1 }}
         >
           {/* Left Side: Our Goals - Styled as a clean card */}
           <motion.div
@@ -253,7 +253,7 @@ export default function AboutUs() {
           variants={containerVariants}
           initial="hidden"
           whileInView="visible"
-          viewport={{ once: true, amount: 0.3 }}
+          viewport={{ once: true, amount: 0.1 }}
         >
           <motion.h3 variants={itemVariants} className="text-2xl md:text-4xl font-bold mb-4 sm:mb-6 leading-snug">
             Ready to Make a Difference?

@@ -5,7 +5,8 @@ import Link from 'next/link';
 import Header from '@components/Header';
 import Footer from '@components/Footer';
 import { motion, Variants, Transition } from 'framer-motion';
-import { FaClock, FaHandHoldingUsd, FaUniversity, FaBookOpen, FaEnvelope, FaInfoCircle, FaHandHoldingHeart } from 'react-icons/fa'; // Icons for Coming Soon elements
+// Added FaBoxOpen for material donations
+import { FaClock, FaHandHoldingUsd, FaUniversity, FaBookOpen, FaEnvelope, FaInfoCircle, FaHandHoldingHeart, FaLandmark, FaBoxOpen } from 'react-icons/fa';
 
 export default function DonatePage() {
   // Use a tween-based animation for a smoother, Apple-like feel
@@ -76,7 +77,112 @@ export default function DonatePage() {
 
       ---
 
-      {/* Mission & Impact Section - What Donations Will Support (Clean, Card-like) */}
+      {/* Banking Information Section - Moved to top and made into responsive cards */}
+      <section className="py-20 px-6 bg-gray-50">
+        <motion.div
+          className="max-w-6xl mx-auto text-center" // Increased max-width for better card display
+          variants={containerVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.3 }}
+        >
+          <motion.h2 variants={itemVariants} className="text-4xl md:text-5xl font-bold text-gray-900 mb-6 leading-tight flex items-center justify-center">
+            <FaLandmark className="text-5xl text-gray-600 mr-4" /> Direct Bank Transfer Information
+          </motion.h2>
+          <motion.p variants={itemVariants} className="text-lg text-gray-700 mb-12 max-w-2xl mx-auto">
+            For direct contributions, please use the banking details below. Your support is deeply appreciated and vital for Kone High School.
+          </motion.p>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"> {/* Responsive grid for cards */}
+            {/* Bank 1 Card */}
+            <motion.div variants={itemVariants} className="bg-white p-8 rounded-xl shadow-xl border border-green-600 flex flex-col items-center text-center hover:shadow-2xl transition-shadow duration-300">
+              <h3 className="text-2xl font-semibold text-gray-900 mb-4">Commercial Bank of Ethiopia</h3>
+              <p className="text-gray-700 mb-2"><strong>Account Name:</strong> Kone Renaissance Foundation</p>
+              <p className="text-gray-700 mb-2 break-all"><strong>Account Number:</strong> 1234567890123456</p> {/* Added break-all for long numbers */}
+              <p className="text-gray-600 text-sm"><strong>Swift Code:</strong> PHILXXXX</p>
+            </motion.div>
+
+            {/* Bank 2 Card */}
+            <motion.div variants={itemVariants} className="bg-white p-8 rounded-xl shadow-xl border border-yellow-600 flex flex-col items-center text-center hover:shadow-2xl transition-shadow duration-300">
+              <h3 className="text-2xl font-semibold text-gray-900 mb-4">Amhara Bank</h3>
+              <p className="text-gray-700 mb-2"><strong>Account Name:</strong> Kone High School Support</p>
+              <p className="text-gray-700 mb-2 break-all"><strong>Account Number:</strong> 9876543210987654</p>
+              <p className="text-gray-600 text-sm"><strong>Swift Code:</strong> GLBLYYYY</p>
+            </motion.div>
+
+            {/* Bank 3 Card */}
+            <motion.div variants={itemVariants} className="bg-white p-8 rounded-xl shadow-xl border border-red-600 flex flex-col items-center text-center hover:shadow-2xl transition-shadow duration-300">
+              <h3 className="text-2xl font-semibold text-gray-900 mb-4">Dashen Bank</h3>
+              <p className="text-gray-700 mb-2"><strong>Account Name:</strong> Kone Foundation Donations</p>
+              <p className="text-gray-700 mb-2 break-all"><strong>Account Number:</strong> 5678123490125678</p>
+              <p className="text-gray-600 text-sm"><strong>Swift Code:</strong> COMMZZZZ</p>
+            </motion.div>
+          </div>
+
+          <motion.p variants={itemVariants} className="text-md text-gray-500 mt-12 max-w-2xl mx-auto">
+            Please ensure all details are correct before making a transfer. For any questions or further assistance, please feel free to reach out to our team.
+          </motion.p>
+        </motion.div>
+      </section>
+
+       ---
+
+      {/* Material Donations Section - New Section */}
+      <section className="py-20 px-6 bg-gray-100"> {/* Slightly different background for visual separation */}
+        <motion.div
+          className="max-w-6xl mx-auto text-center"
+          variants={containerVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.3 }}
+        >
+          <motion.h2 variants={itemVariants} className="text-4xl md:text-5xl font-bold text-gray-900 mb-6 leading-tight flex items-center justify-center">
+            <FaBoxOpen className="text-5xl text-gray-600 mr-4" /> Donate Materials & Resources
+          </motion.h2>
+          <motion.p variants={itemVariants} className="text-lg text-gray-700 mb-12 max-w-2xl mx-auto">
+            Beyond monetary support, we warmly welcome donations of educational materials, books, and other resources that can directly benefit Kone High School students and teachers. If you are abroad and wish to send items to Ethiopia, you can use the following trusted addresses:
+          </motion.p>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"> {/* Responsive grid for addresses */}
+
+            {/* Bahir Dar Address Card */}
+            <motion.div variants={itemVariants} className="bg-white p-8 rounded-xl shadow-xl border border-green-600 flex flex-col items-center text-center hover:shadow-2xl transition-shadow duration-300">
+              <h3 className="text-2xl font-semibold text-gray-900 mb-4">Bahir Dar Collection Point</h3>
+              <p className="text-gray-700 mb-2"><strong>Bahir Dar DHL</strong></p>
+              <p className="text-gray-700 mb-2">Ethiopian Insurance Corporation Building</p>
+              <p className="text-gray-700 mb-4">Bahir Dar</p>
+              <p className="text-gray-600 text-sm"><strong>Tel:</strong> +251 5 8126 0279</p>
+            </motion.div>
+
+            {/* Bole Addis Ababa Address Card */}
+            <motion.div variants={itemVariants} className="bg-white p-8 rounded-xl shadow-xl border border-yellow-600 flex flex-col items-center text-center hover:shadow-2xl transition-shadow duration-300">
+              <h3 className="text-2xl font-semibold text-gray-900 mb-4">Addis Ababa - Bole Collection Point</h3>
+              <p className="text-gray-700 mb-2"><strong>Bole DHL</strong></p>
+              <p className="text-gray-700 mb-2">Near Habesha Restaurant</p>
+              <p className="text-gray-700 mb-4">Bole Road, Addis Ababa</p>
+              <p className="text-gray-600 text-sm"><strong>Tel:</strong> +251 1 1551 3365 / +251 1 1551 7197</p>
+            </motion.div>
+
+            {/* Telco Addis Ababa Address Card */}
+            <motion.div variants={itemVariants} className="bg-white p-8 rounded-xl shadow-xl border border-red-600 flex flex-col items-center text-center hover:shadow-2xl transition-shadow duration-300">
+              <h3 className="text-2xl font-semibold text-gray-900 mb-4">Addis Ababa - Telco Collection Point</h3>
+              <p className="text-gray-700 mb-2"><strong>DHL Worldwide Express Ethiopia plc</strong></p>
+              <p className="text-gray-700 mb-2">Telco Building</p>
+              <p className="text-gray-700 mb-2">Off Ring Road on slip road from Megenagna</p>
+              <p className="text-gray-700 mb-4">In front of Anbessa Garage, PO Box 1840 Code 1110</p>
+              <p className="text-gray-600 text-sm"><strong>Tel:</strong> +251 1 1551 3365 / +251 1 1551 7197</p> {/* Using same general DHL numbers if no specific one is provided */}
+            </motion.div>
+          </div>
+
+          <motion.p variants={itemVariants} className="text-md text-gray-500 mt-12 max-w-2xl mx-auto">
+            Please contact the respective DHL office before sending large shipments to confirm their receiving policies and any potential customs requirements for donations.
+          </motion.p>
+        </motion.div>
+      </section>
+
+      ---
+
+      {/* Mission & Impact Section - Remains the same, but now below banking info */}
       <section className="py-20 px-6 bg-white">
         <motion.div
           className="max-w-6xl mx-auto"
@@ -94,17 +200,17 @@ export default function DonatePage() {
           </motion.p>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8"> {/* Increased gap for more breathing room */}
-            <motion.div variants={itemVariants} className="bg-white p-8 rounded-xl shadow-xl border border-gray-100 flex flex-col items-center text-center hover:shadow-2xl transition-shadow duration-300">
+            <motion.div variants={itemVariants} className="bg-white p-8 rounded-xl shadow-xl border border-green-600 flex flex-col items-center text-center hover:shadow-2xl transition-shadow duration-300">
               <FaBookOpen className="text-6xl text-gray-700 mb-6" /> {/* Larger, more subdued icon */}
               <h3 className="text-2xl font-semibold text-gray-900 mb-3">Enhanced Learning Resources</h3>
               <p className="text-gray-600 leading-relaxed text-base">Funds will procure modern textbooks, digital learning tools, and supplies, enriching the academic journey for every student.</p>
             </motion.div>
-            <motion.div variants={itemVariants} className="bg-white p-8 rounded-xl shadow-xl border border-gray-100 flex flex-col items-center text-center hover:shadow-2xl transition-shadow duration-300">
+            <motion.div variants={itemVariants} className="bg-white p-8 rounded-xl shadow-xl border border-yellow-600 flex flex-col items-center text-center hover:shadow-2xl transition-shadow duration-300">
               <FaUniversity className="text-6xl text-gray-700 mb-6" />
               <h3 className="text-2xl font-semibold text-gray-900 mb-3">Modernized School Facilities</h3>
               <p className="text-gray-600 leading-relaxed text-base">Your support will help upgrade classrooms, science laboratories, and sanitation facilities, fostering a safe and conducive learning environment.</p>
             </motion.div>
-            <motion.div variants={itemVariants} className="bg-white p-8 rounded-xl shadow-xl border border-gray-100 flex flex-col items-center text-center hover:shadow-2xl transition-shadow duration-300">
+            <motion.div variants={itemVariants} className="bg-white p-8 rounded-xl shadow-xl border border-red-600 flex flex-col items-center text-center hover:shadow-2xl transition-shadow duration-300">
               <FaHandHoldingUsd className="text-6xl text-gray-700 mb-6" />
               <h3 className="text-2xl font-semibold text-gray-900 mb-3">Teacher Development & Support</h3>
               <p className="text-gray-600 leading-relaxed text-base">Contributions will empower educators with professional training, workshops, and essential resources, ensuring high-quality instruction.</p>
@@ -125,6 +231,7 @@ export default function DonatePage() {
         </motion.div>
       </section>
 
+     
       ---
 
       {/* Stay Updated Section - Call to Action for Information (Clean, Multi-Card) */}
@@ -139,36 +246,6 @@ export default function DonatePage() {
           <motion.h2 variants={itemVariants} className="text-4xl md:text-5xl font-bold text-gray-900 mb-12 leading-tight">
             Be the First to Know
           </motion.h2>
-
-          {/* Newsletter Signup Card */}
-          <motion.div variants={itemVariants} className="bg-white p-10 rounded-xl shadow-xl border border-gray-100 mb-8">
-            <h3 className="text-3xl font-semibold text-gray-900 mb-6 flex items-center justify-center">
-              <FaEnvelope className="text-4xl text-gray-600 mr-4" /> Get Notified When Donations Open
-            </h3>
-            <p className="text-lg text-gray-700 mb-8 max-w-md mx-auto">
-              Sign up for our newsletter to receive an alert the moment our secure donation platform goes live. You&apos;ll also get updates on our progress and the difference your support makes.
-            </p>
-
-            {/* Placeholder for Newsletter Signup Form */}
-            <motion.div variants={itemVariants} className="mb-8">
-              <div className="flex flex-col sm:flex-row justify-center items-center gap-4">
-                <input
-                  type="email"
-                  placeholder="Enter your email address"
-                  className="w-full sm:flex-grow p-4 border border-gray-300 rounded-lg text-gray-800 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all duration-300 outline-none"
-                />
-                <button
-                  className="w-full sm:w-auto bg-blue-600 text-white font-semibold px-8 py-4 rounded-lg shadow-md hover:bg-blue-700 transition-colors duration-300 transform hover:scale-[1.01] text-lg flex-shrink-0"
-                >
-                  Notify Me
-                </button>
-              </div>
-            </motion.div>
-
-            <p className="text-md text-gray-500">
-              We respect your privacy. Your email will only be used for updates from Kone Renaissance Foundation.
-            </p>
-          </motion.div>
 
           {/* Learn More & Connect Card */}
           <motion.div variants={itemVariants} className="bg-white p-10 rounded-xl shadow-xl border border-gray-100">
