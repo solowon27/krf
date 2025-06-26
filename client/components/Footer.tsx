@@ -11,8 +11,8 @@ export default function Footer() {
       <div className="max-w-7xl mx-auto">
         {/* Top section with main logo-like text */}
         <div className="pb-10 mb-10 border-b border-gray-800"> {/* Subtle divider line */}
-          <h2 className="text-3xl font-bold text-white mb-2 tracking-tight">Kone Renaissance</h2>
-          <p className="text-xl font-light text-gray-500">የኮን ህዳሴ ፋውንዴሽ</p> {/* Subtitle, lighter weight */}
+          <h2 className="text-3xl font-bold text-white mb-2 tracking-tight">Kone High School Renaissance Foundation</h2>
+          <p className="text-xl font-light text-gray-500">የኮን ሃይስኩል ህዳሴ ፋውንዴሽን</p> {/* Subtitle, lighter weight */}
           <p className="text-sm text-gray-500 mt-4 max-w-sm"> {/* Concise mission snippet */}
             Dedicated to transforming education and empowering futures in Kone.
           </p>
@@ -84,7 +84,7 @@ export default function Footer() {
         <div className="border-t border-gray-800 pt-8 mt-10 text-xs text-gray-500 flex flex-col md:flex-row justify-between items-start md:items-center space-y-3 md:space-y-0">
           <div className="flex items-center space-x-1">
             <FaRegCopyright className="text-gray-600" /> {/* Subtle icon color */}
-            <span>{currentYear} Kone Renaissance Foundation. All rights reserved.</span>
+            <span>{currentYear} Kone High School Renaissance Foundation. All rights reserved.</span>
           </div>
           <div className="flex flex-wrap gap-x-4 gap-y-2 md:order-first"> {/* Move legal links to center on desktop */}
             <Link href="/privacy" className="hover:text-white transition-colors duration-200">Privacy Policy</Link>
