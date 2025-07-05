@@ -1,4 +1,5 @@
 const express = require('express');
+const app = express();
 const { ApolloServer } = require('apollo-server-express');
 const mongoose = require('mongoose');
 const cors = require('cors');
@@ -100,14 +101,19 @@ const expiration = process.env.JWT_EXPIRATION || '2h';
 
   // MongoDB connection
   mongoose
-    .connect(process.env.MONGODB_URI, {})
-    .then(() => console.log('✅ MongoDB connected successfully!'))
-    .catch((err) => console.error('❌ MongoDB connection error:', err));
+  .connect(process.env.MONGODB_URI, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+    // dbName: 'yourDatabaseName' // Optional: force database name if not in URI
+  })
+  .then(() => console.log('✅ MongoDB connected successfully!'))
+  .catch((err) => console.error('❌ MongoDB connection error:', err));
 
-  const PORT = process.env.PORT || 4000;
-  app.listen(PORT, () =>
-    console.log(`🚀 Server ready at http://localhost:${PORT}`)
-  );
+// Start the server
+const PORT = process.env.PORT || 4000;
+app.listen(PORT, () => {
+  console.log(`🚀 Server ready at http://localhost:${PORT}`);
+});
 };
 
 startServer();
