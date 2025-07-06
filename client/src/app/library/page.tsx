@@ -177,7 +177,8 @@ export default function LibraryPage() {
     'Amharic': '🇪🇹', // Changed to Ethiopian flag emoji for local relevance
     'Math': '➕',
     'Finance': '💰',
-    'Astronomy': '🔭'
+    'Astronomy': '🔭',
+    'Philosophy': '🧠'
   };
 
   const itemVariants = {
@@ -233,7 +234,7 @@ export default function LibraryPage() {
             transition={{ type: 'tween', ease: 'easeOut', duration: 0.6 }}
             className="text-4xl md:text-6xl lg:text-7xl font-bold mb-4 leading-tight tracking-tight flex items-center justify-center gap-4"
           >
-            <span className="text-blue-500 text-5xl md:text-7xl">📚</span> Kone Digital Library
+            <span className="text-blue-500 text-5xl md:text-7xl">📚</span> ኮን ሃይስኩል ዲጂታል ላይብረሪ
           </motion.h1>
           <motion.p
             initial={{ y: 30, opacity: 0 }}
@@ -241,7 +242,7 @@ export default function LibraryPage() {
             transition={{ type: 'tween', ease: 'easeOut', duration: 0.6, delay: 0.1 }}
             className="text-lg md:text-xl lg:text-2xl font-light opacity-80 max-w-3xl mx-auto mb-10"
           >
-            Unlock knowledge and discovery. Explore our comprehensive collection of books by subject or search by title.
+            እውቀት ሃይል ነው፥ እውቀት ተስፋ እና ስንቅ ነው፥ እውቀት የዘመናዊ ስብእና መሰረት ነው!
           </motion.p>
           <motion.div
             initial={{ y: 30, opacity: 0 }}
@@ -252,7 +253,7 @@ export default function LibraryPage() {
               href="/education-resources"
               className="inline-block bg-blue-600 text-white font-semibold px-10 py-5 rounded-full shadow-lg hover:bg-blue-700 transition-colors duration-300 transform hover:scale-[1.01] text-lg whitespace-nowrap"
             >
-              Explore Learning Paths
+              ተጨማሪ የትምህርት ምንጮች
             </Link>
           </motion.div>
         </div>
@@ -471,7 +472,7 @@ export default function LibraryPage() {
               {/* Header section */}
               <div className="pb-4 mb-4 border-b border-gray-200">
                 <h3 className="text-2xl font-semibold text-gray-900 flex items-center">
-                  <span className="mr-3 text-blue-600 text-3xl">🔗</span>External Resources
+                  <span className="mr-3 text-blue-600 text-3xl">🔗</span>ተጨማሪ የቤተ-መጻሕፍት ሊንኮች
                 </h3>
               </div>
 

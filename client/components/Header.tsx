@@ -108,16 +108,16 @@ export default function Header({ className }: HeaderProps) {
           {/* Desktop Navigation Links */}
           <div className="hidden md:flex items-center space-x-6 lg:space-x-8"> {/* Increased spacing */}
             <Link href="/about" className="text-gray-700 hover:text-gray-900 transition-colors duration-300 font-medium text-lg">
-              About Us
+              ስለ እኛ
             </Link>
             <Link href="/impact" className="text-gray-700 hover:text-gray-900 transition-colors duration-300 font-medium text-lg">
-              Our Impact
+              አስተዋጽኦ
             </Link>
             <Link href="/library" className="text-gray-700 hover:text-gray-900 transition-colors duration-300 font-medium text-lg">
-              Library
+              ቤተ-መጻሕፍት
             </Link>
             <Link href="/contact" className="text-gray-700 hover:text-gray-900 transition-colors duration-300 font-medium text-lg">
-              Connect
+              ያግኙን
             </Link>
 
             {/* Conditional Links for Desktop - Clean text links */}
@@ -151,7 +151,7 @@ export default function Header({ className }: HeaderProps) {
               href="/donate"
               className="bg-gray-900 text-white font-semibold px-6 py-3 rounded-full transition-colors duration-300 hover:bg-gray-700 text-lg"
             >
-              Donate Now
+              ይርዱ
             </Link>
           </div>
 
@@ -207,27 +207,27 @@ export default function Header({ className }: HeaderProps) {
           {/* Mobile Links */}
           <motion.div variants={mobileLinkVariants}>
             <Link href="/" onClick={() => setIsMenuOpen(false)} className="block text-4xl font-bold text-white hover:text-gray-300 transition-colors duration-300 py-2">
-              Home
+              ዋና ማውጫ
             </Link>
           </motion.div>
           <motion.div variants={mobileLinkVariants}>
             <Link href="/about" onClick={() => setIsMenuOpen(false)} className="block text-4xl font-bold text-white hover:text-gray-300 transition-colors duration-300 py-2">
-              About Us
+              ስለ እኛ
             </Link>
           </motion.div>
           <motion.div variants={mobileLinkVariants}>
             <Link href="/impact" onClick={() => setIsMenuOpen(false)} className="block text-4xl font-bold text-white hover:text-gray-300 transition-colors duration-300 py-2">
-              Our Impact
+              አስተዋጽኦ
             </Link>
           </motion.div>
           <motion.div variants={mobileLinkVariants}>
             <Link href="/library" onClick={() => setIsMenuOpen(false)} className="block text-4xl font-bold text-white hover:text-gray-300 transition-colors duration-300 py-2">
-              Library
+              ቤተ-መጻሕፍት
             </Link>
           </motion.div>
           <motion.div variants={mobileLinkVariants}>
             <Link href="/contact" onClick={() => setIsMenuOpen(false)} className="block text-4xl font-bold text-white hover:text-gray-300 transition-colors duration-300 py-2">
-              Connect
+              ያግኙን
             </Link>
           </motion.div>
 
@@ -254,7 +254,7 @@ export default function Header({ className }: HeaderProps) {
             <>
               <motion.div variants={mobileLinkVariants}>
                 <Link href="/login" onClick={() => setIsMenuOpen(false)} className="block text-4xl font-bold text-white hover:text-gray-300 transition-colors duration-300 py-2">
-                  Login
+                  
                 </Link>
               </motion.div>
               {/* <motion.div variants={mobileLinkVariants}>
@@ -271,7 +271,7 @@ export default function Header({ className }: HeaderProps) {
               onClick={() => setIsMenuOpen(false)}
               className="inline-block bg-white text-gray-900 font-bold px-10 py-5 rounded-full transition-colors duration-300 hover:bg-gray-200 text-3xl"
             >
-              Donate Today
+              ዛሬውኑ ይርዱ
             </Link>
           </motion.div>
         </motion.nav>
