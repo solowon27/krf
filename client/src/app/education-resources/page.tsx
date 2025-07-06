@@ -1,135 +1,209 @@
-// app/education-resources/page.tsx
 'use client';
 
 import Header from '@components/Header';
 import Footer from '@components/Footer';
 import Link from 'next/link';
-import { motion, Variants } from 'framer-motion';
-import { FaExclamationTriangle } from 'react-icons/fa'; // Importing an icon for the scam alert section
+import { motion, AnimatePresence, Variants } from 'framer-motion';
+import { useState, useMemo } from 'react';
+import { FaExclamationTriangle, FaUniversity, FaBriefcase, FaBookOpen, FaUserGraduate, FaTools } from 'react-icons/fa';
 
-// Define online learning platforms (data remains unchanged as requested)
-const onlineLearningPlatforms = [
+// NEW: Enhanced data structure with categories
+const resources = [
+  // Online Learning
   {
     name: "Khan Academy",
     url: "https://www.khanacademy.org/",
-    description: "ነፃ እና ዓለም አቀፍ ደረጃ ትምህርት በቪዲዮ እንዲሁም በተለያዩ ፕላትፎርሞች በመጠቀም ሂሳብ፣ ፊዚክስ፣ ኬሚስትሪ፣ ሳይንስ፣ ታሪክ፣ ኢኮኖሚክስ እና ሌሎችንም ይማሩ።",
-    icon: "🎓"
-  },
-  {
-    name: "National Geographic Education",
-    url: "https://education.nationalgeographic.org/",
-    description: "ከሳይንስ፣ ጂኦግራፊ እና ማህበራዊ ጥናቶች ጋር የተያያዙ ትምህርቶችን፣ እና ሌሎችንም እዚህ ያግኙ።",
-    icon: "🌍"
+    description: "ነፃ እና ዓለም አቀፍ ደረጃ ትምህርት በቪዲዮ። ሂሳብ፣ ፊዚክስ፣ ኬሚስትሪ፣ እና ሌሎችንም ይማሩ።",
+    category: "Online Learning",
+    type: "Free Courses",
+    targetAudience: "All Students",
+    icon: <FaBookOpen />,
   },
   {
     name: "Coursera (Free Courses)",
     url: "https://www.coursera.org/courses?query=free",
-    description: "ከከፍተኛ ዩኒቨርሲቲዎች እና ድርጅቶች በሚሰጥ ሰፊ የነፃ ኮርሶችን በዚህ ሊንክ ስር ያግኙ.",
-    icon: "💡"
+    description: "ከከፍተኛ ዩኒቨርሲቲዎች እና ድርጅቶች በሚሰጥ ሰፊ የነፃ ኮርሶችን በዚህ ሊንክ ስር ያግኙ።",
+    category: "Online Learning",
+    type: "University Level",
+    targetAudience: "All Students",
+    icon: <FaBookOpen />,
   },
   {
     name: "edX (Free Courses)",
     url: "https://www.edx.org/free-online-courses",
-    description: "በዓለም ዙሪያ ካሉ እንደ ሃርቫርድ አይነት ትልልቅ የአካዳሚክ ተቋማት ነፃ ኮርሶችን ያግኙ ።",
-    icon: "🏫"
+    description: "በዓለም ዙሪያ ካሉ እንደ ሃርቫርድ አይነት ትልልቅ የአካዳሚክ ተቋማት ነፃ ኮርሶችን ያግኙ።",
+    category: "Online Learning",
+    type: "University Level",
+    targetAudience: "All Students",
+    icon: <FaBookOpen />,
   },
   {
     name: "Duolingo",
     url: "https://www.duolingo.com/",
-    description: "አዲስ ቋንቋ ይማሩ። የቋንቋ ችሎታዎን ለማዳበር እና ለማሻሻል በዚህ ሊንክ ውስጥ በአጭር ጊዜ የፈልጉትን ቋንቋ አቀላጥፈው ይናገሩ ።",
-    icon: "🗣️"
+    description: "አዲስ ቋንቋ ይማሩ። የቋንቋ ችሎታዎን ለማዳበር እና ለማሻሻል በዚህ ሊንክ ውስጥ የፈለጉትን ቋንቋ ይማሩ።",
+    category: "Online Learning",
+    type: "Language",
+    targetAudience: "All Students",
+    icon: <FaBookOpen />,
   },
   {
-    name: "Codecademy (Free Courses)",
-    url: "https://www.codecademy.com/catalog/free",
-    description: "የኮምፒውተር ኮዲንግ እንዲሁም ተመሳሳይ ኮርሶችን እዚህ ሊንክ በመግባት በነፃ ይማሩ",
-    icon: "💻"
-  }
-];
-
-// Define *only fully funded, legitimate, and free-application* scholarship resources for Ethiopian students
-const scholarshipResources = [
+    name: "Codecademy",
+    url: "https://www.codecademy.com/",
+    description: "የኮድ ቋንቋዎችን ለመማር እና ለመሻሻል የነፃ መማሪያ መድረክ።",
+    category: "Online Learning",
+    type: "Programming",
+    targetAudience: "All Students",
+    icon: <FaBookOpen />,
+  },
+  {
+    name: "National Geographic Education",
+    url: "https://www.nationalgeographic.org/education/",
+    description: "የተለያዩ በርካታ የትምህርት ምንጮችን ያገኙ። የጂኦግራፊ፣ የታሪክ፣ የስነ-ምግባር እና ሌሎች ጥናቶች።",
+    category: "Online Learning",
+    type: "Educational Resources",
+    targetAudience: "All Students",
+    icon: <FaBookOpen />,
+  },
+  // Scholarships
   {
     name: "Mastercard Foundation Scholars Program",
     url: "https://mastercardfdn.org/en/what-we-do/our-programs/mastercard-foundation-scholars-program/where-to-apply/",
-    icon: "🌟"
+    description: "Comprehensive scholarship and leadership development for African students.",
+    category: "Scholarships",
+    type: "Fully Funded",
+    targetAudience: "Undergraduate & Graduate",
+    icon: <FaUserGraduate />,
   },
   {
-    name: "Joint Japan/World Bank Graduate Scholarship Program (JJ/WBGSP)",
-    url: "https://www.worldbank.org/en/programs/scholarships",
-    icon: "🏦"
+    name: "Fulbright Foreign Student Program",
+    url: "https://et.usembassy.gov/educational-cultural-exchanges/",
+    description: "Prestigious program for graduate study and research in the United States.",
+    category: "Scholarships",
+    type: "Fully Funded",
+    targetAudience: "Postgraduate",
+    icon: <FaUserGraduate />,
+  },
+    {
+    name: "Erasmus Mundus Joint Masters",
+    url: "https://www.eacea.ec.europa.eu/scholarships/erasmus-mundus-catalogue_en",
+    description: "Study in multiple European countries with a fully-funded master's scholarship.",
+    category: "Scholarships",
+    type: "Fully Funded",
+    targetAudience: "Postgraduate",
+    icon: <FaUserGraduate />,
   },
   {
-    name: "Fulbright Foreign Student Program (Ethiopia)",
-    url: "https://et.usembassy.gov/educational-cultural-exchanges/", // Leads to U.S. Embassy in Ethiopia, where Fulbright details for Ethiopians are usually announced
-    icon: "🇺🇸"
-  },
-  {
-    name: "Japanese Government (MEXT) Scholarships",
-    url: "https://www.studyjapan.go.jp/en/smap_stopj-e/index.html", // Official general MEXT link
-    icon: "🇯🇵"
+     name: "Japanese Government (MEXT) Scholarships",
+      url: "https://www.studyjapan.go.jp/en/smap_stopj-e/index.html",
+      description: "Fully funded scholarships for international students to study in Japan.",
+      category: "Scholarships",
+      type: "Fully Funded",
+      targetAudience: "Undergraduate & Postgraduate",
+      icon: <FaUserGraduate />,
   },
   {
     name: "Turkish Government Scholarships (Türkiye Bursları)",
     url: "https://turkiyeburslari.gov.tr/en/for-applicants/application-criteria",
-    icon: "🇹🇷"
-  },
-  {
-    name: "Erasmus Mundus Joint Master Degrees (EMJMDs)",
-    url: "https://ec.europa.eu/programmes/erasmus-plus/opportunities/overview_en", // Link to Erasmus+ overview, EMJMDs are under "Study abroad" for students.
-    icon: "🇪🇺"
+    description: "Fully funded scholarships for international students to study in Turkey.",
+    category: "Scholarships",
+    type: "Fully Funded",
+    targetAudience: "Undergraduate & Postgraduate",
+    icon: <FaUserGraduate />,
   },
   {
     name: "Czech Government Scholarships",
     url: "https://www.mzv.gov.cz/addisababa/en/development_cooperation_and_humanitarian/scholarships/index.html", // Czech Embassy in Addis Ababa scholarship page
-    icon: "🇨🇿"
+    description: "Fully funded scholarships for Ethiopian students to study in the Czech Republic.",
+    category: "Scholarships",
+    type: "Fully Funded",
+    targetAudience: "Undergraduate & Postgraduate",
+    icon: <FaUserGraduate />, 
   },
   {
     name: "International Community School (ICS) Addis Ababa Scholarships",
     url: "https://www.icsaddis.org/learn/scholarship",
-    icon: "🏫"
+    description: "Scholarships for Ethiopian students to attend ICS, a leading international school in Addis Ababa.",
+    category: "Scholarships",
+    type: "Fully Funded",
+    targetAudience: "Undergraduate & Postgraduate",
+    icon: <FaUserGraduate />, 
   },
   {
     name: "Ethiopian Education Fund (EEF)",
     url: "https://www.ethiopianeducationfund.org/",
-    icon: "📚"
-  }
+    description: "Provides scholarships and educational support to Ethiopian students in need.",
+    category: "Scholarships",
+    type: "Fully Funded",
+    targetAudience: "Undergraduate & Postgraduate",
+    icon: <FaUserGraduate />, 
+  },
+ 
+  // NEW: Study Tools
+  {
+    name: "Grammarly",
+    url: "https://www.grammarly.com/",
+    description: "Improve your writing with this AI-powered grammar checker and style editor.",
+    category: "Study Tools",
+    type: "Writing Aid",
+    targetAudience: "All Students",
+    icon: <FaTools />,
+  },
+  {
+    name: "Zotero",
+    url: "https://www.zotero.org/",
+    description: "A free, easy-to-use tool to help you collect, organize, cite, and share research.",
+    category: "Study Tools",
+    type: "Research Tool",
+    targetAudience: "Researchers & University Students",
+    icon: <FaTools />,
+  },
+  // NEW: Career Guidance
+  {
+    name: "LinkedIn",
+    url: "https://www.linkedin.com/",
+    description: "Build your professional network, find jobs and internships, and access career advice.",
+    category: "Career Guidance",
+    type: "Networking",
+    targetAudience: "All Students & Professionals",
+    icon: <FaBriefcase />,
+  },
+];
+
+const categories = [
+    { name: "All Resources", icon: "🌟" },
+    { name: "Online Learning", icon: <FaBookOpen /> },
+    { name: "Scholarships", icon: <FaUserGraduate /> },
+    { name: "Study Tools", icon: <FaTools /> },
+    { name: "Career Guidance", icon: <FaBriefcase /> }
 ];
 
 export default function EducationResourcesPage() {
-  // Framer Motion variants for subtle entry animations
+  const [activeCategory, setActiveCategory] = useState("All Resources");
+
+  const filteredResources = useMemo(() => {
+    if (activeCategory === "All Resources") {
+      return resources;
+    }
+    return resources.filter(r => r.category === activeCategory);
+  }, [activeCategory]);
+  
   const containerVariants: Variants = {
     hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.08, // Subtle stagger for fluid entry
-      },
-    },
+    visible: { opacity: 1, transition: { staggerChildren: 0.05 } },
   };
 
   const itemVariants: Variants = {
-    hidden: { y: 30, opacity: 0 }, // Slightly larger Y displacement for more impact
-    visible: {
-      y: 0,
-      opacity: 1,
-      transition: {
-        type: 'tween', // Consistent tween transition
-        ease: 'easeOut',
-        duration: 0.5, // Slightly longer duration for smoothness
-      },
-    },
+    hidden: { y: 20, opacity: 0 },
+    visible: { y: 0, opacity: 1, transition: { type: 'spring', stiffness: 100 } },
   };
 
+  const featuredResource = resources.find(r => r.name === "Khan Academy");
+
   return (
-    // Ensure main can scroll, remove potential horizontal overflow issues
-    <main className="w-full min-h-screen bg-gray-50 text-gray-900 font-sans antialiased overflow-x-hidden">
-      {/* Explicitly add z-index to Header. This is crucial if Header is fixed/sticky and could overlap content. */}
+    <main className="w-full min-h-screen bg-gray-100 text-gray-900 font-sans antialiased">
       <Header className="relative z-20" /> 
 
-      {/* Hero Section - Bold, Clean, Dark Background */}
-      {/* Reduced vertical padding for hero on small screens to allow more content above fold */}
-      <section className="bg-gray-900 text-white py-24 md:py-36 lg:py-48 px-6 text-center pt-32 sm:pt-40 relative overflow-visible">
+       <section className="bg-gray-900 text-white py-24 md:py-36 lg:py-48 px-6 text-center pt-32 sm:pt-40 relative overflow-visible">
         {/* Subtle background pattern */}
         <div
           className="absolute inset-0 opacity-[0.03]"
@@ -162,141 +236,111 @@ export default function EducationResourcesPage() {
         </motion.div>
       </section>
 
-      {/* Online Learning Platforms Section - Clean & Inviting */}
-      {/* Adjusted vertical padding for mobile */}
-      <section className="py-16 md:py-20 px-4 sm:px-6 lg:px-8 bg-white"> 
-        <motion.div
-          className="max-w-7xl mx-auto text-center"
-          variants={containerVariants}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, amount: 0.1 }}
-        >
-          {/* Slightly smaller font for h2 on mobile, adjusted margin-bottom */}
-          <motion.h2 variants={itemVariants} className="text-3xl md:text-5xl font-bold mb-8 bg-slate-900 text-white leading-tight"> 
-            ነፃ የኦንላይን ትምህርት መድረኮች
-          </motion.h2>
-          {/* Adjusted vertical padding for p, smaller text */}
-          <motion.p variants={itemVariants} className="text-base md:text-xl font-light text-gray-700 max-w-3xl mx-auto mb-10 md:mb-16"> 
-            ነፃ እና ከፍተኛ ጥራት ያላቸውን ኮርሶች በሚሰጡ አለም ላይ ስመ-ጥር የሆኑ የትምህርት ዌብሳይቶችን በመጠቀም አሁን ላለው አለም ብቁና ተወዳዳሪ ሆነው ይገኙ።
-          </motion.p>
-          {/* Slightly smaller gap for mobile cards */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-10"> 
-            {onlineLearningPlatforms.map((platform, index) => (
-              <motion.a
-                key={index}
-                variants={itemVariants}
-                href={platform.url}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="group flex flex-col items-center p-6 md:p-8 bg-white rounded-xl shadow-lg border border-gray-100 
-                               hover:shadow-xl transition-all duration-300 ease-in-out relative overflow-hidden cursor-pointer"
-              >
-                {/* Subtle gradient overlay on hover (red tint) */}
-                <span className="absolute inset-0 bg-gray-900 opacity-0 group-hover:opacity-40 transition-opacity duration-300 rounded-xl"></span>
-
-                {/* Smaller icon size for mobile */}
-                <div className="text-4xl md:text-6xl mb-4 relative z-10 text-gray-600 group-hover:text-blue-600 transition-colors duration-300"> 
-                  {platform.icon}
-                </div>
-                {/* Smaller font for h3 on mobile */}
-                <h3 className="text-xl md:text-2xl font-semibold text-gray-900 mb-3 relative z-10 group-hover:text-blue-600 transition-colors duration-300"> 
-                  {platform.name}
-                </h3>
-                {/* Smaller font for p on mobile */}
-                <p className="text-sm md:text-base mb-5 relative z-10 flex-grow text-center leading-relaxed"> 
-                  {platform.description}
-                </p>
-                {/* Smaller text for button link */}
-                <span className="text-blue-600 font-semibold flex items-center relative z-10 group-hover:text-blue-700 transition-colors duration-300 text-sm md:text-base"> 
-                  መማር ይጀምሩ
-                  <svg className="ml-2 w-4 h-4 md:w-5 md:h-5 transform translate-x-0 group-hover:translate-x-1 transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
-                  </svg>
-                </span>
-              </motion.a>
-            ))}
-          </div>
-        </motion.div>
-      </section>
-      
-
-      {/* Scholarship Opportunities Section - Distinct but unified background */}
-      {/* Adjusted vertical padding for mobile */}
-      <section className="py-16 md:py-20 px-4 sm:px-6 lg:px-8 bg-gray-50"> 
-        <motion.div
-          className="max-w-7xl mx-auto text-center"
-          variants={containerVariants}
-          initial="hidden" // Ensure initial is hidden for animation to play
-          whileInView="visible"
-          viewport={{ once: true, amount: 0.05}}
-        >
-          {/* Slightly smaller font for h2 on mobile, adjusted margin-bottom */}
-          <motion.h2 variants={itemVariants} className="text-3xl md:text-5xl font-bold border rounded-lg p-2 mb-8 bg-slate-900 text-white leading-tight"> 
-            የስኮላርሽፕ እድሎች
-          </motion.h2>
-          {/* Adjusted vertical padding for p, smaller text */}
-          <motion.p variants={itemVariants} className="text-base md:text-xl font-light text-gray-700 max-w-3xl mx-auto mb-10 md:mb-16"> 
-            የከፍተኛ ትምህርት ጉዞዎን በአገር ውስጥ እና በዓለም አቀፍ ደረጃ የገንዘብ ድጋፍ በሚደረግላቸው የስኮላርሽፕ እድሎች ይጠቀሙ።
-            <span className="text-red-600 font-medium ml-2 block sm:inline-block text-sm md:text-base">ማሳሰቢያ፥ ስኮላርሽፕ በሚሞሉበት ጊዜ በመረጡት ሊንክ page ውስጥ ያሉትን መረጃዎች በደንብ ያንብቡ! </span>
-          </motion.p>
-          {/* Slightly smaller gap for mobile cards */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-10"> 
-            {scholarshipResources.map((resource, index) => (
-              <motion.a
-                key={index}
-                variants={itemVariants}
-                href={resource.url}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="group flex flex-col items-center p-6 md:p-8 bg-white rounded-xl shadow-lg border border-gray-100 
-                               hover:shadow-xl transition-all duration-300 ease-in-out relative overflow-hidden cursor-pointer"
-              >
-                {/* Subtle gradient overlay on hover (blue tint for consistency) */}
-                <span className="absolute inset-0 bg-gray-900 opacity-0 group-hover:opacity-40 transition-opacity duration-300 rounded-xl"></span>
-
-                {/* Smaller icon size for mobile */}
-                <div className="text-4xl md:text-6xl mb-4 relative z-10 text-gray-600 group-hover:text-blue-600 transition-colors duration-300"> 
-                  {resource.icon}
-                </div>
-                {/* Smaller font for h3 on mobile */}
-                <h3 className="text-xl md:text-2xl font-semibold text-gray-900 mb-3 relative z-10 group-hover:text-blue-600 transition-colors duration-300"> 
-                  {resource.name}
-                </h3>
-                {/* Smaller text for button link */}
-                <span className="text-blue-600 font-semibold flex items-center relative z-10 group-hover:text-blue-700 transition-colors duration-300 text-sm md:text-base"> 
-                  Explore Now
-                  <svg className="ml-2 w-4 h-4 md:w-5 md:h-5 transform translate-x-0 group-hover:translate-x-1 transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
-                  </svg>
-                </span>
-              </motion.a>
-            ))}
-          </div>
-          {/* --- SCAM ALERT SECTION --- */}
-      {/* Design: Fits the clean theme. Uses a soft, cautionary color palette. */}
-      <section className="py-16 sm:py-20">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6">
-            <div className="bg-red-100/70 border-l-4 border-red-500 text-red-800 rounded-r-lg p-6 md:p-8">
-                <div className="flex items-start">
-                    <FaExclamationTriangle className="text-2xl text-red-600 mr-4 mt-1"/>
-                    <div>
-                        <h3 className="text-2xl font-bold text-red-900 mb-3">Avoid Scholarship Scams!</h3>
-                        <p className="mb-4">
-                            Legitimate scholarships are always free. Never pay an application or processing fee. Be cautious and remember these key points:
-                        </p>
-                        <ul className="list-disc list-inside space-y-2 text-sm md:text-base">
-                            <li><strong className="font-semibold">Verify Official Sources:</strong> Always apply directly through the provider's official website.</li>
-                            <li><strong className="font-semibold">Protect Personal Information:</strong> Be wary of sharing sensitive data with unverified sources.</li>
-                            <li><strong className="font-semibold">Watch for Red Flags:</strong> Unsolicited offers or promises of guaranteed acceptance are major warning signs.</li>
-                        </ul>
-                    </div>
-                </div>
+      <div className="max-w-8xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+        <div className="grid grid-cols-1 lg:grid-cols-4 gap-12 items-start">
+          
+          {/* --- Sticky Sidebar --- */}
+          <aside className="lg:col-span-1 lg:sticky lg:top-24">
+            <h2 className="text-xl font-bold text-gray-800 mb-6">Categories</h2>
+            <div className="space-y-2">
+              {categories.map(category => (
+                <button
+                  key={category.name}
+                  onClick={() => setActiveCategory(category.name)}
+                  className={`w-full flex items-center text-left p-3 rounded-lg transition-all duration-200 text-base font-medium ${
+                    activeCategory === category.name 
+                      ? 'bg-blue-600 text-white shadow-lg' 
+                      : 'text-gray-600 hover:bg-gray-200/70 hover:text-gray-900'
+                  }`}
+                >
+                  <span className="mr-3 text-lg">{category.icon}</span>
+                  {category.name}
+                </button>
+              ))}
             </div>
+          </aside>
+
+          {/* --- Main Content --- */}
+          <main className="lg:col-span-3">
+            
+            {/* --- Featured Resource --- */}
+            {featuredResource && (
+                <motion.div
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.5 }}
+                    className="bg-gradient-to-r from-slate-800 to-gray-900 rounded-2xl shadow-2xl p-8 mb-12 border border-blue-500/20"
+                >
+                    <div className="flex flex-col md:flex-row items-start gap-8">
+                        <div className="text-blue-400 text-5xl flex-shrink-0">{featuredResource.icon}</div>
+                        <div className="text-white">
+                            <span className="text-sm font-bold uppercase text-blue-400 tracking-wider">Featured Resource</span>
+                            <h3 className="text-3xl font-bold mt-1 mb-3">{featuredResource.name}</h3>
+                            <p className="text-gray-300/80 mb-6 max-w-2xl">{featuredResource.description}</p>
+                            <a href={featuredResource.url} target="_blank" rel="noopener noreferrer" className="inline-flex items-center bg-blue-600 text-white font-semibold px-6 py-3 rounded-full shadow-lg hover:bg-blue-500 transition-colors duration-300 transform hover:scale-105">
+                                Visit Khan Academy
+                                <svg className="ml-2 w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path></svg>
+                            </a>
+                        </div>
+                    </div>
+                </motion.div>
+            )}
+
+            {/* --- Resource Grid --- */}
+            <motion.div 
+              key={activeCategory} // Re-triggers animation when category changes
+              variants={containerVariants} 
+              initial="hidden" 
+              animate="visible" 
+              className="grid grid-cols-1 md:grid-cols-2 gap-6"
+            >
+              <AnimatePresence>
+                {filteredResources.map((resource) => (
+                  <motion.div key={resource.name} variants={itemVariants} layout>
+                    <a
+                      href={resource.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="group flex flex-col h-full bg-white rounded-xl shadow-lg border border-gray-200/80 hover:border-blue-500 hover:shadow-2xl transition-all duration-300 ease-in-out p-6"
+                    >
+                      <div className="flex items-center justify-between mb-4">
+                        <div className="text-3xl text-blue-600">{resource.icon}</div>
+                        <span className="text-xs font-semibold bg-blue-100 text-blue-800 px-3 py-1 rounded-full">{resource.type}</span>
+                      </div>
+                      <h3 className="text-xl font-bold text-gray-800 mb-2 flex-grow">{resource.name}</h3>
+                      <p className="text-sm text-gray-600 mb-5">{resource.description}</p>
+                      <div className="flex items-center justify-between text-xs text-gray-500 font-medium">
+                        <span>{resource.targetAudience}</span>
+                        <span className="flex items-center text-blue-600 group-hover:text-blue-500">
+                          Explore
+                          <svg className="ml-1 w-4 h-4 transform group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path></svg>
+                        </span>
+                      </div>
+                    </a>
+                  </motion.div>
+                ))}
+              </AnimatePresence>
+            </motion.div>
+          </main>
         </div>
-      </section>
-        </motion.div>
-      </section>
+        
+        {/* --- Scam Alert Section --- */}
+        <section className="mt-24">
+          <div className="max-w-4xl mx-auto">
+            <div className="bg-red-100/60 border-l-4 border-red-500 text-red-800 rounded-r-lg p-6 md:p-8 shadow-sm">
+              <div className="flex items-start">
+                <FaExclamationTriangle className="text-2xl text-red-600 mr-4 mt-1 flex-shrink-0"/>
+                <div>
+                  <h3 className="text-xl font-bold text-red-900 mb-2">Avoid Scholarship Scams!</h3>
+                  <p className="mb-3 text-sm">
+                    Legitimate scholarships are always free. Never pay an application or processing fee. Be cautious and verify all information.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+      </div>
 
       <Footer />
     </main>
