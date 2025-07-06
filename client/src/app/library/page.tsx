@@ -26,6 +26,14 @@ const externalLinks = [
   { name: "PDF Drive", url: "https://www.pdfdrive.com/" },
   { name: "Internet Archive", url: "https://archive.org/details/texts" },
   { name: "Google Books", url: "https://books.google.com/" },
+  { name: "Standard Ebooks", url: "https://standardebooks.org/" },
+  { name: "Wikibooks", url: "https://en.wikibooks.org/wiki/Main_Page" },
+  { name: "Bookboon", url: "https://bookboon.com/en" },
+  { name: "Online Books Page (UPenn)", url: "https://onlinebooks.library.upenn.edu/" },
+  { name: "Scribd (Free section)", url: "https://www.scribd.com/browse-free-books" },
+  { name: "The National Academies Press", url: "https://www.nap.edu/topic/free-pdfs" },
+  { name: "OAPEN Library", url: "https://www.oapen.org/" },
+  { name: "HathiTrust Digital Library", url: "https://www.hathitrust.org/" },
 ];
 
 const BOOKS_PER_PAGE = 10;
@@ -70,7 +78,7 @@ export default function LibraryPage() {
   }, [allBooks]);
 
   const filteredAndSortedBooks = useMemo(() => {
-    let filtered = allBooks.filter(book => {
+      const filtered = allBooks.filter(book => {
       const categoryMatch = selectedCategory === 'All' || book.category === selectedCategory;
       const searchMatch = !searchTerm.trim() || book.title.toLowerCase().includes(searchTerm.toLowerCase());
       return categoryMatch && searchMatch;
