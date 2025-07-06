@@ -117,7 +117,7 @@ export default function Header({ className }: HeaderProps) {
               ቤተ-መጻሕፍት
             </Link>
             <Link href="/contact" className="text-gray-700 hover:text-gray-900 transition-colors duration-300 font-medium text-lg">
-              ያግኙን
+               መልእክት
             </Link>
 
             {/* Conditional Links for Desktop - Clean text links */}
@@ -227,7 +227,7 @@ export default function Header({ className }: HeaderProps) {
           </motion.div>
           <motion.div variants={mobileLinkVariants}>
             <Link href="/contact" onClick={() => setIsMenuOpen(false)} className="block text-4xl font-bold text-white hover:text-gray-300 transition-colors duration-300 py-2">
-              ያግኙን
+              መልእክት
             </Link>
           </motion.div>
 

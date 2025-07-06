@@ -114,8 +114,8 @@ export default function AboutUs() {
                   style={{ objectFit: 'cover', objectPosition: 'center' }}
                 />
               </div>
-              <h3 className="text-xl sm:text-2xl font-semibold text-gray-900 mb-1 sm:mb-2">Abel Bisetegn</h3>
-              <p className="text-sm sm:text-md text-gray-600 italic mb-2 sm:mb-3">Co-Founder, Executive Director</p>
+              <h3 className="text-xl sm:text-2xl font-semibold text-gray-900 mb-1 sm:mb-2">አቤል ቢሰጠኝ</h3>
+              <p className="text-sm sm:text-md text-gray-600 italic mb-2 sm:mb-3">መስራች እና የትምህርት ቤቱ ተጠሪ</p>
               <p className="text-sm sm:text-base text-gray-700 text-center leading-relaxed">"Every child deserves the opportunity to learn and thrive. We are building that future, brick by brick, dream by dream."</p>
             </motion.div>
 
@@ -129,8 +129,8 @@ export default function AboutUs() {
                   style={{ objectFit: 'cover', objectPosition: 'center' }}
                 />
               </div>
-              <h3 className="text-xl sm:text-2xl font-semibold text-gray-900 mb-1 sm:mb-2">Commander Wondwossen</h3>
-              <p className="text-sm sm:text-md text-gray-600 italic mb-2 sm:mb-3">Co-Founder, Technology Lead</p>
+              <h3 className="text-xl sm:text-2xl font-semibold text-gray-900 mb-1 sm:mb-2">ኮማንደር ወንድወሰን</h3>
+              <p className="text-sm sm:text-md text-gray-600 italic mb-2 sm:mb-3">መስራች እና ዳታ አናሊስት</p>
               <p className="text-sm sm:text-base text-gray-700 text-center leading-relaxed">"Leveraging technology, we can bridge educational gaps and connect passionate learners with boundless knowledge."</p>
             </motion.div>
 
@@ -145,9 +145,9 @@ export default function AboutUs() {
                   priority
                 />
               </div>
-              <h3 className="text-xl sm:text-2xl font-semibold text-gray-900 mb-1 sm:mb-2">Solomon Yimer</h3>
-              <p className="text-sm sm:text-md text-gray-600 italic mb-2 sm:mb-3">Co-Founder, Foreign Relations</p>
-              <p className="text-sm sm:text-base text-gray-700 text-center leading-relaxed">"Our vision extends beyond borders. Together, we can create a global community dedicated to empowering Kone's future."</p>
+              <h3 className="text-xl sm:text-2xl font-semibold text-gray-900 mb-1 sm:mb-2">ሰሎሞን ይመር</h3>
+              <p className="text-sm sm:text-md text-gray-600 italic mb-2 sm:mb-3">መስራች እና የውጭ ግንኙነት</p>
+              <p className="text-sm sm:text-base text-gray-700 text-center leading-relaxed">"በዚህ ፕሮጀክት ውስጤ ትልቅ እምነት አለው"</p>
             </motion.div>
           </div>
         </motion.div>

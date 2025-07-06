@@ -36,9 +36,9 @@ export default function Home() {
 
   const impactMetrics = {
     studentsImpacted: 1200,
-    librariesEstablished: 3,
-    educationalPrograms: 7,
-    communitiesReached: 5,
+    librariesEstablished: 1,
+    educationalPrograms: 1,
+    communitiesReached: 3,
   };
 
   // Framer Motion Variants - Simplified for direct, elegant entry
@@ -110,7 +110,7 @@ export default function Home() {
             variants={itemVariants}
             className="text-5xl sm:text-6xl md:text-8xl lg:text-9xl font-bold leading-tight mb-6 tracking-tight font-sans" // Very large, bold sans-serif
           >
-            Empowering Minds, <br className="hidden sm:inline" />Building Futures.
+            በአስተሳሰብ ለውጥ፣ <br className="hidden sm:inline" />ትልቅ ልዩነት እንፈጥራለን።
           </motion.h1>
           <motion.p
             variants={itemVariants}
@@ -127,22 +127,19 @@ export default function Home() {
               href="/donate"
               className="w-full sm:w-auto inline-flex items-center justify-center bg-white text-gray-900 font-semibold px-8 py-4 rounded-full transition-colors duration-300 hover:bg-gray-200 text-lg sm:text-xl"
             >
-              ድጋፍ አድርግ/ጊ
-              <svg className="ml-3 w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-                <path fillRule="evenodd" d="M18 10c0 3.866-3.582 7-8 7s-8-3.134-8-7 3.582-7 8-7 8 3.134 8 7zm-8 4a4 4 0 100-8 4 4 0 000 8zM9.293 8.293a1 1 0 011.414 0l2 2a1 1 0 01-1.414 1.414L10 10.414l-.293.293a1 1 0 01-1.414-1.414l.293-.293z" clipRule="evenodd" />
-              </svg>
+              ድጋፍ ያድርጉ
             </Link>
             <Link
               href="/library"
               className="w-full sm:w-auto inline-block border-2 border-white text-white font-semibold px-8 py-4 rounded-full transition-colors duration-300 hover:bg-white hover:text-gray-900 text-lg sm:text-xl"
             >
-              Digital Library / ዲጂታል ቤተ መጻሕፍት
+             ዲጂታል ቤተ መጻሕፍት
             </Link>
             <Link
               href="/education-resources"
               className="w-full sm:w-auto inline-block border-2 border-white text-white font-semibold px-8 py-4 rounded-full transition-colors duration-300 hover:bg-white hover:text-gray-900 text-lg sm:text-xl"
             >
-              Free Educational Resources / ነፃ የትምህርት እድሎች
+              ነፃ የትምህርት እድሎች
             </Link>
           </motion.div>
         </motion.div>
@@ -158,10 +155,10 @@ export default function Home() {
           viewport={{ once: true, amount: 0.3 }}
         >
           <motion.h2 variants={itemVariants} className="text-4xl md:text-5xl font-bold mb-8 text-gray-900 font-sans leading-tight">
-            Who We Are: <br className="hidden sm:inline" />Architects of Change
+            ስለ ፋውንዴሽኑ <br className="hidden sm:inline" />በአጭሩ
           </motion.h2>
           <motion.p variants={itemVariants} className="text-lg leading-relaxed text-gray-700 max-w-3xl mx-auto md:text-xl mb-12">
-            ፋውንዴሽናችን ከድርጅት በላይ ነው፤ ትምህርት ለወደፊት ትውልድ ጠንካራ መሰረት ነው ብለን በማመን የተጀመረ የ ዋድላ ልጆች የጋራ ሃብት ነው። የኛ ተልእኮ በኮን አጠቃላይ ሁለተኛ ደረጃ ትምህርት ቤት በትምህርት መሠረተ ልማት፣ ሁሉን አቀፍ ግብአቶች ላይ ኢንቨስት በማድረግ እና ተማሪዎችንና አስተማሪዎችን በማብቃት ትራንስፎርሜሽን ማስፈን ነው።
+            የኮን ሃይስኩል ፋውንዴሽን በአካባቢው ተወላጆች የተመሰረተ የበጎ አድራጎት ድርጅት ነው። ፋውንዴሽናችን ከድርጅትም በላይ ነው፤ ትምህርት ለወደፊት ትውልድ ጠንካራ መሰረት ነው ብሎ የሚያምንና ከዚህም ውጭ ለህብረተሰቡ ሌላ አማራጭ እንደሌለ በመረዳት ለውጥ ለመፍጠር የተነሳ የኮን ልጆች የጋራ ሃብት ነው። የኛ ተልእኮ በኮን አጠቃላይ ሁለተኛ ደረጃ ትምህርት ቤት በትምህርት መሠረተ ልማት፣ ሁሉን አቀፍ ግብአቶች ላይ ኢንቨስት በማድረግ እና ተማሪዎችንና አስተማሪዎችን በማብቃት ትራንስፎርሜሽን ማሳየት ነው።
           </motion.p>
           <motion.div variants={itemVariants}>
             <Link
@@ -306,7 +303,7 @@ export default function Home() {
             >
               <FaLightbulb className="text-6xl text-gray-600 mb-4" />
               <AnimatedNumber value={impactMetrics.librariesEstablished} />
-              <p className="text-gray-700 text-lg font-medium mt-4">ቤተ መጻሕፍት ፥ የመጽሐፍት እና ትምህርታዊ ቁሳቁሶች አግኝተዋል </p>
+              <p className="text-gray-700 text-lg font-medium mt-4">ቤተ መጻሕፍት ፥ 134 የመጽሐፍት እና ትምህርታዊ መርጃ ማቴርያል አግኝተዋል </p>
             </motion.div>
             <motion.div
               className="flex flex-col items-center"
@@ -328,7 +325,7 @@ export default function Home() {
             >
               <FaUsers className="text-6xl text-gray-600 mb-4" />
               <AnimatedNumber value={impactMetrics.communitiesReached} />
-              <p className="text-gray-700 text-lg font-medium mt-4">ልዩ እርዳታ የሚሹ ልጆች ተጠቃሚ ሆነዋል</p>
+              <p className="text-gray-700 text-lg font-medium mt-4">ልዩ እርዳታ የሚሹ ልጆች ተለይተው ተይዘዋል</p>
             </motion.div>
           </div>
         </motion.div>

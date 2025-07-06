@@ -1,11 +1,10 @@
-// app/library/page.tsx
 'use client';
 
 import Header from '@components/Header';
 import Footer from '@components/Footer';
 import { useEffect, useState, useMemo } from 'react';
 import Link from 'next/link';
-import { motion, AnimatePresence, Variants } from 'framer-motion'; // Added AnimatePresence for exit animations
+import { motion, AnimatePresence, Variants } from 'framer-motion';
 
 type Book = {
   id: string;
@@ -15,81 +14,27 @@ type Book = {
 };
 
 const externalLinks = [
-  {
-    name: "Open Library",
-    url: "https://openlibrary.org/",
-  },
-  {
-    name: "CK12 Student",
-    url: "https://www.ck12.org/student/",
-  },
-  {
-    name: "OpenStax",
-    url: "https://www.openstax.org/",
-  },
-  {
-    name: "LibriVox",
-    url: "https://librivox.org/",
-  },
-  {
-    name: "ManyBooks",
-    url: "https://manybooks.net/",
-  },
-  {
-    name: "አማርኛ ልብ-ወለድ (Goodreads)",
-    url: "https://www.goodreads.com/list/show/89548.Best_Amharic_Books",
-  },
-  {
-    name: "Project Gutenberg",
-    url: "https://www.gutenberg.org/",
-  },
-  {
-    name: "PDF Drive",
-    url: "https://www.pdfdrive.com/",
-  },
-  {
-    name: "Internet Archive",
-    url: "https://archive.org/details/texts",
-  },
-  {
-    name: "Google Books",
-    url: "https://books.google.com/",
-  },
-  {
-    name: "Standard Ebooks",
-    url: "https://standardebooks.org/",
-  },
-  {
-    name: "Wikibooks",
-    url: "https://en.wikibooks.org/wiki/Main_Page",
-  },
-  {
-    name: "Bookboon",
-    url: "https://bookboon.com/en",
-  },
-  {
-    name: "Online Books Page (UPenn)",
-    url: "https://onlinebooks.library.upenn.edu/",
-  },
-  {
-    name: "Scribd (Free section)",
-    url: "https://www.scribd.com/browse-free-books",
-  },
-  {
-    name: "The National Academies Press",
-    url: "https://www.nap.edu/topic/free-pdfs",
-  },
-  {
-    name: "OAPEN Library",
-    url: "https://www.oapen.org/",
-  },
-  {
-    name: "HathiTrust Digital Library",
-    url: "https://www.hathitrust.org/",
-  },
+  { name: "Open Library", url: "https://openlibrary.org/" },
+  { name: "CK12 Student", url: "https://www.ck12.org/student/" },
+  { name: "OpenStax", url: "https://www.openstax.org/" },
+  { name: "LibriVox", url: "https://librivox.org/" },
+  { name: "ManyBooks", url: "https://manybooks.net/" },
+  { name: "አማርኛ ልብ-ወለድ (Goodreads)", url: "https://www.goodreads.com/list/show/89548.Best_Amharic_Books" },
+  { name: "Project Gutenberg", url: "https://www.gutenberg.org/" },
+  { name: "PDF Drive", url: "https://www.pdfdrive.com/" },
+  { name: "Internet Archive", url: "https://archive.org/details/texts" },
+  { name: "Google Books", url: "https://books.google.com/" },
+  { name: "Standard Ebooks", url: "https://standardebooks.org/" },
+  { name: "Wikibooks", url: "https://en.wikibooks.org/wiki/Main_Page" },
+  { name: "Bookboon", url: "https://bookboon.com/en" },
+  { name: "Online Books Page (UPenn)", url: "https://onlinebooks.library.upenn.edu/" },
+  { name: "Scribd (Free section)", url: "https://www.scribd.com/browse-free-books" },
+  { name: "The National Academies Press", url: "https://www.nap.edu/topic/free-pdfs" },
+  { name: "OAPEN Library", url: "https://www.oapen.org/" },
+  { name: "HathiTrust Digital Library", url: "https://www.hathitrust.org/" },
 ];
 
-const BOOKS_PER_PAGE = 16;
+const BOOKS_PER_PAGE = 12;
 
 export default function LibraryPage() {
   const [allBooks, setAllBooks] = useState<Book[]>([]);
@@ -125,31 +70,23 @@ export default function LibraryPage() {
   }, [selectedCategory, searchTerm]);
 
   const categories = useMemo(() => {
-    const uniqueCategories = Array.from(new Set(allBooks.map(b => b.category)));
-    return ['All', ...uniqueCategories.sort()];
+    const uniqueCategories = new Set(allBooks.map(b => b.category));
+    return ['All', ...Array.from(uniqueCategories).sort()];
   }, [allBooks]);
 
   const filteredBooks = useMemo(() => {
-    let result = [...allBooks];
-
-    if (selectedCategory !== 'All') {
-      result = result.filter(book => book.category === selectedCategory);
-    }
-
-    if (searchTerm.trim()) {
-      const lowerCaseSearchTerm = searchTerm.toLowerCase();
-      result = result.filter(book =>
-        book.title.toLowerCase().includes(lowerCaseSearchTerm) ||
-        book.category.toLowerCase().includes(lowerCaseSearchTerm)
-      );
-    }
-    return result;
+    return allBooks.filter(book => {
+      const categoryMatch = selectedCategory === 'All' || book.category === selectedCategory;
+      const searchMatch = !searchTerm.trim() ||
+        book.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        book.category.toLowerCase().includes(searchTerm.toLowerCase());
+      return categoryMatch && searchMatch;
+    });
   }, [searchTerm, selectedCategory, allBooks]);
 
   const displayedBooks = useMemo(() => {
     const startIndex = currentPage * BOOKS_PER_PAGE;
-    const endIndex = startIndex + BOOKS_PER_PAGE;
-    return filteredBooks.slice(startIndex, endIndex);
+    return filteredBooks.slice(startIndex, startIndex + BOOKS_PER_PAGE);
   }, [filteredBooks, currentPage]);
 
   const totalPages = Math.ceil(filteredBooks.length / BOOKS_PER_PAGE);
@@ -157,74 +94,42 @@ export default function LibraryPage() {
 
   const handlePageChange = (page: number) => {
     setCurrentPage(page);
-    window.scrollTo({ top: 0, behavior: 'smooth' }); // Smooth scroll to top
+    window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
   const categoryEmojis: { [key: string]: string } = {
-    'All': '📚',
-    'Mathematics': '📐',
-    'Physics': '⚛️',
-    'Chemistry': '🧪',
-    'Biology': '🧬',
-    'History': '📜',
-    'Geography': '🌍',
-    'English': '✍️',
-    'Computer Science': '💻',
-    'Art': '🎨',
-    'Economics': '📈',
-    'Business Studies': '💼',
-    'Civics': '🏛️',
-    'Amharic': '🇪🇹', // Changed to Ethiopian flag emoji for local relevance
-    'Math': '➕',
-    'Finance': '💰',
-    'Astronomy': '🔭',
-    'Philosophy': '🧠'
+    'All': '📚', 'Mathematics': '📐', 'Physics': '⚛️', 'Chemistry': '🧪',
+    'Biology': '🧬', 'History': '📜', 'Geography': '🌍', 'English': '✍️',
+    'Computer Science': '💻', 'Art': '🎨', 'Economics': '📈', 'Business Studies': '💼',
+    'Civics': '🏛️', 'Amharic': '🇪🇹', 'Math': '➕', 'Finance': '💰',
+    'Astronomy': '🔭', 'Philosophy': '🧠'
   };
 
   const itemVariants = {
-  hidden: { y: 20, opacity: 0 },
-  visible: {
-    y: 0,
-    opacity: 1,
-    transition: {
-      type: 'tween',
-      ease: 'easeOut',
-      duration: 0.4,
-    },
-  },
-  exit: {
-    opacity: 0,
-    scale: 0.95,
-    transition: {
-      type: 'tween',
-      ease: 'easeOut',
-      duration: 0.3,
-    },
-  },
-} satisfies Variants;
-
+    hidden: { y: 20, opacity: 0 },
+    visible: { y: 0, opacity: 1, transition: { type: 'tween', ease: 'easeOut', duration: 0.4 } },
+    exit: { opacity: 0, scale: 0.95, transition: { type: 'tween', ease: 'easeOut', duration: 0.3 } },
+  } satisfies Variants;
 
   const containerVariants = {
-    visible: {
-      transition: {
-        staggerChildren: 0.05,
-      },
-    },
+    visible: { transition: { staggerChildren: 0.05 } },
   };
+
+  const bookColors = [
+    'bg-slate-800',
+  ];
 
   return (
     <main className="w-full min-h-screen bg-gray-50 text-gray-900 font-sans antialiased overflow-x-hidden">
       <Header />
 
-      {/* Hero Section - Dark, impactful, clean */}
+      {/* Hero Section */}
       <section className="bg-gray-900 text-white py-24 md:py-32 lg:py-40 px-6 text-center relative overflow-hidden">
-        {/* Subtle background pattern for texture */}
         <div
-          className="absolute inset-0 opacity-[0.03]" // Very low opacity for subtle effect
+          className="absolute inset-0 opacity-[0.03]"
           style={{
             backgroundImage: 'url("data:image/svg+xml,%3Csvg width=\'60\' height=\'60\' viewBox=\'0 0 60 60\' xmlns=\'http://www.w3.org/2000/svg\'%3E%3Cg fill=\'%23ffffff\' fill-opacity=\'0.1\' fill-rule=\'evenodd\'%3E%3Cpath d=\'M0 60L60 0H30L0 30M60 60V30L30 60\'/%3E%3C/g%3E%3C/svg%3E")',
             backgroundSize: '120px 120px',
-            backgroundRepeat: 'repeat',
           }}
         ></div>
         <div className="w-full px-6 relative z-10">
@@ -232,16 +137,14 @@ export default function LibraryPage() {
             initial={{ y: 30, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
             transition={{ type: 'tween', ease: 'easeOut', duration: 0.6 }}
-            className="text-4xl md:text-6xl lg:text-7xl font-bold mb-4 leading-tight tracking-tight flex items-center justify-center gap-4"
-          >
-            <span className="text-blue-500 text-5xl md:text-7xl">📚</span> ኮን ሃይስኩል ዲጂታል ላይብረሪ
+            className="text-5xl md:text-7xl lg:text-9xl font-bold mb-4 leading-tight tracking-tight flex items-center justify-center gap-4"
+          >ኮን ሃይስኩል <br className="hidden sm:inline" /> ዲጂታል ላይብረሪ
           </motion.h1>
           <motion.p
             initial={{ y: 30, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
             transition={{ type: 'tween', ease: 'easeOut', duration: 0.6, delay: 0.1 }}
-            className="text-lg md:text-xl lg:text-2xl font-light opacity-80 max-w-3xl mx-auto mb-10"
-          >
+            className="text-lg md:text-xl lg:text-2xl font-light opacity-80 max-w-3xl mx-auto mb-10">
             እውቀት ሃይል ነው፥ እውቀት ተስፋ እና ስንቅ ነው፥ እውቀት የዘመናዊ ስብእና መሰረት ነው!
           </motion.p>
           <motion.div
@@ -251,7 +154,7 @@ export default function LibraryPage() {
           >
             <Link
               href="/education-resources"
-              className="inline-block bg-blue-600 text-white font-semibold px-10 py-5 rounded-full shadow-lg hover:bg-blue-700 transition-colors duration-300 transform hover:scale-[1.01] text-lg whitespace-nowrap"
+              className="inline-block bg-white text-gray-900 font-semibold px-10 py-5 rounded-full shadow-lg hover:bg-gray-200 transition-colors duration-300 transform hover:scale-[1.01] text-lg whitespace-nowrap"
             >
               ተጨማሪ የትምህርት ምንጮች
             </Link>
@@ -259,104 +162,69 @@ export default function LibraryPage() {
         </div>
       </section>
 
-      {/* Main Content Section - White background, refined details */}
+      {/* Main Content Section */}
       <section className="py-16 md:py-20 lg:py-24 bg-white relative overflow-hidden">
-        {/* Subtle background pattern for texture in white section */}
-        <div className="absolute inset-0 opacity-[0.03]" style={{ backgroundImage: 'url("data:image/svg+xml,%3Csvg width=\'60\' height=\'60\' viewBox=\'0 0 60 60\' xmlns=\'http://www.w3.org/2000/svg\'%3E%3Cg fill=\'%23000000\' fill-opacity=\'0.05\' fill-rule=\'evenodd\'%3E%3Cpath d=\'M0 60L60 0H30L0 30M60 60V30L30 60\'%3E%3C/g%3E%3C/svg%3E")', backgroundSize: '120px 120px', backgroundRepeat: 'repeat' }}></div>
-
+        <div className="absolute inset-0 opacity-[0.03]" style={{ backgroundImage: 'url("data:image/svg+xml,%3Csvg width=\'60\' height=\'60\' viewBox=\'0 0 60 60\' xmlns=\'http://www.w3.org/2000/svg\'%3E%3Cg fill=\'%23000000\' fill-opacity=\'0.05\' fill-rule=\'evenodd\'%3E%3Cpath d=\'M0 60L60 0H30L0 30M60 60V30L30 60\'%3E%3C/g%3E%3C/svg%3E")', backgroundSize: '120px 120px' }}></div>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <div className="grid grid-cols-1 md:grid-cols-4 lg:grid-cols-4 gap-10 md:gap-12">
 
             {/* Left Column: Main Book Content */}
             <div className="md:col-span-3">
               {loading ? (
-                <div className="text-center text-gray-700 text-2xl font-semibold py-10">
-                  <div className="flex justify-center items-center">
-                    <svg className="animate-spin -ml-1 mr-3 h-8 w-8 text-blue-500" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-                      <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
-                      <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
-                    </svg>
-                    Loading library data...
-                  </div>
+                <div className="text-center text-gray-700 text-2xl font-semibold py-10 flex justify-center items-center">
+                  <svg className="animate-spin -ml-1 mr-3 h-8 w-8 text-blue-500" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                    <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+                    <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                  </svg>
+                  Loading library data...
                 </div>
               ) : error ? (
                 <div className="text-center text-red-600 text-lg py-10 bg-red-50 rounded-lg p-6 border border-red-200">
                   <p className="font-semibold mb-2">Failed to load books:</p>
                   <p>{error}</p>
-                  <p className="text-gray-600 text-sm mt-4">Please check your internet connection or the `public/data/books.json` file for issues.</p>
                 </div>
               ) : (
                 <>
-                  {/* Search Bar */}
+                  {/* Search and Filter */}
                   <motion.div
                     initial={{ y: 20, opacity: 0 }}
                     animate={{ y: 0, opacity: 1 }}
-                    transition={{ type: 'tween', ease: 'easeOut', duration: 0.5, delay: 0.1 }}
-                    className="max-w-3xl mx-auto mb-12 relative"
+                    transition={{ type: 'tween', ease: 'easeOut', duration: 0.5 }}
+                    className="space-y-12"
                   >
-                    <input
-                      type="text"
-                      placeholder={`Search ${selectedCategory !== 'All' ? selectedCategory + ' books' : 'all books'}...`}
-                      value={searchTerm}
-                      onChange={e => setSearchTerm(e.target.value)}
-                      className="w-full pl-14 pr-6 py-4 rounded-xl border border-gray-200 focus:outline-none focus:ring-2 focus:ring-blue-500 text-lg text-gray-900 placeholder:text-gray-400 shadow-sm transition-all duration-200 hover:shadow-md"
-                    />
-                    <svg className="absolute left-5 top-1/2 transform -translate-y-1/2 w-6 h-6 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
-                    </svg>
+                    <div className="max-w-3xl mx-auto relative">
+                      <input
+                        type="text"
+                        placeholder={`Search ${selectedCategory !== 'All' ? selectedCategory : 'all'} books...`}
+                        value={searchTerm}
+                        onChange={e => setSearchTerm(e.target.value)}
+                        className="w-full pl-14 pr-6 py-4 rounded-xl border border-gray-200 focus:outline-none focus:ring-2 focus:ring-blue-500 text-lg text-gray-900 placeholder:text-gray-400 shadow-sm transition-all duration-200 hover:shadow-md"
+                      />
+                      <svg className="absolute left-5 top-1/2 transform -translate-y-1/2 w-6 h-6 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+                      </svg>
+                    </div>
+                    <div className="flex flex-wrap justify-center gap-3 pb-2 scrollbar-hide">
+                      {categories.map(cat => (
+                        <button
+                          key={cat}
+                          className={`flex-shrink-0 flex items-center px-6 py-3 rounded-full font-medium text-base sm:text-lg transition-colors duration-200 ${selectedCategory === cat ? 'bg-blue-600 text-white shadow-md' : 'bg-gray-100 text-gray-800 hover:bg-gray-200'}`}
+                          onClick={() => {
+                            setSelectedCategory(cat);
+                            setSearchTerm('');
+                          }}
+                        >
+                          <span className="text-xl mr-2">{categoryEmojis[cat] || '📚'}</span>
+                          {cat}
+                        </button>
+                      ))}
+                    </div>
                   </motion.div>
 
-                  {/* Category Tabs */}
-                  <motion.div
-                    initial={{ y: 20, opacity: 0 }}
-                    animate={{ y: 0, opacity: 1 }}
-                    transition={{ type: 'tween', ease: 'easeOut', duration: 0.5, delay: 0.2 }}
-                    className="flex flex-wrap justify-center gap-3 mb-12 overflow-x-auto pb-2 scrollbar-hide"
-                  >
-                    {categories.map(cat => (
-                      <button
-                        key={cat}
-                        className={`flex-shrink-0 flex items-center px-6 py-3 rounded-full font-medium text-base sm:text-lg
-                          ${selectedCategory === cat
-                            ? 'bg-blue-600 text-white shadow-md'
-                            : 'bg-gray-100 text-gray-800 hover:bg-gray-200 transition-colors duration-200'
-                          }`}
-                        onClick={() => {
-                          setSelectedCategory(cat);
-                          setSearchTerm('');
-                        }}
-                      >
-                        <span className="text-xl mr-2">{categoryEmojis[cat] || '📚'}</span>
-                        {cat}
-                      </button>
-                    ))}
-                  </motion.div>
+                  <hr className="border-t border-solid border-gray-200 my-12 max-w-4xl mx-auto" />
 
-                  <hr className="border-t border-solid border-gray-200 mb-12 max-w-4xl mx-auto" />
-
-                  {/* Conditional Book Grid or Welcome Message */}
-                  {(searchTerm.trim() === '' && selectedCategory === 'All' && filteredBooks.length === 0) ? (
-                    <div className="text-center text-gray-700 text-xl py-10 bg-gray-50 rounded-xl p-8 border border-gray-100 shadow-sm">
-                      <p className="mb-4 text-2xl font-semibold text-gray-900">Ready to Explore?</p>
-                      <p className="mb-6 max-w-xl mx-auto">
-                        Discover thousands of educational resources. Use the search bar or select a category to begin your learning journey!
-                      </p>
-                      <p className="text-lg text-gray-600">
-                        Our digital library is here to help you find the knowledge you need.
-                      </p>
-                    </div>
-                  ) : displayedBooks.length === 0 && filteredBooks.length > 0 && currentPage >= totalPages ? (
-                    <div className="text-center text-gray-700 text-xl py-10 bg-gray-50 rounded-xl p-8 border border-gray-100 shadow-sm">
-                      <p className="mb-4 text-2xl font-semibold text-gray-900">End of Results</p>
-                      <p className="text-lg">You've reached the end of the books in this category/search.</p>
-                      <button
-                        onClick={() => handlePageChange(0)}
-                        className="mt-6 inline-block bg-blue-600 text-white font-semibold px-6 py-3 rounded-full hover:bg-blue-700 transition-colors duration-300 transform hover:scale-[1.01]"
-                      >
-                        Go to First Page
-                      </button>
-                    </div>
-                  ) : displayedBooks.length === 0 && filteredBooks.length === 0 && !loading && !error ? (
+                  {/* Book Grid or Messages */}
+                  {allBooks.length > 0 && displayedBooks.length === 0 ? (
                     <div className="text-center text-gray-700 text-xl py-10 bg-gray-50 rounded-xl p-8 border border-gray-100 shadow-sm">
                       <p className="mb-4 text-2xl font-semibold text-gray-900">No Books Found</p>
                       <p className="text-lg">Your search or filter returned no results.</p>
@@ -367,96 +235,66 @@ export default function LibraryPage() {
                       variants={containerVariants}
                       initial="hidden"
                       animate="visible"
-                      className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-4 gap-4 sm:gap-6 md:gap-8" // Adjusted grid for better flow
+                      className="grid grid-cols-4 gap-x-4 gap-y-12"
                     >
                       <AnimatePresence>
-                        {displayedBooks.map(book => (
+                        {displayedBooks.map((book, index) => (
                           <motion.div
-                              key={book.id}
-                              variants={itemVariants}
-                              className="group w-full h-full flex flex-col items-center transform transition-transform duration-300 hover:-translate-y-1"
+                            key={book.id}
+                            variants={itemVariants}
+                            exit="exit"
+                            className="flex flex-col items-center text-center"
+                          >
+                            <a
+                              href={book.googleDriveLink}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              className="group w-full h-72 relative flex flex-col items-center justify-end cursor-pointer transition-transform duration-300 hover:-translate-y-2 focus:outline-none focus:-translate-y-2"
+                              title={book.title}
                             >
-                              {/* Book visual */}
-                              <div className="relative w-full aspect-[3/4] bg-gradient-to-br from-[#ececec] to-[#d5d5d5] rounded-md shadow-lg border border-gray-300 p-1">
-                                {/* Simulated book spine */}
-                                <div className="absolute top-0 left-0 w-2 h-full bg-gradient-to-b from-gray-500 to-gray-400 rounded-l-md shadow-inner"></div>
-
-                                {/* Title on cover */}
-                                <div className="flex flex-col justify-center items-center h-full p-3 text-center">
-                                  <h3 className="text-gray-800 text-sm sm:text-base font-bold line-clamp-4 z-10 drop-shadow-sm">
-                                    {book.title}
-                                  </h3>
-                                </div>
-
-                                {/* Optional visual element */}
-                                <div className="absolute bottom-2 right-2 text-blue-400 text-xl opacity-50">📘</div>
+                              {/* Book Spine */}
+                              <div className={`absolute inset-0 rounded-md shadow-lg flex items-end p-2 text-white ${bookColors[index % bookColors.length]}`}>
+                                <h3
+                                  className="font-bold text-3xl origin-bottom-left"
+                                  style={{
+                                    writingMode: 'vertical-rl',
+                                    textOrientation: 'mixed',
+                                    transform: 'rotate(360deg)',
+                                  }}
+                                >
+                                  {book.title}
+                                </h3>
                               </div>
-
-                              {/* Category badge */}
-                              <span className="mt-2 inline-block bg-gray-100 text-gray-700 text-xs sm:text-sm font-medium px-3 py-1 rounded-full">
+                              {/* Shelf bottom */}
+                              <div className="absolute -bottom-2 w-[110%] h-2 bg-[#744F3A] rounded-b-lg shadow-inner"></div>
+                            </a>
+                             {/* Category */}
+                             <span className="mt-4 inline-block bg-gray-100 text-gray-700 text-xs font-medium px-3 py-1 rounded-full">
                                 {book.category}
                               </span>
-
-                              {/* CTA */}
-                              <a
-                                href={book.googleDriveLink}
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                className="mt-3 block w-full text-center bg-blue-600 text-white font-medium px-4 py-2 rounded-md hover:bg-blue-700 transition duration-200 text-sm shadow-md"
-                              >
-                                View Book
-                              </a>
-                            </motion.div>
-                              ))}
+                          </motion.div>
+                        ))}
                       </AnimatePresence>
                     </motion.div>
                   )}
 
-                  {/* Pagination Controls (only if there are filtered results to paginate) */}
+                  {/* Pagination Controls */}
                   {filteredBooks.length > BOOKS_PER_PAGE && (
-                    <div className="flex justify-center items-center mt-12 gap-4">
+                    <div className="flex justify-center items-center mt-16 gap-2 md:gap-4">
                       <button
                         disabled={currentPage === 0}
                         onClick={() => handlePageChange(currentPage - 1)}
-                        className="bg-gray-100 text-gray-700 font-semibold py-2 px-6 rounded-full
-                                     transition-all duration-200 ease-in-out hover:bg-gray-200
-                                     focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2
-                                     disabled:bg-gray-50 disabled:text-gray-400 disabled:cursor-not-allowed"
+                        className="bg-gray-100 text-gray-700 font-semibold py-2 px-4 md:px-6 rounded-full transition-all duration-200 ease-in-out hover:bg-gray-200 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 disabled:bg-gray-50 disabled:text-gray-400 disabled:cursor-not-allowed"
                       >
                         Previous
                       </button>
-
-                      {/* Page numbers (only show a few around current page for neatness) */}
-                      {Array.from({ length: totalPages }, (_, i) => i).map(page => {
-                        const isCurrent = currentPage === page;
-                        // Show current, prev, next pages, and ellipsis
-                        if (page === 0 || page === totalPages - 1 || (page >= currentPage - 1 && page <= currentPage + 1)) {
-                          return (
-                            <button
-                              key={page}
-                              onClick={() => handlePageChange(page)}
-                              className={`w-10 h-10 rounded-full flex items-center justify-center font-medium text-lg
-                                ${isCurrent
-                                  ? 'bg-blue-600 text-white shadow-md'
-                                  : 'bg-white text-gray-700 hover:bg-gray-100 border border-gray-200 hover:border-gray-300 transition-colors duration-200'
-                                }`}
-                            >
-                              {page + 1}
-                            </button>
-                          );
-                        } else if (page === currentPage - 2 || page === currentPage + 2) { // Add ellipsis
-                          return <span key={page} className="text-gray-500 text-lg">...</span>;
-                        }
-                        return null;
-                      })}
-
+                      <span className="text-gray-600 font-medium">
+                        Page {currentPage + 1} of {totalPages}
+                      </span>
                       <button
                         disabled={!hasNextPage}
                         onClick={() => handlePageChange(currentPage + 1)}
-                        className="bg-gray-100 text-gray-700 font-semibold py-2 px-6 rounded-full
-                                     transition-all duration-200 ease-in-out hover:bg-gray-200
-                                     focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2
-                                     disabled:bg-gray-50 disabled:text-gray-400 disabled:cursor-not-allowed"
+                        className="bg-gray-100 text-gray-700 font-semibold py-2 px-4 md:px-6 rounded-full transition-all duration-200 ease-in-out hover:bg-gray-200 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 disabled:bg-gray-50 disabled:text-gray-400 disabled:cursor-not-allowed"
                       >
                         Next
                       </button>
@@ -464,19 +302,18 @@ export default function LibraryPage() {
                   )}
                 </>
               )}
-            </div> {/* End Left Column */}
+            </div>
 
             {/* Right Column: External Links Sidebar */}
-            <div className="md:col-span-1 bg-white rounded-xl shadow-xl border border-gray-100
-                            md:sticky md:top-24 flex flex-col h-fit overflow-hidden p-6"> {/* Adjusted background to white, added padding */}
-              {/* Header section */}
-              <div className="pb-4 mb-4 border-b border-gray-200">
+            <div className="md:col-span-1 bg-white rounded-xl shadow-xl border border-gray-100 md:sticky md:top-24 flex flex-col p-6 md:max-h-[calc(100vh-8rem)]">
+              {/* Sticky Header */}
+              <div className="pb-4 mb-4 border-b border-gray-200 flex-shrink-0">
                 <h3 className="text-2xl font-semibold text-gray-900 flex items-center">
                   <span className="mr-3 text-blue-600 text-3xl">🔗</span>ተጨማሪ የቤተ-መጻሕፍት ሊንኮች
                 </h3>
               </div>
-
-              <div className="flex-grow">
+              {/* Scrollable List */}
+              <div className="flex-grow overflow-y-auto pr-2">
                 <ul className="space-y-3">
                   {externalLinks.map((link, index) => (
                     <li key={index}>
@@ -484,8 +321,7 @@ export default function LibraryPage() {
                         href={link.url}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="group flex items-center justify-between p-3 rounded-lg transition-all duration-200
-                                       bg-white hover:bg-blue-50 border border-gray-200 hover:border-blue-200 hover:shadow-sm"
+                        className="group flex items-center justify-between p-3 rounded-lg transition-all duration-200 bg-white hover:bg-blue-50 border border-gray-200 hover:border-blue-200 hover:shadow-sm"
                       >
                         <h4 className="text-base font-medium text-gray-800 group-hover:text-blue-700 transition-colors duration-200">
                           {link.name}
@@ -498,9 +334,9 @@ export default function LibraryPage() {
                   ))}
                 </ul>
               </div>
-            </div> {/* End Right Column */}
-
-          </div> {/* End grid wrapper */}
+            </div>
+            
+          </div>
         </div>
       </section>
 
