@@ -371,38 +371,42 @@ export default function LibraryPage() {
                       <AnimatePresence>
                         {displayedBooks.map(book => (
                           <motion.div
-                            key={book.id}
-                            variants={itemVariants}
-                            className="group bg-white rounded-xl p-5 border border-gray-200 flex flex-col items-center text-center shadow-sm
-                                          hover:shadow-lg hover:border-blue-300 transition-all duration-300 ease-in-out cursor-pointer"
-                          >
-                            {/* Simulated Book Cover - Enhanced */}
-                            <div className="w-full relative bg-gray-100 rounded-lg shadow-inner overflow-hidden mb-4 aspect-[3/4] flex items-center justify-center p-2">
-                              {/* Layered design for a more book-like feel */}
-                              <div className="absolute inset-0 bg-gradient-to-br from-gray-200 to-gray-300 rounded-lg"></div>
-                              <div className="absolute inset-0 bg-blue-50 opacity-40 rounded-lg"></div> {/* Subtle color tint */}
-
-                              <h3 className="text-gray-900 text-lg font-semibold p-2 leading-tight overflow-hidden text-ellipsis line-clamp-4 relative z-10">
-                                {book.title}
-                              </h3>
-                              {/* Small graphic element for design */}
-                              <div className="absolute bottom-2 right-2 text-blue-400 text-2xl opacity-70">📖</div>
-                              <div className="absolute inset-y-0 left-0 w-2 bg-gray-700/10 rounded-tl-lg rounded-bl-lg"></div> {/* Spine effect */}
-                            </div>
-
-                            <span className="inline-block bg-gray-100 text-gray-700 text-xs sm:text-sm font-medium px-3 py-1 rounded-full mb-4">
-                              {book.category}
-                            </span>
-                            <a
-                              href={book.googleDriveLink}
-                              target="_blank"
-                              rel="noopener noreferrer"
-                              className="block w-full text-center bg-blue-600 text-white font-medium px-4 py-3 rounded-lg hover:bg-blue-700 mt-auto transition-colors duration-200 text-base shadow-sm transform group-hover:scale-[1.02]"
+                              key={book.id}
+                              variants={itemVariants}
+                              className="group w-full h-full flex flex-col items-center transform transition-transform duration-300 hover:-translate-y-1"
                             >
-                              View Book
-                            </a>
-                          </motion.div>
-                        ))}
+                              {/* Book visual */}
+                              <div className="relative w-full aspect-[3/4] bg-gradient-to-br from-[#ececec] to-[#d5d5d5] rounded-md shadow-lg border border-gray-300 p-1">
+                                {/* Simulated book spine */}
+                                <div className="absolute top-0 left-0 w-2 h-full bg-gradient-to-b from-gray-500 to-gray-400 rounded-l-md shadow-inner"></div>
+
+                                {/* Title on cover */}
+                                <div className="flex flex-col justify-center items-center h-full p-3 text-center">
+                                  <h3 className="text-gray-800 text-sm sm:text-base font-bold line-clamp-4 z-10 drop-shadow-sm">
+                                    {book.title}
+                                  </h3>
+                                </div>
+
+                                {/* Optional visual element */}
+                                <div className="absolute bottom-2 right-2 text-blue-400 text-xl opacity-50">📘</div>
+                              </div>
+
+                              {/* Category badge */}
+                              <span className="mt-2 inline-block bg-gray-100 text-gray-700 text-xs sm:text-sm font-medium px-3 py-1 rounded-full">
+                                {book.category}
+                              </span>
+
+                              {/* CTA */}
+                              <a
+                                href={book.googleDriveLink}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="mt-3 block w-full text-center bg-blue-600 text-white font-medium px-4 py-2 rounded-md hover:bg-blue-700 transition duration-200 text-sm shadow-md"
+                              >
+                                View Book
+                              </a>
+                            </motion.div>
+                              ))}
                       </AnimatePresence>
                     </motion.div>
                   )}
