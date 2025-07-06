@@ -123,7 +123,7 @@ export default function EducationResourcesPage() {
 
   return (
     // Ensure main can scroll, remove potential horizontal overflow issues
-    <main className="min-h-screen bg-gray-50 text-gray-900 font-sans antialiased overflow-y-auto"> 
+    <main className="w-full min-h-screen bg-gray-50 text-gray-900 font-sans antialiased overflow-x-hidden">
       {/* Explicitly add z-index to Header. This is crucial if Header is fixed/sticky and could overlap content. */}
       <Header className="relative z-20" /> 
 
@@ -145,17 +145,17 @@ export default function EducationResourcesPage() {
           initial="hidden"
           animate="visible"
         >
-          <motion.h1 variants={itemVariants} className="text-4xl md:text-6xl lg:text-7xl font-bold mb-4 leading-tight tracking-tight">
+          <motion.h1 variants={itemVariants} className="text-5xl md:text-7xl lg:text-9xl font-bold mb-4 leading-tight tracking-tight">
             ኦንላይን ትምህርት እና ስኮላርሽፕ
           </motion.h1>
           <motion.p variants={itemVariants} className="text-lg md:text-xl lg:text-2xl font-light opacity-80 mb-10 max-w-3xl mx-auto">
             የተመረጡ ነፃ ኦንላይን ኮርሶች እና ሙሉ በሙሉ የገንዘብ ድጋፍ ያላቸውን ስኮላርሽፕ እድሎች ተጠቃሚ ይሁኑ።
           </motion.p>
           <motion.div variants={itemVariants} className="mt-8 flex flex-wrap justify-center gap-4"> {/* Use flex-wrap and gap for better mobile button layout */}
-            <Link href="/" className="inline-block bg-blue-600 text-white font-semibold px-8 py-4 rounded-full shadow-lg hover:bg-blue-700 transition-colors duration-300 transform hover:scale-[1.01]">
-              መነሻ
+            <Link href="/" className="w-full sm:w-auto inline-block border-2 border-white text-white font-semibold px-8 py-4 rounded-full transition-colors duration-300 hover:bg-white hover:text-gray-900 text-lg sm:text-xl">
+              ዋና ገጽ
             </Link>
-            <Link href="/library" className="inline-block bg-blue-600 text-white font-semibold px-8 py-4 rounded-full shadow-lg hover:bg-blue-700 transition-colors duration-300 transform hover:scale-[1.01]">
+            <Link href="/library" className="w-full sm:w-auto inline-block border-2 border-white text-white font-semibold px-8 py-4 rounded-full transition-colors duration-300 hover:bg-white hover:text-gray-900 text-lg sm:text-xl">
               ዲጂታል ቤተ መጻሕፍት
             </Link>
           </motion.div>
@@ -173,7 +173,7 @@ export default function EducationResourcesPage() {
           viewport={{ once: true, amount: 0.1 }}
         >
           {/* Slightly smaller font for h2 on mobile, adjusted margin-bottom */}
-          <motion.h2 variants={itemVariants} className="text-3xl md:text-5xl font-bold mb-8 bg-slate-900 text-slate-300 leading-tight"> 
+          <motion.h2 variants={itemVariants} className="text-3xl md:text-5xl font-bold mb-8 bg-slate-900 text-white leading-tight"> 
             ነፃ የኦንላይን ትምህርት መድረኮች
           </motion.h2>
           {/* Adjusted vertical padding for p, smaller text */}
@@ -232,7 +232,7 @@ export default function EducationResourcesPage() {
           viewport={{ once: true, amount: 0.05}}
         >
           {/* Slightly smaller font for h2 on mobile, adjusted margin-bottom */}
-          <motion.h2 variants={itemVariants} className="text-3xl md:text-5xl font-bold border rounded-lg p-2 mb-8 bg-slate-900 text-slate-300 leading-tight"> 
+          <motion.h2 variants={itemVariants} className="text-3xl md:text-5xl font-bold border rounded-lg p-2 mb-8 bg-slate-900 text-white leading-tight"> 
             የስኮላርሽፕ እድሎች
           </motion.h2>
           {/* Adjusted vertical padding for p, smaller text */}

@@ -107,14 +107,15 @@ export default function Header({ className }: HeaderProps) {
 
           {/* Desktop Navigation Links */}
           <div className="hidden md:flex items-center space-x-6 lg:space-x-8"> {/* Increased spacing */}
-            <Link href="/about" className="text-gray-700 hover:text-gray-900 transition-colors duration-300 font-medium text-lg">
-              ስለ እኛ
-            </Link>
+            
             <Link href="/impact" className="text-gray-700 hover:text-gray-900 transition-colors duration-300 font-medium text-lg">
               አስተዋጽኦ
             </Link>
             <Link href="/library" className="text-gray-700 hover:text-gray-900 transition-colors duration-300 font-medium text-lg">
               ቤተ-መጻሕፍት
+            </Link>
+            <Link href="/about" className="text-gray-700 hover:text-gray-900 transition-colors duration-300 font-medium text-lg">
+              ስለ እኛ
             </Link>
             <Link href="/contact" className="text-gray-700 hover:text-gray-900 transition-colors duration-300 font-medium text-lg">
                መልእክት
@@ -207,12 +208,7 @@ export default function Header({ className }: HeaderProps) {
           {/* Mobile Links */}
           <motion.div variants={mobileLinkVariants}>
             <Link href="/" onClick={() => setIsMenuOpen(false)} className="block text-4xl font-bold text-white hover:text-gray-300 transition-colors duration-300 py-2">
-              ዋና ማውጫ
-            </Link>
-          </motion.div>
-          <motion.div variants={mobileLinkVariants}>
-            <Link href="/about" onClick={() => setIsMenuOpen(false)} className="block text-4xl font-bold text-white hover:text-gray-300 transition-colors duration-300 py-2">
-              ስለ እኛ
+              ዋና ገጽ
             </Link>
           </motion.div>
           <motion.div variants={mobileLinkVariants}>
@@ -223,6 +219,11 @@ export default function Header({ className }: HeaderProps) {
           <motion.div variants={mobileLinkVariants}>
             <Link href="/library" onClick={() => setIsMenuOpen(false)} className="block text-4xl font-bold text-white hover:text-gray-300 transition-colors duration-300 py-2">
               ቤተ-መጻሕፍት
+            </Link>
+          </motion.div>
+          <motion.div variants={mobileLinkVariants}>
+            <Link href="/about" onClick={() => setIsMenuOpen(false)} className="block text-4xl font-bold text-white hover:text-gray-300 transition-colors duration-300 py-2">
+              ስለ እኛ
             </Link>
           </motion.div>
           <motion.div variants={mobileLinkVariants}>

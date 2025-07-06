@@ -3,180 +3,210 @@
     "id": "b001",
     "title": "Calculus Volume 1",
     "category": "Math",
+    "description": "A foundational introduction to limits, derivatives, and integrals — perfect for early college or advanced high school students.",
     "googleDriveLink": "https://drive.google.com/file/d/1eNbxQ5v7xd71kbA21gSp_KGSomaW9ok5/view?usp=sharing"
   },
   {
     "id": "b002",
     "title": "Financial Accounting",
     "category": "Finance",
+    "description": "Covers essential accounting principles, financial statements, and business transactions in a clear and structured way.",
     "googleDriveLink": "https://drive.google.com/file/d/1TIfS-RDR6ZzkS0baiZFLSvJAOwraa7OT/view?usp=sharing"
   },
   {
-  "id": "b003",
+    "id": "b003",
     "title": "Pre Calculus",
     "category": "Math",
+    "description": "A comprehensive guide to functions, trigonometry, and algebraic structures — preparing students for calculus success.",
     "googleDriveLink": "https://drive.google.com/file/d/1LETMOAU5a-OPc_8Hm5h8pGmuetuazEBY/view?usp=sharing"
   },
-   {
+  {
     "id": "b004",
     "title": "Contemporary Mathematics",
     "category": "Math",
+    "description": "Explores modern math concepts like statistics, logic, and financial literacy for real-world application.",
     "googleDriveLink": "https://drive.google.com/file/d/1KSWN2ACsVCSahja1QQnk61mPupjpuDuO/view?usp=sharing"
   },
   {
-  "id": "b005",
+    "id": "b005",
     "title": "Organic Chemistry",
     "category": "Chemistry",
+    "description": "A detailed study of carbon-based compounds, reactions, and mechanisms for chemistry or biology majors.",
     "googleDriveLink": "https://drive.google.com/file/d/1EpJ6yC11rgU0joZHlREVOFhcP50aFY3O/view?usp=sharing"
   },
   {
     "id": "b006",
     "title": "Business Ethics",
     "category": "Business Studies",
+    "description": "Examines moral principles and dilemmas in business environments with real-world case studies.",
     "googleDriveLink": "https://drive.google.com/file/d/1KAQEYA1VrTgRfHuppWy2Ocl1LvRWDOE7/view?usp=sharing"
   },
   {
     "id": "b007",
     "title": "Economics",
     "category": "Economics",
+    "description": "An introduction to economic systems, supply and demand, and the role of markets in everyday life.",
     "googleDriveLink": "https://drive.google.com/file/d/1djVonwV9FcAuRi8UnXB8osxMUeLCXivG/view?usp=sharing"
   },
   {
     "id": "b008",
     "title": "Introduction to Computer Science",
     "category": "Computer Science",
+    "description": "Covers the core ideas of programming, algorithms, and the basics of how computers function.",
     "googleDriveLink": "https://drive.google.com/file/d/1ewpnWZT5PMNLIEgLk74kmE_6hbDtJls9/view?usp=sharing"
   },
   {
     "id": "b009",
     "title": "Introduction to Business",
     "category": "Business Studies",
+    "description": "A beginner’s roadmap to the fundamentals of entrepreneurship, marketing, and business operations.",
     "googleDriveLink": "https://drive.google.com/file/d/1zg3HmXfemghXZCEKe6kiTDclAEFG5ok3/view?usp=sharing"
   },
-   {
+  {
     "id": "b010",
     "title": "Biology",
     "category": "Biology",
+    "description": "Explores the science of life, from cell biology to ecosystems, perfect for foundational biology learners.",
     "googleDriveLink": "https://drive.google.com/file/d/1aJkMWuUjo-rAy2GirT0WFIzUtwUtRpag/view?usp=sharing"
   },
-   {
+  {
     "id": "b011",
     "title": "MicroBiology",
     "category": "Biology",
+    "description": "Introduces the structure, function, and role of microorganisms in health, environment, and disease.",
     "googleDriveLink": "https://drive.google.com/file/d/1fTLfCHKjRIPfIKSQjFsYy5CH3h9dBpaS/view?usp=sharing"
   },
-   {
+  {
     "id": "b012",
     "title": "Astronomy",
     "category": "Astronomy",
+    "description": "Journey through stars, planets, and galaxies with this engaging introduction to the universe.",
     "googleDriveLink": "https://drive.google.com/file/d/1zOoFYCCzQwtlt3NDMuqzrzeOkLAP_kyJ/view?usp=sharing"
   },
   {
     "id": "b013",
     "title": "World Geography Grade 9-12",
     "category": "Geography",
+    "description": "Provides insights into global landscapes, cultures, and geographic patterns relevant to modern education.",
     "googleDriveLink": "https://drive.google.com/file/d/1ZjkMr-7yTiZMwMprQxaGm4Xb3DgXUv99/view?usp=sharing"
   },
   {
     "id": "b014",
     "title": "Complete English Grammar",
     "category": "English",
+    "description": "Covers everything from basic sentence structure to advanced grammar rules for fluent writing and speaking.",
     "googleDriveLink": "https://drive.google.com/file/d/1XHEUus6FtujnB0ATmt-JI_brXeB9Pz_Z/view?usp=sharing"
   },
   {
     "id": "b015",
     "title": "English Grammar in Use",
     "category": "English",
+    "description": "A popular self-study grammar book with simple explanations and practical exercises.",
     "googleDriveLink": "https://drive.google.com/file/d/12VLh82cqrZoaTjof9xo0CmIff4tFf-bm/view?usp=sharing"
   },
   {
     "id": "b016",
     "title": "Uniersity Physics Vol-1",
     "category": "Physics",
+    "description": "Covers mechanics, motion, and energy — ideal for introductory university physics students.",
     "googleDriveLink": "https://drive.google.com/file/d/1KlE1nbbhBKPeFTPVoKv0o7F1T0DB-UbY/view?usp=sharing"
   },
   {
     "id": "b017",
     "title": "Uniersity Physics Vol-2",
     "category": "Physics",
+    "description": "Focuses on electricity, magnetism, and wave phenomena — part of the university-level physics series.",
     "googleDriveLink": "https://drive.google.com/file/d/1plTeExilgC-8vpyR5iwrIGy7caItO26Q/view?usp=sharing"
   },
   {
     "id": "b018",
     "title": "Uniersity Physics Vol-3",
     "category": "Physics",
+    "description": "Explores optics and modern physics concepts like relativity and quantum theory.",
     "googleDriveLink": "https://drive.google.com/file/d/1HdHI-UlV_QwoFCkL1M5phEdqrgn67TP-/view?usp=sharing"
   },
   {
     "id": "b019",
     "title": "College Physics",
     "category": "Physics",
+    "description": "An algebra-based introduction to physics principles for non-engineering majors.",
     "googleDriveLink": "https://drive.google.com/file/d/1umhB6Pa9DdR4dGUTxjUHdO94_PtONcrU/view?usp=sharing"
   },
   {
     "id": "b020",
     "title": "Highschool Physics",
     "category": "Physics",
+    "description": "A well-structured guide for secondary students covering basic physics concepts and problem solving.",
     "googleDriveLink": "https://drive.google.com/file/d/1xkeQ7l706agNAhoydibpA5YXsZbK1BD2/view?usp=sharing"
   },
   {
     "id": "b021",
     "title": "Algebra and Trignometry",
     "category": "Math",
+    "description": "Combines algebraic principles with trigonometric applications — essential for technical fields.",
     "googleDriveLink": "https://drive.google.com/file/d/1GZFXEBSTJoU9zA01kPEX_Bt3UBYXq7kI/view?usp=sharing"
   },
   {
     "id": "b022",
     "title": "College Algebra",
     "category": "Math",
+    "description": "A complete course in college-level algebra including equations, functions, and graphing.",
     "googleDriveLink": "https://drive.google.com/file/d/19LHUBnAOKUtLYu7ySMPW5NMPDM6VH-EB/view?usp=sharing"
   },
   {
     "id": "b023",
     "title": "Elementary Algebra",
     "category": "Math",
+    "description": "Introduces algebra basics such as operations, expressions, and solving linear equations.",
     "googleDriveLink": "https://drive.google.com/file/d/1hOSaTFoyNK-oeOApd8Hv8b5xL4J_U0r5/view?usp=sharing"
   },
   {
     "id": "b024",
     "title": "Intermediate Algebra",
     "category": "Math",
+    "description": "Builds on elementary algebra with polynomials, factoring, rational expressions, and more.",
     "googleDriveLink": "https://drive.google.com/file/d/1IqAghJ0UubfMFmC7dQriyo-_b5t-pqV0/view?usp=sharing"
   },
   {
     "id": "b025",
     "title": "Pre Algebra",
     "category": "Math",
+    "description": "Perfect for beginners — covers whole numbers, decimals, and simple equations.",
     "googleDriveLink": "https://drive.google.com/file/d/1m4t7DUuZ49ZN14CniRlE__eXjgqy07il/view?usp=sharing"
   },
   {
     "id": "b026",
     "title": "Introduction to Philosophy",
     "category": "Philosophy",
+    "description": "Explores major philosophical questions and thinkers throughout history in an accessible format.",
     "googleDriveLink": "https://drive.google.com/file/d/1TtQVB_dKMSKZdcRO8WzlbM-DIc8lmi0a/view?usp=sharing"
   },
   {
     "id": "b027",
     "title": "World History Vol 1",
     "category": "History",
+    "description": "Covers early human civilizations up to the 15th century — insightful for global historical context.",
     "googleDriveLink": "https://drive.google.com/file/d/1oa90OVUrHAxFiyWvdc1Vn8Q7L8VohHOb/view?usp=sharing"
   },
   {
     "id": "b028",
     "title": "World History Vol 2",
     "category": "History",
+    "description": "Continues from Volume 1, focusing on modern history and global changes after 1500.",
     "googleDriveLink": "https://drive.google.com/file/d/1gk3ipHWi0Yl4ygF6suGwDUoZY0wORDfs/view?usp=sharing"
   },
   {
     "id": "b029",
     "title": "Chemistry 1",
     "category": "Chemistry",
+    "description": "Introduces atomic theory, periodic trends, chemical bonding, and basic reactions.",
     "googleDriveLink": "https://drive.google.com/file/d/1ipbrYxaJ-6pq5UJ9jMohC-H1zJ2MxJUd/view?usp=sharing"
   },
   {
     "id": "b030",
     "title": "Chemistry Atoms First",
     "category": "Chemistry",
+    "description": "Teaches chemistry from an atomic perspective, helping learners grasp structure before reactions.",
     "googleDriveLink": "https://drive.google.com/file/d/1rEITsegugR_A_A1SgLAsTJ8Q_xN1mTAS/view?usp=sharing"
   }
 ]
