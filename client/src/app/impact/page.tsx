@@ -4,185 +4,169 @@
 import Link from 'next/link';
 import Header from '@components/Header';
 import Footer from '@components/Footer';
-import ImageSlider from '@components/ImageSlider'; // Import the new slider
+import ImageSlider from '@components/ImageSlider';
 import { motion, Variants, Transition } from 'framer-motion';
+import TestimonialsGrid from '@components/TestimonialsGrid';
 
-// Sample image data for the slider
-// IMPORTANT: Replace these with paths to your actual images in the `public` folder
-// For example, if you have `public/images/impact1.jpg`, the src would be `/images/impact1.jpg`
 const impactImages = [
-  { src: '/impact1.jpg', alt: 'Community project in action', caption: 'Volunteers building a new community center.' },
-  { src: '/impact2.jpg', alt: 'Children learning in a new school', caption: 'Providing quality education to rural communities.' },
-  { src: '/impact3.jpg', alt: 'Healthcare outreach program', caption: 'Mobile clinics reaching underserved areas.' },
-  { src: '/impact4.jpg', alt: 'Sustainable agriculture initiative', caption: 'Empowering farmers with modern techniques.' },
+  { src: '/impact-image1.jpg', alt: 'Students reading donated books', caption: 'Reference books donated by Ato Solomon Yimer being presented to Kone High School in the presence of students.' },
+  { src: '/impact-image2.jpg', alt: 'Students reading donated books', caption: 'Reference books donated by Ato Solomon Yimer being presented to Kone High School in the presence of students.' },
+  { src: '/impact-image3.jpg', alt: 'Students reading donated books', caption: 'Reference books donated by Ato Solomon Yimer being presented to Kone High School in the presence of students.' },
+  { src: '/impact-image4.jpg', alt: 'Students reading donated books', caption: 'Reference books donated by Ato Solomon Yimer being presented to Kone High School in the presence of students.' },
+  { src: '/impact-image5.jpg', alt: 'Students reading donated books', caption: 'Reference books donated by Ato Solomon Yimer being presented to Kone High School in the presence of students.' },
 ];
 
+const containerVariants: Variants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: { staggerChildren: 0.08 },
+  },
+};
+
+const itemVariants: Variants = {
+  hidden: { y: 20, opacity: 0 },
+  visible: {
+    y: 0,
+    opacity: 1,
+    transition: { type: 'tween', ease: 'easeOut', duration: 0.4 } as Transition,
+  },
+};
+
 export default function OurImpact() {
-  const containerVariants: Variants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.08, // Subtle stagger for a smoother reveal
-      },
-    },
-  };
-
-  const itemVariants: Variants = {
-    hidden: { y: 20, opacity: 0 },
-    visible: {
-      y: 0,
-      opacity: 1,
-      transition: {
-        type: 'tween', // Consistent tween transition
-        ease: 'easeOut',
-        duration: 0.4, // Smooth duration
-      } as Transition,
-    },
-  };
-
   return (
-    // **FIX:** Changed overflow-x-hidden to overflow-y-auto to ensure vertical scrolling.
-    // Ensure min-h-screen allows content to exceed viewport height and be scrollable.
-    <main className="min-h-screen bg-gray-50 text-gray-900 font-sans antialiased overflow-y-auto"> 
-      {/* **FIX:** Added z-index to Header. If your Header component is fixed/sticky, this helps prevent it from overlapping content. */}
+    <main className="min-h-screen bg-gray-50 text-gray-900 font-sans overflow-y-auto">
       <Header className="relative z-20" />
 
-      {/* Hero Section - Dark, impactful, clean */}
-      {/* **FIX:** Adjusted vertical padding for smaller screens (`pt-` and `py-`). */}
-      <section className="bg-gray-900 text-white py-24 sm:py-32 lg:py-48 px-6 text-center pt-40 sm:pt-48 relative overflow-hidden"> 
-        <div
-          className="absolute inset-0 opacity-10"
-          style={{
-            backgroundImage: 'url("data:image/svg+xml,%3Csvg width=\'40\' height=\'40\' viewBox=\'0 0 40 40\' xmlns=\'http://www.w3.org/2000/svg\'%3E%3Cg fill=\'%23ffffff\' fill-opacity=\'0.1\' fill-rule=\'evenodd\'%3E%3Cpath d=\'M0 40L40 0H20L0 20M40 40V20L20 40\'/%3E%3C/g%3E%3C/svg%3E")',
-            backgroundSize: '80px 80px',
-            backgroundRepeat: 'repeat',
-          }}
-        ></div>
-        <motion.div
-          className="max-w-4xl mx-auto relative z-10"
-          variants={containerVariants}
-          initial="hidden"
-          animate="visible"
-        >
-          {/* **FIX:** Slightly reduced font sizes for mobile for better fit */}
-          <motion.h1 variants={itemVariants} className="text-3xl md:text-6xl lg:text-7xl font-bold mb-3 leading-tight">
-            Our Impact: Making a Difference
-          </motion.h1>
-          <motion.p variants={itemVariants} className="text-base md:text-xl lg:text-2xl font-light opacity-90 max-w-3xl mx-auto">
-            See how Kone Renaissance Foundation is transforming lives and communities.
-          </motion.p>
-        </motion.div>
-      </section>
+      {/* Hero Section */}
+      <section className="relative bg-gradient-to-r from-blue-900 via-blue-800 to-blue-700 text-white pt-60 pb-32 px-6 text-left overflow-hidden">
+        {/* Background Image with overlay */}
+        <div className="absolute inset-0 z-0">
+          <img
+            src="/impacts.jpg" // Update to your image path
+            alt="Students Walking Together"
+            className="w-full h-full object-cover object-center"
+          />
+          <div className="absolute inset-0 bg-gradient-to-r from-gray-900 via-gray-800 to-transparent opacity-90" />
+        </div>
 
-      {/* Impact Overview Section - Clean, content-focused */}
-      {/* **FIX:** Adjusted vertical padding for smaller screens (`py-`). */}
-      <section className="py-16 sm:py-20 px-4 sm:px-6 lg:px-8 bg-white"> {/* Use consistent px padding for all screens */}
+        {/* Content */}
+        <div className="relative z-10 max-w-4xl flex flex-col justify-center h-full pl-0" style={{ fontFamily: 'Times New Roman, serif' }}>
+          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold Times New Romans italic leading-tight">
+            Empowering Students.<br className="hidden md:block" /> Transforming Classrooms.
+          </h2>
+          <p className="text-xl md:text-2xl font-light leading-snug mb-8 max-w-xl">
+            Building brighter futures at Kone High School  <br />
+            through access to essential learning materials.
+          </p>         
+        </div>
+      </section> 
+     
+      {/* Story Section */}
+      <section className="py-16 px-6 bg-white text-center" aria-label="Foundation Story">
         <motion.div
-          className="max-w-5xl mx-auto"
           variants={containerVariants}
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, amount: 0.3 }}
+          className="max-w-3xl mx-auto"
         >
-          {/* **FIX:** Slightly reduced font sizes for mobile for better fit */}
-          <motion.h2 variants={itemVariants} className="text-3xl lg:text-5xl font-bold text-gray-900 text-center mb-10 sm:mb-16">
-            Our Journey of Change
+          <motion.h2 variants={itemVariants} className="text-3xl md:text-4xl font-bold mb-10">
+            Why We Started
           </motion.h2>
 
-          {/* **FIX:** Slightly reduced font sizes and margins for mobile */}
-          <motion.p variants={itemVariants} className="text-base md:text-xl text-gray-800 leading-relaxed max-w-4xl mx-auto mb-10 sm:mb-16 font-light">
-            Since our inception, Kone Renaissance Foundation has been dedicated to fostering sustainable development and empowering communities. Our work spans across education, healthcare, infrastructure, and livelihood programs, directly impacting thousands of lives. We believe in a holistic approach, ensuring that our initiatives create lasting positive change.
-          </motion.p>
+          <motion.div
+            variants={itemVariants}
+            className="bg-gray-100 text-left rounded-2xl shadow-lg p-8 md:p-10"
+          >
+            <p className="text-base md:text-lg font-light text-gray-700 text-justify">
+              Kone High School, like many under-resourced schools in Ethiopia, has long struggled with a severe lack of
+              educational materials. The shortage included reference books, laboratory equipment, proper classroom
+              infrastructure, and basic learning supplies. Many students came from low-income families and couldn’t
+              afford essentials like uniforms, pens, or exercise books. While students remained eager to learn and
+              teachers did their best, the gap between ambition and opportunity continued to grow.
+            </p>
 
-          {/* **FIX:** Adjusted margin-bottom for ImageSlider */}
-          <motion.div variants={itemVariants} className="mb-10 sm:mb-16 rounded-xl shadow-lg border border-gray-100 overflow-hidden"> 
-            <ImageSlider images={impactImages} />
-          </motion.div>
-
-          {/* **FIX:** Slightly reduced font sizes and margins for mobile */}
-          <motion.h3 variants={itemVariants} className="text-2xl md:text-4xl font-bold text-gray-900 mb-8 sm:mb-12 text-center">
-            Key Areas of Impact
-          </motion.h3>
-
-          {/* **FIX:** Reduced gap for better mobile spacing */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-10"> 
-            {/* **FIX:** Reduced padding for cards on mobile */}
-            <motion.div variants={itemVariants} className="bg-white p-6 sm:p-8 rounded-xl shadow-lg border border-gray-100"> 
-              {/* **FIX:** Slightly reduced font sizes for card headings */}
-              <h4 className="text-xl sm:text-2xl font-bold text-gray-900 mb-3 sm:mb-4">Education Initiatives</h4>
-              {/* **FIX:** Slightly reduced font sizes and margins for card paragraphs */}
-              <p className="text-sm sm:text-base text-gray-700 mb-4 sm:mb-6 leading-relaxed">
-                We have established and supported over 15 schools in remote areas, providing access to quality education for more than 5,000 children. Our programs include teacher training, provision of learning materials, and scholarship opportunities for deserving students.
-              </p>
-              {/* **FIX:** Slightly reduced font sizes for list items */}
-              <ul className="list-disc list-inside text-gray-700 space-y-1.5 sm:space-y-2 text-sm sm:text-base"> 
-                <li>Built 5 new primary schools.</li>
-                <li>Provided scholarships to 200 high school students.</li>
-                <li>Distributed 10,000 textbooks annually.</li>
-              </ul>
-            </motion.div>
-
-            <motion.div variants={itemVariants} className="bg-white p-6 sm:p-8 rounded-xl shadow-lg border border-gray-100">
-              <h4 className="text-xl sm:text-2xl font-bold text-gray-900 mb-3 sm:mb-4">Healthcare & Wellness Programs</h4>
-              <p className="text-sm sm:text-base text-gray-700 mb-4 sm:mb-6 leading-relaxed">
-                Our mobile clinics reach underserved villages, offering free medical check-ups, vaccinations, and health education. We focus on maternal and child health, and preventing common diseases through awareness campaigns.
-              </p>
-              <ul className="list-disc list-inside text-gray-700 space-y-1.5 sm:space-y-2 text-sm sm:text-base">
-                <li>Conducted 100+ health camps.</li>
-                <li>Vaccinated 3,000+ children.</li>
-                <li>Distributed essential medicines to 1,500 families.</li>
-              </ul>
-            </motion.div>
-
-            <motion.div variants={itemVariants} className="bg-white p-6 sm:p-8 rounded-xl shadow-lg border border-gray-100">
-              <h4 className="text-xl sm:text-2xl font-bold text-gray-900 mb-3 sm:mb-4">Livelihood & Empowerment</h4>
-              <p className="text-sm sm:text-base text-gray-700 mb-4 sm:mb-6 leading-relaxed">
-                We empower local communities through vocational training, micro-finance initiatives, and sustainable agriculture projects. Our aim is to create economic independence and reduce poverty.
-              </p>
-              <ul className="list-disc list-inside text-gray-700 space-y-1.5 sm:space-y-2 text-sm sm:text-base">
-                <li>Trained 500 women in various trades.</li>
-                <li>Supported 150 small businesses with micro-loans.</li>
-                <li>Implemented drought-resistant farming techniques in 10 villages.</li>
-              </ul>
-            </motion.div>
-
-            <motion.div variants={itemVariants} className="bg-white p-6 sm:p-8 rounded-xl shadow-lg border border-gray-100">
-              <h4 className="text-xl sm:text-2xl font-bold text-gray-900 mb-3 sm:mb-4">Infrastructure Development</h4>
-              <p className="text-sm sm:text-base text-gray-700 mb-4 sm:mb-6 leading-relaxed">
-                Improving basic infrastructure is vital. We have invested in clean water projects, building accessible roads, and providing sustainable energy solutions to remote areas.
-              </p>
-              <ul className="list-disc list-inside text-gray-700 space-y-1.5 sm:space-y-2 text-sm sm:text-base">
-                <li>Installed 20 new boreholes for clean water.</li>
-                <li>Constructed 50km of access roads.</li>
-                <li>Provided solar power solutions to 3 villages.</li>
-              </ul>
-            </motion.div>
-          </div>
-
-          {/* Final Call to Action Section - Consistent dark background, Apple-like button */}
-          {/* **FIX:** Adjusted margin-top and vertical padding for mobile, reduced font sizes */}
-          <motion.div variants={containerVariants} initial="hidden" whileInView="visible" viewport={{ once: true, amount: 0.3 }} 
-                      className="text-center mt-16 sm:mt-20 pt-10 sm:pt-16 pb-8 sm:pb-12 bg-gray-900 text-white rounded-xl shadow-xl"> 
-            <motion.h3 variants={itemVariants} className="text-2xl md:text-4xl font-bold mb-4 sm:mb-6 leading-snug">
-              Join Us in Making a Greater Impact
-            </motion.h3>
-            <motion.p variants={itemVariants} className="text-base sm:text-lg opacity-90 mb-6 sm:mb-8 max-w-2xl mx-auto font-light">
-              Your support is crucial to extending our reach and deepening our impact. Every contribution helps us build a brighter future for the communities we serve.
-            </motion.p>
-            <motion.div variants={itemVariants}>
-              {/* **FIX:** Slightly reduced button padding for mobile */}
-              <Link
-                href="/donate"
-                className="inline-block bg-blue-600 text-white font-semibold px-8 py-4 sm:px-10 sm:py-5 rounded-full shadow-lg hover:bg-blue-700 transition-colors duration-300 transform hover:scale-105" 
-              >
-                Donate Now and Support Our Mission
-              </Link>
-            </motion.div>
+            <p className="mt-4 text-base md:text-lg font-light text-gray-700 text-justify">
+              The Kone High School Foundation was created to close that gap. We believe every student deserves the
+              resources to learn, grow, and succeed. Through book donations, classroom support, lab materials, and
+              aid for students in need, we are working to build a stronger, more inclusive educational environment
+              for all.
+            </p>
           </motion.div>
         </motion.div>
+      </section>   
+
+      
+      {/* Key Stats Section */}
+      <section className="bg-gray-100 py-10 px-4 sm:px-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 max-w-7xl mx-auto">
+          {[
+            { label: 'Books Donated', value: '134' },
+            { label: 'Subjects Covered', value: '10+' },
+            { label: 'Grades Supported', value: '9–12' },
+            { label: 'Students Impacted', value: '1,200+' },
+          ].map((stat, index) => (
+            <motion.div
+              key={index}
+              variants={itemVariants}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true, amount: 0.3 }}
+              className="border border-gray-300 bg-white text-center py-5 px-4 shadow-md rounded-lg"
+            >
+              <p className="text-4xl font-bold text-black-600">{stat.value}</p>
+              <p className="text-black-700 mt-2 text-base font-medium">{stat.label}</p>
+            </motion.div>
+          ))}
+        </div>
       </section>
 
+
+      {/* Image Slider */}
+      <section className="py-16 px-6 bg-white">
+        <div className="max-w-5xl mx-auto">
+          <ImageSlider images={impactImages} />
+        </div>
+      </section>
+
+      {/* Testimonials Section */}
+      <TestimonialsGrid />
+
+      {/* Call to Action */}
+      <section className="relative bg-gray-900 text-white py-24 sm:py-28 md:py-32 px-4 sm:px-6 text-center overflow-hidden mb-3">
+        {/* Background Image */}
+        <div className="absolute inset-0 z-0">
+          <img
+            src="/cta-background.jpg"
+            alt="The Gate of Kon Highschool"
+            className="w-full h-full object-cover object-top"
+          />
+          {/* Gradient Overlay */}
+          <div className="absolute inset-0 bg-gradient-to-r from-black via-black/70 to-transparent" />
+        </div>
+
+        {/* CTA Content */}
+        <div className="relative z-10 max-w-2xl mx-auto px-4">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-6 leading-tight">
+            Help Build a Future Full of Opportunity
+          </h2>
+          <p className="text-base sm:text-lg md:text-xl font-light mb-8">
+            Your support provides vital books and materials to students who need them most. Join us in transforming lives through education.
+          </p>
+          <div className="flex justify-center flex-wrap gap-4">
+            <Link
+              href="/donate"
+              className="bg-gray-400 text-gray-900 px-6 py-3 rounded-full font-semibold hover:bg-gray-300 transition"
+            >
+              Donate Now
+            </Link>
+          </div>
+        </div>
+      </section>
+
+
+      
       <Footer />
     </main>
   );
