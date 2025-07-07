@@ -165,8 +165,6 @@ export default function OurImpact() {
         </div>
       </section>
 
-
-      
       <Footer />
     </main>
   );

@@ -219,7 +219,7 @@ export default function EducationResourcesPage() {
           initial="hidden"
           animate="visible"
         >
-          <motion.h1 variants={itemVariants} className="text-5xl md:text-7xl lg:text-9xl font-bold mb-4 leading-tight tracking-tight">
+          <motion.h1 variants={itemVariants} className="text-4xl md:text-7xl lg:text-6xl font-bold mb-4 leading-tight tracking-tight">
             ኦንላይን ትምህርት እና ስኮላርሽፕ
           </motion.h1>
           <motion.p variants={itemVariants} className="text-lg md:text-xl lg:text-2xl font-light opacity-80 mb-10 max-w-3xl mx-auto">

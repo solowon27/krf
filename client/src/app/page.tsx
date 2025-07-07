@@ -129,7 +129,7 @@ export default function Home() {
           className="relative z-10 max-w-5xl mx-auto px-4 text-white"
           initial="hidden" animate="visible" variants={containerVariants}
         >
-          <motion.h1 variants={itemVariants} className="text-5xl md:text-7xl lg:text-8xl font-extrabold leading-tight mb-6 tracking-tight drop-shadow-2xl">
+          <motion.h1 variants={itemVariants} className="text-4xl md:text-7xl lg:text-8xl font-extrabold leading-tight mb-6 tracking-tight drop-shadow-2xl">
             የአስተሳሰብ ለውጥ በማምጣት፣ <br />ትልቅ ልዩነት እንፈጥራለን።
           </motion.h1>
           <motion.p variants={itemVariants} className="text-lg md:text-2xl mb-10 text-slate-200/90 max-w-3xl mx-auto font-light drop-shadow-lg">
@@ -301,7 +301,7 @@ export default function Home() {
 
                   <div className="text-right mt-6 flex justify-between items-center text-sm">
                     {donation.submittedBy && (
-                      <p className="text-gray-500">By: <span className="font-semibold text-gray-700">{donation.submittedBy.firstName}</span></p>
+                      <p className="text-gray-500">Submitted By: <span className="font-semibold text-gray-700">{donation.submittedBy.firstName}</span></p>
                     )}
                     <p className="font-semibold text-gray-700 ml-auto">{new Date(donation.date).toLocaleDateString()}</p>
                   </div>
