@@ -1,275 +1,186 @@
-// app/about/page.tsx
 'use client';
 
-import Link from 'next/link';
 import Header from '@components/Header';
 import Footer from '@components/Footer';
-import { motion, Variants, Transition } from 'framer-motion';
+import Link from 'next/link';
+import { motion, Variants } from 'framer-motion';
 import Image from 'next/image';
+import { FaMapMarkerAlt, FaCalendarAlt, FaUsers, FaHandsHelping, FaBullseye, FaHeart, FaLightbulb } from 'react-icons/fa';
+
+// --- NEW: Data structure for team members for easier updates ---
+const teamMembers = [
+  {
+    name: "አቤል ቢሰጠኝ",
+    role: "መስራች እና የትምህርት ቤቱ ተጠሪ",
+    quote: "Every child deserves the opportunity to learn and thrive. We are building that future, brick by brick, dream by dream.",
+    image: "/abel.jpeg"
+  },
+  {
+    name: "ኮማንደር ወንድወሰን",
+    role: "መስራች እና ዳታ አናሊስት",
+    quote: "Leveraging technology, we can bridge educational gaps and connect passionate learners with boundless knowledge.",
+    image: "/come.JPEG"
+  },
+  {
+    name: "ሰሎሞን ይመር",
+    role: "መስራች እና የውጭ ግንኙነት",
+    quote: "በዚህ ፕሮጀክት ውስጤ ትልቅ እምነት አለው።",
+    image: "/solo.JPG"
+  }
+];
+
+// --- NEW: Data for the timeline section ---
+const timelineEvents = [
+  { year: "2016 E.C.", title: "Foundation & Initial Funding", description: "The Kone Renaissance Foundation was established, securing initial partnerships and funding to begin the renovation of Kone High School." },
+  { year: "2016 E.C.", title: "Launch of Mentorship Program", description: "Successfully connected the first cohort of 20 high school students with local professionals for career guidance and inspiration." },
+  { year: "2017 E.C.", title: "Phase 1 Construction Begins", description: "Broke ground on new classrooms and a modern library, marking a major step in our infrastructure goals." },
+  { year: "Future", title: "Digital Learning Hub Launch", description: "Our next major milestone is to equip the library with computers and internet, opening a window to the world for our students." },
+];
 
 export default function AboutUs() {
   const containerVariants: Variants = {
     hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.08,
-      },
-    },
+    visible: { opacity: 1, transition: { staggerChildren: 0.1 } },
   };
 
   const itemVariants: Variants = {
-    hidden: { y: 20, opacity: 0 },
-    visible: {
-      y: 0,
-      opacity: 1,
-      transition: {
-        type: 'tween',
-        ease: 'easeOut',
-        duration: 0.4,
-      } as Transition,
-    },
+    hidden: { y: 30, opacity: 0 },
+    visible: { y: 0, opacity: 1, transition: { type: 'spring', stiffness: 100 } },
   };
 
   return (
-    <main className="min-h-screen bg-gray-50 text-gray-900 font-sans antialiased overflow-y-auto">
-      <Header className="relative z-20" />
+    <main className="min-h-screen bg-gray-100 text-gray-800 font-sans">
+      <Header />
 
-      {/* Hero Section for About Us - Clean, impactful, dark background */}
-      <section className="bg-gray-900 text-white py-24 sm:py-32 lg:py-48 px-6 text-center pt-40 sm:pt-48 relative overflow-hidden">
-        <div
-          className="absolute inset-0 opacity-10"
-          style={{
-            backgroundImage: 'url("data:image/svg+xml,%3Csvg width=\'40\' height=\'40\' viewBox=\'0 0 40 40\' xmlns=\'http://www.w3.org/2000/svg\'%3E%3Cg fill=\'%23ffffff\' fill-opacity=\'0.1\' fill-rule=\'evenodd\'%3E%3Cpath d=\'M0 40L40 0H20L0 20M40 40V20L20 40\'/%3E%3C/g%3E%3C/svg%3E")',
-            backgroundSize: '80px 80px',
-            backgroundRepeat: 'repeat',
-          }}
-        ></div>
+      {/* --- HERO SECTION --- */}
+      <section className="relative bg-slate-900 text-white py-32 md:py-48 px-6 text-center overflow-hidden">
+        <div className="absolute inset-0 bg-gradient-to-br from-blue-900 via-slate-900 to-black opacity-70"></div>
+        <Image
+          src="/logo.png" // Assume this is a relevant background image
+          alt="Background of Kone community or school"
+          fill
+          className="object-cover object-center opacity-10"
+          priority
+        />
         <motion.div
           className="max-w-4xl mx-auto relative z-10"
-          variants={containerVariants}
-          initial="hidden"
-          animate="visible"
+          initial="hidden" animate="visible" variants={containerVariants}
         >
-          <motion.h1 variants={itemVariants} className="text-3xl md:text-6xl lg:text-7xl font-bold mb-3 leading-tight">
-            Our Journey, Our Purpose
+          <motion.h1 variants={itemVariants} className="text-4xl md:text-7xl font-extrabold mb-4 tracking-tight">
+            ስለ እኛ
           </motion.h1>
-          <motion.p variants={itemVariants} className="text-base md:text-xl lg:text-2xl font-light opacity-90 max-w-3xl mx-auto">
-            Discover the passion, history, and people behind the Kone Renaissance Foundation.
+          <motion.p variants={itemVariants} className="text-lg md:text-xl text-blue-100/80 max-w-2xl mx-auto">
+            The story, mission, and dedicated individuals driving the Kone Renaissance Foundation forward.
           </motion.p>
         </motion.div>
       </section>
 
-      {/* Our Story Section - First content block, typically narrative */}
-      <section className="py-16 sm:py-20 px-4 sm:px-6 lg:px-8 bg-white">
-        <motion.div
-          className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 items-center"
-          variants={containerVariants}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, amount: 0.2 }}
-        >
-          <motion.div variants={itemVariants}>
-            <h2 className="text-3xl sm:text-4xl font-bold mb-4 sm:mb-6 text-gray-900 leading-tight">Our Story: From Vision to Impact</h2>
-            <p className="text-base sm:text-lg leading-relaxed text-gray-700 mb-4 sm:mb-6">
-              The **Kone Renaissance Foundation** was born from a deep-rooted desire to uplift and empower the community of Kone, a small village in rural Ethiopia. Witnessing the immense potential within its youth, coupled with the challenges faced by Kone High School, ignited a spark in our founders. We believe that **education is the most powerful tool for change**, capable of breaking cycles of poverty and building a brighter future.
+      {/* --- OUR STORY & TIMELINE SECTION --- */}
+      <section className="py-20 md:py-28 px-4 bg-white">
+        <div className="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+          <motion.div initial={{ opacity: 0, x: -50 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true, amount: 0.3 }} transition={{ duration: 0.7 }}>
+            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-6">From a Shared Vision to Lasting Impact</h2>
+            <p className="text-lg text-gray-700 leading-relaxed mb-4">
+              The **Kone Renaissance Foundation** was born from a collective desire to empower the community of Kone, Ethiopia. We believe that **education is the most powerful catalyst for change**, capable of unlocking potential and building a brighter, self-sufficient future.
             </p>
-            <p className="text-base sm:text-lg leading-relaxed text-gray-700">
-              From humble beginnings, our initiative grew into a dedicated foundation, uniting individuals and partners who share our vision. We are not just rebuilding a school; we are rebuilding hope, dignity, and opportunity for generations to come. Our journey is a testament to the power of collective action and unwavering commitment to human potential.
+            <p className="text-lg text-gray-700 leading-relaxed">
+              Our journey is a testament to community action. We are not just rebuilding a school; we are fostering hope, dignity, and opportunity for generations.
             </p>
           </motion.div>
-          <motion.div variants={itemVariants} className="relative w-full h-64 sm:h-80 md:h-96 rounded-xl overflow-hidden shadow-2xl">
-            <Image
-              src="/logo.png"
-              alt="Kone High School students learning or school building"
-              fill
-              className="object-cover object-center"
-              sizes="(max-width: 768px) 100vw, 50vw"
-              priority
-            />
-          </motion.div>
-        </motion.div>
+          {/* --- NEW: Interactive Timeline --- */}
+          <div>
+            {timelineEvents.map((event, index) => (
+              <motion.div
+                key={index}
+                className="flex items-start mb-8 last:mb-0"
+                custom={index}
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true }}
+                variants={{
+                  hidden: { opacity: 0, x: 50 },
+                  visible: { opacity: 1, x: 0, transition: { delay: index * 0.2, duration: 0.6 } }
+                }}
+              >
+                <div className="flex flex-col items-center mr-6">
+                  <div className="w-12 h-12 bg-blue-600 text-white rounded-full flex items-center justify-center font-bold shadow-lg">{event.year}</div>
+                  {index !== timelineEvents.length - 1 && <div className="w-0.5 h-16 bg-gray-300 mt-2"></div>}
+                </div>
+                <div>
+                  <h3 className="text-xl font-bold text-gray-800 mb-1">{event.title}</h3>
+                  <p className="text-gray-600">{event.description}</p>
+                </div>
+              </motion.div>
+            ))}
+          </div>
+        </div>
       </section>
+      
 
-      {/* Meet the Founders Section - Updated for clean, professional look */}
-      <section className="py-16 sm:py-20 px-4 sm:px-6 lg:px-8 bg-white">
-        <motion.div
-          className="max-w-7xl mx-auto text-center"
-          variants={containerVariants}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, amount: 0.1 }}
-        >
-          <motion.h2 variants={itemVariants} className="text-3xl sm:text-4xl border rounded-lg p-2 bg-gradient-to-r from-gray-300 to-gray-200 font-bold mb-10 sm:mb-12 text-gray-900">
-            Meet Our Visionary Founders
-          </motion.h2>
-          <div className="flex flex-col md:flex-row justify-center items-center md:items-start gap-8 lg:gap-16"> {/* Changed items-stretch to items-start for md and up, kept items-center for flex-col */}
-            {/* Founder 1 */}
-            <motion.div variants={itemVariants} className="w-full max-w-xs flex flex-col items-center p-5 sm:p-6 bg-gray-50 border border-yellow-600 rounded-xl shadow-md hover:shadow-lg transition-shadow duration-300">
-              <div className="relative h-40 w-40 sm:h-48 sm:w-48 rounded-full overflow-hidden mb-5 sm:mb-6 border-2 border-gray-200 flex items-center justify-center">
-                <Image
-                  src="/abel.jpeg"
-                  alt="Abel Bisetegn"
-                  fill
-                  style={{ objectFit: 'cover', objectPosition: 'center' }}
-                />
-              </div>
-              <h3 className="text-xl sm:text-2xl font-semibold text-gray-900 mb-1 sm:mb-2">አቤል ቢሰጠኝ</h3>
-              <p className="text-sm sm:text-md text-gray-600 italic mb-2 sm:mb-3">መስራች እና የትምህርት ቤቱ ተጠሪ</p>
-              <p className="text-sm sm:text-base text-gray-700 text-center leading-relaxed">"Every child deserves the opportunity to learn and thrive. We are building that future, brick by brick, dream by dream."</p>
-            </motion.div>
-
-            {/* Founder 2 */}
-            <motion.div variants={itemVariants} className="w-full max-w-xs flex flex-col items-center p-5 sm:p-6 bg-gray-50 border border-yellow-600 rounded-xl shadow-md hover:shadow-lg transition-shadow duration-300">
-              <div className="relative h-40 w-40 sm:h-48 sm:w-48 rounded-full overflow-hidden mb-5 sm:mb-6 border-2 border-gray-200 flex items-center justify-center">
-                <Image
-                  src="/come.JPEG"
-                  alt="Commander Wondowosen"
-                  fill
-                  style={{ objectFit: 'cover', objectPosition: 'center' }}
-                />
-              </div>
-              <h3 className="text-xl sm:text-2xl font-semibold text-gray-900 mb-1 sm:mb-2">ኮማንደር ወንድወሰን</h3>
-              <p className="text-sm sm:text-md text-gray-600 italic mb-2 sm:mb-3">መስራች እና ዳታ አናሊስት</p>
-              <p className="text-sm sm:text-base text-gray-700 text-center leading-relaxed">"Leveraging technology, we can bridge educational gaps and connect passionate learners with boundless knowledge."</p>
-            </motion.div>
-
-            {/* Founder 3 */}
-            <motion.div variants={itemVariants} className="w-full max-w-xs flex flex-col items-center p-5 sm:p-6 bg-gray-50 border border-yellow-600 rounded-xl shadow-md hover:shadow-lg transition-shadow duration-300">
-              <div className="relative h-40 w-40 sm:h-48 sm:w-48 rounded-full overflow-hidden mb-5 sm:mb-6 border-2 border-gray-200 flex items-center justify-center">
-                <Image
-                  src="/solo.JPG"
-                  alt="Solomon Yimer"
-                  fill
-                  style={{ objectFit: 'cover', objectPosition: 'center' }}
-                  priority
-                />
-              </div>
-              <h3 className="text-xl sm:text-2xl font-semibold text-gray-900 mb-1 sm:mb-2">ሰሎሞን ይመር</h3>
-              <p className="text-sm sm:text-md text-gray-600 italic mb-2 sm:mb-3">መስራች እና የውጭ ግንኙነት</p>
-              <p className="text-sm sm:text-base text-gray-700 text-center leading-relaxed">"በዚህ ፕሮጀክት ውስጤ ትልቅ እምነት አለው"</p>
+      {/* --- GUIDING PRINCIPLES / CORE VALUES --- */}
+      <section className="py-20 md:py-28 bg-white">
+          <div className="max-w-7xl mx-auto px-4 text-center">
+            <motion.h2 variants={itemVariants} initial="hidden" whileInView="visible" viewport={{ once: true }} className="text-3xl md:text-4xl font-bold mb-12">Our Guiding Principles</motion.h2>
+            <motion.div className="grid grid-cols-1 md:grid-cols-3 gap-8" initial="hidden" whileInView="visible" variants={containerVariants} viewport={{ once: true, amount: 0.2 }}>
+                {[
+                    { icon: <FaLightbulb/>, title: "Empowerment", text: "Fostering self-reliance by equipping students and teachers with the tools for their own success." },
+                    { icon: <FaHeart/>, title: "Community", text: "Building strong, collaborative bonds within Kone and with our global network of supporters." },
+                    { icon: <FaBullseye/>, title: "Sustainability", text: "Creating lasting, positive change that benefits the community for generations to come." }
+                ].map((value, index) => (
+                    <motion.div key={index} variants={itemVariants} className="p-8 bg-gray-50/50 rounded-2xl border border-gray-200/80 hover:shadow-xl hover:border-blue-300 transition-all duration-300">
+                        <div className="text-4xl mb-4 text-blue-600">{value.icon}</div>
+                        <h3 className="text-2xl font-semibold text-gray-900 mb-3">{value.title}</h3>
+                        <p className="text-gray-700 leading-relaxed">{value.text}</p>
+                    </motion.div>
+                ))}
             </motion.div>
           </div>
-        </motion.div>
       </section>
 
-      {/* Our Core Values Section - Clean layout, subtle icons */}
-      <section className="py-16 sm:py-20 px-4 sm:px-6 lg:px-8 bg-gray-50">
-        <motion.div
-          className="max-w-6xl mx-auto text-center"
-          variants={containerVariants}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, amount: 0.1 }}
-        >
-          <motion.h2 variants={itemVariants} className="text-3xl sm:text-4xl font-bold mb-10 sm:mb-12 text-gray-900">
-            Our Guiding Principles
-          </motion.h2>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-12">
-            <motion.div variants={itemVariants} className="bg-white p-6 sm:p-8 rounded-xl shadow-lg border border-gray-100 hover:shadow-xl transition-shadow duration-300">
-              <div className="text-4xl sm:text-5xl mb-3 sm:mb-4 text-blue-600">💡</div>
-              <h3 className="text-xl sm:text-2xl font-semibold text-gray-900 mb-2 sm:mb-3">Empowerment</h3>
-              <p className="text-sm sm:text-base text-gray-700 leading-relaxed">We foster self-reliance and critical thinking, equipping every student and teacher with the tools to shape their own futures.</p>
-            </motion.div>
-            <motion.div variants={itemVariants} className="bg-white p-6 sm:p-8 rounded-xl shadow-lg border border-gray-100 hover:shadow-xl transition-shadow duration-300">
-              <div className="text-4xl sm:text-5xl mb-3 sm:mb-4 text-blue-600">🤝</div>
-              <h3 className="text-xl sm:text-2xl font-semibold text-gray-900 mb-2 sm:mb-3">Community</h3>
-              <p className="text-sm sm:text-base text-gray-700 leading-relaxed">We build strong bonds and a collaborative spirit within Kone, extending to our global network of passionate supporters.</p>
-            </motion.div>
-            <motion.div variants={itemVariants} className="bg-white p-6 sm:p-8 rounded-xl shadow-lg border border-gray-100 hover:shadow-xl transition-shadow duration-300">
-              <div className="text-4xl sm:text-5xl mb-3 sm:mb-4 text-blue-600">🌱</div>
-              <h3 className="text-xl sm:text-2xl font-semibold text-gray-900 mb-2 sm:mb-3">Sustainability</h3>
-              <p className="text-sm sm:text-base text-gray-700 leading-relaxed">Our efforts are designed for lasting impact, creating a legacy of positive change that benefits the community for generations.</p>
-            </motion.div>
-          </div>
-        </motion.div>
+      {/* --- OUR TEAM SECTION --- */}
+      <section className="py-20 md:py-28 bg-gray-100">
+        <div className="max-w-7xl mx-auto px-4 text-center">
+          <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={containerVariants}>
+            <motion.div variants={itemVariants} className="inline-block text-blue-600 text-5xl mb-4"><FaUsers/></motion.div>
+            <motion.h2 variants={itemVariants} className="text-3xl md:text-4xl font-bold mb-12">Meet Our Visionary Team</motion.h2>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+              {teamMembers.map((member, index) => (
+                <motion.div key={index} variants={itemVariants} className="bg-white rounded-2xl shadow-lg overflow-hidden text-center group transform hover:-translate-y-2 transition-transform duration-300">
+                  <div className="relative h-80 bg-gray-200">
+                      <Image
+                        src={member.image}
+                        alt={member.name}
+                        fill
+                        className="object-cover object-top"
+                      />
+                    </div>
+                  <div className="p-8">
+                    <h3 className="text-2xl font-bold text-gray-900">{member.name}</h3>
+                    <p className="text-blue-600 font-semibold mt-1 mb-4">{member.role}</p>
+                    <p className="text-gray-600 italic">"{member.quote}"</p>
+                  </div>
+                </motion.div>
+              ))}
+            </div>
+          </motion.div>
+        </div>
       </section>
 
-      {/* Our Goals & Achievements Section - Unified clean cards with subtle accents */}
-      <section className="py-16 sm:py-20 px-4 sm:px-6 lg:px-8 bg-gray-50">
-        <motion.div
-          className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 items-start"
-          variants={containerVariants}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, amount: 0.1 }}
-        >
-          {/* Left Side: Our Goals - Styled as a clean card */}
-          <motion.div
-            variants={itemVariants}
-            className="bg-white p-6 sm:p-8 rounded-xl shadow-xl border border-gray-100 h-full flex flex-col hover:shadow-2xl transition-all duration-300 ease-in-out"
-          >
-            <h2 className="text-2xl sm:text-3xl font-bold mb-4 text-gray-900 border-b border-gray-200 pb-3 sm:pb-4">Our Goals for 2025/2026 GC (2017 E.C.)</h2>
-            <p className="text-base sm:text-lg leading-relaxed text-gray-700 mb-4 sm:mb-6 flex-grow">
-              For the upcoming academic year, the Kone Renaissance Foundation is committed to achieving the following key objectives to further empower the Kone community:
-            </p>
-            <ul className="list-disc pl-5 space-y-3 text-base sm:text-lg text-gray-700">
-              <motion.li variants={itemVariants} className="font-medium text-gray-800">
-                **Complete Phase 1 School Infrastructure:** Finalize the construction and furnishing of new classrooms and library, ensuring a conducive learning environment.
-              </motion.li>
-              <motion.li variants={itemVariants} className="font-medium text-gray-800">
-                **Establish a Sustainable Water Supply:** Implement a reliable and clean water source for the school and surrounding community, improving hygiene and health.
-              </motion.li>
-              <motion.li variants={itemVariants} className="font-medium text-gray-800">
-                **Launch Digital Learning Hub:** Equip the new library with computers and internet access, providing students with essential digital literacy skills.
-              </motion.li>
-              <motion.li variants={itemVariants} className="font-medium text-gray-800">
-                **Teacher Training Program:** Initiate a professional development program for Kone High School teachers, focusing on modern pedagogical methods and subject matter expertise.
-              </motion.li>
-            </ul>
-          </motion.div>
-
-          {/* Right Side: Previous Year's Achievements - Styled as a clean card */}
-          <motion.div
-            variants={itemVariants}
-            className="bg-white p-6 sm:p-8 rounded-xl shadow-xl border border-gray-100 h-full flex flex-col hover:shadow-2xl transition-all duration-300 ease-in-out"
-          >
-            <h2 className="text-2xl sm:text-3xl font-bold mb-4 text-gray-900 border-b border-gray-200 pb-3 sm:pb-4">Our Achievements (Previous Year)</h2>
-            <p className="text-base sm:text-lg leading-relaxed text-gray-700 mb-4 sm:mb-6 flex-grow">
-              Building on the momentum of the past year, we are proud to highlight some of our key accomplishments from 2024/2025 GC (2016 E.C.):
-            </p>
-            <ul className="list-disc pl-5 space-y-3 text-base sm:text-lg text-gray-700">
-              <motion.li variants={itemVariants} className="font-medium text-gray-800">
-                **Initiated School Building Renovation:** Successfully secured funding and commenced initial renovations for Kone High School classrooms, improving learning conditions.
-              </motion.li>
-              <motion.li variants={itemVariants} className="font-medium text-gray-800">
-                **Provided Educational Supplies:** Distributed essential textbooks, notebooks, and writing materials to over 500 students, ensuring they had the necessary tools for learning.
-              </motion.li>
-              <motion.li variants={itemVariants} className="font-medium text-gray-800">
-                **Launched Mentorship Program:** Connected 20 high school students with local professionals for guidance and career inspiration.
-              </motion.li>
-              <motion.li variants={itemVariants} className="font-medium text-gray-800">
-                **Secured Partnership Agreements:** Forged new alliances with two international NGOs, expanding our reach and resource mobilization capacity.
-              </motion.li>
-            </ul>
-          </motion.div>
-        </motion.div>
-      </section>
-
-      {/* Call to Action for Impact/Support - Unified Apple-like button */}
-      <section className="py-16 sm:py-20 px-4 sm:px-6 lg:px-8 bg-gray-900 text-white text-center">
-        <motion.div
-          className="max-w-4xl mx-auto"
-          variants={containerVariants}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, amount: 0.1 }}
-        >
-          <motion.h3 variants={itemVariants} className="text-2xl md:text-4xl font-bold mb-4 sm:mb-6 leading-snug">
-            Ready to Make a Difference?
-          </motion.h3>
-          <motion.p variants={itemVariants} className="text-base sm:text-lg opacity-90 mb-6 sm:mb-8 max-w-2xl mx-auto font-light">
-            Your support is the bedrock of our mission. Join us in shaping a brighter future for Kone.
-          </motion.p>
-          <motion.div variants={itemVariants}>
-            <Link
-              href="/donate"
-              className="inline-block bg-blue-600 text-white font-semibold px-8 py-4 sm:px-10 sm:py-5 rounded-full shadow-lg hover:bg-blue-700 transition-colors duration-300 transform hover:scale-105"
-            >
-              Support Our Mission
-            </Link>
-          </motion.div>
-        </motion.div>
+      {/* --- CTA SECTION --- */}
+      <section className="bg-blue-700 text-white">
+        <div className="max-w-6xl mx-auto px-6 py-20 text-center">
+            <motion.div initial="hidden" whileInView="visible" viewport={{ once: true, amount: 0.5 }} variants={containerVariants}>
+                <motion.h2 variants={itemVariants} className="text-3xl md:text-4xl font-bold mb-4">Ready to Make a Difference?</motion.h2>
+                <motion.p variants={itemVariants} className="text-lg text-blue-100/80 max-w-2xl mx-auto mb-8">
+                    Your support is the bedrock of our mission. Join us in shaping a brighter future for Kone.
+                </motion.p>
+                <motion.div variants={itemVariants}>
+                    <Link href="/donate" className="inline-block bg-white text-blue-700 font-bold px-10 py-4 rounded-full shadow-2xl transform hover:scale-105 transition-transform duration-300">
+                        Support Our Mission
+                    </Link>
+                </motion.div>
+            </motion.div>
+        </div>
       </section>
 
       <Footer />

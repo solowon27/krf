@@ -36,12 +36,12 @@ module.exports = {
       return { token, user };
     },
 
-    addDonation: async (_, { donorName, item, message }, { user }) => {
+    addDonation: async (_, { donorName, item, value, message }, { user }) => {
       if (!user || user.role !== 'admin') {
         throw new Error("Only admins can add donations");
       }
 
-      const donation = new Donation({ donorName, item, message, submittedBy: user._id });
+      const donation = new Donation({ donorName, item, value, message, submittedBy: user._id });
       return await donation.save();
     },
   },

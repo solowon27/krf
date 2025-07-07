@@ -11,6 +11,11 @@ const donationSchema = new mongoose.Schema({
     required: true,
     trim: true,
   },
+  value: {
+    type: Number,
+    required: false,
+    trim: true,
+  },
   message: {
     type: String,
     trim: true,

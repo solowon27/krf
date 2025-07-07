@@ -14,6 +14,7 @@ module.exports = gql`
     id: ID!
     donorName: String!
     item: String!
+    value: Float
     message: String
     date: String!
     submittedBy: User
@@ -32,6 +33,6 @@ module.exports = gql`
   type Mutation {
     register(firstName: String!, email: String!, password: String!, role: String): AuthPayload!
     login(email: String!, password: String!): AuthPayload!
-    addDonation(donorName: String!, item: String!, message: String): Donation!
+    addDonation(donorName: String!, item: String!, value: Float, message: String): Donation!
   }
 `;
