@@ -134,7 +134,7 @@ export default function LibraryPage() {
         <Header />
 
         {/* Hero Section (No Changes) */}
-        <section className="bg-gray-900 text-white py-24 md:py-32 lg:py-40 px-6 text-center relative overflow-hidden">
+        <section className="bg-gray-900 text-white py-28 md:py-32 lg:py-40 px-6 text-center relative overflow-hidden">
            <div
           className="absolute inset-0 opacity-[0.03]"
           style={{
@@ -147,7 +147,7 @@ export default function LibraryPage() {
             initial={{ y: 30, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
             transition={{ type: 'tween', ease: 'easeOut', duration: 0.6 }}
-            className="text-5xl md:text-7xl lg:text-9xl font-bold mb-4 leading-tight tracking-tight flex items-center justify-center gap-4"
+            className="text-4xl md:text-7xl lg:text-9xl font-bold mb-4 leading-tight tracking-tight flex items-center justify-center gap-4"
           >ኮን ሃይስኩል <br className="hidden sm:inline" /> ዲጂታል ላይብረሪ
           </motion.h1>
           <motion.p
