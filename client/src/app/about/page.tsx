@@ -121,26 +121,6 @@ export default function AboutUs() {
       </section>
       
 
-      {/* --- GUIDING PRINCIPLES / CORE VALUES --- */}
-      <section className="py-20 md:py-28 bg-white">
-          <div className="max-w-7xl mx-auto px-4 text-center">
-            <motion.h2 variants={itemVariants} initial="hidden" whileInView="visible" viewport={{ once: true }} className="text-3xl md:text-4xl font-bold mb-12">Our Guiding Principles</motion.h2>
-            <motion.div className="grid grid-cols-1 md:grid-cols-3 gap-8" initial="hidden" whileInView="visible" variants={containerVariants} viewport={{ once: true, amount: 0.2 }}>
-                {[
-                    { icon: <FaLightbulb/>, title: "Empowerment", text: "Fostering self-reliance by equipping students and teachers with the tools for their own success." },
-                    { icon: <FaHeart/>, title: "Community", text: "Building strong, collaborative bonds within Kone and with our global network of supporters." },
-                    { icon: <FaBullseye/>, title: "Sustainability", text: "Creating lasting, positive change that benefits the community for generations to come." }
-                ].map((value, index) => (
-                    <motion.div key={index} variants={itemVariants} className="p-8 bg-gray-50/50 rounded-2xl border border-gray-200/80 hover:shadow-xl hover:border-blue-300 transition-all duration-300">
-                        <div className="text-4xl mb-4 text-blue-600">{value.icon}</div>
-                        <h3 className="text-2xl font-semibold text-gray-900 mb-3">{value.title}</h3>
-                        <p className="text-gray-700 leading-relaxed">{value.text}</p>
-                    </motion.div>
-                ))}
-            </motion.div>
-          </div>
-      </section>
-
       {/* --- OUR TEAM SECTION --- */}
       <section className="py-20 md:py-28 bg-gray-100">
         <div className="max-w-7xl mx-auto px-4 text-center">
@@ -167,23 +147,6 @@ export default function AboutUs() {
               ))}
             </div>
           </motion.div>
-        </div>
-      </section>
-
-      {/* --- CTA SECTION --- */}
-      <section className="bg-blue-700 text-white">
-        <div className="max-w-6xl mx-auto px-6 py-20 text-center">
-            <motion.div initial="hidden" whileInView="visible" viewport={{ once: true, amount: 0.5 }} variants={containerVariants}>
-                <motion.h2 variants={itemVariants} className="text-3xl md:text-4xl font-bold mb-4">Ready to Make a Difference?</motion.h2>
-                <motion.p variants={itemVariants} className="text-lg text-blue-100/80 max-w-2xl mx-auto mb-8">
-                    Your support is the bedrock of our mission. Join us in shaping a brighter future for Kone.
-                </motion.p>
-                <motion.div variants={itemVariants}>
-                    <Link href="/donate" className="inline-block bg-white text-blue-700 font-bold px-10 py-4 rounded-full shadow-2xl transform hover:scale-105 transition-transform duration-300">
-                        Support Our Mission
-                    </Link>
-                </motion.div>
-            </motion.div>
         </div>
       </section>
 

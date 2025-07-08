@@ -194,17 +194,20 @@ export default function EducationResourcesPage() {
   };
 
   const sidebarContent = (
-     <div>
-        <h3 className="text-xl font-bold text-gray-200 mb-4">Categories</h3>
+      <div>
+        <h3 className="text-xl font-bold text-slate-800 mb-4">Categories</h3>
         <div className="space-y-2">
           {categories.map(category => (
             <button
               key={category.name}
-              onClick={() => setActiveCategory(category.name)}
+              onClick={() => {
+                setActiveCategory(category.name);
+                setIsMobileFiltersOpen(false); // Close mobile filter on selection
+              }}
               className={`w-full flex items-center text-left p-3 rounded-lg transition-all duration-200 text-base font-medium ${
                 activeCategory === category.name 
                   ? 'bg-cyan-500 text-white shadow-lg' 
-                  : 'text-gray-400 hover:bg-gray-900/80 hover:text-cyan-400'
+                  : 'text-slate-600 hover:bg-slate-100 hover:text-cyan-600'
               }`}
             >
               <span className="mr-3 text-lg">{category.icon}</span>
@@ -216,27 +219,27 @@ export default function EducationResourcesPage() {
   );
 
   return (
-    <main className="w-full min-h-screen bg-[#111111] text-gray-200 font-sans antialiased">
+    <main className="w-full min-h-screen bg-slate-50 text-slate-800 font-sans antialiased">
       <Header /> 
 
-       <section className="relative text-white py-28 md:py-40 px-6 text-center overflow-hidden">
-         <div className="absolute inset-0 bg-[#0A0A0A] bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:24px_24px] [mask-image:radial-gradient(ellipse_50%_50%_at_50%_50%,#000_60%,transparent_100%)]"></div>
-         <div className="relative z-10 max-w-6xl mx-auto">
-           <motion.h1 initial={{ y: 30, opacity: 0 }} animate={{ y: 0, opacity: 1 }} transition={{ type: 'tween', ease: 'easeOut', duration: 0.6 }} className="text-4xl md:text-6xl font-bold mb-4 tracking-tighter">
-             ኦንላይን ትምህርት እና <span className="text-cyan-400">ስኮላርሽፕ</span>
-           </motion.h1>
-           <motion.p initial={{ y: 30, opacity: 0 }} animate={{ y: 0, opacity: 1 }} transition={{ type: 'tween', ease: 'easeOut', duration: 0.6, delay: 0.1 }} className="text-lg md:text-xl text-gray-400 max-w-3xl mx-auto">
-            የተመረጡ ነፃ ኦንላይን ኮርሶች እና ሙሉ በሙሉ የገንዘብ ድጋፍ ያላቸውን ስኮላርሽፕ እድሎች ተጠቃሚ ይሁኑ።
-           </motion.p>
-           <motion.div variants={itemVariants} className="mt-8 flex flex-wrap justify-center gap-4"> {/* Use flex-wrap and gap for better mobile button layout */}
-            <Link href="/" className="w-full sm:w-auto inline-block border-2 border-white text-white font-semibold px-8 py-4 rounded-full transition-colors duration-300 hover:bg-white hover:text-gray-900 text-lg sm:text-xl">
+       <section className="relative text-slate-800 py-28 md:py-40 px-6 text-center overflow-hidden bg-white">
+        <div className="absolute inset-0 bg-white bg-[linear-gradient(to_right,#e2e8f0_1px,transparent_1px),linear-gradient(to_bottom,#e2e8f0_1px,transparent_1px)] bg-[size:24px_24px] [mask-image:radial-gradient(ellipse_50%_50%_at_50%_50%,#000_60%,transparent_100%)]"></div>
+        <div className="relative z-10 max-w-6xl mx-auto">
+          <motion.h1 initial={{ y: 30, opacity: 0 }} animate={{ y: 0, opacity: 1 }} transition={{ type: 'tween', ease: 'easeOut', duration: 0.6 }} className="text-4xl md:text-6xl font-bold mb-4 tracking-tighter text-slate-900">
+            ኦንላይን ትምህርት እና <span className="text-cyan-500">ስኮላርሽፕ</span>
+          </motion.h1>
+          <motion.p initial={{ y: 30, opacity: 0 }} animate={{ y: 0, opacity: 1 }} transition={{ type: 'tween', ease: 'easeOut', duration: 0.6, delay: 0.1 }} className="text-lg md:text-xl text-slate-600 max-w-3xl mx-auto">
+           የተመረጡ ነፃ ኦንላይን ኮርሶች እና ሙሉ በሙሉ የገንዘብ ድጋፍ ያላቸውን ስኮላርሽፕ እድሎች ተጠቃሚ ይሁኑ።
+          </motion.p>
+          <motion.div variants={itemVariants} className="mt-8 flex flex-wrap justify-center gap-4">
+            <Link href="/" className="w-full sm:w-auto inline-block border-2 border-slate-800 text-slate-800 font-semibold px-8 py-4 rounded-full transition-colors duration-300 hover:bg-slate-800 hover:text-white text-lg sm:text-xl">
               ዋና ገጽ
             </Link>
-            <Link href="/library" className="w-full sm:w-auto inline-block border-2 border-white text-white font-semibold px-8 py-4 rounded-full transition-colors duration-300 hover:bg-white hover:text-gray-900 text-lg sm:text-xl">
+            <Link href="/library" className="w-full sm:w-auto inline-block border-2 border-slate-800 text-slate-800 font-semibold px-8 py-4 rounded-full transition-colors duration-300 hover:bg-slate-800 hover:text-white text-lg sm:text-xl">
               ዲጂታል ቤተ መጻሕፍት
             </Link>
           </motion.div>
-         </div>
+        </div>
        </section>
 
       <div className="max-w-8xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
@@ -253,7 +256,7 @@ export default function EducationResourcesPage() {
             <div className="lg:hidden mb-8">
               <button 
                 onClick={() => setIsMobileFiltersOpen(!isMobileFiltersOpen)}
-                className="w-full flex items-center justify-center gap-2 px-4 py-3 bg-gray-900 border border-gray-700 rounded-lg font-semibold"
+                className="w-full flex items-center justify-center gap-2 px-4 py-3 bg-white border border-slate-300 rounded-lg font-semibold text-slate-700"
               >
                 <svg className="w-5 h-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
                   <path d="M5 4.75a.75.75 0 00-1.5 0v10.5a.75.75 0 001.5 0V4.75zM8 10a.75.75 0 01.75-.75h8.5a.75.75 0 010 1.5h-8.5A.75.75 0 018 10zM12 4.75a.75.75 0 01.75-.75h4.5a.75.75 0 010 1.5h-4.5A.75.75 0 0112 4.75zM12 15.25a.75.75 0 01.75-.75h4.5a.75.75 0 010 1.5h-4.5a.75.75 0 01-.75-.75z" />
@@ -290,14 +293,14 @@ export default function EducationResourcesPage() {
                   target="_blank"
                   rel="noopener noreferrer"
                   variants={itemVariants}
-                  className="block h-full p-6 bg-gray-900/50 border border-gray-800 rounded-lg transition-all duration-300 hover:border-cyan-500 hover:shadow-2xl hover:shadow-cyan-500/10 hover:-translate-y-1"
+                  className="flex flex-col h-full p-6 bg-white border border-slate-200 rounded-lg transition-all duration-300 hover:border-cyan-500 hover:shadow-2xl hover:shadow-cyan-500/10 hover:-translate-y-1"
                 >
                   <div className="flex items-start justify-between mb-4">
-                    <div className="text-3xl text-cyan-400">{resource.icon}</div>
-                     <span className="text-xs font-semibold bg-gray-800 text-gray-300 px-3 py-1 rounded-full">{resource.category}</span>
+                    <div className="text-3xl text-cyan-500">{resource.icon}</div>
+                     <span className="text-xs font-semibold bg-slate-100 text-slate-600 px-3 py-1 rounded-full">{resource.category}</span>
                   </div>
-                  <h3 className="text-xl font-bold text-gray-100 mb-2">{resource.name}</h3>
-                  <p className="text-sm text-gray-400 flex-grow">{resource.description}</p>
+                  <h3 className="text-xl font-bold text-slate-800 mb-2">{resource.name}</h3>
+                  <p className="text-sm text-slate-500 flex-grow">{resource.description}</p>
                 </motion.a>
               ))}
             </motion.div>
@@ -307,11 +310,11 @@ export default function EducationResourcesPage() {
         {/* --- Scam Alert Section --- */}
         <section className="mt-24 max-w-8xl mx-auto px-4 sm:px-6 lg:px-8">
            <div className="max-w-4xl mx-auto">
-             <div className="bg-red-900/20 border-l-4 border-red-500 text-red-300 rounded-r-lg p-6">
+             <div className="bg-yellow-50 border-l-4 border-yellow-400 text-yellow-800 rounded-r-lg p-6">
                <div className="flex items-start">
-                 <FaExclamationTriangle className="text-2xl text-red-500 mr-4 mt-1 flex-shrink-0"/>
+                 <FaExclamationTriangle className="text-2xl text-yellow-500 mr-4 mt-1 flex-shrink-0"/>
                  <div>
-                   <h3 className="text-xl font-bold text-red-400 mb-2">Avoid Scholarship Scams!</h3>
+                   <h3 className="text-xl font-bold text-yellow-900 mb-2">Avoid Scholarship Scams!</h3>
                    <p className="mb-1 text-sm">
                      Legitimate scholarships are always free. Never pay an application or processing fee. Be cautious and verify all information.
                    </p>

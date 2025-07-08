@@ -57,7 +57,7 @@ export default function Header() {
     <>
       <motion.nav
         // Key Change 2: Updated styles for dark theme and a single, consistent height (h-20)
-        className="fixed w-full top-0 z-50 flex items-center bg-gray-900/80 backdrop-blur-sm border-b border-gray-800 h-20 font-sans"
+        className="fixed w-full top-0 z-50 flex items-center bg-gray-950 backdrop-blur-sm border-b border-gray-800 h-20 font-sans"
         initial={{ y: -100, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
         transition={{ type: 'tween', duration: 0.5, ease: "easeOut" }}
