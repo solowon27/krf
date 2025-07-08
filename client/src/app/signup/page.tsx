@@ -50,7 +50,7 @@ export default function AdminSignup() {
     // min-h-screen ensures it takes full viewport height.
     // bg-gray-50 for a very subtle off-white background, typical of Apple's clean aesthetic.
     <div className="min-h-screen flex flex-col bg-gray-50 text-gray-900 font-sans antialiased">
-      <Header className="relative z-20" /> {/* Ensure Header can accept className */}
+      <Header /> {/* Ensure Header can accept className */}
 
       {/* Main content area, uses flex-grow to take up available space and push footer down */}
       {/* Centered flex container for the signup card */}

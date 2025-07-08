@@ -2,12 +2,12 @@
 
 import Header from '@components/Header';
 import Footer from '@components/Footer';
-import Link from 'next/link';
 import { motion, AnimatePresence, Variants } from 'framer-motion';
 import { useState, useMemo } from 'react';
-import { FaExclamationTriangle, FaUniversity, FaBriefcase, FaBookOpen, FaUserGraduate, FaTools } from 'react-icons/fa';
+import { FaExclamationTriangle, FaBookOpen, FaUserGraduate, FaTools, FaBriefcase } from 'react-icons/fa';
+import Link from 'next/link';
 
-// NEW: Enhanced data structure with categories
+// Data structure remains the same
 const resources = [
   // Online Learning
   {
@@ -179,6 +179,7 @@ const categories = [
 
 export default function EducationResourcesPage() {
   const [activeCategory, setActiveCategory] = useState("All Resources");
+  const [isMobileFiltersOpen, setIsMobileFiltersOpen] = useState(false);
 
   const filteredResources = useMemo(() => {
     if (activeCategory === "All Resources") {
@@ -187,45 +188,47 @@ export default function EducationResourcesPage() {
     return resources.filter(r => r.category === activeCategory);
   }, [activeCategory]);
   
-  const containerVariants: Variants = {
-    hidden: { opacity: 0 },
-    visible: { opacity: 1, transition: { staggerChildren: 0.05 } },
-  };
-
   const itemVariants: Variants = {
     hidden: { y: 20, opacity: 0 },
-    visible: { y: 0, opacity: 1, transition: { type: 'spring', stiffness: 100 } },
+    visible: { y: 0, opacity: 1 },
   };
 
-  const featuredResource = resources.find(r => r.name === "Khan Academy");
+  const sidebarContent = (
+     <div>
+        <h3 className="text-xl font-bold text-gray-200 mb-4">Categories</h3>
+        <div className="space-y-2">
+          {categories.map(category => (
+            <button
+              key={category.name}
+              onClick={() => setActiveCategory(category.name)}
+              className={`w-full flex items-center text-left p-3 rounded-lg transition-all duration-200 text-base font-medium ${
+                activeCategory === category.name 
+                  ? 'bg-cyan-500 text-white shadow-lg' 
+                  : 'text-gray-400 hover:bg-gray-900/80 hover:text-cyan-400'
+              }`}
+            >
+              <span className="mr-3 text-lg">{category.icon}</span>
+              {category.name}
+            </button>
+          ))}
+        </div>
+      </div>
+  );
 
   return (
-    <main className="w-full min-h-screen bg-gray-100 text-gray-900 font-sans antialiased">
-      <Header className="relative z-20" /> 
+    <main className="w-full min-h-screen bg-[#111111] text-gray-200 font-sans antialiased">
+      <Header /> 
 
-       <section className="bg-gray-900 text-white py-24 md:py-36 lg:py-48 px-6 text-center pt-32 sm:pt-40 relative overflow-visible">
-        {/* Subtle background pattern */}
-        <div
-          className="absolute inset-0 opacity-[0.03]"
-          style={{
-            backgroundImage: 'url("data:image/svg+xml,%3Csvg width=\'60\' height=\'60\' viewBox=\'0 0 60 60\' xmlns=\'http://www.w3.org/2000/svg\'%3E%3Cg fill=\'%23ffffff\' fill-opacity=\'0.1\' fill-rule=\'evenodd\'%3E%3Cpath d=\'M0 60L60 0H30L0 30M60 60V30L30 60\'/%3E%3C/g%3E%3C/svg%3E")',
-            backgroundSize: '120px 120px',
-            backgroundRepeat: 'repeat',
-          }}
-        ></div>
-        <motion.div
-          className="max-w-6xl mx-auto relative z-10"
-          variants={containerVariants}
-          initial="hidden"
-          animate="visible"
-        >
-          <motion.h1 variants={itemVariants} className="text-4xl md:text-7xl lg:text-6xl font-bold mb-4 leading-tight tracking-tight">
-            ኦንላይን ትምህርት እና ስኮላርሽፕ
-          </motion.h1>
-          <motion.p variants={itemVariants} className="text-lg md:text-xl lg:text-2xl font-light opacity-80 mb-10 max-w-3xl mx-auto">
+       <section className="relative text-white py-28 md:py-40 px-6 text-center overflow-hidden">
+         <div className="absolute inset-0 bg-[#0A0A0A] bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:24px_24px] [mask-image:radial-gradient(ellipse_50%_50%_at_50%_50%,#000_60%,transparent_100%)]"></div>
+         <div className="relative z-10 max-w-6xl mx-auto">
+           <motion.h1 initial={{ y: 30, opacity: 0 }} animate={{ y: 0, opacity: 1 }} transition={{ type: 'tween', ease: 'easeOut', duration: 0.6 }} className="text-4xl md:text-6xl font-bold mb-4 tracking-tighter">
+             ኦንላይን ትምህርት እና <span className="text-cyan-400">ስኮላርሽፕ</span>
+           </motion.h1>
+           <motion.p initial={{ y: 30, opacity: 0 }} animate={{ y: 0, opacity: 1 }} transition={{ type: 'tween', ease: 'easeOut', duration: 0.6, delay: 0.1 }} className="text-lg md:text-xl text-gray-400 max-w-3xl mx-auto">
             የተመረጡ ነፃ ኦንላይን ኮርሶች እና ሙሉ በሙሉ የገንዘብ ድጋፍ ያላቸውን ስኮላርሽፕ እድሎች ተጠቃሚ ይሁኑ።
-          </motion.p>
-          <motion.div variants={itemVariants} className="mt-8 flex flex-wrap justify-center gap-4"> {/* Use flex-wrap and gap for better mobile button layout */}
+           </motion.p>
+           <motion.div variants={itemVariants} className="mt-8 flex flex-wrap justify-center gap-4"> {/* Use flex-wrap and gap for better mobile button layout */}
             <Link href="/" className="w-full sm:w-auto inline-block border-2 border-white text-white font-semibold px-8 py-4 rounded-full transition-colors duration-300 hover:bg-white hover:text-gray-900 text-lg sm:text-xl">
               ዋና ገጽ
             </Link>
@@ -233,112 +236,89 @@ export default function EducationResourcesPage() {
               ዲጂታል ቤተ መጻሕፍት
             </Link>
           </motion.div>
-        </motion.div>
-      </section>
+         </div>
+       </section>
 
       <div className="max-w-8xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
-        <div className="grid grid-cols-1 lg:grid-cols-4 gap-12 items-start">
+        <div className="grid grid-cols-1 lg:grid-cols-4 lg:gap-12">
           
-          {/* --- Sticky Sidebar --- */}
-          <aside className="lg:col-span-1 lg:sticky lg:top-24">
-            <h2 className="text-xl font-bold text-gray-800 mb-6">Categories</h2>
-            <div className="space-y-2">
-              {categories.map(category => (
-                <button
-                  key={category.name}
-                  onClick={() => setActiveCategory(category.name)}
-                  className={`w-full flex items-center text-left p-3 rounded-lg transition-all duration-200 text-base font-medium ${
-                    activeCategory === category.name 
-                      ? 'bg-blue-600 text-white shadow-lg' 
-                      : 'text-gray-600 hover:bg-gray-200/70 hover:text-gray-900'
-                  }`}
-                >
-                  <span className="mr-3 text-lg">{category.icon}</span>
-                  {category.name}
-                </button>
-              ))}
-            </div>
+          {/* --- DESKTOP SIDEBAR --- */}
+          <aside className="hidden lg:block lg:col-span-1 lg:sticky lg:top-24 h-fit">
+            {sidebarContent}
           </aside>
 
-          {/* --- Main Content --- */}
+          {/* --- MAIN CONTENT --- */}
           <main className="lg:col-span-3">
+            {/* --- MOBILE FILTER CONTROLS --- */}
+            <div className="lg:hidden mb-8">
+              <button 
+                onClick={() => setIsMobileFiltersOpen(!isMobileFiltersOpen)}
+                className="w-full flex items-center justify-center gap-2 px-4 py-3 bg-gray-900 border border-gray-700 rounded-lg font-semibold"
+              >
+                <svg className="w-5 h-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                  <path d="M5 4.75a.75.75 0 00-1.5 0v10.5a.75.75 0 001.5 0V4.75zM8 10a.75.75 0 01.75-.75h8.5a.75.75 0 010 1.5h-8.5A.75.75 0 018 10zM12 4.75a.75.75 0 01.75-.75h4.5a.75.75 0 010 1.5h-4.5A.75.75 0 0112 4.75zM12 15.25a.75.75 0 01.75-.75h4.5a.75.75 0 010 1.5h-4.5a.75.75 0 01-.75-.75z" />
+                </svg>
+                Filter by Category
+              </button>
+              <AnimatePresence>
+                {isMobileFiltersOpen && (
+                  <motion.div
+                    initial={{ height: 0, opacity: 0 }}
+                    animate={{ height: 'auto', opacity: 1 }}
+                    exit={{ height: 0, opacity: 0 }}
+                    transition={{ type: 'tween', duration: 0.3 }}
+                    className="overflow-hidden"
+                  >
+                    <div className="pt-8">{sidebarContent}</div>
+                  </motion.div>
+                )}
+              </AnimatePresence>
+            </div>
             
-            {/* --- Featured Resource --- */}
-            {featuredResource && (
-                <motion.div
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.5 }}
-                    className="bg-gradient-to-r from-slate-800 to-gray-900 rounded-2xl shadow-2xl p-8 mb-12 border border-blue-500/20"
-                >
-                    <div className="flex flex-col md:flex-row items-start gap-8">
-                        <div className="text-blue-400 text-5xl flex-shrink-0">{featuredResource.icon}</div>
-                        <div className="text-white">
-                            <span className="text-sm font-bold uppercase text-blue-400 tracking-wider">Featured Resource</span>
-                            <h3 className="text-3xl font-bold mt-1 mb-3">{featuredResource.name}</h3>
-                            <p className="text-gray-300/80 mb-6 max-w-2xl">{featuredResource.description}</p>
-                            <a href={featuredResource.url} target="_blank" rel="noopener noreferrer" className="inline-flex items-center bg-blue-600 text-white font-semibold px-6 py-3 rounded-full shadow-lg hover:bg-blue-500 transition-colors duration-300 transform hover:scale-105">
-                                Visit Khan Academy
-                                <svg className="ml-2 w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path></svg>
-                            </a>
-                        </div>
-                    </div>
-                </motion.div>
-            )}
-
             {/* --- Resource Grid --- */}
             <motion.div 
               key={activeCategory} // Re-triggers animation when category changes
-              variants={containerVariants} 
+              variants={{ visible: { transition: { staggerChildren: 0.05 } } }}
               initial="hidden" 
               animate="visible" 
               className="grid grid-cols-1 md:grid-cols-2 gap-6"
             >
-              <AnimatePresence>
-                {filteredResources.map((resource) => (
-                  <motion.div key={resource.name} variants={itemVariants} layout>
-                    <a
-                      href={resource.url}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="group flex flex-col h-full bg-white rounded-xl shadow-lg border border-gray-200/80 hover:border-blue-500 hover:shadow-2xl transition-all duration-300 ease-in-out p-6"
-                    >
-                      <div className="flex items-center justify-between mb-4">
-                        <div className="text-3xl text-blue-600">{resource.icon}</div>
-                        <span className="text-xs font-semibold bg-blue-100 text-blue-800 px-3 py-1 rounded-full">{resource.type}</span>
-                      </div>
-                      <h3 className="text-xl font-bold text-gray-800 mb-2 flex-grow">{resource.name}</h3>
-                      <p className="text-sm text-gray-600 mb-5">{resource.description}</p>
-                      <div className="flex items-center justify-between text-xs text-gray-500 font-medium">
-                        <span>{resource.targetAudience}</span>
-                        <span className="flex items-center text-blue-600 group-hover:text-blue-500">
-                          Explore
-                          <svg className="ml-1 w-4 h-4 transform group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path></svg>
-                        </span>
-                      </div>
-                    </a>
-                  </motion.div>
-                ))}
-              </AnimatePresence>
+              {filteredResources.map((resource) => (
+                <motion.a
+                  key={resource.name}
+                  href={resource.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  variants={itemVariants}
+                  className="block h-full p-6 bg-gray-900/50 border border-gray-800 rounded-lg transition-all duration-300 hover:border-cyan-500 hover:shadow-2xl hover:shadow-cyan-500/10 hover:-translate-y-1"
+                >
+                  <div className="flex items-start justify-between mb-4">
+                    <div className="text-3xl text-cyan-400">{resource.icon}</div>
+                     <span className="text-xs font-semibold bg-gray-800 text-gray-300 px-3 py-1 rounded-full">{resource.category}</span>
+                  </div>
+                  <h3 className="text-xl font-bold text-gray-100 mb-2">{resource.name}</h3>
+                  <p className="text-sm text-gray-400 flex-grow">{resource.description}</p>
+                </motion.a>
+              ))}
             </motion.div>
           </main>
         </div>
         
         {/* --- Scam Alert Section --- */}
-        <section className="mt-24">
-          <div className="max-w-4xl mx-auto">
-            <div className="bg-red-100/60 border-l-4 border-red-500 text-red-800 rounded-r-lg p-6 md:p-8 shadow-sm">
-              <div className="flex items-start">
-                <FaExclamationTriangle className="text-2xl text-red-600 mr-4 mt-1 flex-shrink-0"/>
-                <div>
-                  <h3 className="text-xl font-bold text-red-900 mb-2">Avoid Scholarship Scams!</h3>
-                  <p className="mb-3 text-sm">
-                    Legitimate scholarships are always free. Never pay an application or processing fee. Be cautious and verify all information.
-                  </p>
-                </div>
-              </div>
-            </div>
-          </div>
+        <section className="mt-24 max-w-8xl mx-auto px-4 sm:px-6 lg:px-8">
+           <div className="max-w-4xl mx-auto">
+             <div className="bg-red-900/20 border-l-4 border-red-500 text-red-300 rounded-r-lg p-6">
+               <div className="flex items-start">
+                 <FaExclamationTriangle className="text-2xl text-red-500 mr-4 mt-1 flex-shrink-0"/>
+                 <div>
+                   <h3 className="text-xl font-bold text-red-400 mb-2">Avoid Scholarship Scams!</h3>
+                   <p className="mb-1 text-sm">
+                     Legitimate scholarships are always free. Never pay an application or processing fee. Be cautious and verify all information.
+                   </p>
+                 </div>
+               </div>
+             </div>
+           </div>
         </section>
       </div>
 

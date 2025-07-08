@@ -36,7 +36,7 @@ const itemVariants: Variants = {
 export default function OurImpact() {
   return (
     <main className="min-h-screen bg-gray-50 text-gray-900 font-sans overflow-y-auto">
-      <Header className="relative z-20" />
+      <Header />
 
       {/* Hero Section */}
       <section className="relative bg-gradient-to-r from-blue-900 via-blue-800 to-blue-700 text-white pt-60 pb-32 px-6 text-left overflow-hidden">
