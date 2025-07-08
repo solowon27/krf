@@ -54,14 +54,18 @@ export default function AboutUs() {
 
       {/* --- HERO SECTION --- */}
       <section className="relative bg-slate-900 text-white py-32 md:py-48 px-6 text-center overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-br from-blue-900 via-slate-900 to-black opacity-70"></div>
-        <Image
-          src="/logo.png" // Assume this is a relevant background image
-          alt="Background of Kone community or school"
-          fill
-          className="object-cover object-center opacity-10"
-          priority
-        />
+        <motion.div initial={{ scale: 1.1 }} animate={{ scale: 1 }} transition={{ duration: 1.5, ease: [0.22, 1, 0.36, 1] }} className="absolute inset-0">
+                    
+       <div className="absolute inset-0 bg-gray-900 text-white"></div>
+           <div className="absolute inset-0 opacity-[0.03]"
+                style={{
+                 backgroundImage: 'url("data:image/svg+xml,%3Csvg width=\'60\' height=\'60\' viewBox=\'0 0 60 60\' xmlns=\'http://www.w3.org/2000/svg\'%3E%3Cg fill=\'%23ffffff\' fill-opacity=\'0.1\' fill-rule=\'evenodd\'%3E%3Cpath d=\'M0 60L60 0H30L0 30M60 60V30L30 60\'/%3E%3C/g%3E%3C/svg%3E")',
+                 backgroundSize: '120px 120px',
+                 backgroundRepeat: 'repeat',
+                  }}>
+                    
+                  </div>
+                </motion.div>
         <motion.div
           className="max-w-4xl mx-auto relative z-10"
           initial="hidden" animate="visible" variants={containerVariants}

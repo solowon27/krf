@@ -112,7 +112,7 @@ export default function Home() {
       <Header />
 
       {/* --- HERO SECTION --- */}
-      <section className="relative w-full h-screen flex items-center justify-center text-center overflow-hidden">
+      <section className="relative w-full flex items-center justify-center text-center overflow-hidden py-28 md:py-40">
         <motion.div initial={{ scale: 1.1 }} animate={{ scale: 1 }} transition={{ duration: 1.5, ease: [0.22, 1, 0.36, 1] }} className="absolute inset-0">
             
             <div className="absolute inset-0 bg-gray-900 text-white"></div>
@@ -129,7 +129,7 @@ export default function Home() {
           className="relative z-10 max-w-5xl mx-auto px-4 text-white"
           initial="hidden" animate="visible" variants={containerVariants}
         >
-          <motion.h1 variants={itemVariants} className="text-4xl md:text-7xl lg:text-8xl font-extrabold leading-tight mb-6 tracking-tight drop-shadow-2xl">
+          <motion.h1 variants={itemVariants} className="text-4xl md:text-7xl lg:text-8xl font-extrabold leading-tight tracking-tight drop-shadow-2xl">
             የአስተሳሰብ ለውጥ በማምጣት፣ <br />ትልቅ ልዩነት እንፈጥራለን።
           </motion.h1>
           <motion.p variants={itemVariants} className="text-lg md:text-2xl mb-10 text-slate-200/90 max-w-3xl mx-auto font-light drop-shadow-lg">
