@@ -113,10 +113,10 @@ export default function ContactUs() {
           animate="visible"
         >
           <motion.h1 variants={itemVariants} className="text-4xl md:text-6xl lg:text-7xl font-bold mb-4 leading-tight">
-            Get in Touch
+            የመልእክት ገጽ
           </motion.h1>
           <motion.p variants={itemVariants} className="text-lg md:text-xl lg:text-2xl font-light opacity-90 max-w-3xl mx-auto">
-            We would love to hear from you. Reach out with any questions, ideas, or to learn how you can help.
+            አስተያየታችሁንና ጥያቄያችሁን በመልእክት ሳጥኑ በመጠቀም ወይንም በስልክ በመደውል ያሳውቁን። 
           </motion.p>
         </motion.div>
       </section>

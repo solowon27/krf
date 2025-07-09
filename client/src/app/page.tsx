@@ -36,9 +36,9 @@ const impactMetrics = {
 };
 
 const impactAreas = [
-    { icon: <FaGraduationCap/>, title: "Learning Resources", description: "Providing every student with textbooks, digital tools, and a fully-stocked library."},
-    { icon: <FaLightbulb/>, title: "Modern Facilities", description: "Creating a safe and inspiring learning environment by renovating classrooms and labs."},
-    { icon: <FaHandsHelping/>, title: "Teacher Empowerment", description: "Supporting educators with training and resources to deliver the highest quality education."}
+    { icon: <FaGraduationCap/>, title: "የትምህርት ግብአት", description: "ለእያንዳንዱ ተማሪ በፊዚካል የመማሪያ መጽሐፍት አቅርቦት እና በዲጂታል አክሰስ የተሞላ ቤተ-መጽሐፍት መስጠት።"},
+    { icon: <FaLightbulb/>, title: "በቂ ፋሲሊቲ", description: "የመማሪያ ክፍሎችን እና ቤተ ሙከራዎችን በማደስ አስተማማኝ እና አበረታች የመማሪያ አካባቢ መፍጠር።"},
+    { icon: <FaHandsHelping/>, title: "የመምህራን ድጋፍ", description: "ከፍተኛ ጥራት ያለው ትምህርት ለመስጠት መምህራንን በስልጠና እና በግብአት መደገፍ።"}
 ];
 
 
@@ -59,7 +59,7 @@ export default function Home() {
   
   const allDonations = useMemo(() => data?.getDonations || [], [data]);
   const latestDonations = useMemo(() => allDonations.slice(0, 6), [allDonations]);
-  const fundraisingGoal = { goal: 100000 }; // The goal can still be static or come from an API
+  const fundraisingGoal = { goal: 1000000 }; // The goal can still be static or come from an API
   
   // Calculate the total raised from the fetched data
  const totalRaised = useMemo(() => {
@@ -108,7 +108,7 @@ export default function Home() {
   }
 
   return (
-    <main className="w-full min-h-screen bg-white text-gray-900 font-sans antialiased">
+    <main className="w-full min-h-screen bg-gray-200 text-gray-900 font-sans antialiased">
       <Header />
 
       {/* --- HERO SECTION --- */}
@@ -133,19 +133,12 @@ export default function Home() {
             የአስተሳሰብ ለውጥ በማምጣት፣ <br />ትልቅ ልዩነት እንፈጥራለን።
           </motion.h1>
           <motion.p variants={itemVariants} className="text-lg md:text-2xl mb-10 text-slate-200/90 max-w-3xl mx-auto font-light drop-shadow-lg">
-            ትውልድን በእውቀት እናነፃለን። በኮን ሁለተኛ ደረጃ ትምህርት ቤት ዘላቂ ለውጥ ለማምጣት ማህበረሰባችንን እና በአለም ዙሪያ ያሉ ደጋፊዎቻችንን እናስተባብራለን።
+            ይህ የቁጭት ትውልድ ነው! ታሪክን እያወራ ሳይሆን እየኖርው የምያልፍ ብቁና ንቁ ትውልድ ነው!
           </motion.p>
            <motion.div
             variants={itemVariants}
             className="flex flex-col items-center gap-4 sm:flex-row sm:justify-center sm:gap-6"
           >
-            {/* Apple-style buttons: subtle, clean, often a solid fill and a ghost button */}
-            <Link
-              href="/donate"
-              className="w-full sm:w-auto inline-flex items-center justify-center bg-white text-gray-900 font-semibold px-8 py-4 rounded-full transition-colors duration-300 hover:bg-gray-200 text-lg sm:text-xl"
-            >
-              ድጋፍ ያድርጉ
-            </Link>
             <Link
               href="/library"
               className="w-full sm:w-auto inline-block border-2 border-white text-white font-semibold px-8 py-4 rounded-full transition-colors duration-300 hover:bg-white hover:text-gray-900 text-lg sm:text-xl"
@@ -166,7 +159,7 @@ export default function Home() {
       <section className="py-20 md:py-28 bg-white">
           <div className="max-w-6xl mx-auto px-4 grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
               <motion.div initial={{ opacity: 0, x: -50 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true, amount: 0.3 }} transition={{ duration: 0.7, ease: "easeOut" }}>
-                  <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-6">ከአንድ ድርጅት በላይ።<br/>የጋራ ራዕይ።</h2>
+                  <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-6">እንኳን ወደ ፋውንዴሽናችን ድህረ ገጽ <br/>በደህና መጣቹህ</h2>
                   <p className="text-lg text-gray-700 leading-relaxed mb-6">
                     የኮን ህዳሴ ፋውንዴሽን በኮን ተወላጆች የተመሰረተ ነው። እኛ ከድርጅት በላይ ነን፤ ትምህርት ብሩህ ተስፋን ለመክፈት ቁልፍ እንደሆነ እናምናለን። ተልዕኳችን ግልፅ ነው፥ የመማሪያ ግብዓቶችን በማሻሻል、 ዘመናዊ መገልገያዎችን በመገንባት、 እንዲሁም ተማሪዎችን እና መምህራንን በማብቃት የትውልዱን የወደፊት እጣ ፈንታ መለወጥ ነው።
                   </p>
@@ -229,10 +222,10 @@ export default function Home() {
           variants={containerVariants}
         >
           <motion.h2 variants={itemVariants} className="text-4xl md:text-5xl font-bold mb-4 text-center text-gray-900">
-            Join the Movement
+            የርስዎ ድጋፍ በ መረጃ
           </motion.h2>
           <motion.p variants={itemVariants} className="text-xl md:text-2xl text-center text-gray-600 font-light mb-12 max-w-3xl mx-auto">
-            Your contribution brings us closer to our goal. See the incredible impact of our community.
+            በገንዘብ ደረጃ ሲተመን እስከ አሁን በፋውንዴሽናችን በኩል የገባልን የገንዘብ መጠን ማሳያ
           </motion.p>
           
           {/* --- DYNAMIC PROGRESS BAR --- */}
@@ -255,8 +248,6 @@ export default function Home() {
               />
             </div>
           </motion.div>
-
-          <motion.h3 variants={itemVariants} className="text-3xl font-bold mb-8 text-center text-gray-800">ልባዊ ምስጋና</motion.h3>
 
           {loading ? (
             <div className="flex justify-center items-center py-12">
