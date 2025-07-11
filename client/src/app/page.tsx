@@ -65,9 +65,9 @@ const testimonials = [
 ];
 
 const newsItems = [
-    { title: "Annual Charity Run Raises Record Amount", date: "June 15, 2025", excerpt: "Our community came together for a fantastic day of fun and fundraising...", image: "/news-1.jpg" },
-    { title: "Volunteer Spotlight: The Tutors Making a Difference", date: "May 28, 2025", excerpt: "Meet the incredible volunteers who are dedicating their time to help our students succeed...", image: "/news-2.jpg" },
-    { title: "Foundation Announces New STEM Initiative", date: "April 12, 2025", excerpt: "We are thrilled to launch a new program focused on Science, Technology, Engineering, and Math...", image: "/news-3.jpg" },
+    { title: "Annual Charity Run Raises Record Amount", date: "June 15, 2025", excerpt: "Our community came together for a fantastic day of fun and fundraising...", image: "/impact-image3.JPG" },
+    { title: "Volunteer Spotlight: The Tutors Making a Difference", date: "May 28, 2025", excerpt: "Meet the incredible volunteers who are dedicating their time to help our students succeed...", image: "/impact-image2.JPG" },
+    { title: "Foundation Announces New STEM Initiative", date: "April 12, 2025", excerpt: "We are thrilled to launch a new program focused on Science, Technology, Engineering, and Math...", image: "/impact-image5.JPG" },
 ];
 
 
@@ -114,17 +114,14 @@ export default function Home() {
             <main>
                 {/* --- 1. DYNAMIC HERO SECTION --- */}
                 <section className="relative h-screen flex items-center justify-center text-gray-900 text-center overflow-hidden">
-                    <div className="absolute inset-0">
-                        <Image src="/hero-background.jpg" alt="Kone High School Students" fill className="object-cover" priority />
-                        <div className="absolute inset-0"></div>
-                    </div>
+                    
                     <motion.div
                         className="relative z-10 px-4"
                         initial={{ opacity: 0, scale: 0.9 }}
                         animate={{ opacity: 1, scale: 1 }}
                         transition={{ duration: 1, ease: [0.22, 1, 0.36, 1] }}
                     >
-                        <h1 className="text-5xl md:text-7xl lg:text-8xl font-extrabold tracking-tighter leading-tight">
+                        <h1 className="text-5xl md:text-7xl lg:text-9xl font-extrabold leading-tight">
                             ለወደፊቱ ትውልድ <br />
                             <span className="text-indigo-400"> ብሩህ ተስፋን እንገንባ</span>
                         </h1>
