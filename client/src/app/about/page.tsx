@@ -13,7 +13,7 @@ const teamMembers = [
     name: "አቤል ቢሰጠኝ",
     role: "መስራች እና የትምህርት ቤቱ ተጠሪ",
     quote: "Every child deserves the opportunity to learn and thrive. We are building that future, brick by brick, dream by dream.",
-    image: "/abel.JPEG"
+    image: "/abel.jpeg"
   },
   {
     name: "ኮማንደር ወንድወሰን",
