@@ -66,8 +66,8 @@ const testimonials = [
 
 const newsItems = [
     { title: "Annual Charity Run Raises Record Amount", date: "June 15, 2025", excerpt: "Our community came together for a fantastic day of fun and fundraising...", image: "/impact-image3.JPG" },
-    { title: "Volunteer Spotlight: The Tutors Making a Difference", date: "May 28, 2025", excerpt: "Meet the incredible volunteers who are dedicating their time to help our students succeed...", image: "/impact-image2.JPG" },
-    { title: "Foundation Announces New STEM Initiative", date: "April 12, 2025", excerpt: "We are thrilled to launch a new program focused on Science, Technology, Engineering, and Math...", image: "/impact-image5.JPG" },
+    { title: "Volunteer Spotlight: The Tutors Making a Difference", date: "May 28, 2025", excerpt: "Meet the incredible volunteers who are dedicating their time to help our students succeed...", image: "/impact-image2.jpg" },
+    { title: "Foundation Announces New STEM Initiative", date: "April 12, 2025", excerpt: "We are thrilled to launch a new program focused on Science, Technology, Engineering, and Math...", image: "/impact-image5.jpg" },
 ];
 
 
