@@ -1,9 +1,9 @@
-// app/login/page.tsx
 'use client';
 
 import { useMutation, gql } from '@apollo/client';
 import { useState } from 'react';
-import { useRouter } from 'next/navigation'; // Import useRouter for client-side navigation
+import { useRouter } from 'next/navigation';
+import { motion, Variants } from 'framer-motion';
 
 // Import your Header and Footer components
 import Header from '@components/Header';
@@ -21,53 +21,71 @@ const LOGIN = gql`
   }
 `;
 
+// --- Consistent Animation Variants ---
+const containerVariants: Variants = {
+  hidden: { opacity: 0, y: 20 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: {
+      staggerChildren: 0.1,
+      duration: 0.8,
+      ease: [0.16, 1, 0.3, 1],
+    },
+  },
+};
+
+const itemVariants: Variants = {
+  hidden: { opacity: 0, y: 15 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.8, ease: [0.16, 1, 0.3, 1] },
+  },
+};
+
 export default function LoginPage() {
-  const router = useRouter(); // Initialize router
+  const router = useRouter();
   const [form, setForm] = useState({ email: '', password: '' });
-  const [login, { loading, error }] = useMutation(LOGIN, { // Destructure 'loading' state
+  const [login, { loading, error }] = useMutation(LOGIN, {
     onCompleted: ({ login }) => {
       localStorage.setItem('token', login.token);
-      
-      // Use router.push for Next.js client-side navigation
       router.push('/donaters'); 
     },
     onError: (err) => {
       console.error("Login error:", err);
-      // You can add more specific error handling here if desired
     }
   });
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    if (loading) return; // Prevent multiple submissions while loading
+    if (loading) return;
     login({ variables: form });
   };
 
   return (
-    // Outer container for the entire page layout: header, main content, footer
-    // Uses flex-col to stack header, main, footer vertically.
-    // min-h-screen ensures it takes full viewport height.
-    // bg-gray-50 for a very subtle off-white background, typical of Apple's clean aesthetic.
-    <div className="min-h-screen flex flex-col bg-gray-50 text-gray-900 font-sans antialiased">
-      <Header /> {/* Ensure Header can accept className */}
+    // THEME: Consistent light background
+    <div className="min-h-screen flex flex-col bg-gray-50 text-gray-800 font-sans antialiased">
+      <Header /> 
 
-      {/* Main content area, uses flex-grow to take up available space and push footer down */}
-      {/* Centered flex container for the login card */}
-      <main className="flex-grow flex items-center justify-center px-4 sm:px-6 lg:px-8 py-12 md:py-20">
-        {/* Login Card Container */}
-        <div className="max-w-sm w-full p-8 md:p-10 bg-white rounded-xl shadow-xl border border-gray-100 space-y-6 md:space-y-8"> 
-          <div>
-            {/* Main Heading - Clean, dark text, similar to Apple's headings */}
-            <h2 className="mt-2 text-center text-3xl md:text-4xl font-bold text-gray-900 tracking-tight">
+      <main className="flex-grow flex items-center justify-center px-4 sm:px-6 lg:px-8 py-12">
+        <motion.div 
+          className="max-w-md w-full p-8 md:p-10 bg-white rounded-2xl shadow-xl border border-gray-200/80"
+          variants={containerVariants}
+          initial="hidden"
+          animate="visible"
+        > 
+          <motion.div variants={itemVariants} className="text-center">
+            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 tracking-tight">
               Sign In
             </h2>
-            {/* Sub-text - Lighter gray for secondary information */}
-            <p className="mt-2 text-center text-sm text-gray-500">
+            <p className="mt-2 text-gray-600">
               Manage your Kone Renaissance Foundation content.
             </p>
-          </div>
+          </motion.div>
+
           <form className="mt-8 space-y-6" onSubmit={handleSubmit}>
-            <div className="space-y-4"> {/* Increased space between input fields */}
+            <motion.div variants={itemVariants} className="space-y-4">
               <div>
                 <label htmlFor="email-address" className="sr-only">Email address</label>
                 <input
@@ -76,8 +94,8 @@ export default function LoginPage() {
                   type="email"
                   autoComplete="email"
                   required
-                  // Apple-like input styling: full rounded, subtle border, clean focus state
-                  className="appearance-none block w-full px-4 py-3 border border-gray-300 placeholder-gray-400 text-gray-900 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all duration-200 sm:text-base"
+                  // THEME: Updated input styles to match new design
+                  className="block w-full px-4 py-3 border border-gray-300 placeholder-gray-400 text-gray-900 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 bg-gray-50 transition"
                   placeholder="Email"
                   value={form.email}
                   onChange={(e) => setForm({ ...form, email: e.target.value })}
@@ -91,26 +109,25 @@ export default function LoginPage() {
                   type="password"
                   autoComplete="current-password" 
                   required
-                  // Consistent input styling
-                  className="appearance-none block w-full px-4 py-3 border border-gray-300 placeholder-gray-400 text-gray-900 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all duration-200 sm:text-base"
+                  className="block w-full px-4 py-3 border border-gray-300 placeholder-gray-400 text-gray-900 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 bg-gray-50 transition"
                   placeholder="Password"
                   value={form.password}
                   onChange={(e) => setForm({ ...form, password: e.target.value })}
                 />
               </div>
-            </div>
+            </motion.div>
 
-            <div>
+            <motion.div variants={itemVariants}>
               <button
                 type="submit"
-                // Apple-like button styling: primary blue, rounded, subtle shadow, smooth hover
-                className={`w-full flex justify-center py-3 px-4 border border-transparent text-base font-semibold rounded-lg shadow-sm
+                // THEME: Updated button styles
+                className={`w-full flex justify-center py-3 px-4 border border-transparent text-base font-semibold rounded-lg shadow-md
                   ${loading 
-                    ? 'bg-blue-400 cursor-not-allowed' 
-                    : 'bg-blue-600 hover:bg-blue-700 active:bg-blue-800' // Added active state for click feedback
+                    ? 'bg-indigo-400 cursor-not-allowed' 
+                    : 'bg-indigo-600 hover:bg-indigo-700'
                   } 
-                  text-white focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 transition-all duration-200 transform hover:scale-[1.005]`}
-                disabled={loading} // Disable button while loading
+                  text-white focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 transition-colors`}
+                disabled={loading} 
               >
                 {loading ? (
                   <span className="flex items-center">
@@ -118,24 +135,28 @@ export default function LoginPage() {
                       <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
                       <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
                     </svg>
-                    Logging In...
+                    Signing In...
                   </span>
                 ) : (
-                  'Sign In' // Changed button text to "Sign In"
+                  'Sign In' 
                 )}
               </button>
-            </div>
+            </motion.div>
 
             {error && (
-              <p className="mt-3 text-center text-sm text-red-600">
-                Error: {error.message.includes("Incorrect credentials") ? "Invalid email or password." : error.message}
-              </p>
+              <motion.p 
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                className="mt-3 text-center text-sm text-red-600"
+              >
+                {error.message.includes("Incorrect credentials") ? "Invalid email or password." : "An unexpected error occurred."}
+              </motion.p>
             )}
           </form>
-        </div>
+        </motion.div>
       </main>
 
-      <Footer /> {/* Footer remains as is, assumed to be part of the full page layout */}
+      <Footer /> 
     </div>
   );
 }

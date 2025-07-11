@@ -1,102 +1,108 @@
 // src/components/Footer.tsx
+
 import Link from 'next/link';
-import { FaEnvelope, FaFacebookF, FaRegCopyright } from 'react-icons/fa'; // Import the icons you need
+import { FaEnvelope, FaFacebookF, FaTwitter, FaInstagram } from 'react-icons/fa';
 
 export default function Footer() {
   const currentYear = new Date().getFullYear();
 
+  const navLinks = {
+    explore: [
+      { name: 'About Us', href: '/about' },
+      { name: 'Our Impact', href: '/impact' },
+    ],
+    resources: [
+      { name: 'Digital Library', href: '/library' },
+      { name: 'Education Resources', href: '/education-resources' },
+      { name: 'Photo Gallery', href: '/gallery' },
+    ],
+    getInvolved: [
+      { name: 'Donate', href: '/donate' },
+      { name: 'Contact Us', href: '/contact' },
+    ]
+  };
+
   return (
-    // Main footer container: dark background, ample vertical padding, sans-serif font
-    <footer className="bg-gray-950 text-gray-400 py-16 px-4 sm:px-6 lg:px-8 font-sans">
-      <div className="max-w-7xl mx-auto">
-        {/* Top section with main logo-like text */}
-        <div className="pb-10 mb-10 border-b border-gray-800"> {/* Subtle divider line */}
-          <h2 className="text-3xl font-bold text-white mb-2 tracking-tight">Kone High School Renaissance Foundation</h2>
-          <p className="text-xl font-light text-gray-500">የኮን ሃይስኩል ህዳሴ ፋውንዴሽን</p> {/* Subtitle, lighter weight */}
-          <p className="text-sm text-gray-500 mt-4 max-w-sm"> {/* Concise mission snippet */}
-            Dedicated to transforming education and empowering futures in Kone.
-          </p>
-        </div>
+    // THEME: Main footer container uses a clean white background with a top border
+    <footer className="bg-white text-gray-600 border-t border-gray-200">
+      <div className="max-w-7xl mx-auto py-16 px-4 sm:px-6 lg:px-8">
+        <div className="grid grid-cols-1 md:grid-cols-12 gap-8">
 
-        {/* Main navigation columns */}
-        <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-y-10 md:gap-x-8 lg:gap-x-12">
-          {/* Column 1: Explore */}
-          <div>
-            <h3 className="text-white font-semibold text-lg mb-5">Explore</h3>
-            <ul className="space-y-3 text-sm">
-              <li><Link href="/about" className="hover:text-white transition-colors duration-200">About Us</Link></li>
-              <li><Link href="/impact" className="hover:text-white transition-colors duration-200">Our Impact</Link></li>
-            </ul>
+          {/* --- Left Column: Logo and Mission --- */}
+          <div className="md:col-span-4 lg:col-span-5">
+            <h2 className="text-xl font-bold text-gray-900">Kone Renaissance Foundation</h2>
+            <p className="text-base text-gray-500 mt-1">የኮን ህዳሴ ፋውንዴሽን</p>
+            <p className="mt-4 text-sm leading-relaxed max-w-xs">
+              Dedicated to transforming education and empowering futures in Kone through community-led initiatives.
+            </p>
           </div>
 
-          {/* Column 2: Resources */}
-          <div>
-            <h3 className="text-white font-semibold text-lg mb-5">Resources</h3>
-            <ul className="space-y-3 text-sm">
-              <li><Link href="/library" className="hover:text-white transition-colors duration-200">Digital Library</Link></li>
-              <li><Link href="/education-resources" className="hover:text-white transition-colors duration-200">Education Resources</Link></li>
-              <li><Link href="/gallery" className="hover:text-white transition-colors duration-200">Photo Gallery</Link></li>
-            </ul>
-          </div>
-
-          {/* Column 3: Get Involved */}
-          <div>
-            <h3 className="text-white font-semibold text-lg mb-5">Get Involved</h3>
-            <ul className="space-y-3 text-sm">
-              <li><Link href="/donate" className="hover:text-white transition-colors duration-200">Donate</Link></li>
-              <li><Link href="/contact" className="hover:text-white transition-colors duration-200">Contact Us</Link></li>
-            </ul>
-          </div>
-
-          {/* Column 4: Account & Legal */}
-          <div>
-            <h3 className="text-white font-semibold text-lg mb-5">Account & Legal</h3>
-            <ul className="space-y-3 text-sm">
-              {/* Note: Dynamic login state is generally handled in Header for Apple-like sites.
-                   These are simplified placeholder links. */}
-              <li><Link href="/login" className="hover:text-white transition-colors duration-200">Login</Link></li>
-              {/* <li><Link href="/signup" className="hover:text-white transition-colors duration-200">Sign Up</Link></li> */}
-              {/* For admin-specific links, it's typically better to put them in a dashboard or accessible via auth */}
-              {/* <li><Link href="/donaters" className="hover:text-white transition-colors duration-200">Admin: Add Donators</Link></li> */}
-              <li><Link href="/terms" className="hover:text-white transition-colors duration-200">Terms & Conditions</Link></li>
-              <li><Link href="/privacy" className="hover:text-white transition-colors duration-200">Privacy Policy</Link></li>
-            </ul>
-          </div>
-
-          {/* Column 5 (can be combined with other columns on smaller screens) */}
-          {/* Re-purposing the last column for general contact / social */}
-          <div>
-            <h3 className="text-white font-semibold text-lg mb-5">Connect</h3>
-            <ul className="space-y-3 text-sm">
-              <li className="flex items-center space-x-2">
-                <FaEnvelope className="text-gray-500" /> {/* Neutral icon color */}
-                <a href="mailto:konerenfoundation@gmail.com" className="hover:text-white transition-colors duration-200">konerenfoundation@gmail.com</a>
-              </li>              
-              <li className="flex items-center space-x-2">
-                <FaFacebookF className="text-gray-500" />
-                <a href="#" className="hover:text-white transition-colors duration-200" target="_blank" rel="noopener noreferrer">Facebook</a>
-              </li>
-            </ul>
+          {/* --- Right Columns: Navigation Links --- */}
+          <div className="md:col-span-8 lg:col-span-7 grid grid-cols-2 sm:grid-cols-3 gap-8">
+            <div>
+              <h3 className="text-sm font-semibold text-gray-500 uppercase tracking-wider">Explore</h3>
+              <ul className="mt-4 space-y-3">
+                {navLinks.explore.map(link => (
+                  <li key={link.name}>
+                    <Link href={link.href} className="text-base hover:text-indigo-600 transition-colors">
+                      {link.name}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </div>
+            <div>
+              <h3 className="text-sm font-semibold text-gray-500 uppercase tracking-wider">Resources</h3>
+              <ul className="mt-4 space-y-3">
+                {navLinks.resources.map(link => (
+                  <li key={link.name}>
+                    <Link href={link.href} className="text-base hover:text-indigo-600 transition-colors">
+                      {link.name}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </div>
+            <div>
+              <h3 className="text-sm font-semibold text-gray-500 uppercase tracking-wider">Get Involved</h3>
+              <ul className="mt-4 space-y-3">
+                {navLinks.getInvolved.map(link => (
+                  <li key={link.name}>
+                    <Link href={link.href} className="text-base hover:text-indigo-600 transition-colors">
+                      {link.name}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </div>
           </div>
         </div>
 
-        {/* Bottom copyright and legal line */}
-        <div className="border-t border-gray-800 pt-8 mt-10 text-xs text-gray-500 flex flex-col md:flex-row justify-between items-start md:items-center space-y-3 md:space-y-0">
-          <div className="flex items-center space-x-1">
-            <FaRegCopyright className="text-gray-600" /> {/* Subtle icon color */}
-            <span>{currentYear} Kone High School Renaissance Foundation. All rights reserved.</span>
+        {/* --- Bottom Bar: Copyright and Socials --- */}
+        <div className="mt-16 pt-8 border-t border-gray-200 flex flex-col sm:flex-row justify-between items-center">
+          <div className="text-sm text-gray-500 text-center sm:text-left">
+            <p>&copy; {currentYear} Kone High School Renaissance Foundation. All rights reserved.</p>
+            <p className="mt-1">
+              Designed by{' '}
+              <a href="https://github.com/commanderwondwossen" className="hover:text-indigo-600 font-medium transition-colors" target="_blank" rel="noopener noreferrer">Commander Wondwossen</a>
+              {' & '}
+              <a href="https://github.com/solowon27" className="hover:text-indigo-600 font-medium transition-colors" target="_blank" rel="noopener noreferrer">Quadsite</a>
+            </p>
           </div>
-          <div className="flex flex-wrap gap-x-4 gap-y-2 md:order-first"> {/* Move legal links to center on desktop */}
-            <Link href="/privacy" className="hover:text-white transition-colors duration-200">Privacy Policy</Link>
-            <Link href="/terms" className="hover:text-white transition-colors duration-200">Terms of Use</Link>
+          <div className="flex justify-center space-x-6 mt-4 sm:mt-0">
+            <a href="#" className="hover:text-indigo-600 transition-colors" aria-label="Facebook">
+              <FaFacebookF className="h-6 w-6" />
+            </a>
+            <a href="mailto:konerenfoundation@gmail.com" className="hover:text-indigo-600 transition-colors" aria-label="Email">
+              <FaEnvelope className="h-6 w-6" />
+            </a>
+            <a href="#" className="hover:text-indigo-600 transition-colors" aria-label="Twitter">
+              <FaTwitter className="h-6 w-6" />
+            </a>
+            <a href="#" className="hover:text-indigo-600 transition-colors" aria-label="Instagram">
+              <FaInstagram className="h-6 w-6" />
+            </a>
           </div>
-          {/* Developer Credits - Very subtle, same color as copyright text */}
-          <p className="text-gray-500">
-            Designed with ❤️ by {' '}
-            <a href="https://github.com/commanderwondwossen" className="hover:text-white transition-colors duration-200" target="_blank" rel="noopener noreferrer">Commander Wondwossen</a>
-            {' '} & {' '}
-            <a href="https://github.com/solowon27" className="hover:text-white transition-colors duration-200" target="_blank" rel="noopener noreferrer">Quadsite</a>
-          </p>
         </div>
       </div>
     </footer>
