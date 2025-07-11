@@ -25,8 +25,8 @@ const GET_DONATIONS = gql`
 
 const impactAreas = [
     { icon: <FaGraduationCap className="w-8 h-8"/>, title: "የትምህርት ግብአቶች", description: "በቂ የትምህርት ግብአቶችን በማቅረብ የተማሪዎችን የመማር ሂደት እናግዛለን።" },
-    { icon: <FaBookOpen className="w-8 h-8"/>, title: "ዘመናዊ ዲጂታል ቤተ-መጻሕፍት", description: "ተማሪዎችን ከዘመኑ ቴክኖሎጂ ጋር እናወዳጃቸዋለን።" },
-    { icon: <FaHandsHelping className="w-8 h-8"/>, title: "ለተማሪዎች ድጋፍ", description: "ችግረኛ ተማሪዎችን በመደገፍ የትምህርት ህልማቸው እውን እንዲሆን እናደርጋለን።" },
+    { icon: <FaBookOpen className="w-8 h-8"/>, title: "ዘመናዊ ዲጂታል ቤተ-መጻሕፍት", description: "ተማሪዎችን ከዘመኑ የትምህርት ስርአት ጋር ጎን ለጎን እንዲሄዱ በዲጂታል የታገዘ የላይብረሪና ተጨማሪ ነፃ የኦንላይን ኮርሶችን እንዲያገኙ እንሰራለን።" },
+    { icon: <FaHandsHelping className="w-8 h-8"/>, title: "ለተማሪዎች ድጋፍ", description: "የአቅም ውስንነት ያለባቸውን ተማሪዎችን በመደገፍ የትምህርት ህልማቸው እውን እንዲሆን እናደርጋለን።" },
 ];
 
 const impactMetrics = {
@@ -198,9 +198,12 @@ export default function Home() {
                             viewport={{ once: true, amount: 0.3 }}
                             transition={{ duration: 0.9, ease: [0.16, 1, 0.3, 1] }}
                         >
-                            <h2 className="text-4xl md:text-5xl font-bold text-gray-900 tracking-tight">በተግባር የተደገፈ ተስፋ</h2>
-                            <p className="mt-6 text-lg text-gray-600 leading-relaxed">
-                                ፋውንዴሽናችን ቃላትን በተግባር ይለውጣል። የተሻሻሉ የመማሪያ ክፍሎች፣ ዘመናዊ ቤተ-መጻሕፍት እና ለተማሪዎች የተሰጠ ድጋፍ የኛን ቁርጠኝነት ያሳያሉ። እያንዳንዱ የተደረገ መዋጮ ለተማሪዎቻችን የተሻለ ነገን በመገንባት ላይ ነው።
+                            <h2 className="text-4xl md:text-5xl font-bold text-gray-900 tracking-tight">የትምህርት ቤታችን አጭር ታሪክ</h2>
+                            <p className="mt-6 text-lg lg:text-2xl text-gray-600 leading-relaxed">
+                                የኮን አጠቃላይ ሁለተኛ ደረጃ ትምህርት ቤት በአማራ ክልል ሰሜን ወሎ ወረዳ የሚገኝ ነው። ትምህርት ቤቱ በ 1944 አ.ም ተቋቋሞ እስከ አሁን ድረስ ተማሪዎችን እየተቀበለ ለትልቅ ደረጃ ሲያደረስ የቆየ በእድሜ አንጋፋ የሆነ ትምህርት ቤት ነው። 
+                                የኮን አጠቃላይ ሁለተኛ ደረጃ ትምህርት ቤት በአማራ ክልል ሰሜን ወሎ ወረዳ የሚገኝ ነው። ትምህርት ቤቱ በ 1944 አ.ም ተቋቋሞ እስከ አሁን ድረስ ተማሪዎችን እየተቀበለ ለትልቅ ደረጃ ሲያደረስ የቆየ በእድሜ አንጋፋ የሆነ ትምህርት ቤት ነው። 
+                                ላለፉት 73 አመታት በቁጥር ይህ ነው ተብሎ ሊጠቀስ የማይችል በትምህርታቸው ሃገራቸውንና ወገኖቻቸውን የረዱና እየረዱ ያሉ ታላላቅ ሰዎችን ማፍራት የቻለ በክልሉ ከሚጠቀሱ ዝነኛ ትምህርት ቤቶች አንዱ ነው።
+                                ላለፉት 73 አመታት በቁጥር ይህ ነው ተብሎ ሊጠቀስ የማይችል በትምህርታቸው ሃገራቸውንና ወገኖቻቸውን የረዱና እየረዱ ያሉ ታላላቅ ሰዎችን ማፍራት የቻለ በክልሉ ከሚጠቀሱ ዝነኛ ትምህርት ቤቶች አንዱ ነው።
                             </p>
                              <Link href="/gallery" className="mt-8 inline-flex items-center font-semibold text-indigo-600 hover:text-indigo-700 group">
                                 ተጨማሪ ፎቶዎችን ይመልከቱ <FaArrowRight className="ml-2 transition-transform duration-300 group-hover:translate-x-1"/>
@@ -212,7 +215,7 @@ export default function Home() {
                 {/* --- 4. FUNDRAISING & IMPACT METRICS (WITH DONATORS LIST) --- */}
                 <section className="py-20 sm:py-28 bg-gray-900 text-white">
                      <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-                         <h2 className="text-4xl md:text-5xl font-bold tracking-tight">እንቅስቃሴውን ይቀላቀሉ</h2>
+                         <h2 className="text-4xl md:text-5xl font-bold tracking-tight">የተጀመረውን እንቅስቃሴውን ይቀላቀሉ</h2>
                          <p className="mt-4 text-lg text-gray-300 max-w-3xl mx-auto">የእርስዎ ድጋፍ በቀጥታ የተማሪዎችን ህይወት ይለውጣል። ምን ያህል እንደተጓዝን እና ግባችንን ለመምታት ምን ያህል እንደቀረን ይመልከቱ።</p>
                          
                          <motion.div
@@ -237,15 +240,15 @@ export default function Home() {
                          <div className="mt-16 grid grid-cols-2 md:grid-cols-4 gap-8">
                             <div className="text-center">
                                 <div className="text-5xl font-bold text-indigo-400 tracking-tighter"><AnimatedNumber value={impactMetrics.studentsImpacted} />+</div>
-                                <p className="text-gray-300 font-medium mt-1">ተማሪዎች የደረስንላቸው</p>
+                                <p className="text-gray-300 font-medium mt-1">ተማሪዎች በጥቅሉ ተጠቃሚ ሆነዋል</p>
                             </div>
                              <div className="text-center">
                                 <div className="text-5xl font-bold text-indigo-400 tracking-tighter"><AnimatedNumber value={impactMetrics.librariesEstablished} /></div>
-                                <p className="text-gray-300 font-medium mt-1">ቤተ-መጻሕፍት የታደሱ</p>
+                                <p className="text-gray-300 font-medium mt-1">ቤተ-መጻሕፍት የርዳታው ተጠቃሚ ሆንዋል </p>
                             </div>
                              <div className="text-center">
                                 <div className="text-5xl font-bold text-indigo-400 tracking-tighter"><AnimatedNumber value={impactMetrics.donors} />+</div>
-                                <p className="text-gray-300 font-medium mt-1">ለጋሾች</p>
+                                <p className="text-gray-300 font-medium mt-1">በላይ መጻሕፍት ገቢ ተደርጓል</p>
                             </div>
                              <div className="text-center">
                                 <div className="text-5xl font-bold text-indigo-400 tracking-tighter"><AnimatedNumber value={impactMetrics.communityMembers} />+</div>
@@ -256,7 +259,7 @@ export default function Home() {
                      
                      {/* --- SCROLLING DONATORS LIST --- */}
                      <div className="mt-20">
-                        <h3 className="text-2xl font-bold text-center mb-8">የኛ ደጋፊዎች</h3>
+                        <h3 className="text-2xl font-bold text-center mb-8">ድጋፍ ያደረጉ ሰዎች</h3>
                         <div className="relative w-full overflow-hidden">
                             <motion.div
                                 className="flex"
@@ -286,7 +289,7 @@ export default function Home() {
                             viewport={{ once: true, amount: 0.3 }}
                         >
                             <h2 className="text-4xl md:text-5xl font-bold text-gray-900 tracking-tight">የምስራች</h2>
-                            <p className="mt-4 text-lg text-gray-600 max-w-3xl mx-auto">
+                            <p className="mt-4 text-lg lg:text-2xl text-gray-600 max-w-3xl mx-auto">
                                 በዌብሳይታችን ያካተትናቸው ትልቅ ፍሬ የምንጠብቅባቸውን ገጽኦች እናስተዋውቃችሁ፡
                             </p>
                         </motion.div>
@@ -357,7 +360,7 @@ export default function Home() {
                     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                          <div className="text-center mb-16">
                              <h2 className="text-4xl md:text-5xl font-bold text-gray-900 tracking-tight">የለውጡ ድምፆች</h2>
-                             <p className="mt-4 text-lg text-gray-600 max-w-3xl mx-auto">የእኛ ስራ በሰዎች ህይወት ላይ ያመጣውን ለውጥ ከራሳቸው አንደበት ይስሙ።</p>
+                             <p className="mt-4 text-lg lg:text-2xl text-gray-600 max-w-3xl mx-auto">የእኛ ስራ በሰዎች ህይወት ላይ ያመጣውን ለውጥ ከራሳቸው አንደበት ይስሙ።</p>
                         </div>
                         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
                             {testimonials.map((testimonial, index) => (
@@ -390,7 +393,7 @@ export default function Home() {
                     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                         <div className="text-center mb-16">
                              <h2 className="text-4xl md:text-5xl font-bold text-gray-900 tracking-tight">የቅርብ ጊዜ ዜናዎች</h2>
-                             <p className="mt-4 text-lg text-gray-600 max-w-3xl mx-auto">ከፋውንዴሽናችን ጋር የተያያዙ ወቅታዊ መረጃዎችን እና ዝግጅቶችን ይከታተሉ።</p>
+                             <p className="mt-4 text-lg lg:text-2xl text-gray-600 max-w-3xl mx-auto">ከፋውንዴሽናችን ጋር የተያያዙ ወቅታዊ መረጃዎችን እና ዝግጅቶችን ይከታተሉ።</p>
                         </div>
                         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                             {newsItems.map((item, index) => (
@@ -435,7 +438,7 @@ export default function Home() {
                             <motion.div whileHover={{ scale: 1.05 }} className="w-full">
                                 <Link href="/contact" className="block text-center bg-white text-gray-900 p-8 rounded-xl shadow-lg hover:bg-gray-200 transition-colors">
                                     <h3 className="text-2xl font-bold">በበጎ ፈቃደኝነት ይሳተፉ</h3>
-                                    <p className="mt-2">ጊዜዎን እና ችሎታዎን በመስጠት ተማሪዎችን ያበረታቱ።</p>
+                                    <p className="mt-2">ጊዜዎን እና ችሎታዎን በመስጠት ትምህርት ቤታችሁን ደግፉ።</p>
                                 </Link>
                             </motion.div>
                          </div>
