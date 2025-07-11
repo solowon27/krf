@@ -59,9 +59,9 @@ const educationResource = [
 ];
 
 const testimonials = [
-    { name: "Abebe B.", role: "Grade 11 Student", quote: "The new digital library has completely changed how I study. I can now access information I only dreamed of before.", image: "/aigen1.PNG" },
-    { name: "Fatuma H.", role: "Teacher", quote: "Thanks to the foundation's support, our classrooms have the resources we need to provide a quality education.", image: "/aigen2.PNG" },
-    { name: "Alumni Association", role: "Partner", quote: "Partnering with the Kone Renaissance Foundation has amplified our collective ability to create lasting change.", image: "/aigen2.PNG" },
+    { name: "Abebe B.", role: "Grade 11 Student", quote: "The new digital library has completely changed how I study. I can now access information I only dreamed of before.", image: "/aigen1.png" },
+    { name: "Fatuma H.", role: "Teacher", quote: "Thanks to the foundation's support, our classrooms have the resources we need to provide a quality education.", image: "/aigen2.png" },
+    { name: "Alumni Association", role: "Partner", quote: "Partnering with the Kone Renaissance Foundation has amplified our collective ability to create lasting change.", image: "/aigen2.png" },
 ];
 
 const newsItems = [
@@ -183,13 +183,13 @@ export default function Home() {
                             transition={{ duration: 0.9, ease: [0.16, 1, 0.3, 1] }}
                          >
                             <div className="relative h-48 md:h-64 rounded-xl overflow-hidden shadow-lg col-span-2">
-                                <Image src="/aigen1.PNG" alt="Group of students" fill className="object-cover" />
+                                <Image src="/aigen1.png" alt="Group of students" fill className="object-cover" />
                             </div>
                             <div className="relative h-48 md:h-64 rounded-xl overflow-hidden shadow-lg">
-                                <Image src="/aigen2.PNG" alt="Inside the new library" fill className="object-cover" />
+                                <Image src="/aigen2.png" alt="Inside the new library" fill className="object-cover" />
                             </div>
                             <div className="relative h-48 md:h-64 rounded-xl overflow-hidden shadow-lg">
-                                <Image src="/aigen3.PNG" alt="Classroom learning" fill className="object-cover" />
+                                <Image src="/aigen3.png" alt="Classroom learning" fill className="object-cover" />
                             </div>
                         </motion.div>
                         <motion.div
