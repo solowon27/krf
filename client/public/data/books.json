@@ -208,5 +208,54 @@
     "category": "Chemistry",
     "description": "Teaches chemistry from an atomic perspective, helping learners grasp structure before reactions.",
     "googleDriveLink": "https://drive.google.com/file/d/1rEITsegugR_A_A1SgLAsTJ8Q_xN1mTAS/view?usp=sharing"
+  },
+    {
+    "id": "b031",
+    "title": "General Biology",
+    "category": "Biology",
+    "description": "An essential introduction to the principles of biology, covering cell structure, genetics, evolution, ecology, and the diversity of life. Ideal for high school and first-year college students.",
+    "googleDriveLink": "https://drive.google.com/file/d/1gIMGR4l-G409uEe_9n1qB5OxMFk1znMB/view?usp=sharing"
+  },
+  {
+    "id": "b032",
+    "title": "Intermediate Financial Accounting",
+    "category": "Accounting",
+    "description": "Builds on foundational accounting principles with in-depth coverage of financial reporting, liabilities, equity, and revenue recognition. Designed for students pursuing advanced accounting studies.",
+    "googleDriveLink": "https://drive.google.com/file/d/1tCyVeUylhCEDFVN21uEqLWdjsDc1jNCU/view?usp=sharing"
+  },
+  {
+    "id": "b033",
+    "title": "Introduction to Financial Accounting",
+    "category": "Accounting",
+    "description": "A beginner-friendly guide that introduces financial accounting concepts, balance sheets, income statements, and cash flow analysis. Perfect for students with no prior background in accounting.",
+    "googleDriveLink": "https://drive.google.com/file/d/1t4xgW0GcAHiWOYtlDubn2Ta7YlaHpkJ1/view?usp=sharing"
+  },
+  {
+    "id": "b034",
+    "title": "Principles of Managerial Accounting",
+    "category": "Accounting",
+    "description": "Focuses on internal accounting processes used for decision-making, planning, and performance evaluation. Topics include budgeting, cost analysis, and financial planning.",
+    "googleDriveLink": "https://drive.google.com/file/d/1iyA_H3LGV2IkcbFm-VVCyc-5ptxSsti1/view?usp=sharing"
+  },
+  {
+    "id": "b035",
+    "title": "JAVA",
+    "category": "Computer Science",
+    "description": "A comprehensive guide to Java programming, covering object-oriented principles, data structures, and application development. Suitable for beginners and intermediate coders.",
+    "googleDriveLink": "https://drive.google.com/file/d/1c1HdvmCNXpCD5Ltn30GvgpeZGrBq9X3A/view?usp=sharing"
+  },
+  {
+    "id": "b036",
+    "title": "Think C++",
+    "category": "Computer Science",
+    "description": "A hands-on introduction to C++ programming using clear examples and practical exercises. Helps learners build a strong foundation in coding logic and syntax through a structured learning path.",
+    "googleDriveLink": "https://drive.google.com/file/d/1lCQi-3O7sGSlaC9mOiN8AR9J7R-TFpWs/view?usp=sharing"
+  },
+  {
+    "id": "b037",
+    "title": "Elementary College Geometry",
+    "category": "Math",
+    "description": "A brief explanation about Geometry and related ideology",
+    "googleDriveLink": "https://drive.google.com/file/d/1dubm4_yusEclHT0SNR0FYcC_WuufW7CK/view?usp=sharing"
   }
 ]
