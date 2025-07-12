@@ -184,10 +184,10 @@ export default function Home() {
                             transition={{ duration: 0.9, ease: [0.16, 1, 0.3, 1] }}
                         >
                             <h2 className="text-4xl md:text-5xl font-bold text-gray-900 tracking-tight">የትምህርት ቤታችን አጭር ታሪክ</h2>
-                            <p className="mt-6 text-lg lg:text-2xl text-gray-600 leading-relaxed">
-                                የኮን አጠቃላይ ሁለተኛ ደረጃ ትምህርት ቤት በአማራ ክልል ሰሜን ወሎ ወረዳ የሚገኝ ነው አንጋፋ ትምህርት ቤት ነው። ትምህርት ቤቱ በ 1945 አ.ም ተቋቋሞ እስከ አሁን ድረስ ተማሪዎችን እየተቀበለ ለትልቅ ደረጃ ሲያደረስ የቆየ እድሜ ጠገብ ትምህርት ቤት ነው። 
-                                ላለፉት 73 አመታት በቁጥር ይህ ነው ተብሎ ሊጠቀስ የማይችል በትምህርታቸው ሃገራቸውንና ወገኖቻቸውን የረዱና እየረዱ ያሉ ታላላቅ ሰዎችን ማፍራት የቻለ በክልሉ ከሚጠቀሱ ዝነኛ ትምህርት ቤቶች አንዱ ነው። ይህን ትምህርት ቤት ከሌሎች መሰል ትምህርት ቤቶች ለየት የሚያደርገው ከተመሰረተብት ጊዜ አንስቶ ከተለያዩ ወረዳዎች እንዲሁም በወረዳው ውስጥ ካሉ ከ25 የሚበልጡ ቀበሌዎች የሚመጡ ተማሪዎችን
-                                እየተቀበለ ያስተማረና እያስተማረ የሚገኝ ትልቅ የሃገር ዋርካ ነው። ነገር ግን ከጊዜ በኋላ በተለያዩ የሃገሪቱ ችግሮች ምክንያት እና ሌሎች ችግሮች ምክንያት ትውልድን በበቂ ሁኔታ እያነጸ አይደለም ይሄንንም በመገንዘብ ፋውንዴሽናችን የበኩሉን ኣሻራ ለማሳረፍ በትልቅ ራእይ ስራውን ጀምሯል።
+                            <p className="mt-6 text-justify text-lg lg:text-2xl text-gray-600 leading-relaxed">
+                                የኮን አጠቃላይ ሁለተኛ ደረጃ ትምህርት ቤት በአማራ ክልል ሰሜን ወሎ ወረዳ የሚገኝ ትምህርት ቤት ነው። ትምህርት ቤቱ በ 1945 አ.ም ተቋቋሞ እስከ አሁን ድረስ ተማሪዎችን እየተቀበለ ለትልቅ ደረጃ ሲያደረስ የቆየ እድሜ ጠገብ አንጋፋ ትምህርት ቤት ነው። 
+                                ላለፉት 73 አመታት በቁጥር ይህ ነው ተብሎ ሊጠቀስ የማይችል በትምህርታቸው ሃገራቸውንና ወገኖቻቸውን የረዱና እየረዱ ያሉ ታላላቅ ሰዎችን ማፍራት የቻለ በክልሉ ከሚጠቀሱ ዝነኛ ትምህርት ቤቶች አንዱ ነው። ይህን ትምህርት ቤት ከሌሎች መሰል ትምህርት ቤቶች ለየት የሚያደርገው ከተመሰረተበት ጊዜ አንስቶ ከተለያዩ ወረዳዎች እንዲሁም በወረዳው ውስጥ ካሉ ከ25 የሚበልጡ ቀበሌዎች የሚመጡ ተማሪዎችን
+                                እየተቀበለ ያስተማረና እያስተማረ የሚገኝ መሆኑ ነው። ነገር ግን ከጊዜ በኋላ በተለያዩ የሃገሪቱ ችግሮች ምክንያት እና ሌሎች ተጨማሪ ችግሮች ምክንያት ትውልድን በበቂ ሁኔታ እያነጸ አይደለም፣ ይሄንንም በመገንዘብ ፋውንዴሽናችን ከአካባቢው ማህበረሰብ ጋር በመሆን የበኩሉን ኣሻራ ለማሳረፍ በትልቅ ራእይ ስራውን ጀምሯል።
                             </p>
                              <Link href="/gallery" className="mt-8 inline-flex items-center font-semibold text-indigo-600 hover:text-indigo-700 group">
                                 ተጨማሪ ፎቶዎችን ይመልከቱ <FaArrowRight className="ml-2 transition-transform duration-300 group-hover:translate-x-1"/>
@@ -281,7 +281,7 @@ export default function Home() {
                         <div className="relative w-full overflow-hidden">
                             <motion.div
                                 className="flex"
-                                animate={{ x: ['0%', '-50%'] }}
+                                animate={{ x: ['0%', '50%'] }}
                                 transition={{ ease: 'linear', duration: 40, repeat: Infinity }}
                             >
                                 {[...allDonations, ...allDonations].map((donation: any, index: number) => (

@@ -17,8 +17,9 @@ const startServer = async () => {
   const app = express();
 
   // Middleware
+// Middleware
    app.use(cors({
-  origin: 'https://krf-three.vercel.app', // REMOVED the trailing slash
+  origin: 'https://www.konehs-foundation.org', // REMOVED the trailing slash
   methods: ['GET', 'POST', 'OPTIONS'],
   allowedHeaders: ['Content-Type', 'Authorization'],
   credentials: true

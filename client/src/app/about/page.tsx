@@ -12,13 +12,13 @@ const teamMembers = [
   {
     name: "አቤል ቢሰጠኝ",
     role: "መስራች እና የትምህርት ቤቱ ተጠሪ",
-    quote: "Every child deserves the opportunity to learn and thrive. We are building that future, brick by brick, dream by dream.",
+    quote: "በኮን 2ኛ ደረጃ ትም/ቤት ስም የተቋቋመው ፋውንዴሽን መነሻውም መድረሻውም በትምህርት ቤቱ ላሉ ማህበረሰብ (ተማሪዎች፣ መምህራን) አቅም በፈቀደ ላጋጠሙ ችግሮች መፍትሔ በመስጠት ከጊዜው ጋር ተወዳዳሪ ማድረግ ነው!",
     image: "/abel.jpeg"
   },
   {
     name: "ኮማንደር ወንድወሰን",
     role: "መስራች እና ዳታ አናሊስት",
-    quote: "Leveraging technology, we can bridge educational gaps and connect passionate learners with boundless knowledge.",
+    quote: "ይህ ፋውንዴሽን የኮን 2ኛ ደረጃ ትምህርት ቤት እና ተማሪዎችን ተጠቃሚ እንደሚያደርግ ፅኑ እምነት አለኝ። የዚህ ፋውንዴሽን አካል በመሆኔም ደስተኛ ይሰማኛል።",
     image: "/come.JPEG"
   },
   {
