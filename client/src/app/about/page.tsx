@@ -24,7 +24,7 @@ const teamMembers = [
   {
     name: "ሰሎሞን ይመር",
     role: "መስራች እና የውጭ ግንኙነት",
-    quote: "በዚህ ፕሮጀክት ውስጤ ትልቅ እምነት አለው።",
+    quote: "በዚህ ፕሮጀክት ውስጤ ትልቅ እምነት አለው ፡ የዚህ በጎ ተግባር አካል መሆኔም በጣም ያኮራኛል።",
     image: "/solo.JPG"
   }
 ];
@@ -160,7 +160,8 @@ export default function AboutUs() {
                 የመስራቾቹ መልእክት
             </motion.h2>
             <motion.p variants={itemVariants} className="text-lg md:text-xl text-gray-700 leading-relaxed">
-                As a team, we are bound by a shared passion for Kone's future. Every decision we make is guided by our commitment to the students, the community, and the promise of a brighter tomorrow. We believe that by working together with transparency and dedication, we can build a lasting legacy of opportunity.
+                እንደ አንድ ቡድን፣ በኮን ሃይስኩል ለሚማሩ ወንድም እህቶቻችን ምቹ ሁኔታ ለመፍጠር እና አስተምሮ እዚህ ደረጃ ያደረሰንን ትምህርት ቤት ለማገዝ ያለን የጋራ ስሜት አንድ አድርጎናል።
+                ዋና ትኩረታችን ተማሪዎችንና ማህበረሰቡን መርዳት እንዲሁም የተሻለ ነገን እውን ማድረግ ነው። በግልጽነትና በትጋት አብረን በመስራት፣ ለሁሉም ማህበረሰባችን ዘላቂ የሆኑ እድሎችን መፍጠር እንደምንችል እናምናለን።
             </motion.p>
           </motion.div>
         </div>

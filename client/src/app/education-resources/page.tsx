@@ -226,17 +226,17 @@ export default function EducationResourcesPage() {
          <div className="absolute inset-0 bg-[#0A0A0A] bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:24px_24px] [mask-image:radial-gradient(ellipse_50%_50%_at_50%_50%,#000_60%,transparent_100%)]"></div>
          <div className="relative z-10 max-w-6xl mx-auto">
            <motion.h1 initial={{ y: 30, opacity: 0 }} animate={{ y: 0, opacity: 1 }} transition={{ type: 'tween', ease: 'easeOut', duration: 0.6 }} className="text-4xl md:text-6xl font-bold mb-4 tracking-tighter">
-             ኦንላይን ትምህርት እና <span className="text-cyan-400">ስኮላርሽፕ</span>
+             FREE ONLINE COURSES <span className="text-cyan-400">AND SCHOLARSHIPS</span>
            </motion.h1>
            <motion.p initial={{ y: 30, opacity: 0 }} animate={{ y: 0, opacity: 1 }} transition={{ type: 'tween', ease: 'easeOut', duration: 0.6, delay: 0.1 }} className="text-lg md:text-xl text-gray-400 max-w-3xl mx-auto">
-            የተመረጡ ነፃ ኦንላይን ኮርሶች እና ሙሉ በሙሉ የገንዘብ ድጋፍ ያላቸውን ስኮላርሽፕ እድሎች ተጠቃሚ ይሁኑ።
+            Take advantage of recommended free online courses and fully funded scholarship opportunities.
            </motion.p>
            <motion.div variants={itemVariants} className="mt-8 flex flex-wrap justify-center gap-4">
              <Link href="/" className="w-full sm:w-auto inline-block border-2 border-white text-white font-semibold px-8 py-4 rounded-full transition-colors duration-300 hover:bg-white hover:text-gray-900 text-lg sm:text-xl">
-               ዋና ገጽ
+               Home
              </Link>
              <Link href="/library" className="w-full sm:w-auto inline-block border-2 border-white text-white font-semibold px-8 py-4 rounded-full transition-colors duration-300 hover:bg-white hover:text-gray-900 text-lg sm:text-xl">
-               ዲጂታል ቤተ መጻሕፍት
+               Digital Library
              </Link>
            </motion.div>
          </div>

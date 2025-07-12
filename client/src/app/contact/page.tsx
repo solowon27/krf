@@ -2,9 +2,11 @@
 
 import Header from '@components/Header';
 import Footer from '@components/Footer';
-import { motion, Variants, Transition } from 'framer-motion';
+import { motion, Variants } from 'framer-motion';
 import React, { useState } from 'react';
-import { FaEnvelope, FaMapMarkerAlt, FaPhoneAlt, FaFacebook, FaTwitter, FaInstagram } from 'react-icons/fa';
+import { FaEnvelope, FaMapMarkerAlt, FaPhoneAlt, FaBullhorn, FaArrowRight } from 'react-icons/fa';
+import Image from 'next/image';
+import Link from 'next/link';
 
 // --- Interface for form data ---
 interface FormData {
@@ -13,6 +15,22 @@ interface FormData {
   subject: string;
   message: string;
 }
+
+// --- Data for new sections (like on the homepage) ---
+const faqItems = [
+    {
+        q: "እንዴት መርዳት እችላለሁ?",
+        a: "በሃገር ውጭ እንዲሁም በሃገር ውስጥ ላሉ ማህበረሰባችን በቀጥታ በዌብሳይታችን በኩል መርዳት እንዲችሉ በመጀመሪያ ህጋዊ ፈቃድ ያለውና ሙሉ ኮሚቴ ያለው ፋውንዴሽን እንዲሆን እየሰራን እንገኛለን ነገር ግን ማንኛውንም እርዳታ ለጊዜውም ቢሆን በቀጥታ ማስተላለፍ እንፈልጋለን ለሚሉ በስልክ ወይንም በኢሚል በመነጋገር መርዳት የምትችሉ ሲሆንእኛም የረዱትን ነገር ዌብሳስይቱ የፊት ገጽ ላይ ከምስል ጋር እንለጥፈዋለን።",
+    },
+    {
+        q: "በጎ ፈቃድ ላይ እንዴት መሳተፍ እችላለሁ?",
+        a: "የበጎ ፈቃድ ፕሮግራሞች የተወሰኑ አይደሉም ስለዚህም በማንኛውም መንገድ ትምህርት ቤቴን አግዛለው ለሚሉ ቅን ልቦች በራችን ክፍት ነው፡ እውቅናውንም በ ዌብሳይታችን የፊት ገጽ ዜና ክፍል ላይ ከምስል ጋር እንለጥፈዋለን ለሌሎችም አርአያንትዎን እንመሰክራለን።",
+        },
+    {
+        q: "የረዳሁት ነገር ምን ላይ እንደዋለ በምን አረጋግጣለሁ?",
+        a: "ልገሳዎ 100% በቀጥታ ለትምህርት ግብዓቶች፣ ለዲጂታል ቤተ-መጻሕፍት እና ለተማሪ ድጋፍ ፕሮግራሞች የሚውል ነው። ሙሉ በሙሉ ግልጽነት የሰፈነበት ፕላትፎርም ነው የፈጠርነው ስለዚህ ትንሽ ትልቅ ሳይባል የተደረጉትን ነገሮች በዜና ክፍል፥ በፌስ ቦክ ገጽ እንዲሁም ድጋፍ ያደረጉ ሰዎች ሲክሽን ላይ እንዲካተቱ ይደረጋል በዚህም ሁሉም ነገር ለህዝብ ክፍት የሆነ እንደሆነ እናስመሰክራለን።",
+    },
+];
 
 export default function ContactUs() {
   const [formData, setFormData] = useState<FormData>({
@@ -60,17 +78,18 @@ export default function ContactUs() {
     }
   };
 
-  // --- Consistent Animation Variants ---
-  const containerVariants: Variants = {
-    hidden: { opacity: 0 },
+
+  // --- Animation Variants from Homepage ---
+  const fadeIn: Variants = {
+     hidden: { opacity: 0 },
     visible: {
       opacity: 1,
       transition: { staggerChildren: 0.15, delayChildren: 0.2 },
     },
   };
 
-  const itemVariants: Variants = {
-    hidden: { y: 20, opacity: 0 },
+  const staggerContainer: Variants = {
+     hidden: { y: 20, opacity: 0 },
     visible: {
       y: 0,
       opacity: 1,
@@ -79,128 +98,146 @@ export default function ContactUs() {
   };
 
   return (
-    // THEME: Main background is light gray
-    <div className="bg-gray-50 text-gray-800 font-sans antialiased">
+    <div className="bg-gray-100 text-gray-800 font-sans antialiased">
       <Header />
 
       <main>
-        {/* --- HERO SECTION --- */}
-        {/* THEME: Replaced old hero with the new clean, light version */}
-        <section className="bg-white">
-            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24 md:py-32 text-center">
-                <motion.div initial="hidden" animate="visible" variants={containerVariants}>
-                    <motion.h1 
-                        variants={itemVariants} 
-                        className="text-4xl md:text-6xl font-extrabold text-gray-900 tracking-tight"
-                    >
-                        የመልእክት ገጽ
-                    </motion.h1>
-                    <motion.p 
-                        variants={itemVariants} 
-                        className="mt-6 max-w-3xl mx-auto text-lg md:text-xl text-gray-600"
-                    >
-                        አስተያየታችሁንና ጥያቄያችሁን በመልእክት ሳጥኑ በመጠቀም ወይንም በስልክ በመደወል ያሳውቁን።
-                    </motion.p>
-                </motion.div>
-            </div>
+        {/* --- 1. DYNAMIC HERO SECTION (Homepage Style) --- */}
+        <section className="relative h-[40vh] flex items-center justify-center text-indigo-600 text-center overflow-hidden">
+              <motion.div
+                className="relative z-20 px-4"
+                initial={{ opacity: 0, scale: 0.9 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ duration: 1, ease: [0.22, 1, 0.36, 1] }}
+            >
+                <h1 className="text-5xl md:text-7xl font-extrabold leading-tight">
+                    መልእክት
+                </h1>
+                <p className="mt-6 max-w-2xl mx-auto text-lg md:text-xl text-gray-600">
+                   ያላችሁን አስተያየት ወይንም ጥያቄ በስልክ ወይንም ፎርሙ ላይ መልእክታችሁን በማስገባት መላክ ትችላላችሁ! 
+                </p>
+            </motion.div>
         </section>
 
-        {/* --- CONTACT FORM & INFO SECTION --- */}
-        <section className="py-24 sm:py-32">
-          {/* BUG FIX: This container now animates in on load, ensuring its children are always visible */}
-          <motion.div 
-            className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 lg:grid-cols-5 gap-12"
-            variants={containerVariants}
-            initial="hidden"
-            animate="visible"
-          >
-            {/* --- Contact Form (Left Column) --- */}
-            <motion.div variants={itemVariants} className="lg:col-span-3 bg-white p-8 md:p-12 rounded-2xl shadow-md border border-gray-200/80">
-              <h2 className="text-3xl font-bold mb-8 text-gray-900">Send Us a Message / መልእክት ይላኩልን</h2>
+        {/* --- 2. CONTACT FORM & INFO SECTION --- */}
+        <section className="py-20 sm:py-28 bg-white">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
+            {/* --- Left Column: Form --- */}
+            <motion.div
+                className="bg-gray-50 p-8 md:p-12 rounded-2xl border border-gray-200/80 shadow-lg"
+                variants={fadeIn}
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true, amount: 0.1 }}
+            >
+              <h2 className="text-3xl md:text-4xl font-bold mb-2 text-gray-900">የጽሑፍ ሳጥን</h2>
+              <p className="text-gray-600 mb-8">እባክዎ መልእክትዎን ከዚህ በታች ባለው ፎርም ይላኩልን</p>
               <form onSubmit={handleSubmit} className="space-y-6">
+                {/* --- Form fields styled like homepage inputs --- */}
                 <div>
-                  <label htmlFor="name" className="block text-sm font-semibold mb-2 text-gray-700">Name / ስም</label>
-                  <input
-                    type="text" id="name" name="name"
-                    value={formData.name} onChange={handleChange} required
-                    // THEME: Updated input styles
-                    className="block w-full py-3 px-4 text-gray-900 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 bg-gray-50 transition"
-                  />
+                  <label htmlFor="name" className="block text-sm font-semibold mb-2 text-gray-700">ስም</label>
+                  <input type="text" placeholder="Full Name" id="name" name="name" value={formData.name} onChange={handleChange} required className="block w-full py-3 px-4 text-gray-900 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 bg-white transition" />
                 </div>
                 <div>
-                  <label htmlFor="email" className="block text-sm font-semibold mb-2 text-gray-700">Email / ኢሜይል</label>
-                  <input
-                    type="email" id="email" name="email"
-                    value={formData.email} onChange={handleChange} required
-                    className="block w-full py-3 px-4 text-gray-900 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 bg-gray-50 transition"
-                  />
+                  <label htmlFor="email" className="block text-sm font-semibold mb-2 text-gray-700">ኢሜይል</label>
+                  <input type="email" placeholder="email address" id="email" name="email" value={formData.email} onChange={handleChange} required className="block w-full py-3 px-4 text-gray-900 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 bg-white transition" />
                 </div>
                 <div>
-                  <label htmlFor="subject" className="block text-sm font-semibold mb-2 text-gray-700">Subject / ርእስ</label>
-                  <input
-                    type="text" id="subject" name="subject"
-                    value={formData.subject} onChange={handleChange}
-                    className="block w-full py-3 px-4 text-gray-900 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 bg-gray-50 transition"
-                  />
+                  <label htmlFor="subject" className="block text-sm font-semibold mb-2 text-gray-700">ርእስ</label>
+                  <input type="text" placeholder="Ex. want to be a volunteer" id="subject" name="subject" value={formData.subject} onChange={handleChange} className="block w-full py-3 px-4 text-gray-900 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 bg-white transition" />
                 </div>
                 <div>
-                  <label htmlFor="message" className="block text-sm font-semibold mb-2 text-gray-700">Message / ሙሉ መልእክት</label>
-                  <textarea
-                    id="message" name="message"
-                    value={formData.message} onChange={handleChange} rows={6} required
-                    className="block w-full py-3 px-4 text-gray-900 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 bg-gray-50 transition resize-y"
-                  ></textarea>
+                  <label htmlFor="message" className="block text-sm font-semibold mb-2 text-gray-700">ሙሉ መልእክት</label>
+                  <textarea id="message" placeholder="write your message here" name="message" value={formData.message} onChange={handleChange} rows={5} required className="block w-full py-3 px-4 text-gray-900 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 bg-white transition resize-y"></textarea>
                 </div>
-                <button
-                  type="submit"
-                  // THEME: Updated button styles
-                  className="w-full bg-indigo-600 text-white font-bold px-8 py-4 rounded-lg shadow-lg hover:bg-indigo-700 transition-colors duration-300 disabled:bg-gray-400 text-lg"
-                  disabled={isSubmitting}
-                >
-                  {isSubmitting ? 'Sending...' : 'Send Message'}
+                <button type="submit" className="w-full bg-indigo-600 text-white font-bold px-8 py-4 rounded-lg shadow-lg hover:bg-indigo-700 transition-all duration-300 transform hover:scale-105 disabled:bg-gray-400 disabled:scale-100 text-lg" disabled={isSubmitting}>
+                  {isSubmitting ? 'Sending...' : 'መልእክቱን ላክ'}
                 </button>
-                {submitStatus === 'success' && <p className="text-green-600 mt-4 text-center font-medium">Thank you! Your message has been sent successfully.</p>}
-                {submitStatus === 'error' && <p className="text-red-600 mt-4 text-center font-medium">Failed to send message. Please try again later.</p>}
+                {submitStatus === 'success' && <p className="text-green-600 mt-4 text-center font-medium">Thank you! Your message has been sent.</p>}
+                {submitStatus === 'error' && <p className="text-red-600 mt-4 text-center font-medium">Failed to send message. Please try again.</p>}
               </form>
             </motion.div>
 
-            {/* --- Contact Info (Right Column) --- */}
-            <motion.div variants={itemVariants} className="lg:col-span-2 space-y-8">
-                {/* THEME: Info blocks redesigned for consistency */}
-                <div className="flex items-start gap-4">
-                  <div className="flex-shrink-0 flex items-center justify-center h-12 w-12 rounded-full bg-indigo-100 text-indigo-600 text-xl"><FaEnvelope /></div>
-                  <div>
-                    <h3 className="font-bold text-lg text-gray-900">Email</h3>
-                    <a href="mailto:konerenfoundation@gmail.com" className="text-gray-600 hover:text-indigo-600 transition-colors">konerenfoundation@gmail.com</a>
-                  </div>
-                </div>
-                <div className="flex items-start gap-4">
-                  <div className="flex-shrink-0 flex items-center justify-center h-12 w-12 rounded-full bg-indigo-100 text-indigo-600 text-xl"><FaPhoneAlt /></div>
-                  <div>
-                    <h3 className="font-bold text-lg text-gray-900">Phone</h3>
-                    <a href="tel:+25100000000" className="text-gray-600 hover:text-indigo-600 transition-colors">+251 00 00 00 00</a>
-                  </div>
-                </div>
-                <div className="flex items-start gap-4">
-                  <div className="flex-shrink-0 flex items-center justify-center h-12 w-12 rounded-full bg-indigo-100 text-indigo-600 text-xl"><FaMapMarkerAlt /></div>
-                  <div>
-                    <h3 className="font-bold text-lg text-gray-900">Office</h3>
-                    <p className="text-gray-600">Kone, North Wollo, Ethiopia</p>
-                  </div>
-                </div>
-                <div className="pt-8 mt-8 border-t border-gray-200">
-                    <h3 className="font-bold text-lg text-gray-900 mb-4">Follow Us</h3>
-                    <div className="flex space-x-4">
-                      <a href="#" className="text-gray-400 hover:text-indigo-600 transition-colors"><FaFacebook size={24} /></a>
-                      <a href="#" className="text-gray-400 hover:text-indigo-600 transition-colors"><FaTwitter size={24} /></a>
-                      <a href="#" className="text-gray-400 hover:text-indigo-600 transition-colors"><FaInstagram size={24} /></a>
+            {/* --- Right Column: Info & Map --- */}
+            <motion.div
+                className="space-y-8"
+                variants={fadeIn}
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true, amount: 0.2 }}
+            >
+                <div className="bg-gray-50 p-8 rounded-2xl border border-gray-200/80">
+                    <h3 className="text-2xl font-bold text-gray-900 mb-6">አድራሻችን</h3>
+                    <div className="space-y-6">
+                         <div className="flex items-start gap-4">
+                            <div className="flex-shrink-0 flex items-center justify-center h-12 w-12 rounded-full bg-indigo-100 text-indigo-600 text-xl"><FaEnvelope /></div>
+                            <div>
+                                <h4 className="font-bold text-lg text-gray-900">ኢሜል አድራሻ</h4>
+                                <a href="mailto:konerenfoundation@gmail.com" className="text-gray-600 hover:text-indigo-600 transition-colors">konerenfoundation@gmail.com</a>
+                            </div>
+                        </div>
+                        <div className="flex items-start gap-4">
+                            <div className="flex-shrink-0 flex items-center justify-center h-12 w-12 rounded-full bg-indigo-100 text-indigo-600 text-xl"><FaPhoneAlt /></div>
+                            <div>
+                                <h4 className="font-bold text-lg text-gray-900">ስልክ ቁጥር</h4>
+                                <a href="tel:+25100000000" className="text-gray-600 hover:text-indigo-600 transition-colors">+251 00 00 00 00</a>
+                            </div>
+                        </div>
+                         <div className="flex items-start gap-4">
+                            <div className="flex-shrink-0 flex items-center justify-center h-12 w-12 rounded-full bg-indigo-100 text-indigo-600 text-xl"><FaMapMarkerAlt /></div>
+                            <div>
+                                <h4 className="font-bold text-lg text-gray-900">የቢሮ አድራሻ</h4>
+                                <p className="text-gray-600">አማራ ክልል በሰሜን ወሎ ዞን ዋድላ ወረዳ-ኮን ከተማ</p>
+                            </div>
+                        </div>
                     </div>
                 </div>
+                 <div className="rounded-2xl overflow-hidden shadow-lg border border-gray-200/80">
+                    <iframe
+                        src="https://maps.google.com/maps?q=11.609722,38.933889&t=k&z=17&output=embed"
+                        width="100%"
+                        height="300"
+                        style={{ border: 0 }}
+                        allowFullScreen
+                        loading="lazy"
+                        referrerPolicy="no-referrer-when-downgrade">
+                    </iframe>
+                </div>
             </motion.div>
-
-          </motion.div>
+          </div>
         </section>
-      </main>
+
+        {/* --- 3. INTERACTIVE FAQ SECTION (Homepage Style) --- */}
+        <section className="py-20 sm:py-28 bg-gray-100">
+            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <motion.div
+                    className="text-center"
+                    variants={fadeIn}
+                    initial="hidden"
+                    whileInView="visible"
+                    viewport={{ once: true, amount: 0.3 }}
+                >
+                    <h2 className="text-4xl md:text-5xl font-bold text-gray-900 tracking-tight">በተደጋግሚ የሚነሱ ጥያቄዎች</h2>
+                    <p className="mt-4 text-lg text-gray-600 max-w-3xl mx-auto">ጥያቄ አለዎት?</p>
+                </motion.div>
+
+                <motion.div
+                    className="mt-16 grid grid-cols-1 md:grid-cols-3 gap-8"
+                    variants={staggerContainer}
+                    initial="hidden"
+                    whileInView="visible"
+                    viewport={{ once: true, amount: 0.2 }}
+                >
+                    {faqItems.map(item => (
+                        <motion.div key={item.q} variants={fadeIn} className="bg-white p-8 rounded-2xl border border-gray-200/80 shadow-lg hover:shadow-xl hover:-translate-y-2 transition-all duration-300 group">
+                            <h3 className="text-2xl font-bold text-gray-900 mb-4">{item.q}</h3>
+                            <p className="text-gray-600 leading-relaxed mb-6">{item.a}</p>
+                        </motion.div>
+                    ))}
+                </motion.div>
+            </div>
+        </section>
+           </main>
 
       <Footer />
     </div>

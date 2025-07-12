@@ -33,7 +33,7 @@ export default function Footer() {
             <h2 className="text-xl font-bold text-gray-900">Kone Renaissance Foundation</h2>
             <p className="text-base text-gray-500 mt-1">የኮን ህዳሴ ፋውንዴሽን</p>
             <p className="mt-4 text-sm leading-relaxed max-w-xs">
-              Dedicated to transforming education and empowering futures in Kone through community-led initiatives.
+              Dedicated to transforming education and empowering futures in Kone Highschool through community-led initiatives.
             </p>
           </div>
 

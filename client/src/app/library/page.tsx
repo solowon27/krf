@@ -194,7 +194,7 @@ export default function LibraryPage() {
               transition={{ type: 'tween', ease: 'easeOut', duration: 0.6 }}
               className="text-4xl md:text-6xl lg:text-7xl font-bold mb-4 tracking-tighter"
               >
-              ኮን ሃይስኩል <span className="text-cyan-400">ዲጂታል ላይብረሪ</span>
+              KONE HIGHSCHOOL <span className="text-cyan-400">DIGITAL LIBRARY</span>
               </motion.h1>
               <motion.p
               initial={{ y: 30, opacity: 0 }}
@@ -202,7 +202,7 @@ export default function LibraryPage() {
               transition={{ type: 'tween', ease: 'easeOut', duration: 0.6, delay: 0.1 }}
               className="text-lg md:text-xl mb-12 text-gray-400 max-w-2xl mx-auto"
               >
-              እውቀት ሃይል ነው፥ እውቀት ተስፋ እና ስንቅ ነው፥ እውቀት የዘመናዊ ስብእና መሰረት ነው!
+              Knowledge is power; knowledge is hope and provision; knowledge is the foundation of modern humanity!
               </motion.p>
               <motion.div
               initial={{ y: 30, opacity: 0 }}
@@ -213,7 +213,7 @@ export default function LibraryPage() {
                 href="/education-resources"
                 className="w-full sm:w-auto inline-block border-2 border-white text-white font-semibold px-8 py-4 rounded-full transition-colors duration-300 hover:bg-white hover:text-gray-900 text-lg sm:text-xl"
               >
-                ተጨማሪ የትምህርት ምንጮች
+                Additonal Education Resources
               </Link>
               </motion.div>
             </div>
