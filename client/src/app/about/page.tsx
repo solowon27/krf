@@ -30,10 +30,10 @@ const teamMembers = [
 ];
 
 const timelineEvents = [
-  { year: "KHSRF", title: "የመጀመርያ ምስረታ", description: "The Kone Renaissance Foundation was established, securing initial partnerships and funding to begin the renovation of Kone High School." },
-  { year: "KHSRF", title: "በ 2018/2025 የተያዘ እቅድ", description: "Successfully connected the first cohort of 20 high school students with local professionals for career guidance and inspiration." },
-  { year: "KHSRF", title: "በቀጣይ 5 አመት የተያዘ እቅድ", description: "Broke ground on new classrooms and a modern library, marking a major step in our infrastructure goals." },
-  { year: "KHSRF", title: "ያሳካናቸው ግቦች", description: "Our next major milestone is to equip the library with computers and internet, opening a window to the world for our students." },
+  { year: "KHSRF", title: "የመጀመርያ ምስረታ", description: "ፋውንዴሽናችን ሰኔ 20, 2017 አ.ም ተቋቋመ። " },
+  { year: "KHSRF", title: "በ 2018/2025 የተያዘ እቅድ", description: "የመማሪያ ቁሳቁስ ለሚያስፈልጋቸው ተማሪዎች ድጋፍ ማድረግና የዲጂታል ላይብረሪውን ኮምፒውተሮችን በመግዛት በትምህርት ቤቱ ውስጥ ባለው ቤተ-መጻሕፍት ውስጥ ራሱን የቻለ አንድ ሴክሽን ማድረግ ነው።" },
+  { year: "KHSRF", title: "በቀጣይ 5 አመት የተያዘ እቅድ", description: "ከፍተኛ ውጤት ላመጡና በትምህርት ቤቱ ውስጥ በመምህርነት ሞያ ለሚያገለግሉ መምህራን የስኮላርሽፕ እድልን ማፈላለግና ማመቻቸት።" },
+  { year: "KHSRF", title: "ያሳካናቸው ግቦች", description: "134 አጋዥ መጽሃፍትን የረዳን ሲሆን በዌብ ሳይታችንም የዲጂታል ላይብረሪ እና በአለም አቀፍ ደረጃ የሚሰጡ ነጻ የኦንላይን ትምህርቶችን በማካተት ለማህበረሰባችን አበርክተናል።" },
 ];
 
 // --- Refined animation variants ---
@@ -49,43 +49,50 @@ const itemVariants: Variants = {
 
 export default function AboutUs() {
   return (
-    // THEME: Main background is light gray for a clean, professional feel
     <main className="min-h-screen bg-gray-50 text-gray-800 font-sans">
       <Header />
 
       {/* --- HERO SECTION --- */}
-      {/* THEME: Styled to match the new, clean aesthetic */}
-      <section className="bg-white py-16 md:py-24 text-center">
+      <section className="bg-white py-2 md:py-4 text-center">
         <motion.div
           className="max-w-4xl mx-auto px-4"
           initial="hidden" animate="visible" variants={containerVariants}
         >
-          {/* CONTENT: Using your original heading text */}
+          {/* --- NEW: Responsive Logo --- */}
+          <motion.div variants={itemVariants} className="mb-8">
+            <div className="relative w-48 h-48 md:w-64 md:h-64 lg:w-72 lg:h-72 mx-auto">
+              <Image
+                src="/logo.png"
+                alt="Kone Renaissance Foundation Logo"
+                fill
+                className="object-contain"
+                priority // Add priority to the largest visible image for faster loading
+              />
+            </div>
+          </motion.div>
+          
           <motion.h1 variants={itemVariants} className="text-5xl md:text-7xl lg:text-9xl font-extrabold text-gray-900 tracking-tight">
-           አላማና  <span className="text-indigo-600">ራእይ </span>
+            አላማና  <span className="text-indigo-600">ራእይ</span>
           </motion.h1>
         </motion.div>
       </section>
 
       {/* --- OUR STORY & TIMELINE SECTION --- */}
-      {/* STRUCTURE: Kept your original 2-column layout */}
       <section className="py-16 sm:py-24 px-4 bg-gray-50">
         <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center">
           {/* Left Column: Story */}
           <motion.div initial={{ opacity: 0, x: -50 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true, amount: 0.3 }} transition={{ duration: 0.7 }}>
-            {/* CONTENT & THEME: Your original text with new typography */}
             <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-6">የፋውንዴሽናችን አላማ</h2>
-            <p className="text-lg text-gray-600 leading-relaxed mb-8">
-              በዚህ ትልቅ ትምህርት ቤት ውስጥ የሚያልፉትን የነገ ትውልድ ከሌላው አካባቢ ማህበረሰብ እንዲሁም በአለም አቀፍ ደረጃ ተወዳዳሪ እንዲሆኑ በማስቻል የሚመጣው ትውልድ ሃላፊነት የሚሰማውና ብቁ ማድረግ ነው። ይህንንም ማድረግ እንድንችል በሀገር ውስጥና በውጭ ሀገር ያሉ የአካባቢውን ተወላጆች እንዲሁም በትምህርት ቤቱ የተማሩ ቀደምት ተማሪዎችን በማስተባበር በትምህርት ቤቱ ውስጥ ያስፈልጋሉ ተብለው የሚታሰቡትን መሰረታዊ ፍላጎቶች በማቴሪያል መልክ መርዳትና ብሩህ ተስፋ ላላቸው ግን አቅም ለሌላቸው ተማሪዎችም የተለያየ ድጋፍ ማድረግ ነው።
+            <p className="text-lg lg:text-2xl text-justify text-gray-600 leading-relaxed mb-8">
+              በዚህ ትልቅ ትምህርት ቤት ውስጥ የሚያልፉትን የነገ ሃገር ተረካቢ ትውልድ ከሌላው አካባቢ ማህበረሰብ እንዲሁም በአለም አቀፍ ደረጃ ተወዳዳሪ እንዲሆኑ በማስቻል የሚመጣው ትውልድ ሃላፊነት የሚሰማውና ብቁ ማድረግ ነው። ይህንንም ማድረግ እንድንችል በሀገር ውስጥና በውጭ ሀገር ያሉ የአካባቢውን ተወላጆች እንዲሁም በትምህርት ቤቱ የተማሩ ቀደምት ተማሪዎችን በማስተባበር በትምህርት ቤቱ ውስጥ ያስፈልጋሉ ተብለው የሚታሰቡትን መሰረታዊ ፍላጎቶች በማቴሪያል መልክ መርዳትና ብሩህ ተስፋ ላላቸው ነገር ግን የአቅም ውስንነት ላለባቸው ተማሪዎችም የተለያየ ድጋፍ ማድረግ ነው።
             </p>
             <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-6">ተልእኮ</h2>
-            <p className="text-lg text-gray-600 leading-relaxed mb-4">
-              የእኛ ተልእኮ ለትምህርትቤታችን ቀጣይነት ያለው ጠንካራ ድጋፍ ማድረግ ሲሆን በዚህም አቅም ያለው የትምህርት አካባቢ መፍጠር እና ለነገ ራእይ ያለው ትውልድ ማፍራት ነው።
+            <p className="text-lg lg:text-2xl text-justify text-gray-600 leading-relaxed mb-4">
+              ተልእኳችን ለትምህርት ቤታችን ቀጣይነት ያለው ጠንካራ ድጋፍ ማድረግ ሲሆን በዚህም አቅም ያለው የትምህርት አካባቢ መፍጠር እና ስለ ነገ ተስፋና ራእይ ያለው ትውልድ ማፍራት ነው።
             </p>
           </motion.div>
           
           {/* Right Column: Timeline */}
-          {/* THEME: Timeline redesigned with new styles */}
           <div className="relative">
             <div className="absolute left-6 top-0 w-0.5 h-full bg-gray-200" aria-hidden="true"></div>
             {timelineEvents.map((event, index) => (
@@ -102,7 +109,7 @@ export default function AboutUs() {
                 </div>
                 <div className="ml-8">
                   <h3 className="text-xl font-bold text-gray-800">{event.title}</h3>
-                  <p className="mt-1 text-gray-600">{event.description}</p>
+                  <p className="mt-1 text:lg lg:text-2xl text-justify text-gray-600">{event.description}</p>
                 </div>
               </motion.div>
             ))}
@@ -111,15 +118,13 @@ export default function AboutUs() {
       </section>
       
       {/* --- OUR TEAM SECTION --- */}
-      {/* STRUCTURE & CONTENT: Kept your original section */}
-      <section className="py-24 sm:py-32 bg-white">
+      <section className="py-4 sm:py-8 bg-white">
         <div className="max-w-7xl mx-auto px-4 text-center">
           <motion.div initial="hidden" whileInView="visible" viewport={{ once: true, amount: 0.2 }} variants={containerVariants}>
             <motion.div variants={itemVariants} className="inline-block text-indigo-600 text-5xl mb-4"><FaUsers/></motion.div>
             <motion.h2 variants={itemVariants} className="text-3xl md:text-4xl font-bold mb-16">የዚህ ፋውንዴሽን መስራቾች</motion.h2>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
               {teamMembers.map((member, index) => (
-                // THEME: Team cards redesigned for a cleaner look
                 <motion.div key={index} variants={itemVariants} className="bg-white rounded-2xl shadow-lg overflow-hidden border border-gray-200/60 text-center">
                   <div className="relative h-80 bg-gray-100">
                     <Image
@@ -144,8 +149,7 @@ export default function AboutUs() {
       </section>
 
       {/* --- TEAM MESSAGE SECTION --- */}
-      {/* STRUCTURE & CONTENT: Kept your original section */}
-      <section className="py-24 sm:py-32 bg-indigo-50">
+      <section className="py-4 sm:py-8 bg-indigo-50">
         <div className="max-w-4xl mx-auto px-4 text-center">
           <motion.div
             initial="hidden"
@@ -154,14 +158,14 @@ export default function AboutUs() {
             variants={containerVariants}
           >
             <motion.div variants={itemVariants} className="inline-block text-indigo-600 text-5xl mb-4">
-                <FaHandsHelping />
+              <FaHandsHelping />
             </motion.div>
             <motion.h2 variants={itemVariants} className="text-3xl md:text-4xl font-bold text-gray-900 mb-6">
-                የመስራቾቹ መልእክት
+              የመስራቾቹ መልእክት
             </motion.h2>
-            <motion.p variants={itemVariants} className="text-lg md:text-xl text-gray-700 leading-relaxed">
-                እንደ አንድ ቡድን፣ በኮን ሃይስኩል ለሚማሩ ወንድም እህቶቻችን ምቹ ሁኔታ ለመፍጠር እና አስተምሮ እዚህ ደረጃ ያደረሰንን ትምህርት ቤት ለማገዝ ያለን የጋራ ስሜት አንድ አድርጎናል።
-                ዋና ትኩረታችን ተማሪዎችንና ማህበረሰቡን መርዳት እንዲሁም የተሻለ ነገን እውን ማድረግ ነው። በግልጽነትና በትጋት አብረን በመስራት፣ ለሁሉም ማህበረሰባችን ዘላቂ የሆኑ እድሎችን መፍጠር እንደምንችል እናምናለን።
+            <motion.p variants={itemVariants} className="text-lg lg:text-2xl text-justify text-gray-700 leading-relaxed">
+              እንደ አንድ ቡድን፣ በኮን ሃይስኩል ለሚማሩ ወንድም እህቶቻችን ምቹ ሁኔታ ለመፍጠር እና አስተምሮ እዚህ ደረጃ ያደረሰንን ትምህርት ቤት ለማገዝ ያለን የጋራ ስሜት ይሄንን ስራ እንድንሰራ አነሳስቶናል።
+              ዋና ትኩረታችን ተማሪዎችንና ማህበረሰቡን ባለን ሞያ መርዳት ሲሆን ሌሎች ወንድም እህቶቻችን ይሄንን መነሻ በማድረግ ከኛ የተሻለ ነገር ለማህበረሰቡ እንዲሰሩ አርአያ መሆን ነው። እንደ ማጠቃለያ በዚህ ፋውንዴሽን መርህ መሰረት በግልፀኝነትና በትጋት አብረን በመስራት፣ ለሁሉም ማህበረሰብ ዘላቂ የሆኑ እድሎችን መፍጠር ዋና ተግባራችን ነው።
             </motion.p>
           </motion.div>
         </div>

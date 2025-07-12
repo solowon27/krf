@@ -4,7 +4,7 @@ import Header from '@components/Header';
 import Footer from '@components/Footer';
 import { motion, Variants } from 'framer-motion';
 import React, { useState } from 'react';
-import { FaEnvelope, FaMapMarkerAlt, FaPhoneAlt, FaBullhorn, FaArrowRight } from 'react-icons/fa';
+import { FaEnvelope, FaFacebookF, FaMapMarkerAlt, FaPhoneAlt, FaBullhorn, FaArrowRight } from 'react-icons/fa';
 import Image from 'next/image';
 import Link from 'next/link';
 
@@ -114,7 +114,7 @@ export default function ContactUs() {
                     መልእክት
                 </h1>
                 <p className="mt-6 max-w-2xl mx-auto text-lg md:text-xl text-gray-600">
-                   ያላችሁን አስተያየት ወይንም ጥያቄ በስልክ ወይንም ፎርሙ ላይ መልእክታችሁን በማስገባት መላክ ትችላላችሁ! 
+                   በበጎ ፈቃደኝነት ፋውንዴሽናችን ለመርዳት ወይንም ያላችሁን አስተያየት እና ጥያቄ ለማቅረብ በስልክ ወይንም ፎርሙ ላይ መልእክታችሁን በማስገባት መላክ ትችላላችሁ! 
                 </p>
             </motion.div>
         </section>
@@ -181,6 +181,13 @@ export default function ContactUs() {
                             <div>
                                 <h4 className="font-bold text-lg text-gray-900">ስልክ ቁጥር</h4>
                                 <a href="tel:+25100000000" className="text-gray-600 hover:text-indigo-600 transition-colors">+251 00 00 00 00</a>
+                            </div>
+                        </div>
+                        <div className="flex items-start gap-4">
+                            <div className="flex-shrink-0 flex items-center justify-center h-12 w-12 rounded-full bg-indigo-100 text-indigo-600 text-xl"><FaFacebookF /></div>
+                            <div>
+                                <h4 className="font-bold text-lg text-gray-900">የፌስቡክ አድራሻ</h4>
+                                <a href="https://www.facebook.com/profile.php?id=61578279929495" className="text-gray-600 hover:text-indigo-600 transition-colors">Kon Highschool Foundation</a>
                             </div>
                         </div>
                          <div className="flex items-start gap-4">

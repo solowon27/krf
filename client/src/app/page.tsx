@@ -59,15 +59,33 @@ const educationResource = [
 ];
 
 const testimonials = [
-    { name: "Abebe B.", role: "Grade 11 Student", quote: "The new digital library has completely changed how I study. I can now access information I only dreamed of before.", image: "/aigen1.png" },
-    { name: "Fatuma H.", role: "Teacher", quote: "Thanks to the foundation's support, our classrooms have the resources we need to provide a quality education.", image: "/aigen2.png" },
-    { name: "Alumni Association", role: "Partner", quote: "Partnering with the Kone Renaissance Foundation has amplified our collective ability to create lasting change.", image: "/aigen2.png" },
+    { name: "ፍሬዘር እንትና", role: "የ11ኛ ክፍል ተማሪ", quote: "The new digital library has completely changed how I study. I can now access information I only dreamed of before.", image: "/logo.png" },
+    { name: "አቤል ቢሰጠኝ", role: "የ አካውንቲንግ እና ፋይናንስ መምህር", quote: "Thanks to the foundation's support, our classrooms have the resources we need to provide a quality education.", image: "/logo.png" },
+    { name: "ኮማንደር ወንደሰን", role: "የወረዳው ከፍተኛ IT ባለሞያ", quote: "Partnering with the Kone Renaissance Foundation has amplified our collective ability to create lasting change.", image: "/logo.png" },
 ];
 
 const newsItems = [
-    { title: "Annual Charity Run Raises Record Amount", date: "June 15, 2025", excerpt: "Our community came together for a fantastic day of fun and fundraising...", image: "/impact-image3.JPG" },
-    { title: "Volunteer Spotlight: The Tutors Making a Difference", date: "May 28, 2025", excerpt: "Meet the incredible volunteers who are dedicating their time to help our students succeed...", image: "/impact-image2.jpg" },
-    { title: "Foundation Announces New STEM Initiative", date: "April 12, 2025", excerpt: "We are thrilled to launch a new program focused on Science, Technology, Engineering, and Math...", image: "/impact-image5.jpg" },
+    { 
+        title: "በሰሜን ወሎ ዞን በዋድላ ወረዳ ለኮን 2ኛና መሰናዶ ትምህርት ቤት ከ65ሺህ ብር በላይ የሚያወጡ መጽሀፍት ድጋፍ ተደረገ።", 
+        date: "June 15, 2025", 
+        excerpt: "ድጋፉ የተደረገው የቀድሞ የትምህርት ቤቱ ተማሪና መምህር በነበሩት በአቶ ሰለሞን ይመር ነዋሪነታቸው በአሜሪካን ሀገር ሲሆን በዛሬው ዕለት ለኮን 2ኛና መሰናዶ ትምህርት ቤት 1መቶ 34 መጽሀፍት ከ65ሺህ ብር በላይ ወጭ በማድረግ ገዝተው በቀድሞ ጓደኛቸውና በትምህርት ቤቱ መምህር አቤል ቢሰጠኝ በኩል በሚመለከታቸው አካላት አማካኝነት ርክክብ ተደርጓል።", 
+        image: "/impact-image3.JPG",
+        link: "https://m.facebook.com/story.php?story_fbid=pfbid0fkA2LV1f2J1NR3qEL4PZvR7NwjjY3ZPRZmfAteQ968JsC825N6ZiKWCDGqxhnUYTl&id=100064442271486&mibextid=wwXIfr"
+    },
+    // { 
+    //     title: "Volunteer Spotlight: The Tutors Making a Difference", 
+    //     date: "May 28, 2025", 
+    //     excerpt: "Meet the incredible volunteers who are dedicating their time to help our students succeed...", 
+    //     image: "/impact-image2.jpg",
+    //     link: "http://googleusercontent.com/facebook.com/YourPage/posts/456" // <-- Add the Facebook post link here
+    // },
+    // { 
+    //     title: "Foundation Announces New STEM Initiative", 
+    //     date: "April 12, 2025", 
+    //     excerpt: "We are thrilled to launch a new program focused on Science, Technology, Engineering, and Math...", 
+    //     image: "/impact-image5.jpg",
+    //     link: "http://googleusercontent.com/facebook.com/YourPage/posts/789" // <-- Add the Facebook post link here
+    // },     
 ];
 
 
@@ -139,6 +157,46 @@ export default function Home() {
                     </motion.div>
                 </section>
 
+                {/* --- 3. VISUAL PROOF SECTION --- */}
+                <section className="py-20 sm:py-28 bg-gray-100">
+                    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+                         <motion.div
+                            className="grid grid-cols-2 gap-4"
+                            initial={{ opacity: 0, scale: 0.9 }}
+                            whileInView={{ opacity: 1, scale: 1 }}
+                            viewport={{ once: true, amount: 0.3 }}
+                            transition={{ duration: 0.9, ease: [0.16, 1, 0.3, 1] }}
+                         >
+                            <div className="relative h-48 md:h-64 rounded-xl overflow-hidden shadow-lg col-span-2">
+                                <Image src="/aigen1.png" alt="Group of students" fill className="object-cover" />
+                            </div>
+                            <div className="relative h-48 md:h-64 rounded-xl overflow-hidden shadow-lg">
+                                <Image src="/aigen2.png" alt="Inside the new library" fill className="object-cover" />
+                            </div>
+                            <div className="relative h-48 md:h-64 rounded-xl overflow-hidden shadow-lg">
+                                <Image src="/aigen3.png" alt="Classroom learning" fill className="object-cover" />
+                            </div>
+                        </motion.div>
+                        <motion.div
+                            initial={{ opacity: 0, x: 30 }}
+                            whileInView={{ opacity: 1, x: 0 }}
+                            viewport={{ once: true, amount: 0.3 }}
+                            transition={{ duration: 0.9, ease: [0.16, 1, 0.3, 1] }}
+                        >
+                            <h2 className="text-4xl md:text-5xl font-bold text-gray-900 tracking-tight">የትምህርት ቤታችን አጭር ታሪክ</h2>
+                            <p className="mt-6 text-lg lg:text-2xl text-gray-600 leading-relaxed">
+                                የኮን አጠቃላይ ሁለተኛ ደረጃ ትምህርት ቤት በአማራ ክልል ሰሜን ወሎ ወረዳ የሚገኝ ነው አንጋፋ ትምህርት ቤት ነው። ትምህርት ቤቱ በ 1945 አ.ም ተቋቋሞ እስከ አሁን ድረስ ተማሪዎችን እየተቀበለ ለትልቅ ደረጃ ሲያደረስ የቆየ እድሜ ጠገብ ትምህርት ቤት ነው። 
+                                ላለፉት 73 አመታት በቁጥር ይህ ነው ተብሎ ሊጠቀስ የማይችል በትምህርታቸው ሃገራቸውንና ወገኖቻቸውን የረዱና እየረዱ ያሉ ታላላቅ ሰዎችን ማፍራት የቻለ በክልሉ ከሚጠቀሱ ዝነኛ ትምህርት ቤቶች አንዱ ነው። ይህን ትምህርት ቤት ከሌሎች መሰል ትምህርት ቤቶች ለየት የሚያደርገው ከተመሰረተብት ጊዜ አንስቶ ከተለያዩ ወረዳዎች እንዲሁም በወረዳው ውስጥ ካሉ ከ25 የሚበልጡ ቀበሌዎች የሚመጡ ተማሪዎችን
+                                እየተቀበለ ያስተማረና እያስተማረ የሚገኝ ትልቅ የሃገር ዋርካ ነው። ነገር ግን ከጊዜ በኋላ በተለያዩ የሃገሪቱ ችግሮች ምክንያት እና ሌሎች ችግሮች ምክንያት ትውልድን በበቂ ሁኔታ እያነጸ አይደለም ይሄንንም በመገንዘብ ፋውንዴሽናችን የበኩሉን ኣሻራ ለማሳረፍ በትልቅ ራእይ ስራውን ጀምሯል።
+                            </p>
+                             <Link href="/gallery" className="mt-8 inline-flex items-center font-semibold text-indigo-600 hover:text-indigo-700 group">
+                                ተጨማሪ ፎቶዎችን ይመልከቱ <FaArrowRight className="ml-2 transition-transform duration-300 group-hover:translate-x-1"/>
+                            </Link>
+                        </motion.div>
+                    </div>
+                </section>
+
+
                 {/* --- 2. OUR CORE PROGRAMS --- */}
                 <section className="py-20 sm:py-28 bg-white">
                     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -170,48 +228,8 @@ export default function Home() {
                             ))}
                         </motion.div>
                     </div>
-                </section>
+                </section>                
                 
-                {/* --- 3. VISUAL PROOF SECTION --- */}
-                <section className="py-20 sm:py-28 bg-gray-100">
-                    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
-                         <motion.div
-                            className="grid grid-cols-2 gap-4"
-                            initial={{ opacity: 0, scale: 0.9 }}
-                            whileInView={{ opacity: 1, scale: 1 }}
-                            viewport={{ once: true, amount: 0.3 }}
-                            transition={{ duration: 0.9, ease: [0.16, 1, 0.3, 1] }}
-                         >
-                            <div className="relative h-48 md:h-64 rounded-xl overflow-hidden shadow-lg col-span-2">
-                                <Image src="/aigen1.png" alt="Group of students" fill className="object-cover" />
-                            </div>
-                            <div className="relative h-48 md:h-64 rounded-xl overflow-hidden shadow-lg">
-                                <Image src="/aigen2.png" alt="Inside the new library" fill className="object-cover" />
-                            </div>
-                            <div className="relative h-48 md:h-64 rounded-xl overflow-hidden shadow-lg">
-                                <Image src="/aigen3.png" alt="Classroom learning" fill className="object-cover" />
-                            </div>
-                        </motion.div>
-                        <motion.div
-                            initial={{ opacity: 0, x: 30 }}
-                            whileInView={{ opacity: 1, x: 0 }}
-                            viewport={{ once: true, amount: 0.3 }}
-                            transition={{ duration: 0.9, ease: [0.16, 1, 0.3, 1] }}
-                        >
-                            <h2 className="text-4xl md:text-5xl font-bold text-gray-900 tracking-tight">የትምህርት ቤታችን አጭር ታሪክ</h2>
-                            <p className="mt-6 text-lg lg:text-2xl text-gray-600 leading-relaxed">
-                                የኮን አጠቃላይ ሁለተኛ ደረጃ ትምህርት ቤት በአማራ ክልል ሰሜን ወሎ ወረዳ የሚገኝ ነው። ትምህርት ቤቱ በ 1944 አ.ም ተቋቋሞ እስከ አሁን ድረስ ተማሪዎችን እየተቀበለ ለትልቅ ደረጃ ሲያደረስ የቆየ በእድሜ አንጋፋ የሆነ ትምህርት ቤት ነው። 
-                                የኮን አጠቃላይ ሁለተኛ ደረጃ ትምህርት ቤት በአማራ ክልል ሰሜን ወሎ ወረዳ የሚገኝ ነው። ትምህርት ቤቱ በ 1944 አ.ም ተቋቋሞ እስከ አሁን ድረስ ተማሪዎችን እየተቀበለ ለትልቅ ደረጃ ሲያደረስ የቆየ በእድሜ አንጋፋ የሆነ ትምህርት ቤት ነው። 
-                                ላለፉት 73 አመታት በቁጥር ይህ ነው ተብሎ ሊጠቀስ የማይችል በትምህርታቸው ሃገራቸውንና ወገኖቻቸውን የረዱና እየረዱ ያሉ ታላላቅ ሰዎችን ማፍራት የቻለ በክልሉ ከሚጠቀሱ ዝነኛ ትምህርት ቤቶች አንዱ ነው።
-                                ላለፉት 73 አመታት በቁጥር ይህ ነው ተብሎ ሊጠቀስ የማይችል በትምህርታቸው ሃገራቸውንና ወገኖቻቸውን የረዱና እየረዱ ያሉ ታላላቅ ሰዎችን ማፍራት የቻለ በክልሉ ከሚጠቀሱ ዝነኛ ትምህርት ቤቶች አንዱ ነው።
-                            </p>
-                             <Link href="/gallery" className="mt-8 inline-flex items-center font-semibold text-indigo-600 hover:text-indigo-700 group">
-                                ተጨማሪ ፎቶዎችን ይመልከቱ <FaArrowRight className="ml-2 transition-transform duration-300 group-hover:translate-x-1"/>
-                            </Link>
-                        </motion.div>
-                    </div>
-                </section>
-
                 {/* --- 4. FUNDRAISING & IMPACT METRICS (WITH DONATORS LIST) --- */}
                 <section className="py-20 sm:py-28 bg-gray-900 text-white">
                      <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
@@ -388,37 +406,43 @@ export default function Home() {
                     </div>
                 </section>
                 
-                {/* --- 7. RECENT NEWS & UPDATES --- */}
-                <section className="py-20 sm:py-28 bg-white">
-                    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                        <div className="text-center mb-16">
-                             <h2 className="text-4xl md:text-5xl font-bold text-gray-900 tracking-tight">የቅርብ ጊዜ ዜናዎች</h2>
-                             <p className="mt-4 text-lg lg:text-2xl text-gray-600 max-w-3xl mx-auto">ከፋውንዴሽናችን ጋር የተያያዙ ወቅታዊ መረጃዎችን እና ዝግጅቶችን ይከታተሉ።</p>
-                        </div>
-                        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                            {newsItems.map((item, index) => (
-                                <motion.div
-                                    key={index}
-                                    className="bg-gray-50 rounded-2xl overflow-hidden shadow-lg group"
-                                    variants={fadeIn} initial="hidden" whileInView="visible" viewport={{ once: true, amount: 0.2 }}
-                                    transition={{ delay: index * 0.1 }}
-                                >
-                                    <div className="relative h-56 w-full">
-                                        <Image src={item.image} alt={item.title} fill className="object-cover transition-transform duration-500 group-hover:scale-105" />
-                                    </div>
-                                    <div className="p-6">
-                                        <p className="text-sm text-gray-500 mb-2">{item.date}</p>
-                                        <h3 className="text-xl font-bold text-gray-900 mb-3 group-hover:text-indigo-600 transition-colors">{item.title}</h3>
-                                        <p className="text-gray-600 mb-4">{item.excerpt}</p>
-                                        <Link href="#" className="font-semibold text-indigo-600 group-hover:text-indigo-700">
-                                            Read More <FaArrowRight className="inline ml-1 transition-transform duration-300 group-hover:translate-x-1" />
-                                        </Link>
-                                    </div>
-                                </motion.div>
-                            ))}
-                        </div>
+               <section className="py-20 sm:py-28 bg-white">
+    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="text-center mb-16">
+            <h2 className="text-4xl md:text-5xl font-bold text-gray-900 tracking-tight">የቅርብ ጊዜ ዜናዎች</h2>
+            <p className="mt-4 text-lg lg:text-2xl text-gray-600 max-w-3xl mx-auto">ከፋውንዴሽናችን ጋር የተያያዙ ወቅታዊ መረጃዎችን እና ዝግጅቶችን ይከታተሉ።</p>
+        </div>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {newsItems.map((item, index) => (
+                <motion.div
+                    key={index}
+                    className="bg-gray-50 rounded-2xl overflow-hidden shadow-lg group"
+                    variants={fadeIn} initial="hidden" whileInView="visible" viewport={{ once: true, amount: 0.2 }}
+                    transition={{ delay: index * 0.1 }}
+                >
+                    <div className="relative h-56 w-full">
+                        <Image src={item.image} alt={item.title} fill className="object-cover transition-transform duration-500 group-hover:scale-105" />
                     </div>
-                </section>
+                    <div className="p-6">
+                        <p className="text-sm text-gray-500 mb-2">{item.date}</p>
+                        <h3 className="text-xl font-bold text-gray-900 mb-3 group-hover:text-indigo-600 transition-colors">{item.title}</h3>
+                        <p className="text-gray-600 mb-4">{item.excerpt}</p>
+                        
+                        {/* --- THIS IS THE UPDATED LINK --- */}
+                        <Link 
+                            href={item.link} // Use the dynamic link from your data
+                            target="_blank"   // Opens the link in a new tab
+                            rel="noopener noreferrer" // Recommended for security with target="_blank"
+                            className="font-semibold text-indigo-600 group-hover:text-indigo-700"
+                        >
+                            Read on Facebook <FaArrowRight className="inline ml-1 transition-transform duration-300 group-hover:translate-x-1" />
+                        </Link>
+                    </div>
+                </motion.div>
+            ))}
+        </div>
+    </div>
+</section>
 
                 {/* --- 8. GET INVOLVED SECTION --- */}
                 <section className="py-20 sm:py-28 bg-gray-100">

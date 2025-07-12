@@ -2,6 +2,7 @@
 'use client';
 
 import Link from 'next/link';
+import Image from 'next/image'; // 1. Import the Image component
 import { motion, Variants, Transition } from 'framer-motion';
 import { useState, useEffect, useCallback } from 'react';
 import { useRouter } from 'next/navigation';
@@ -55,7 +56,6 @@ export default function Header() {
   return (
     <>
       <motion.nav
-        // THEME CHANGE: Header now has a light, semi-transparent background with a blur effect
         className="fixed w-full top-0 z-50 flex items-center bg-white/80 backdrop-blur-md border-b border-gray-200 h-20 font-sans"
         initial={{ y: -100, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
@@ -63,20 +63,30 @@ export default function Header() {
       >
         <div className="w-full px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
           <div className="flex items-center justify-between">
-            {/* Logo */}
-            <Link href="/" className="flex flex-col items-start leading-none group">
-              {/* THEME CHANGE: Text colors updated for light theme */}
-              <span className="text-xl lg:text-2xl font-bold text-gray-900 tracking-tight">
-                Kone High School Renaissance Foundation
-              </span>
-              <span className="text-sm lg:text-base font-light text-gray-500">
-                የኮን ሃይስኩል ህዳሴ ፋውንዴሽን
-              </span>
+            
+            {/* --- MODIFIED: Logo Section --- */}
+            <Link href="/" className="flex items-center gap-3 group">
+              {/* Logo Image */}
+              <Image
+                src="/logo.png"
+                alt="Kone Renaissance Foundation Logo"
+                width={48}
+                height={48}
+                className="rounded-full object-cover"
+              />
+              {/* Logo Text */}
+              <div className="flex flex-col leading-none">
+                <span className="text-xl lg:text-2xl font-bold text-gray-900 tracking-tight">
+                  Kone Renaissance Foundation
+                </span>
+                <span className="text-sm lg:text-base font-light text-gray-500">
+                  የኮን ሃይስኩል ህዳሴ ፋውንዴሽን
+                </span>
+              </div>
             </Link>
 
             {/* Desktop Navigation Links */}
             <div className="hidden md:flex items-center space-x-6 lg:space-x-8">
-              {/* THEME CHANGE: Links updated with new colors and indigo hover accent */}
               <Link href="/impact" className="text-gray-600 hover:text-indigo-600 transition-colors duration-300 font-medium text-base">
                 አስተዋጽኦ
               </Link>
@@ -108,7 +118,6 @@ export default function Header() {
               )}
 
               {/* Donate Button */}
-              {/* THEME CHANGE: Button now uses the new indigo accent color */}
               <Link
                 href="/donate"
                 className="bg-indigo-600 text-white font-semibold px-5 py-2.5 rounded-full transition-all duration-300 hover:bg-indigo-700 hover:scale-105 text-base"
@@ -131,11 +140,10 @@ export default function Header() {
         </div>
       </motion.nav>
 
-      {/* Spacer Div (No changes needed, this logic is perfect) */}
+      {/* Spacer Div */}
       <div className="h-20" aria-hidden="true"></div>
 
       {/* Mobile Menu Overlay */}
-      {/* THEME CHANGE: Overlay is now light-themed */}
       <motion.div
         initial={false}
         animate={isMenuOpen ? "open" : "closed"}
@@ -161,45 +169,44 @@ export default function Header() {
             closed: { transition: { staggerChildren: 0.05, staggerDirection: -1 } }
           }}
         >
-            {/* THEME CHANGE: Mobile links updated */}
-            <motion.div variants={mobileLinkVariants}>
-              <Link href="/" onClick={() => setIsMenuOpen(false)} className="block text-2xl font-bold hover:text-indigo-600 py-2">ዋና ገጽ</Link>
-            </motion.div>
-            <motion.div variants={mobileLinkVariants}>
-              <Link href="/impact" onClick={() => setIsMenuOpen(false)} className="block text-2xl font-bold hover:text-indigo-600 py-2">አስተዋጽኦ</Link>
-            </motion.div>
-            <motion.div variants={mobileLinkVariants}>
-              <Link href="/about" onClick={() => setIsMenuOpen(false)} className="block text-2xl font-bold hover:text-indigo-600 py-2">ስለ እኛ</Link>
-            </motion.div>
-            <motion.div variants={mobileLinkVariants}>
-              <Link href="/contact" onClick={() => setIsMenuOpen(false)} className="block text-2xl font-bold hover:text-indigo-600 py-2">መልእክት</Link>
-            </motion.div>
-            <motion.div variants={mobileLinkVariants}>
-              <Link href="/library" onClick={() => setIsMenuOpen(false)} className="block text-2xl font-bold hover:text-indigo-600 py-2">ቤተ-መጻሕፍት</Link>
-            </motion.div>
+          <motion.div variants={mobileLinkVariants}>
+            <Link href="/" onClick={() => setIsMenuOpen(false)} className="block text-2xl font-bold hover:text-indigo-600 py-2">ዋና ገጽ</Link>
+          </motion.div>
+          <motion.div variants={mobileLinkVariants}>
+            <Link href="/impact" onClick={() => setIsMenuOpen(false)} className="block text-2xl font-bold hover:text-indigo-600 py-2">አስተዋጽኦ</Link>
+          </motion.div>
+          <motion.div variants={mobileLinkVariants}>
+            <Link href="/about" onClick={() => setIsMenuOpen(false)} className="block text-2xl font-bold hover:text-indigo-600 py-2">ስለ እኛ</Link>
+          </motion.div>
+          <motion.div variants={mobileLinkVariants}>
+            <Link href="/contact" onClick={() => setIsMenuOpen(false)} className="block text-2xl font-bold hover:text-indigo-600 py-2">መልእክት</Link>
+          </motion.div>
+          <motion.div variants={mobileLinkVariants}>
+            <Link href="/library" onClick={() => setIsMenuOpen(false)} className="block text-2xl font-bold hover:text-indigo-600 py-2">ቤተ-መጻሕፍት</Link>
+          </motion.div>
 
-            {loggedInUser ? (
-              <>
-                {loggedInUser.role === 'admin' && (
-                  <motion.div variants={mobileLinkVariants}>
-                    <Link href="/donaters" onClick={() => setIsMenuOpen(false)} className="block text-2xl font-bold hover:text-indigo-600 py-2">Add Contribution</Link>
-                  </motion.div>
-                )}
+          {loggedInUser ? (
+            <>
+              {loggedInUser.role === 'admin' && (
                 <motion.div variants={mobileLinkVariants}>
-                  <button onClick={handleLogout} className="block w-full text-2xl font-bold hover:text-indigo-600 py-2">Logout</button>
+                  <Link href="/donaters" onClick={() => setIsMenuOpen(false)} className="block text-2xl font-bold hover:text-indigo-600 py-2">Add Contribution</Link>
                 </motion.div>
-              </>
-            ) : (
+              )}
               <motion.div variants={mobileLinkVariants}>
-                <Link href="/login" onClick={() => setIsMenuOpen(false)} className="block text-2xl font-bold text-indigo-600 hover:text-indigo-500 py-2">Login</Link>
+                <button onClick={handleLogout} className="block w-full text-2xl font-bold hover:text-indigo-600 py-2">Logout</button>
               </motion.div>
-            )}
-
-            <motion.div variants={mobileLinkVariants} className="mt-6">
-              <Link href="/donate" onClick={() => setIsMenuOpen(false)} className="inline-block bg-indigo-600 text-white font-bold px-8 py-4 rounded-full transition-colors duration-300 hover:bg-indigo-700 text-2xl">
-                ዛሬውኑ ይርዱ
-              </Link>
+            </>
+          ) : (
+            <motion.div variants={mobileLinkVariants}>
+              <Link href="/login" onClick={() => setIsMenuOpen(false)} className="block text-2xl font-bold text-indigo-600 hover:text-indigo-500 py-2">Login</Link>
             </motion.div>
+          )}
+
+          <motion.div variants={mobileLinkVariants} className="mt-6">
+            <Link href="/donate" onClick={() => setIsMenuOpen(false)} className="inline-block bg-indigo-600 text-white font-bold px-8 py-4 rounded-full transition-colors duration-300 hover:bg-indigo-700 text-2xl">
+              ዛሬውኑ ይርዱ
+            </Link>
+          </motion.div>
         </motion.nav>
       </motion.div>
     </>

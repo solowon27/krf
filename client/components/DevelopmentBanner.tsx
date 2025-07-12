@@ -40,7 +40,7 @@ export default function DevelopmentBanner() {
           className="fixed bottom-5 left-1/2 -translate-x-1/2 z-50 flex items-center gap-4 p-4 rounded-lg bg-gray-900 text-white shadow-2xl"
         >
           <FaExclamationTriangle className="text-yellow-400 text-2xl" />
-          <p className="font-semibold">ይህ ድህረ ገጽ ገና በመሰራት ሂደት ላይ ነው!</p>
+          <p className="font-semibold">ይህ ድህረ ገጽ ገና በመሰራት ሂደት ላይ ነው! ስለሆነም አንዳንድ ምስሎች ከአካባቢው ያልተወሰዱ ሊሆኑ ይችላሉ!</p>
         </motion.div>
       )}
     </AnimatePresence>

@@ -14,7 +14,6 @@ export default function Footer() {
     resources: [
       { name: 'Digital Library', href: '/library' },
       { name: 'Education Resources', href: '/education-resources' },
-      { name: 'Photo Gallery', href: '/gallery' },
     ],
     getInvolved: [
       { name: 'Donate', href: '/donate' },
@@ -23,7 +22,6 @@ export default function Footer() {
   };
 
   return (
-    // THEME: Main footer container uses a clean white background with a top border
     <footer className="bg-white text-gray-600 border-t border-gray-200">
       <div className="max-w-7xl mx-auto py-16 px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 md:grid-cols-12 gap-8">
@@ -78,29 +76,40 @@ export default function Footer() {
           </div>
         </div>
 
-        {/* --- Bottom Bar: Copyright and Socials --- */}
-        <div className="mt-16 pt-8 border-t border-gray-200 flex flex-col sm:flex-row justify-between items-center">
-          <div className="text-sm text-gray-500 text-center sm:text-left">
+        {/* --- Bottom Bar: Copyright, Legal Links, and Socials --- */}
+        <div className="mt-16 pt-8 border-t border-gray-200 flex flex-col-reverse md:flex-row justify-between items-center gap-6">
+          
+          {/* --- Left Side: Copyright & Legal Links --- */}
+          <div className="text-sm text-gray-500 text-center md:text-left">
             <p>&copy; {currentYear} Kone High School Renaissance Foundation. All rights reserved.</p>
-            <p className="mt-1">
-              Designed by{' '}
-              <a href="https://github.com/commanderwondwossen" className="hover:text-indigo-600 font-medium transition-colors" target="_blank" rel="noopener noreferrer">Commander Wondwossen</a>
-              {' & '}
-              <a href="https://github.com/solowon27" className="hover:text-indigo-600 font-medium transition-colors" target="_blank" rel="noopener noreferrer">Quadsite</a>
-            </p>
+            
+            {/* --- NEW: Privacy and Terms Links --- */}
+            <div className="mt-2 space-x-4">
+              <Link href="/privacy" className="hover:text-indigo-600 transition-colors font-medium">
+                Privacy Policy
+              </Link>
+              <span className="text-gray-300">&middot;</span>
+              <Link href="/terms" className="hover:text-indigo-600 transition-colors font-medium">
+                Terms & Conditions
+              </Link>
+            </div>
+
+             <p className="mt-3 text-xs">
+               Designed by{' '}
+               <a href="https://github.com/commanderwondwossen" className="hover:text-indigo-600 font-medium transition-colors" target="_blank" rel="noopener noreferrer">Commander Wondwossen</a>
+               {' & '}
+               <a href="https://github.com/solowon27" className="hover:text-indigo-600 font-medium transition-colors" target="_blank" rel="noopener noreferrer">Quadsite</a>
+             </p>
+
           </div>
-          <div className="flex justify-center space-x-6 mt-4 sm:mt-0">
-            <a href="#" className="hover:text-indigo-600 transition-colors" aria-label="Facebook">
+          
+          {/* --- Right Side: Social Media Icons --- */}
+          <div className="flex justify-center space-x-6">
+            <a href="https://www.facebook.com/profile.php?id=61578279929495" className="hover:text-indigo-600 transition-colors" aria-label="Facebook">
               <FaFacebookF className="h-6 w-6" />
             </a>
             <a href="mailto:konerenfoundation@gmail.com" className="hover:text-indigo-600 transition-colors" aria-label="Email">
               <FaEnvelope className="h-6 w-6" />
-            </a>
-            <a href="#" className="hover:text-indigo-600 transition-colors" aria-label="Twitter">
-              <FaTwitter className="h-6 w-6" />
-            </a>
-            <a href="#" className="hover:text-indigo-600 transition-colors" aria-label="Instagram">
-              <FaInstagram className="h-6 w-6" />
             </a>
           </div>
         </div>
